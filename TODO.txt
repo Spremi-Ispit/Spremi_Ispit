@@ -1,0 +1,16 @@
+TO DO: web sockets (publish / subscribe) za aktivne korisnike, i provera usera kad se ucitava aplikacija
+TO DO: publish user role change web sockets 
+
+-------------------------------
+TO DO: linkovi umesto obicnih tekstova na ocekivanim nestima(username npr hocu da otvorim u new page)
+TO DO: page pre homepage-a
+TO DO: podrzi .txt fajlove
+TO DO: dodaj komentare na profilu, za sada postoje samo postovi usera
+
+--------------------------------------------NOT THAT IMPORTANT--------------------------------------------
+TO DO: viewPostPage->homePage (sa home vrati se pomocu browser back strelice na viewPostPage)
+TO Do: razlika izmedju Milan i milan ili miLAn //kod registracije i kod promene username-a, 
+
+--------------------------------------------AKO ZAZIVI...--------------------------------------------
+TO DO: reportovani post/komentar nema delete button
+TO DO: kad dodajemo USERA U blacklist tabelu, ne brisemo ga iz prethodnih tabela (umesto blacklist tabele, da se prosiri banned fleg u user tabeli (ili da se doda novi fleg))
