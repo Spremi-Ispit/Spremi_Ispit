@@ -8,27 +8,41 @@ import { setOrder } from '../../../../redux/slices';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 import { urlParams, orderEnum } from '../../../../../../utils/enums';
-import { useSearchParams } from 'react-router-dom';
-import { updateSearchParam } from '../../../../../../utils/useUpdateSearchParam';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import {
+  editSearchParams,
+  updateSearchParam,
+} from '../../../../../../utils/useUpdateSearchParam';
 
 const Order = () => {
   const order = useSelector((state) => state.home.order);
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
   const urlOrder = searchParams.get(urlParams.order);
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const handleChange = (event, newValue) => {
     updateSearchParam(urlParams.order, newValue, searchParams, setSearchParams);
   };
 
   useEffect(() => {
-    if (urlOrder && urlOrder!==order) {
+    if (urlOrder && urlOrder !== order) {
       dispatch(setOrder(urlOrder));
-    }
-  }, [urlOrder, dispatch, order]);
+    } else {
+      const newSearchParams = editSearchParams(
+        urlParams.order,
+        order,
+        searchParams
+      );
 
-  useEffect(() => {
-    if (!urlOrder) {
-      updateSearchParam(urlParams.order, order, searchParams, setSearchParams);
+      navigate(
+        {
+          pathname: location.pathname,
+          search: newSearchParams,
+        },
+        { replace: true }
+      );
     }
   }, [urlOrder, dispatch, searchParams, setSearchParams, order]);
 

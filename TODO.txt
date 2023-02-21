@@ -8,7 +8,6 @@ TO DO: podrzi .txt fajlove
 TO DO: dodaj komentare na profilu, za sada postoje samo postovi usera
 
 --------------------------------------------NOT THAT IMPORTANT--------------------------------------------
-TO DO: viewPostPage->homePage (sa home vrati se pomocu browser back strelice na viewPostPage)
 TO Do: razlika izmedju Milan i milan ili miLAn //kod registracije i kod promene username-a, 
 
 --------------------------------------------AKO ZAZIVI...--------------------------------------------

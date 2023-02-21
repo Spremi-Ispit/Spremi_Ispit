@@ -8,11 +8,9 @@ import { urlParams, postType } from '../../../../../../utils/enums';
 import { useNavigate, useSearchParams, useLocation } from 'react-router-dom';
 import {
   updateSearchParam,
-  updateSearchParams,
-  useSearchParamsUpdate,
+  editSearchParams,
 } from '../../../../../../utils/useUpdateSearchParam';
 import { assets } from '../../../../../../assets';
-import { homeRoute } from '../../../../../../app/router/routes';
 
 const ScrollableTabs = () => {
   const dispatch = useDispatch();
@@ -32,8 +30,10 @@ const ScrollableTabs = () => {
   };
 
   useEffect(() => {
-    if (!urlType) {
-      const updatedSearchParams = updateSearchParams(
+    if (urlType && urlType !== type) {
+      dispatch(setType(urlType));
+    } else {
+      const newSearchParams = editSearchParams(
         urlParams.type,
         type,
         searchParams
@@ -42,13 +42,10 @@ const ScrollableTabs = () => {
       navigate(
         {
           pathname: location.pathname,
-          search: updatedSearchParams,
+          search: newSearchParams,
         },
         { replace: true }
       );
-      // updateSearchParam(urlParams.type, type, searchParams, setSearchParams);
-    } else {
-      dispatch(setType(urlType));
     }
   }, [
     urlType,

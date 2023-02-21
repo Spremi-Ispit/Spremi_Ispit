@@ -40,7 +40,7 @@ const Fliters = () => {
           <Tags />
           <AdditionalFiltersContainer>
             <Type />
-            {/* <Order /> */}
+            <Order />
           </AdditionalFiltersContainer>
           <StyledDivider />
         </>

@@ -71,7 +71,6 @@ export const addComment =
   };
 
 export const loadPostForHomepageFilters =
-  //used when there are more filters except postId
   (selectedPostIndex, homepageFilters, clb) => async (dispatch, getState) => {
     const {
       selectedTags: selectedTagsNames,
