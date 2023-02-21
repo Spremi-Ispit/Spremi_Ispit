@@ -167,15 +167,19 @@ export const updateUsername = async (req) => {
     where: { email }
   });
 
-  if (!user) {
-    return response.NOT_FOUND(`User not found`);
-  } else {
-    if (await bcrypt.compare(password, user.password)) {
-      user.username = newUsername;
-      await user.save();
-      return await loginUser(req);
-    } else {
+  try {
+    if (!user) {
       return response.NOT_FOUND(`User not found`);
+    } else {
+      if (await bcrypt.compare(password, user.password)) {
+        user.username = newUsername;
+        await user.save();
+        return await loginUser(req);
+      } else {
+        return response.NOT_FOUND(`User not found`);
+      }
     }
+  } catch (err) {
+    return response.INTERNAL_SERVER_ERROR(err.toString());
   }
 };

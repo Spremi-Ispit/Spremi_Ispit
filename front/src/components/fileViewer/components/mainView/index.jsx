@@ -4,6 +4,7 @@ import {
   selectVideos,
   selectWordDocuments,
   selectPdfDocuments,
+  selectTxtFiles,
 } from '../../../../utils/filesSelector';
 import { ImageView } from './components/image';
 import { FileView } from './components/file';
@@ -18,6 +19,7 @@ export const MainView = ({ file }) => {
     const document = selectWordDocuments([file])[0];
     const pdf = selectPdfDocuments([file])[0];
     const video = selectVideos([file])[0];
+    const txt = selectTxtFiles([file])[0];
 
     if (image) {
       return <ImageView file={image} />;
@@ -33,6 +35,10 @@ export const MainView = ({ file }) => {
 
     if (video) {
       return <VideoView file={video} />;
+    }
+
+    if (txt) {
+      return <FileView file={txt} />;
     }
   };
 

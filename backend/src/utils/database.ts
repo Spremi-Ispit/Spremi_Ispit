@@ -9,8 +9,8 @@ import { User } from '../entities/User';
 import { Blacklist } from '../entities/Blacklist';
 import { DataSource } from 'typeorm';
 import mysql from 'mysql2/promise';
-import fs from 'fs';
-import path from 'path';
+// import fs from 'fs';
+// import path from 'path';
 
 dotenv.config();
 

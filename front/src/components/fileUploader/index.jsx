@@ -23,7 +23,7 @@ export const FileUploader = (props) => {
         ref={inputRef}
         style={{ display: 'none' }}
         onChange={onInputChange}
-        accept=".pdf, .doc*, .mp4, .jpg, .jpeg, .png"
+        accept=".pdf, .doc*, .mp4, .jpg, .jpeg, .png, .txt"
         multiple="multiple"
       />
       {files.length > 0 ? (

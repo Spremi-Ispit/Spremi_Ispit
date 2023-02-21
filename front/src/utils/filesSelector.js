@@ -18,6 +18,8 @@ export const selectImages = (files) =>
 export const selectWordDocuments = (files) =>
   selectFiles(files, '.doc', '.docx');
 
+export const selectTxtFiles = (files) => selectFiles(files, '.txt');
+
 export const selectPdfDocuments = (files) => selectFiles(files, '.pdf');
 
 export const selectVideos = (files) => selectFiles(files, '.mp4');
