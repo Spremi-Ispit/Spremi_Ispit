@@ -1,3 +1,5 @@
+import { supporetdFileTypes } from './enums';
+
 const getExtensionFromFileName = (fileName) => {
   return fileName.split('.').pop();
 };
@@ -13,13 +15,21 @@ const selectFiles = (files, ...fileTypes) => {
 };
 
 export const selectImages = (files) =>
-  selectFiles(files, '.png', '.jpg', '.jpeg');
+  selectFiles(
+    files,
+    `${supporetdFileTypes.png}`,
+    `${supporetdFileTypes.jpg}`,
+    `${supporetdFileTypes.jpeg}`
+  );
 
 export const selectWordDocuments = (files) =>
-  selectFiles(files, '.doc', '.docx');
+  selectFiles(files, `${supporetdFileTypes.doc}`, `${supporetdFileTypes.docx}`);
 
-export const selectTxtFiles = (files) => selectFiles(files, '.txt');
+export const selectTxtFiles = (files) =>
+  selectFiles(files, `${supporetdFileTypes.txt}`);
 
-export const selectPdfDocuments = (files) => selectFiles(files, '.pdf');
+export const selectPdfDocuments = (files) =>
+  selectFiles(files, `${supporetdFileTypes.pdf}`);
 
-export const selectVideos = (files) => selectFiles(files, '.mp4');
+export const selectVideos = (files) =>
+  selectFiles(files, `${supporetdFileTypes.mp4}`);

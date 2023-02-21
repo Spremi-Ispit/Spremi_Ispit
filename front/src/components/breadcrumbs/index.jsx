@@ -24,7 +24,9 @@ const Breadcrumbs = () => {
     } else {
       dispatch(setHistory([...history, location]));
     }
-  }, [location.search]);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.search, dispatch, location]);
 
   const handleClick = (index) => {
     const destination = history[index];

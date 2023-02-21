@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { PostData, StyledPaper } from './styles';
 import Details from './components/details';
 import PostContent from './components/postContent';

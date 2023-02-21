@@ -44,7 +44,15 @@ const Order = () => {
         { replace: true }
       );
     }
-  }, [urlOrder, dispatch, searchParams, setSearchParams, order]);
+  }, [
+    urlOrder,
+    dispatch,
+    searchParams,
+    setSearchParams,
+    order,
+    location.pathname,
+    navigate,
+  ]);
 
   return (
     <OrdersContainer>

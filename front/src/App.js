@@ -1,6 +1,7 @@
 import React from 'react';
 import Router from './app/router';
-import ErrorBoundary from './components/errorBoundary';
+// import ErrorBoundary from './components/errorBoundary';
+
 function App() {
   return (
     // <ErrorBoundary>

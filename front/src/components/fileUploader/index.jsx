@@ -2,6 +2,7 @@ import React, { createRef } from 'react';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import { StyledButton, StyledDeleteButton, UploadContainer } from './styles';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { supporetdFileTypes } from '../../utils/enums';
 
 export const FileUploader = (props) => {
   const { setFiles, files } = props;
@@ -23,7 +24,7 @@ export const FileUploader = (props) => {
         ref={inputRef}
         style={{ display: 'none' }}
         onChange={onInputChange}
-        accept=".pdf, .doc*, .mp4, .jpg, .jpeg, .png, .txt"
+        accept={`${Object.values(supporetdFileTypes).toString()}`}
         multiple="multiple"
       />
       {files.length > 0 ? (

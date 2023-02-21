@@ -6,7 +6,7 @@ import Title from './title';
 
 const CommentPreview = (props) => {
   const { data } = props;
-  const { text, files, likes, dislikes, id, date, postedBy, postId } = data;
+  const { text, files, likes, dislikes, date, postedBy, postId } = data;
 
   return (
     <StyledPaper elevation={1}>

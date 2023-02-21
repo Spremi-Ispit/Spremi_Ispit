@@ -11,13 +11,16 @@ const fileExtLimiter = (allowedExtArray) => {
     });
 
     // Are the file extension allowed?
-    const allowed = fileExtensions.every((ext) => allowedExtArray.includes(ext.toLowerCase()));
+    const allowed = fileExtensions.every((ext) =>
+      allowedExtArray.includes(ext.toLowerCase())
+    );
 
     if (!allowed) {
-      const message = `Upload failed. Only ${allowedExtArray.toString()} files allowed.`.replaceAll(
-        ',',
-        ', '
-      );
+      const message =
+        `Upload failed. Only ${allowedExtArray.toString()} files allowed.`.replaceAll(
+          ',',
+          ', '
+        );
 
       return response.BAD_REQUEST(message);
     }

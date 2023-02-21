@@ -5,6 +5,7 @@ import {
   selectVideos,
   selectWordDocuments,
   selectPdfDocuments,
+  selectTxtFiles,
 } from '../../../../../../utils/filesSelector';
 import { assets } from '../../../../../../assets';
 
@@ -55,6 +56,7 @@ export const Slides = ({ files, activeFileIndex, setActiveFileIndex }) => {
     const document = selectWordDocuments([file])[0];
     const pdf = selectPdfDocuments([file])[0];
     const video = selectVideos([file])[0];
+    const txt = selectTxtFiles([file])[0];
 
     if (image) return image.src;
 
@@ -63,6 +65,8 @@ export const Slides = ({ files, activeFileIndex, setActiveFileIndex }) => {
     if (pdf) return assets.fileExtension.pdf1;
 
     if (video) return assets.fileExtension.video;
+
+    if (txt) return assets.fileExtension.txt1;
   };
 
   return createSlidingImages(files).map((file, index) => (

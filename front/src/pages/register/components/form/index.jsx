@@ -18,7 +18,7 @@ import {
 import * as routes from '../../../../app/router/routes';
 import {
   validateEmail,
-  validatePassword,
+  // validatePassword,
 } from '../../../../utils/authValidation';
 
 const Form = () => {

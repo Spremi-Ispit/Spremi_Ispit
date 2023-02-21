@@ -13,8 +13,6 @@ import {
   StyledSelect,
 } from './styles';
 import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
 import Dialog from '../../../../components/dialog';
 import Tags from './components/tags';
 import { FileViewer } from '../../../../components/fileViewer';
@@ -31,6 +29,7 @@ import {
   selectPdfDocuments,
   selectVideos,
   selectWordDocuments,
+  selectTxtFiles,
 } from '../../../../utils/filesSelector';
 import { postType } from '../../../../utils/enums';
 import { assets } from '../../../../assets';
@@ -61,7 +60,9 @@ const Form = () => {
     setImages(selectImages(attachments));
     setVideos(selectVideos(attachments));
     setDocuments(
-      selectWordDocuments(attachments).concat(selectPdfDocuments(attachments))
+      selectWordDocuments(attachments).concat(
+        selectPdfDocuments(attachments).concat(selectTxtFiles(attachments))
+      )
     );
   }, [attachments]);
 

@@ -26,25 +26,33 @@ export const uploadCommentFile = async (req) => {
 };
 
 async function insertFileInfoIntoTable(entity, filepath, ext, id) {
-  const propertyType = entity === typeof PostFile ? 'post' : 'comment';
-  const entityType = entity === typeof PostFile ? Post : Comment;
+  const propertyType = typeof entity === typeof PostFile ? 'post' : 'comment';
+  const entityType = typeof entity === typeof PostFile ? Post : Comment;
 
   const fileEntity = entity.create({
-    filepath,
+    path: filepath,
     ext,
-    [propertyType]: await entityType.findOneBy(id)
+    [propertyType]: await entityType.findOneBy(Number(id))
   });
+
   await fileEntity.save();
 }
 
+const getExtension = (file) => {
+  const ext = '.' + file.mimetype.split('/')[1];
+
+  if (ext === '.plain') return '.txt';
+
+  return ext;
+};
+
 async function uploadFile(req, entity, id, directory) {
   const files = req.files;
-
   Object.keys(files).forEach((key) => {
     const file = files[key];
     const uniqueFileName = `${directory}/${id}/${file.name}`;
     const filepath = createFilePath(uniqueFileName);
-    const ext = '.' + file.mimetype.split('/')[1];
+    const ext = getExtension(file);
 
     files[key].mv(filepath, async (err) => {
       if (err) {

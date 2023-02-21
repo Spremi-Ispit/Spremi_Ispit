@@ -13,14 +13,13 @@ import {
   StyledPostedBy,
   StyledTimeContainer,
 } from './styles';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { profileRoute } from '../../../../app/router/routes';
 import { assets } from '../../../../assets';
 
 const PostContent = (props) => {
   // const { profileImage, date, postedBy, title, type, description, tags } =
   const { date, postedBy, title, type, description, tags } = props;
-  const navigate = useNavigate();
 
   const typeIcon =
     type === 'material' ? (
@@ -32,16 +31,6 @@ const PostContent = (props) => {
         <StyledImage src={assets.postType.question} />
       </Tooltip>
     );
-
-  const handleVisitUserProfile = (e) => {
-    e.stopPropagation();
-    e.nativeEvent.stopImmediatePropagation();
-
-    navigate({
-      pathname: profileRoute,
-      search: `username=${postedBy}`,
-    });
-  };
 
   const stopPropagation = (e) => {
     e.stopPropagation();

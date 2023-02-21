@@ -37,3 +37,14 @@ export const urlParams = {
   postId: 'postId',
   totalNumberOfPosts: 'totalNumberOfPosts',
 };
+
+export const supporetdFileTypes = {
+  pdf: '.pdf',
+  doc: '.doc',
+  docx: '.docx',
+  mp4: '.mp4',
+  jpg: '.jpg',
+  jpeg: '.jpeg',
+  png: '.png',
+  txt: '.txt',
+};
