@@ -280,6 +280,60 @@ export const getPostsForHomepageFilters = async (req) => {
   return response.OK(`Posts retrived`, data);
 };
 
+export const getCommentedPosts = async (req) => {
+  const { userID } = req.body;
+  const { username } = req.params;
+
+  const user = await User.findOne({
+    where: {
+      username
+    }
+  });
+
+  const comments = await Comment.find({
+    where: {
+      postedBy: user
+    }
+  });
+
+  let commentedPosts = [];
+
+  for (let comment of comments) {
+    const commentedPost = await Post.findOne({
+      where: {
+        comments: [{ id: comment.id }]
+      },
+      relations: ['files', 'tags', 'likedBy', 'dislikedBy']
+    });
+
+    const exist = commentedPosts.find((post) => post.id === commentedPost.id);
+    if (!exist) {
+      commentedPosts.push(commentedPost);
+    }
+  }
+
+  let mapCommentedPosts = [];
+  commentedPosts.forEach((commentedPost) => {
+    mapCommentedPosts.push({
+      id: commentedPost.id,
+      title: commentedPost.title,
+      text: commentedPost.text,
+      type: commentedPost.type,
+      date: commentedPost.date,
+      files: commentedPost.files,
+      likes: commentedPost.likedBy.length,
+      dislikes: commentedPost.dislikedBy.length,
+      username: user.username,
+      userId: user.id,
+      tags: commentedPost.tags,
+      owner: user.id === userID,
+      likeStatus: postLikeDislikeStatus.none
+    });
+  });
+
+  return response.OK('Commented posts', mapCommentedPosts);
+};
+
 /* - - - - - - - - - - - - - - -HELPERS- - - - - - - - - - - - - - - */
 
 function checkOwner(userID, post) {

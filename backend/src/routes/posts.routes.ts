@@ -12,7 +12,8 @@ import {
   getPostById,
   reportPost,
   getReportedPosts,
-  dismissReport
+  dismissReport,
+  getCommentedPosts
 } from '../controllers/posts.controller';
 import tokenValidation from '../utils/tokenValidation';
 
@@ -35,4 +36,6 @@ postsRoutes.route('/reports').get(tokenValidation, getReportedPosts);
 postsRoutes
   .route('/dismissReport/postId/:postId/reportedById/:reportedById')
   .delete(tokenValidation, dismissReport);
+postsRoutes.route('/commentedBy/:username').get(tokenValidation, getCommentedPosts);
+
 export default postsRoutes;

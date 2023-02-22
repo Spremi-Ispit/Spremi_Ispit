@@ -5,6 +5,7 @@ TO DO: publish user role change web sockets
 TO DO: linkovi umesto obicnih tekstova na ocekivanim nestima(username npr hocu da otvorim u new page)
 TO DO: page pre homepage-a
 TO DO: dodaj komentare na profilu, za sada postoje samo postovi usera
+TO DO: kad se ucita aplikacija u URL se ne upisauje type (radi za order)
 
 --------------------------------------------AKO ZAZIVI...--------------------------------------------
 TO DO: reportovani post/komentar nema delete button

@@ -61,3 +61,8 @@ export const dismissReport = async (req, res) => {
   const response = await postServices.dismissReport(req);
   return res.status(response.statusCode).send(response);
 };
+
+export const getCommentedPosts = async (req, res) => {
+  const response = await postServices.getCommentedPosts(req);
+  return res.status(response.statusCode).send(response);
+};
