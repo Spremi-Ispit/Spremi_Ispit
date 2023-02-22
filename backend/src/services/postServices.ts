@@ -218,52 +218,15 @@ export const getReportedPosts = async (req) => {
 };
 
 export const getPostsForHomepageFilters = async (req) => {
-  let { search, startIndex, count, tags, type, order } = req.body;
-
-  let postsQuery = dataSource.getRepository(Post).createQueryBuilder('post');
-
-  if (type === postType.material || type === postType.question) {
-    postsQuery.where(`post.type = '${type}'`);
-  }
-
-  if (search?.trim() !== '') {
-    const openedBracket = '(';
-    const closedBracket = ')';
-    postsQuery.andWhere(
-      `${openedBracket}MATCH(post.text) AGAINST(:search IN BOOLEAN MODE) OR
-     MATCH(post.title) AGAINST(:search IN BOOLEAN MODE)${closedBracket}`,
-      { search: `${search}*` }
-    );
-  }
-
-  if (tags.length > 0) {
-    postsQuery.leftJoinAndSelect('post.tags', 'tag');
-    postsQuery.andWhere('tag.id IN (:tags)', { tags });
-    postsQuery.groupBy('post.id');
-    postsQuery.having(`COUNT(DISTINCT tag) >= ${tags.length}`);
-  }
-
-  postsQuery
-    .select('post.id')
-    .addSelect('post.date')
-    .addSelect('COUNT(likedBy.id)', 'likes')
-    .leftJoin('post.likedBy', 'likedBy')
-    .groupBy('post.id')
-    .addSelect('COUNT(dislikedBy.id)', 'dislikes')
-    .leftJoin('post.dislikedBy', 'dislikedBy')
-    .groupBy('post.id');
+  // { search, startIndex, count, tags, type, order } = req.body; //body contains all these parameters
+  let { startIndex, count } = req.body;
+  let postsQuery = buildPostsQueryForHomepageFilters(req);
 
   const perPage = count;
   const page = Math.floor(startIndex / count) + 1;
   const skip = perPage * page - perPage;
 
-  const orderSql = {
-    newest: 'post.date',
-    like: 'likes',
-    dislike: 'dislikes'
-  };
-
-  postsQuery = postsQuery.orderBy(orderSql[order], 'DESC');
+  postsQuery = postsQuery.skip(skip).take(perPage);
 
   let postResults = await postsQuery.getRawAndEntities();
 
@@ -277,17 +240,17 @@ export const getPostsForHomepageFilters = async (req) => {
     where: {
       id: In(postsIds)
     },
-    relations: ['postedBy', 'files', 'tags', 'likedBy', 'dislikedBy'],
-    skip: skip,
-    take: perPage
+    relations: ['postedBy', 'files', 'tags', 'likedBy', 'dislikedBy']
   });
 
   const status = checkIfLogged(req);
   const userID = status.userID;
 
+  const totalNumberOfPosts = await getTotalNumberOfPostsForHomepageFilters(req);
+
   const data = {
-    totalNumberOfPosts: postsIds.length,
-    totalNumberOfPages: Math.ceil(postsIds.length / count),
+    totalNumberOfPosts: totalNumberOfPosts,
+    totalNumberOfPages: Math.ceil(totalNumberOfPosts / count),
     posts: (() => {
       const postArray = [];
       postsIds.forEach((id, index) => {
@@ -321,6 +284,65 @@ export const getPostsForHomepageFilters = async (req) => {
 
 function checkOwner(userID, post) {
   return userID != null && userID === post.postedBy.id;
+}
+
+async function getTotalNumberOfPostsForHomepageFilters(req) {
+  let postsQuery = buildPostsQueryForHomepageFilters(req);
+  let postResults = await postsQuery.getRawAndEntities();
+
+  let postsIds = [];
+
+  postResults.raw.forEach((post) => {
+    postsIds.push(post.post_id);
+  });
+
+  return postsIds.length;
+}
+
+function buildPostsQueryForHomepageFilters(req) {
+  const { search, tags, type, order } = req.body;
+  let postsQuery = dataSource.getRepository(Post).createQueryBuilder('post');
+
+  if (type === postType.material || type === postType.question) {
+    postsQuery.where(`post.type = '${type}'`);
+  }
+
+  if (search?.trim() !== '') {
+    const openedBracket = '(';
+    const closedBracket = ')';
+    postsQuery.andWhere(
+      `${openedBracket}MATCH(post.text) AGAINST(:search IN BOOLEAN MODE) OR
+     MATCH(post.title) AGAINST(:search IN BOOLEAN MODE)${closedBracket}`,
+      { search: `${search}*` }
+    );
+  }
+
+  if (tags.length > 0) {
+    postsQuery.leftJoinAndSelect('post.tags', 'tag');
+    postsQuery.andWhere('tag.id IN (:tags)', { tags });
+    postsQuery.groupBy('post.id');
+    postsQuery.having(`COUNT(DISTINCT tag) >= ${tags.length}`);
+  }
+
+  postsQuery
+    .select('post.id')
+    .addSelect('post.date')
+    .addSelect('COUNT(likedBy.id)', 'likes')
+    .leftJoin('post.likedBy', 'likedBy')
+    .groupBy('post.id')
+    .addSelect('COUNT(dislikedBy.id)', 'dislikes')
+    .leftJoin('post.dislikedBy', 'dislikedBy')
+    .groupBy('post.id');
+
+  const orderSql = {
+    newest: 'post.date',
+    like: 'likes',
+    dislike: 'dislikes'
+  };
+
+  postsQuery = postsQuery.orderBy(orderSql[order], 'DESC');
+
+  return postsQuery;
 }
 
 function getPostLikeDislikeStatus(userID, post) {

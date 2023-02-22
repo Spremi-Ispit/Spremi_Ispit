@@ -5,20 +5,6 @@ TO DO: publish user role change web sockets
 TO DO: linkovi umesto obicnih tekstova na ocekivanim nestima(username npr hocu da otvorim u new page)
 TO DO: page pre homepage-a
 TO DO: dodaj komentare na profilu, za sada postoje samo postovi usera
-TO DO: dodao sam novu objavu koja se prikazuje pre bug objave i kad kliknem na nju, otvara se bug objava,
-a trebalo bi da bude prikazana posle bug objave
-TO DO: proveriti da li filteri rade lepo (zbog promena koje sam napravio u servisu)
-{
-naslov: aaaa,
-sadrzaj: bbbb,
-tag: aor
-}
---------------------------------------------PITANJE--------------------------------------------
-TO DO: razlika izmedju Milan i milan ili miLAn 
-   // zbog UNIQUE constraint-a ne moze da postoji darjan i Darjan, probaj jednog da uneses kroz workbench, a drugog kroz aplikaciju
-   // osim greske koja stize kod klijenta, dodao sam error logging u fajl kad pukne
-   // jedino mesto gde je ovo bitno "Milan i milan ili miLAn" je za promenu username-a, jer mi nemamo search korisnika kao na LOL 
-   // nisam imao gde da ovo da fixujem po kodu, je l ti pada nesto na pamet?
 
 --------------------------------------------AKO ZAZIVI...--------------------------------------------
 TO DO: reportovani post/komentar nema delete button
