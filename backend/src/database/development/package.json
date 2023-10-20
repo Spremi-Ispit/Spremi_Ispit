@@ -1,0 +1,9 @@
+{
+  "name": "database",
+  "type": "module",
+  "scripts": {
+    "clean": "del spremiis_elfak.sql",
+    "concatenate": "copy /b *.sql spremiis_elfak.sql",
+    "build": "npm run clean && npm run concatenate"
+  }
+}

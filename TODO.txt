@@ -1,0 +1,10 @@
+TO DO: https://jsdoc.app/, add prop-types and comment block for every component (eg. SidePanel) to support prop autoComplete/intellisense
+--------------------------------------------AKO ZAZIVI...--------------------------------------------
+TO DO: notify user that his role has changed (because this is not possibe with sockets (hosting problem)), 
+       use one more middleware (e.g "router.use(apiLogger);") that will activate on every request or polling method 
+TO DO: encrypt and decrypt JWT token
+TO DO: reportovani post/komentar nema delete button
+TO DO: kad dodajemo USERA U blacklist tabelu, ne brisemo ga iz prethodnih tabela (umesto blacklist tabele, da se prosiri banned fleg u user tabeli (ili da se doda novi fleg))
+---------------------------------------------------------------------------------------------
+
+netstat -lanp | grep :3000

@@ -1,0 +1,89 @@
+.modalBackground {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContainer {
+  width: 500px;
+  height: 500px;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+}
+
+.modalContainer .title {
+  display: inline-block;
+  text-align: center;
+  margin-top: 10px;
+  font-family: Poppins;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.titleCloseBtn {
+  display: flex;
+  justify-content: flex-end;
+  font-family: Poppins;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.titleCloseBtn button {
+  border: none;
+  font-size: 25px;
+  cursor: pointer;
+  background-color: #fff;
+  font-family: Poppins;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.modalContainer .body {
+  flex: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: Poppins;
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.modalContainer .footer {
+  flex: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContainer .footer button {
+  width: 150px;
+  height: 45px;
+  margin: 10px;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #023e8a;
+}
+
+.modalContainer .footer button:hover {
+  background-color: #03045e;
+}
+.btnCancel {
+  background-color: #03045e;
+}
+
+#cancelBtn {
+  background-color: #023e8a;
+}
+
+p {
+  padding: 1em;
+}
