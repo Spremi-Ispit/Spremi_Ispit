@@ -20,7 +20,6 @@ const TextH4 = styled(Typography)`
     font-family: Poppins;
     font-weight: 600;
     font-size: 40px;
-    /* color: #023e8a; */
     font-style: italic;
   }
 `;
@@ -55,17 +54,17 @@ const StyledForm = styled.form`
 `;
 
 const StyledPaper = styled(Paper)`
-  padding: 20px;
-  margin-bottom: 30px;
-  min-height: 150px;
-  display: flex;
-  flex-direction: column;
-  /* border: 0.5px solid; */
-  background-color: #cccccc;
-  align-items: center;
-  width: 100%;
-  border: none;
-  box-shadow: -1px 2px 9px 1px #b9b9b9 !important;
+  && {
+    padding: 20px;
+    margin-bottom: 30px;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    border: none;
+    box-shadow: -1px 2px 9px 1px #b9b9b9;
+  }
 `;
 
 const StyledLink = styled(Link)`
@@ -96,6 +95,12 @@ const InputField = styled(TextField)`
     margin: 0;
     padding: 0.8em 0em;
   }
+`;
+
+const Span = styled.span`
+  position: absolute;
+  bottom: 20%;
+  left: 90%;
 `;
 const Form = () => {
   const [email, setEmail] = useState('');
@@ -167,12 +172,9 @@ const Form = () => {
               onChange={(e) => setPassword(e.target.value)}
               autoComplete="current-password"
             />
-            <span
-              style={{ position: 'absolute', bottom: '20%', left: '90%' }}
-              onClick={handleToggle}
-            >
-              <img src={icon} size={25} />
-            </span>
+            <Span onClick={handleToggle}>
+              <img src={icon} />
+            </Span>
           </DivWrapper>
 
           <StyledButton
