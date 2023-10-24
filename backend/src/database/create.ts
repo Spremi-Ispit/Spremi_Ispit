@@ -1,7 +1,6 @@
 // @ts-nocheck
 import mysql from 'mysql2/promise';
 import env from '../config/env';
-import { dataSource } from './datasource';
 
 const createDatabase = async () => {
   try {
@@ -13,17 +12,10 @@ const createDatabase = async () => {
     });
 
     await connection.query(`CREATE DATABASE IF NOT EXISTS ${env.DB_NAME}`);
+    console.log('Database has been recreated!');
   } catch (err) {
     console.log(err);
-    process.exit();
-  }
-
-  try {
-    await dataSource.initialize();
-  } catch (err) {
-    console.error('Error during Data Source initialization', err);
   } finally {
-    console.log('Database has been recreated!');
     process.exit();
   }
 };
