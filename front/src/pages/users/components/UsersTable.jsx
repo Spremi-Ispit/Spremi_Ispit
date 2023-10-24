@@ -9,7 +9,7 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { useSelector } from 'react-redux';
 import ErrorDialog from '../../../components/dialogs/ErrorDialog';
-import Loader from '../../../components/loader';
+import Loader from '../../../components/Loader';
 import { useNavigate } from 'react-router-dom';
 import { userRole } from '../../../redux/app/state';
 import { Button } from '@mui/material';

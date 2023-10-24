@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import { FormLabel, Link } from '@mui/material';
-import Loader from '../../../components/loader';
+import Loader from '../../../components/Loader';
 import ErrorDialog from '../../../components/dialogs/ErrorDialog';
 import { useAuthManager } from '../../../utils/managers/AuthManager';
 import { screensCSS } from '../../../utils/useScreens';

@@ -13,8 +13,8 @@ const populateDatabase = async () => {
     const connection = await mysql.createConnection({
       host: env.DB_HOST,
       port: env.DB_PORT,
-      user: env.DB_USER,
-      password: env.DB_PASSWORD,
+      user: env.MYSQL_USER,
+      password: env.MYSQL_PASSWORD,
       multipleStatements: true
     });
 

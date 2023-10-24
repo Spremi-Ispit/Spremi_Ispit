@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import ErrorDialog from '../../../components/dialogs/ErrorDialog';
-import Loader from '../../../components/loader';
+import Loader from '../../../components/Loader';
 import { TextField } from '@mui/material';
 import Autocomplete from '@mui/material/Autocomplete';
 import InputLabel from '@mui/material/InputLabel';

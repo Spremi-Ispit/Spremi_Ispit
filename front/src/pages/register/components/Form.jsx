@@ -8,7 +8,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ErrorDialog from '../../../components/dialogs/ErrorDialog';
-import Loader from '../../../components/loader';
+import Loader from '../../../components/Loader';
 import { homeRoute } from '../../../router/routes';
 import {
   validateEmail,

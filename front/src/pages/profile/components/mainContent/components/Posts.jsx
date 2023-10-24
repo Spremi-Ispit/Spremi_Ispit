@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PostView from '../../../../../components/postView/PostView';
 import { ErrorDialog } from '../../../../../components/dialogs/ErrorDialog';
-import Loader from '../../../../../components/loader';
+import Loader from '../../../../../components/Loader';
 import Typography from '@mui/material/Typography';
 import Fade from '@mui/material/Fade';
 import styled from 'styled-components';

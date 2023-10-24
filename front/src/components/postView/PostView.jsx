@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Paper from '@mui/material/Paper';
 import Footer from './components/footer/Footer';
 import Info from './components/Info';
-import Content from './components/content';
+import Content from './components/Content';
 import { PostViewProvider } from './PostViewContext';
 import models from '../../models';
 import { allowedUrlParams } from '../../utils/managers/UrlManager';

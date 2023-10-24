@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useState } from 'react';
-import Loader from '../../../../loader';
+import Loader from '../../../../Loader';
 import services from '../../../../../utils/services';
 import ErrorDialog from '../../../../dialogs/ErrorDialog';
 

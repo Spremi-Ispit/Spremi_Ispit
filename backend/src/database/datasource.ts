@@ -18,8 +18,8 @@ export const dataSource = new DataSource({
   type: 'mysql',
   host: env.DB_HOST,
   port: env.DB_PORT,
-  username: env.DB_USER,
-  password: env.DB_PASSWORD,
+  username: env.MYSQL_USER,
+  password: env.MYSQL_PASSWORD,
   database: env.DB_NAME,
   entities: [
     User,

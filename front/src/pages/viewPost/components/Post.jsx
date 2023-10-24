@@ -7,7 +7,7 @@ import {
   selectPrevPost,
 } from '../../../redux/viewPost/selectors';
 import ErrorDialog from '../../../components/dialogs/ErrorDialog';
-import Loader from '../../../components/loader';
+import Loader from '../../../components/Loader';
 import PostView, { postViewType } from '../../../components/postView/PostView';
 import {
   allowedUrlParams,

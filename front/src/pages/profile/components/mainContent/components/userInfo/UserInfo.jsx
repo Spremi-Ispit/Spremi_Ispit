@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import Loader from '../../../../../../components/loader';
+import Loader from '../../../../../../components/Loader';
 import AdminControlls from './components/AdminControlls';
 import { userRole } from '../../../../../../redux/app/state';
 import ErrorDialog from '../../../../../../components/dialogs/ErrorDialog';

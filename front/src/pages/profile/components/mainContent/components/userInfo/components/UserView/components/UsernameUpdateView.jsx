@@ -10,7 +10,7 @@ import {
 import { Button, TextField } from '@mui/material';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import ErrorDialog from '../../../../../../../../../components/dialogs/ErrorDialog';
-import Loader from '../../../../../../../../../components/loader';
+import Loader from '../../../../../../../../../components/Loader';
 import {
   allowedUrlParams,
   useUrlManager,

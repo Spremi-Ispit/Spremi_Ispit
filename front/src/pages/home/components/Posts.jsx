@@ -7,7 +7,7 @@ import PostView from '../../../components/postView/PostView';
 import Typography from '@mui/material/Typography';
 import Fade from '@mui/material/Fade';
 import ErrorDialog from '../../../components/dialogs/ErrorDialog';
-import Loader from '../../../components/loader';
+import Loader from '../../../components/Loader';
 import { useUrlManager } from '../../../utils/managers/UrlManager';
 import {
   selectPaginationCurrentPage,

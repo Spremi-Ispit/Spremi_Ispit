@@ -6,7 +6,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useState } from 'react';
 import AlertDialog from '../../../../../../../components/dialogs/AlertDialog';
 import ErrorDialog from '../../../../../../../components/dialogs/ErrorDialog';
-import Loader from '../../../../../../../components/loader';
+import Loader from '../../../../../../../components/Loader';
 import styled from 'styled-components';
 import { useApiActions } from '../../../../../../../api/useApiActions';
 

@@ -9,7 +9,7 @@ import {
   Users,
   ViewPost,
 } from '../pages';
-import PrivateRoutes from './privateRoutes';
+import PrivateRoutes from './PrivateRoutes';
 
 export default function Router() {
   return (

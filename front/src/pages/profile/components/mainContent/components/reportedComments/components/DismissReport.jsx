@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Loader from '../../../../../../../components/loader';
+import Loader from '../../../../../../../components/Loader';
 import ErrorDialog from '../../../../../../../components/dialogs/ErrorDialog';
 import styled from 'styled-components';
 import Button from '../../../../../../../components/buttons/Button';

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import Loader from '../../../components/loader';
+import Loader from '../../../components/Loader';
 import PostView, { postViewType } from '../../../components/postView/PostView';
 import ErrorDialog from '../../../components/dialogs/ErrorDialog';
 import {
