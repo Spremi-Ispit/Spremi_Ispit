@@ -35,10 +35,10 @@ export const dataSource = new DataSource({
     CommentFile,
     Blacklist
   ],
-  synchronize: true
+  synchronize: false
 });
 
-export const createDatasource = async () => {
+export const initializeDatasource = async () => {
   try {
     await dataSource.initialize();
     console.log('Data Source has been initialized!');

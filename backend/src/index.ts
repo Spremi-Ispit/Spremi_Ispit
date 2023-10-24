@@ -1,11 +1,11 @@
 // @ts-nocheck
 import env from './config/env';
-import { createDatasource } from './database/datasource';
+import { initializeDatasource } from './database/datasource';
 import { createApp } from './config/app';
 import { createServer } from './config/server';
 
 const start = async () => {
-  await createDatasource();
+  await initializeDatasource();
   const app = createApp();
   const server = createServer(app);
 
