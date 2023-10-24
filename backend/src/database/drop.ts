@@ -7,8 +7,8 @@ const dropDatabase = async () => {
     const connection = await mysql.createConnection({
       host: env.DB_HOST,
       port: env.DB_PORT,
-      user: env.DB_USER,
-      password: env.DB_PASSWORD
+      user: env.MYSQL_USER,
+      password: env.MYSQL_PASSWORD
     });
 
     await connection.query(`DROP DATABASE IF EXISTS ${env.DB_NAME}`);

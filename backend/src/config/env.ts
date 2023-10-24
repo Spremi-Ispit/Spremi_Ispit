@@ -13,6 +13,8 @@ export const NODE_ENV = {
 export default {
   NODE_ENV: env.NODE_ENV,
   ACCESS_TOKEN_SECRET: env.ACCESS_TOKEN_SECRET,
+  MYSQL_USER: env.MYSQL_USER,
+  MYSQL_PASSWORD: env.MYSQL_PASSWORD,
   DB_HOST: env.DB_HOST,
   DB_PORT: env.DB_PORT,
   DB_USER: env.DB_USER,
