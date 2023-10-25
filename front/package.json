@@ -8,6 +8,7 @@
     "build": "vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
+    "setupEnv": "setupEnv.bat",
     "zip": "zip.bat"
   },
   "dependencies": {
