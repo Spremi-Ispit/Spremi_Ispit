@@ -1,6 +1,6 @@
-USE `spremiis_elfak`;
 
-INSERT INTO `spremiis_elfak`.`department`(`name`) VALUES
+
+INSERT INTO `department`(`name`) VALUES
 ('Opšti'),
 ('Računarstvo i informatika'),
 ('Upravljanje sistemima'),

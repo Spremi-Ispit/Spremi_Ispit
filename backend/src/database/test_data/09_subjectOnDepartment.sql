@@ -1,6 +1,6 @@
-USE `spremiis_elfak`;
 
-INSERT INTO `spremiis_elfak`.`subjectOnDepartment` (`departmentId`, `subjectId`) VALUES
+
+INSERT INTO `subjectOnDepartment` (`departmentId`, `subjectId`) VALUES
 (1, 1),
 (1, 2),
 (1, 3),

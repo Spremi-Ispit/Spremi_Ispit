@@ -1,6 +1,6 @@
-USE `spremiis_elfak`;
 
-INSERT INTO `spremiis_elfak`.`subject`(`name`) VALUES
+
+INSERT INTO `subject`(`name`) VALUES
 -- I GODINA
 ('Algoritmi i programiranje'), -- 1
 ('Elektronske komponente'),

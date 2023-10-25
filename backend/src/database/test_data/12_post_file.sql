@@ -1,6 +1,6 @@
-USE `spremiis_elfak`;
 
-INSERT INTO `spremiis_elfak`.`post_file` (`path`, `ext`, `postId`) VALUES
+
+INSERT INTO `post_file` (`path`, `ext`, `postId`) VALUES
 ('posts/1/1.docx', '.docx', '1'),
 ('posts/1/1.pdf', '.pdf', '1'),
 ('posts/1/2.png', '.png', '1'),

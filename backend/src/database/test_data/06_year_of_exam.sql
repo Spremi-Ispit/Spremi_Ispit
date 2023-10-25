@@ -1,6 +1,6 @@
-USE `spremiis_elfak`;
 
-INSERT INTO `spremiis_elfak`.`year_of_exam`(`name`) VALUES
+
+INSERT INTO `year_of_exam`(`name`) VALUES
 ('2023'),
 ('2022'),
 ('2021'),

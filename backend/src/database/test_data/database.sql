@@ -1,7 +1,8 @@
-USE `spremiis_elfak`;
+USE `spremiis_dev`; 
 
-INSERT INTO `spremiis_elfak`.`user` (`username`, `email`, `password`, `role`) VALUES
-('Admin', 'admin@spremiispit.com','$2b$10$w1gSmaNYIDSH.xMGYF5OZOXTsIfskuW4BSlVmFR9yepzWDR/jvOIa', 'admin'),
+
+INSERT INTO `user` (`username`, `email`, `password`, `role`) VALUES
+('Admin', 'admin@spremiispit.com','$2b$10$w1gSmaNYIDSH.xMGYF5OZOXTsIfskuW4BSlVmFR9yepzWDR/jvOIa', 'admin'), -- password = 123
 ('a','a@elfak.rs','$2b$10$Mr4ZX.U07sw..Yk71WQu.uqreE9HQ6YCnFfMLnAOlSRXrT5NrEHwm','visitor'),
 ('b','b@elfak.rs','$2b$10$wHvK950voZQ4tqZEUdJyLeKU.PEn/VbCNOkMb0.WUNOs2amZPDFS2','visitor'),
 ('c','c@elfak.rs','$2b$10$qlqFhmY25PhPyP0daaRsSO7ZYlrubtQIZY4a7h4OqaOz3gmariSHe','visitor'),
@@ -10,9 +11,9 @@ INSERT INTO `spremiis_elfak`.`user` (`username`, `email`, `password`, `role`) VA
 UPDATE user
 SET banned = true
 where username='a';
-USE `spremiis_elfak`;
 
-INSERT INTO `spremiis_elfak`.`department`(`name`) VALUES
+
+INSERT INTO `department`(`name`) VALUES
 ('Opšti'),
 ('Računarstvo i informatika'),
 ('Upravljanje sistemima'),
@@ -20,16 +21,16 @@ INSERT INTO `spremiis_elfak`.`department`(`name`) VALUES
 ('Elektronika i mikroprocesorska tehnika'),
 ('Elektronske komponente i mikrosistemi'),
 ('Elektroenergetika');
-USE `spremiis_elfak`;
 
-INSERT INTO `spremiis_elfak`.`year_of_study`(`name`) VALUES
+
+INSERT INTO `year_of_study`(`name`) VALUES
 ('I'),
 ('II'),
 ('III'),
 ('IV'),
-('V');USE `spremiis_elfak`;
+('V');
 
-INSERT INTO `spremiis_elfak`.`yearOfStudyOnDepartment` (`departmentId`, `yearOfStudyId`) VALUES
+INSERT INTO `yearOfStudyOnDepartment` (`departmentId`, `yearOfStudyId`) VALUES
 (1, 1),
 (2, 2),
 (3, 2),
@@ -48,9 +49,9 @@ INSERT INTO `spremiis_elfak`.`yearOfStudyOnDepartment` (`departmentId`, `yearOfS
 (4, 4),
 (5, 4),
 (6, 4),
-(7, 4);USE `spremiis_elfak`;
+(7, 4);
 
-INSERT INTO `spremiis_elfak`.`examination_period`(`name`) VALUES
+INSERT INTO `examination_period`(`name`) VALUES
 ('Januar'),
 ('Mart'),
 ('April'),
@@ -60,9 +61,9 @@ INSERT INTO `spremiis_elfak`.`examination_period`(`name`) VALUES
 ('Oktobar'),
 ('Oktobar2'),
 ('Decembar');
-USE `spremiis_elfak`;
 
-INSERT INTO `spremiis_elfak`.`year_of_exam`(`name`) VALUES
+
+INSERT INTO `year_of_exam`(`name`) VALUES
 ('2023'),
 ('2022'),
 ('2021'),
@@ -76,18 +77,18 @@ INSERT INTO `spremiis_elfak`.`year_of_exam`(`name`) VALUES
 ('2013'),
 ('2012'),
 ('2011'),
-('2010');USE `spremiis_elfak`;
+('2010');
 
-INSERT INTO `spremiis_elfak`.`type`(`name`) VALUES
+INSERT INTO `type`(`name`) VALUES
 ('Blanket'),
 ('Skripta'),
 ('Lab'),
 ('KolokvijumI'),
 ('KolokvijumII'),
 ('Predavanja'),
-('Racunske');USE `spremiis_elfak`;
+('Racunske');
 
-INSERT INTO `spremiis_elfak`.`subject`(`name`) VALUES
+INSERT INTO `subject`(`name`) VALUES
 -- I GODINA
 ('Algoritmi i programiranje'), -- 1
 ('Elektronske komponente'),
@@ -311,9 +312,9 @@ INSERT INTO `spremiis_elfak`.`subject`(`name`) VALUES
 ('Izvori za napajanje'),
 ('Odabrana poglavlja iz elektromotornih pogona'),
 ('Zaštita u elektroenergetici'); -- 203
-USE `spremiis_elfak`;
 
-INSERT INTO `spremiis_elfak`.`subjectOnDepartment` (`departmentId`, `subjectId`) VALUES
+
+INSERT INTO `subjectOnDepartment` (`departmentId`, `subjectId`) VALUES
 (1, 1),
 (1, 2),
 (1, 3),
@@ -518,9 +519,9 @@ INSERT INTO `spremiis_elfak`.`subjectOnDepartment` (`departmentId`, `subjectId`)
 (7, 202),
 (7, 203);
 
-USE `spremiis_elfak`;
 
-INSERT INTO `spremiis_elfak`.`subjectOnYearOfStudy` (`yearOfStudyId`, `subjectId`) VALUES
+
+INSERT INTO `subjectOnYearOfStudy` (`yearOfStudyId`, `subjectId`) VALUES
 (1, 1),
 (1, 2),
 (1, 3),
@@ -725,9 +726,9 @@ INSERT INTO `spremiis_elfak`.`subjectOnYearOfStudy` (`yearOfStudyId`, `subjectId
 (4, 202),
 (4, 203);
 
-USE `spremiis_elfak`;   
+   
 
-INSERT INTO `spremiis_elfak`.`post` (`title`,`text`,`date`, `userId`, `subjectId`, `typeId`, `yearOfExamId`, `examinationPeriodId`) VALUES
+INSERT INTO `post` (`title`,`text`,`date`, `userId`, `subjectId`, `typeId`, `yearOfExamId`, `examinationPeriodId`) VALUES
 ( '', '', '2022-12-03 23:59:59', 1, 15, 1, 3, 1),
 ( '', '', '2022-12-03 23:59:59', 1, 15, 2, 3, null),
 ( '', '', '2022-12-03 23:59:59', 1, 15, 1, 3, null),
@@ -740,72 +741,72 @@ INSERT INTO `spremiis_elfak`.`post` (`title`,`text`,`date`, `userId`, `subjectId
 ( '', '', '2022-12-03 23:59:59', 1, 15, 2, 3, null),
 ( '', '', '2022-12-03 23:59:59', 1, null, null, null, null);
 
-UPDATE `spremiis_elfak`.`post` SET title = 'Paralelni sistemi' WHERE id = 1;
-UPDATE `spremiis_elfak`.`post` SET title = 'Naslov2' WHERE id = 2;
-UPDATE `spremiis_elfak`.`post` SET title = 'Naslov3' WHERE id = 3;
-UPDATE `spremiis_elfak`.`post` SET title = 'Naslov4' WHERE id = 4;
-UPDATE `spremiis_elfak`.`post` SET title = 'Naslov5' WHERE id = 5;
-UPDATE `spremiis_elfak`.`post` SET title = 'Naslov6' WHERE id = 6;
-UPDATE `spremiis_elfak`.`post` SET title = 'Naslov7' WHERE id = 7;
-UPDATE `spremiis_elfak`.`post` SET title = 'Naslov8' WHERE id = 8;
-UPDATE `spremiis_elfak`.`post` SET title = 'Naslov9' WHERE id = 9;
-UPDATE `spremiis_elfak`.`post` SET title = 'Naslov10' WHERE id = 10;
-UPDATE `spremiis_elfak`.`post` SET title = 'Bag' WHERE id = 11;
+UPDATE `post` SET title = 'Paralelni sistemi' WHERE id = 1;
+UPDATE `post` SET title = 'Naslov2' WHERE id = 2;
+UPDATE `post` SET title = 'Naslov3' WHERE id = 3;
+UPDATE `post` SET title = 'Naslov4' WHERE id = 4;
+UPDATE `post` SET title = 'Naslov5' WHERE id = 5;
+UPDATE `post` SET title = 'Naslov6' WHERE id = 6;
+UPDATE `post` SET title = 'Naslov7' WHERE id = 7;
+UPDATE `post` SET title = 'Naslov8' WHERE id = 8;
+UPDATE `post` SET title = 'Naslov9' WHERE id = 9;
+UPDATE `post` SET title = 'Naslov10' WHERE id = 10;
+UPDATE `post` SET title = 'Bag' WHERE id = 11;
 
-UPDATE `spremiis_elfak`.`post` SET text = 'Danasnji blanket' WHERE id = 1;
-UPDATE `spremiis_elfak`.`post` SET text = 'quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto' WHERE id = 2;
-UPDATE `spremiis_elfak`.`post` SET text = 'est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla' WHERE id = 3;
-UPDATE `spremiis_elfak`.`post` SET text = 'et iusto sed quo iure\nvoluptatem occaecati omnis eligendi aut ad\nvoluptatem doloribus vel accusantium quis pariatur\nmolestiae porro eius odio et labore et velit aut' WHERE id = 4;
-UPDATE `spremiis_elfak`.`post` SET text = 'ullam et saepe reiciendis voluptatem adipisci\nsit amet autem assumenda provident rerum culpa\nquis hic commodi nesciunt rem tenetur doloremque ipsam iure\nquis sunt voluptatem rerum illo velit' WHERE id = 5;
-UPDATE `spremiis_elfak`.`post` SET text = 'repudiandae veniam quaerat sunt sed\nalias aut fugiat sit autem sed est\nvoluptatem omnis possimus esse voluptatibus quis\nest aut tenetur dolor neque' WHERE id = 6;
-UPDATE `spremiis_elfak`.`post` SET text = 'ut aspernatur corporis harum nihil quis provident sequi\nmollitia nobis aliquid molestiae\nperspiciatis et ea nemo ab reprehenderit accusantium quas\nvoluptate dolores velit et doloremque molestiae' WHERE id = 7;
-UPDATE `spremiis_elfak`.`post` SET text = 'dolore placeat quibusdam ea quo vitae\nmagni quis enim qui quis quo nemo aut saepe\nquidem repellat excepturi ut quia\nsunt ut sequi eos ea sed quas' WHERE id = 8;
-UPDATE `spremiis_elfak`.`post` SET text = 'dignissimos aperiam dolorem qui eum\nfacilis quibusdam animi sint suscipit qui sint possimus cum\nquaerat magni maiores excepturi\nipsam ut commodi dolor voluptatum modi aut vitae' WHERE id = 9;
-UPDATE `spremiis_elfak`.`post` SET text = 'consectetur animi nesciunt iure dolore\nenim quia ad\nveniam autem ut quam aut nobis\net est aut quod aut provident voluptas autem voluptas' WHERE id = 10;
-UPDATE `spremiis_elfak`.`post` SET text = 'Prijavi bag' WHERE id = 11;USE `spremiis_elfak`;
+UPDATE `post` SET text = 'Danasnji blanket' WHERE id = 1;
+UPDATE `post` SET text = 'quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto' WHERE id = 2;
+UPDATE `post` SET text = 'est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla' WHERE id = 3;
+UPDATE `post` SET text = 'et iusto sed quo iure\nvoluptatem occaecati omnis eligendi aut ad\nvoluptatem doloribus vel accusantium quis pariatur\nmolestiae porro eius odio et labore et velit aut' WHERE id = 4;
+UPDATE `post` SET text = 'ullam et saepe reiciendis voluptatem adipisci\nsit amet autem assumenda provident rerum culpa\nquis hic commodi nesciunt rem tenetur doloremque ipsam iure\nquis sunt voluptatem rerum illo velit' WHERE id = 5;
+UPDATE `post` SET text = 'repudiandae veniam quaerat sunt sed\nalias aut fugiat sit autem sed est\nvoluptatem omnis possimus esse voluptatibus quis\nest aut tenetur dolor neque' WHERE id = 6;
+UPDATE `post` SET text = 'ut aspernatur corporis harum nihil quis provident sequi\nmollitia nobis aliquid molestiae\nperspiciatis et ea nemo ab reprehenderit accusantium quas\nvoluptate dolores velit et doloremque molestiae' WHERE id = 7;
+UPDATE `post` SET text = 'dolore placeat quibusdam ea quo vitae\nmagni quis enim qui quis quo nemo aut saepe\nquidem repellat excepturi ut quia\nsunt ut sequi eos ea sed quas' WHERE id = 8;
+UPDATE `post` SET text = 'dignissimos aperiam dolorem qui eum\nfacilis quibusdam animi sint suscipit qui sint possimus cum\nquaerat magni maiores excepturi\nipsam ut commodi dolor voluptatum modi aut vitae' WHERE id = 9;
+UPDATE `post` SET text = 'consectetur animi nesciunt iure dolore\nenim quia ad\nveniam autem ut quam aut nobis\net est aut quod aut provident voluptas autem voluptas' WHERE id = 10;
+UPDATE `post` SET text = 'Prijavi bag' WHERE id = 11;
 
-INSERT INTO `spremiis_elfak`.`post_file` (`path`, `ext`, `postId`) VALUES
+INSERT INTO `post_file` (`path`, `ext`, `postId`) VALUES
 ('posts/1/1.docx', '.docx', '1'),
 ('posts/1/1.pdf', '.pdf', '1'),
 ('posts/1/2.png', '.png', '1'),
 ('posts/1/3.jpg', '.jpg', '1'),
 ('posts/1/1.png', '.png', '1'),
 ('posts/1/1.mp4', '.mp4', '1'),
-('posts/1/1.txt', '.txt', '1');USE `spremiis_elfak`;
+('posts/1/1.txt', '.txt', '1');
 
-INSERT INTO `spremiis_elfak`.`postLikedBy` (`postId`, `userId`) VALUES
+INSERT INTO `postLikedBy` (`postId`, `userId`) VALUES
 (1, 1),
 (1, 2),
 (1, 3),
 (2, 1),
 (3, 1),
 (3, 2),
-(4, 1);USE `spremiis_elfak`;
+(4, 1);
 
-INSERT INTO `spremiis_elfak`.`postDislikedBy` (`postId`, `userId`) VALUES
+INSERT INTO `postDislikedBy` (`postId`, `userId`) VALUES
 (2, 3),
 (3, 3),
-(4, 3);USE `spremiis_elfak`;
+(4, 3);
 
-INSERT INTO `spremiis_elfak`.`comment` (`text`, `date`, `userId`, `postId`) VALUES
+INSERT INTO `comment` (`text`, `date`, `userId`, `postId`) VALUES
 ( 'Ovo je prvi komentar ', '2022-12-03 23:59:59', 1, 1),
 ( 'Ovo je drugi komentar ', '2022-12-04 23:59:59', 2, 1),
 ( 'Ovo je treci komentar ', '2022-12-05 23:59:59', 3, 1),
-( 'Ovo je cetvrti komentar ', '2022-12-06 23:59:59', 1, 1);USE `spremiis_elfak`;
+( 'Ovo je cetvrti komentar ', '2022-12-06 23:59:59', 1, 1);
 
-INSERT INTO `spremiis_elfak`.`commentLikedBy` (`commentId`, `userId`) VALUES
+INSERT INTO `commentLikedBy` (`commentId`, `userId`) VALUES
 (1, 1),
 (1, 3),
 (2, 1),
 (3, 1),
 (3, 2),
-(4, 1);USE `spremiis_elfak`;
+(4, 1);
 
-INSERT INTO `spremiis_elfak`.`commentDislikedBy` (`commentId`, `userId`) VALUES
+INSERT INTO `commentDislikedBy` (`commentId`, `userId`) VALUES
 (1, 2);
-USE `spremiis_elfak`;
 
-INSERT INTO `spremiis_elfak`.`comment_file` (`path`, `ext`, `commentId`) VALUES
+
+INSERT INTO `comment_file` (`path`, `ext`, `commentId`) VALUES
 ('comments/1/2.docx', '.docx', '1'),
 ('comments/1/2.pdf', '.pdf', '1'),
 ('comments/1/4.png', '.png', '1');

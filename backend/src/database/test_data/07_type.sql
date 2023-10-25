@@ -1,6 +1,6 @@
-USE `spremiis_elfak`;
 
-INSERT INTO `spremiis_elfak`.`type`(`name`) VALUES
+
+INSERT INTO `type`(`name`) VALUES
 ('Blanket'),
 ('Skripta'),
 ('Lab'),

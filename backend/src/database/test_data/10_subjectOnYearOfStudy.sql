@@ -1,6 +1,6 @@
-USE `spremiis_elfak`;
 
-INSERT INTO `spremiis_elfak`.`subjectOnYearOfStudy` (`yearOfStudyId`, `subjectId`) VALUES
+
+INSERT INTO `subjectOnYearOfStudy` (`yearOfStudyId`, `subjectId`) VALUES
 (1, 1),
 (1, 2),
 (1, 3),

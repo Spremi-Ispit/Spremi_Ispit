@@ -29,17 +29,17 @@
   },
   "scripts": {
     "clean": "rimraf dist/",
-    "copy-files": "copyfiles -u 1 src/**/*.sql dist/",
-    "build": "npx tsc && npm run copy-files",
+    "copy_db_test_data": "copyfiles -u 1 src/**/*.sql dist/",
+    "build": "npx tsc && npm run build --prefix ./src/database/test_data && npm run copy_db_test_data",
     "start": "npm run build && cross-env NODE_ENV=development node ./dist/index.js",
     "startAndWatch": "nodemon -e ts --exec \"npm run start\"",
     "start_on_hosting_example": "cross-env NODE_ENV=production node ./dist/index.js",
     "releasePort": "releasePort.bat",
     "setupEnv": "setupEnv.bat",
     "zip": "zip.bat",
-    "dropDatabase": "cross-env NODE_ENV=development node ./dist/database/drop.js",
-    "createDatabase": "cross-env NODE_ENV=development node ./dist/database/create.js",
-    "populateDatabase": "cross-env NODE_ENV=development node ./dist/database/populate.js"
+    "dropDatabase": " node ./dist/database/drop.js",
+    "createDatabase": "node ./dist/database/create.js",
+    "populateDatabase": "node ./dist/database/populate.js"
   },
   "author": "",
   "license": "ISC"

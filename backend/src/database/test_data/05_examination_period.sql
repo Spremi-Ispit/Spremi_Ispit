@@ -1,6 +1,6 @@
-USE `spremiis_elfak`;
 
-INSERT INTO `spremiis_elfak`.`examination_period`(`name`) VALUES
+
+INSERT INTO `examination_period`(`name`) VALUES
 ('Januar'),
 ('Mart'),
 ('April'),

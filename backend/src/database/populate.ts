@@ -5,7 +5,7 @@ import path from 'path';
 import env from '../config/env';
 
 const populateDatabase = async () => {
-  const filePath = path.join(__dirname, './development/spremiis_elfak.sql');
+  const filePath = path.join(__dirname, './test_data/database.sql');
 
   const sqlData = fs.readFileSync(filePath).toString();
 
