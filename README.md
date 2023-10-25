@@ -1,7 +1,7 @@
 # Spremi_Ispit
 
 Ovo je open-source projekat koji su kreirali studenti da bi olaksali pripremu/polaganje ispita.
-Cilj platforme je da olaksa deljenje materijala, postavljanje blanketa i resenja, beleski sa racunskih vezbi i predavanja, kako bi se svi materijali potrebni za pripremu ispita nasli na jednom mestu.
+Cilj platforme je da olaksa deljenje materijala, postavljanje blanketa i resenja, beleski sa racunskih vezbi i predavanja, kako bi svi materijali potrebni za pripremu ispita bili na jednom mestu.
 Razvoj platforme zavisi direktno od potreba i predloga studenata koji platformu koriste.
 
 Ukoliko zelite da se prikljucite razvoju:
