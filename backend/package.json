@@ -29,19 +29,17 @@
   },
   "scripts": {
     "clean": "rimraf dist/",
-    "build": "npx tsc",
-    "serve": "cross-env NODE_ENV=development node ./dist/index.js",
+    "copy-files": "copyfiles -u 1 src/**/*.sql dist/",
+    "build": "npx tsc && npm run copy-files",
     "start": "npm run build && cross-env NODE_ENV=development node ./dist/index.js",
     "startAndWatch": "nodemon -e ts --exec \"npm run start\"",
+    "start_on_hosting_example": "cross-env NODE_ENV=production node ./dist/index.js",
     "releasePort": "releasePort.bat",
-    "hosting_example_of_command_that_is_exacuted_on_app_startup": "cross-env NODE_ENV=production node ./dist/index.js",
-    "hosting_start_app_from_terminal": "cross-env NODE_ENV=production node ./dist/index.js",
+    "setupEnv": "setupEnv.bat",
     "zip": "zip.bat",
-    "zipNoFiles": "zipNoFiles.bat",
-    "copy-files": "copyfiles -u 1 src/**/*.sql dist/",
-    "dropDatabase": "npm run build && cross-env NODE_ENV=development node ./dist/database/drop.js",
-    "createDatabase": "npm run build && cross-env NODE_ENV=development node ./dist/database/create.js",
-    "populateDatabase": "npm run clean && npm run build && npm run copy-files && cross-env NODE_ENV=development node ./dist/database/populate.js"
+    "dropDatabase": "cross-env NODE_ENV=development node ./dist/database/drop.js",
+    "createDatabase": "cross-env NODE_ENV=development node ./dist/database/create.js",
+    "populateDatabase": "cross-env NODE_ENV=development node ./dist/database/populate.js"
   },
   "author": "",
   "license": "ISC"
