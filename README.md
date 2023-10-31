@@ -22,8 +22,8 @@ Opis projekta nalazi se u [dokumentaciji](https://docs.google.com/document/d/1nK
   - mySql
     - [instalacija](https://docs.google.com/document/d/1PxhFdCTfH_la1ij6lwfKbuemNQaGKCs1wZzD4mY5xAk/edit?usp=sharing)
     - [pokretanje](https://docs.google.com/document/d/1Dyoh1uTMZvAOR_AH8JLqafwXsEz1aiMlwJL9OGkdKLc/edit?usp=sharing)
-    - [kreiranje baze](https://docs.google.com/document/d/1H_NAAWIwb-CAJyo8KlbGpF58nOrplSl73mIFDT3kdHs/edit?usp=sharing)
     - [pristup bazi - mySql workbench](https://docs.google.com/document/d/1XT6feHDcYoQpESoSNlTXOp0Fl2jrtD4JwzYYV4O11sE/edit?usp=sharing)
+    - [kreiranje baze](https://docs.google.com/document/d/1H_NAAWIwb-CAJyo8KlbGpF58nOrplSl73mIFDT3kdHs/edit?usp=sharing)
     - [kreiranje baze i pokretanje upotrebom dockera](https://docs.google.com/document/d/1lv84Qiq_oSEBrrshPx5gVbJDIoM0qCJTRARPB7IbWSk/edit?usp=sharing)
 - [Struktura projekta](https://docs.google.com/document/d/1Vq2z7Kx_fRaNpyl-2-wBLTEcomYKPWVxOzM2CHXtpzo/edit?usp=sharing)
 
