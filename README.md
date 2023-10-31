@@ -13,7 +13,6 @@ Ukoliko zelite da se prikljucite razvoju:
 
 Platformi mozete pristupiti na sledecoj adresi:
 - `https://spremiispit.com/`
-- 
 
 ## Struktura i pokretanje projekta 
 Opis projekta nalazi se u [dokumentaciji](https://docs.google.com/document/d/1nK753Qq77KtwWm9mQqNMCdgK5sIrF3hDq7TQK_RNSgQ/edit?usp=sharing).
