@@ -30,5 +30,7 @@ Opis projekta nalazi se u [dokumentaciji](https://docs.google.com/document/d/1nK
 - [Rad sa Git-om](https://docs.google.com/document/d/118dBSjOZmIkGSI6xehqTRq-v22wReFTUcprthWl9aJM/edit?usp=sharing)
 - [Upload na hosting](https://docs.google.com/document/d/1tPSE0MB331TDl-9uoBuCEFQy3UrlzqXEi1HE6Muv-CM/edit?usp=sharing)
 - [Docker](https://docs.google.com/document/d/14V52JHlFdzWHE1LsOSMv5AVmTHY6jvm_ifnFcKWbux0/edit?usp=sharing)
+- [Feedback](https://docs.google.com/document/d/1K4pJ50V96fWoVD7NrUVx4FvfuOc5RVdunWE01pUhMx4/edit?usp=sharing)
+- [Prijavi bag](https://docs.google.com/document/d/1AefnDWibn1vOFxZAfTC9L-vOkv2DqdEr94SYz4Nx_4o/edit?usp=sharing)
 
 
