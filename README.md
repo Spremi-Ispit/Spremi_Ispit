@@ -4,15 +4,17 @@ Ovo je open-source projekat koji su kreirali studenti da bi olaksali pripremu/po
 Cilj platforme je da olaksa deljenje materijala, postavljanje blanketa i resenja, beleski sa racunskih vezbi i predavanja, kako bi svi materijali potrebni za pripremu ispita bili na jednom mestu.
 Razvoj platforme zavisi direktno od potreba i predloga studenata koji platformu koriste.
 
-Ukoliko zelite da se prikljucite razvoju:
-
-- `https://www.instagram.com/darjandrugarinovic/`
-- `darjandrugarinovic@gmail.com`
-
-<br/>
-
 Platformi mozete pristupiti na sledecoj adresi:
 - `https://spremiispit.com/`
+<br/>
+
+**Zelite da se prikljucite razvoju?**
+
+- Kontak:
+  - `https://www.instagram.com/darjandrugarinovic/`
+  - `darjandrugarinovic@gmail.com`
+- Sastanci uzivo:
+  - [Kalendar](https://lettucemeet.com/l/XGRGd)
 
 ## Struktura i pokretanje projekta 
 Opis projekta nalazi se u [dokumentaciji](https://docs.google.com/document/d/1nK753Qq77KtwWm9mQqNMCdgK5sIrF3hDq7TQK_RNSgQ/edit?usp=sharing).
