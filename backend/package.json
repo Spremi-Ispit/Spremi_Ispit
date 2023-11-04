@@ -37,7 +37,7 @@
     "releasePort": "releasePort.bat",
     "setupEnv": "setupEnv.bat",
     "zip": "zip.bat",
-    "dropDatabase": " node ./dist/database/drop.js",
+    "dropDatabase": "node ./dist/database/drop.js",
     "createDatabase": "node ./dist/database/create.js",
     "populateDatabase": "node ./dist/database/populate.js"
   },

@@ -1,6 +1,6 @@
-import.meta.env.VITE_BASE_URL;
+import.meta.env.VITE_BACKEND_URL;
 
 const env = import.meta.env;
 export default {
-  VITE_BASE_URL: env.VITE_BASE_URL,
+  VITE_BACKEND_URL: env.VITE_BACKEND_URL,
 };

@@ -25,3 +25,7 @@ dist-ssr
 
 # Ignored files
 frontend.zip    
+
+# env
+.env
+.env.host.production
