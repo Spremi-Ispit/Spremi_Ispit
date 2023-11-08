@@ -1,4 +1,4 @@
-USE `spremiis_prod`; 
+USE `spremiis_dev`; 
 
 
 INSERT INTO `user` (`username`, `email`, `password`, `role`) VALUES

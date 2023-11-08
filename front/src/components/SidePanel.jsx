@@ -70,23 +70,19 @@ export const SidePanel = ({
   closedPanelWidth,
   openedPanelWidth,
 }) => {
-  const handleClosedPanelClick = () => {
-    if (hidden) {
-      setHidden(false);
-    }
-  };
-
   return (
     <SidePanelPlaceHolderDiv
-      width={closedPanelWidth}
-      onClick={handleClosedPanelClick}
+      width={hidden ? closedPanelWidth : openedPanelWidth}
     >
-      <ClosedPanelDiv
-        width={closedPanelWidth}
-        className={hidden ? className : ''}
-      >
-        <OpenPanelArrow />
-      </ClosedPanelDiv>
+      {hidden && (
+        <ClosedPanelDiv
+          width={closedPanelWidth}
+          className={hidden ? className : ''}
+          onClick={() => setHidden(false)}
+        >
+          <OpenPanelArrow />
+        </ClosedPanelDiv>
+      )}
       <OpenedPanelOverlayDiv
         closed={hidden}
         width={openedPanelWidth}
