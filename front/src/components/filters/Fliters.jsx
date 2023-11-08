@@ -7,7 +7,7 @@ import Type from './components/Type';
 import ExaminationPeriod from './components/ExaminationPeriod';
 import YearOfExam from './components/YearOfExam';
 import PropTypes from 'prop-types';
-import { filtersVariant } from './filtersVariant';
+import { filtersVariant } from './enums';
 
 const FiltersContainer = styled.div``;
 

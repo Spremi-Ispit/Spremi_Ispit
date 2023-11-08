@@ -7,7 +7,7 @@ import {
   allowedUrlParams,
   useUrlManager,
 } from '../../../utils/managers/UrlManager';
-import { filtersVariant } from '../filtersVariant';
+import { filtersVariant } from '../enums';
 import { useApiActions } from '../../../api/useApiActions';
 
 const ExaminationPeriodDiv = styled.div`
@@ -58,11 +58,12 @@ const ExaminationPeriod = ({ variant }) => {
   return (
     <ExaminationPeriodDiv>
       <FormControl size="small" fullWidth variant={variant}>
-        <InputLabel>Ispitni rok</InputLabel>
+        <InputLabel shrink>Ispitni rok</InputLabel>
         <Select
           value={urlExaminationPeriod ?? ''}
           label="Ispitni rok"
           onChange={handleChange}
+          displayEmpty
         >
           <MenuItem value={''}>Sve</MenuItem>
           {examinationPeriods.length > 0

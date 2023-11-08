@@ -7,7 +7,7 @@ import {
   allowedUrlParams,
   useUrlManager,
 } from '../../../utils/managers/UrlManager';
-import { filtersVariant } from '../filtersVariant';
+import { filtersVariant } from '../enums';
 import { useApiActions } from '../../../api/useApiActions';
 
 const TypeDiv = styled.div`
@@ -56,8 +56,13 @@ const Type = ({ variant }) => {
   return (
     <TypeDiv>
       <FormControl size="small" fullWidth variant={variant}>
-        <InputLabel>Tip</InputLabel>
-        <Select value={urlType ?? ''} label="Tip" onChange={handleChange}>
+        <InputLabel shrink>Tip</InputLabel>
+        <Select
+          value={urlType ?? ''}
+          label="Tip"
+          onChange={handleChange}
+          displayEmpty
+        >
           <MenuItem value={''}>Sve</MenuItem>
           {types.length > 0
             ? types.map((type) => (

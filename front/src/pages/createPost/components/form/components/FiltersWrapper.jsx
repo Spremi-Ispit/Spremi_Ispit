@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Filters } from '../../../../../components/filters/Fliters';
-import { filtersVariant } from '../../../../../components/filters/filtersVariant';
+import { filtersVariant } from '../../../../../components/filters/enums';
 
 const FiltersWrapperDiv = styled.div`
   display: flex;

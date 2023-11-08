@@ -9,7 +9,7 @@ import {
   useUrlManager,
 } from '../../../utils/managers/UrlManager';
 import { useApiActions } from '../../../api/useApiActions';
-import { filtersVariant } from '../filtersVariant';
+import { filtersVariant } from '../enums';
 
 const YearOfStudyDiv = styled.div`
   margin-bottom: 10px;
@@ -61,11 +61,12 @@ export const YearOfStudy = ({ variant }) => {
   return (
     <YearOfStudyDiv>
       <FormControl size="small" fullWidth variant={variant}>
-        <InputLabel>Godina studija</InputLabel>
+        <InputLabel shrink>Godina studija</InputLabel>
         <Select
           value={urlYearOfStudy ?? ''}
           label="Godina studija"
           onChange={handleChange}
+          displayEmpty
         >
           <MenuItem value={''}>Sve</MenuItem>
           {yearsOfStudy.map((urlYearOfStudy) => (

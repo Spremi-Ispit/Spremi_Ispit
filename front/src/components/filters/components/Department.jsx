@@ -8,7 +8,7 @@ import {
   useUrlManager,
 } from '../../../utils/managers/UrlManager';
 import { useApiActions } from '../../../api/useApiActions';
-import { filtersVariant } from '../filtersVariant';
+import { filtersVariant } from '../enums';
 
 const DepartmentDiv = styled.div`
   margin-bottom: 10px;
@@ -59,11 +59,12 @@ export const Department = ({ variant }) => {
   return (
     <DepartmentDiv>
       <FormControl size="small" fullWidth variant={variant}>
-        <InputLabel>Smer</InputLabel>
+        <InputLabel shrink>Smer</InputLabel>
         <Select
           value={urlDepartment ?? ''}
           label="Smer"
           onChange={handleChange}
+          displayEmpty
         >
           <MenuItem value={''}>Sve</MenuItem>
           {departments.length > 0

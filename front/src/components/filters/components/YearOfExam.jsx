@@ -7,7 +7,7 @@ import {
   allowedUrlParams,
   useUrlManager,
 } from '../../../utils/managers/UrlManager';
-import { filtersVariant } from '../filtersVariant';
+import { filtersVariant } from '../enums';
 import { useApiActions } from '../../../api/useApiActions';
 
 const ExamDiv = styled.div`
@@ -51,11 +51,12 @@ export const YearOfExam = ({ variant }) => {
   return (
     <ExamDiv>
       <FormControl size="small" fullWidth variant={variant}>
-        <InputLabel>Godina</InputLabel>
+        <InputLabel shrink>Godina</InputLabel>
         <Select
           value={urlYearOfExam ?? ''}
           label="Godina"
           onChange={handleChange}
+          displayEmpty
         >
           <MenuItem value={''}>Sve</MenuItem>
           {yearsOfExam.length > 0

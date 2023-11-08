@@ -9,7 +9,7 @@ import {
   allowedUrlParams,
   useUrlManager,
 } from '../../../utils/managers/UrlManager';
-import { filtersVariant } from '../filtersVariant';
+import { filtersVariant } from '../enums';
 import { useApiActions } from '../../../api/useApiActions';
 
 const SubjectDiv = styled.div`
@@ -60,11 +60,12 @@ export const Subject = ({ variant }) => {
   return (
     <SubjectDiv>
       <FormControl size="small" fullWidth variant={variant}>
-        <InputLabel>Predmet</InputLabel>
+        <InputLabel shrink>Predmet</InputLabel>
         <Select
           value={urlSubject ?? ''}
           label="Predmet"
           onChange={handleChange}
+          displayEmpty
         >
           <MenuItem value={''}>Sve</MenuItem>
           {subjects.length > 0
