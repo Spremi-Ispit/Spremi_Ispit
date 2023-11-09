@@ -30,6 +30,7 @@ Opis projekta nalazi se u [dokumentaciji](https://docs.google.com/document/d/1nK
 - [Struktura projekta](https://docs.google.com/document/d/1Vq2z7Kx_fRaNpyl-2-wBLTEcomYKPWVxOzM2CHXtpzo/edit?usp=sharing)
 
 - [Rad sa Git-om](https://docs.google.com/document/d/118dBSjOZmIkGSI6xehqTRq-v22wReFTUcprthWl9aJM/edit?usp=sharing)
+- [vscode ekstenzije](https://docs.google.com/document/d/1NniQqS0b02xZUTM7sHaBabt01OS-G_KODQHU9w9xUcY/edit?usp=sharing)
 - [Upload na hosting](https://docs.google.com/document/d/1tPSE0MB331TDl-9uoBuCEFQy3UrlzqXEi1HE6Muv-CM/edit?usp=sharing)
 - [Docker](https://docs.google.com/document/d/14V52JHlFdzWHE1LsOSMv5AVmTHY6jvm_ifnFcKWbux0/edit?usp=sharing)
 - [Feedback](https://docs.google.com/document/d/1K4pJ50V96fWoVD7NrUVx4FvfuOc5RVdunWE01pUhMx4/edit?usp=sharing)
