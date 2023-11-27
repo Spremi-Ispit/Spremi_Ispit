@@ -13,6 +13,8 @@ const StyledTypography = styled(Typography)`
   font-size: 30px;
   box-shadow: inset 2px -1px 10px 1px #a5a4a4;
   font-style: italic;
+  border-radius: 20px;
+  padding: 2%;
 `;
 
 const MotivationContainer = styled.div`
