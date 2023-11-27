@@ -1,0 +1,5 @@
+QueryFailedError: Duplicate entry 'darjan' for key 'user.IDX_78a916df40e02a9deb1c4b75ed'
+QueryFailedError: Duplicate entry 'darjan' for key 'user.IDX_78a916df40e02a9deb1c4b75ed'
+QueryFailedError: Duplicate entry 'darjan' for key 'user.IDX_78a916df40e02a9deb1c4b75ed'
+An unexpected error occured,Error: EISDIR: illegal operation on a directory, open 'C:\Users\215861\Desktop\Darjan\Personal\Spremi_Ispit\backend\files'
+An unexpected error occured,Error: EISDIR: illegal operation on a directory, open 'C:\Users\215861\Desktop\Darjan\Personal\Spremi_Ispit\backend\files'

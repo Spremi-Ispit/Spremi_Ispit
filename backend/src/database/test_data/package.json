@@ -1,0 +1,10 @@
+{
+  "name": "database",
+  "type": "module",
+  "scripts": {
+    "clean": "IF EXIST database.sql del database.sql",
+    "concatenate": "copy /b *.sql database.sql",
+    "build": "npm run clean && npm run concatenate && npm run use_database",
+    "use_database": "use_database.bat"
+  }
+}
