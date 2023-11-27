@@ -24,7 +24,7 @@ Platforma se nalazi na:
 ## Dokumentacija 
 
 
-- [Uputstvo za pokretanje](https://docs.google.com/document/d/1kS7EcuV8T_G-XBJXsRSop6oFXu8LHNoRXUe3NvhPYxA/edit?usp=sharing)
+- Uputstvo za pokretanje
   - MySQL baza
     - [instaliranje](https://docs.google.com/document/d/1PxhFdCTfH_la1ij6lwfKbuemNQaGKCs1wZzD4mY5xAk/edit?usp=sharing)
     - [pokretanje](https://docs.google.com/document/d/1Dyoh1uTMZvAOR_AH8JLqafwXsEz1aiMlwJL9OGkdKLc/edit?usp=sharing)
