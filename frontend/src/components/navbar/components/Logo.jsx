@@ -1,35 +1,32 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import logo from '../../../assets/Logo.jpg';
 import { homeRoute } from '../../../router/routes';
+import NavLink from './components/NavLink';
 
-const StyledLogo = styled.div`
-  padding: 2px;
-
-  img {
-    width: 50px;
-    height: 50px;
-  }
+const StyledNavLink = styled(NavLink)`
+  display: flex;
+  align-items: center;
+  margin: 0;
 `;
 
-const StyledLink = styled(Link)`
-  text-decoration: none;
-  color: white;
-  :hover span {
-    text-decoration: none;
-    color: white;
-  }
+const LogoDiv = styled.div`
+  flex: 1;
+`;
+
+const StyledImg = styled.img`
+  width: 50px;
+  height: 50px;
 `;
 
 export const Logo = () => {
   return (
-    <StyledLink to={`${homeRoute}`}>
-      <StyledLogo>
-        <img src={logo} alt="logo" />
+    <LogoDiv>
+      <StyledNavLink to={`${homeRoute}`}>
+        <StyledImg src={logo} alt="logo" />
         <span>SI</span>
-      </StyledLogo>
-    </StyledLink>
+      </StyledNavLink>
+    </LogoDiv>
   );
 };
 

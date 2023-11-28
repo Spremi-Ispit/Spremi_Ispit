@@ -32,9 +32,12 @@ export const Profile = () => {
 
   useEffect(() => {
     if (!urlUsername) {
-      urlManager.updateUrlParam(allowedUrlParams.username, username);
+      urlManager.updateUrlParamAndReplaceLastHistoryEntry(
+        allowedUrlParams.username,
+        username
+      );
     }
-  }, []);
+  }, [urlUsername]);
 
   const viewToRender = (
     <>
