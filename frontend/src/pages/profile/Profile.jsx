@@ -9,8 +9,7 @@ import {
   useUrlManager,
 } from '../../utils/managers/UrlManager';
 import { useSelector } from 'react-redux';
-import { selectRole, selectUsername } from '../../redux/app/selectors';
-import { userRole } from '../../redux/app/state';
+import { selectUsername } from '../../redux/app/selectors';
 
 const ContentContainer = styled.div`
   display: flex;
@@ -30,10 +29,9 @@ export const Profile = () => {
   const urlManager = useUrlManager();
   const { urlUsername } = urlManager.getParams();
   const username = useSelector(selectUsername);
-  const role = useSelector(selectRole);
 
   useEffect(() => {
-    if (!urlUsername || role !== userRole.admin) {
+    if (!urlUsername) {
       urlManager.updateUrlParam(allowedUrlParams.username, username);
     }
   }, []);
