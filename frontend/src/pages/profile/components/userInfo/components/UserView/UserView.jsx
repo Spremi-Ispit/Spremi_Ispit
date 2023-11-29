@@ -4,6 +4,7 @@ import MyTextField from './components/MyTextField';
 import { Divider } from '@mui/material';
 import PasswordUpdateView from './components/PasswordUpdateView';
 import UsernameUpdateView from './components/UsernameUpdateView';
+import { screensCSS } from '../../../../../../utils/useScreens';
 
 const StyledDivider = styled(Divider)`
   && {
@@ -14,10 +15,16 @@ const StyledDivider = styled(Divider)`
   }
 `;
 
-const Container = styled.div`
+const UserViewDiv = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
+  width: 600px;
+
+  @media ${screensCSS.tablet} {
+    width: auto;
+  }
+  margin: auto;
 `;
 
 const StyledForm = styled.form`
@@ -75,10 +82,10 @@ const UserView = ({ user }) => {
   };
 
   return (
-    <Container>
+    <UserViewDiv>
       {userInfoView()}
       {updateView()}
-    </Container>
+    </UserViewDiv>
   );
 };
 

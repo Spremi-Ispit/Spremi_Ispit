@@ -7,28 +7,17 @@ import {
   InputLabel,
   OutlinedInput,
 } from '@mui/material';
-import { Button, TextField } from '@mui/material';
+import { Button } from '@mui/material';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import ErrorDialog from '../../../../../../../../../components/dialogs/ErrorDialog';
-import Loader from '../../../../../../../../../components/Loader';
-import {
-  allowedUrlParams,
-  useUrlManager,
-} from '../../../../../../../../../utils/managers/UrlManager';
-import { useAuthManager } from '../../../../../../../../../utils/managers/AuthManager';
-import { useApiActions } from '../../../../../../../../../api/useApiActions';
+import ErrorDialog from '../../../../../../../components/dialogs/ErrorDialog';
+import Loader from '../../../../../../../components/Loader';
+import { useAuthManager } from '../../../../../../../utils/managers/AuthManager';
+import { useApiActions } from '../../../../../../../api/useApiActions';
 
 const StyledFormControl = styled(FormControl)`
   && {
     margin-top: 10px;
     margin-bottom: 10px;
-  }
-`;
-
-const StyledTextField = styled(TextField)`
-  && {
-    margin-bottom: 10px;
-    margin-top: 10px;
   }
 `;
 
@@ -38,25 +27,24 @@ const StyledButton = styled(Button)`
   }
 `;
 
-const UsernameUpdateView = ({ user, setUsernameUpdate }) => {
+const PasswordUpdateView = ({ user, setPasswordUpdate }) => {
   const [confirmedPassword, setConfirmedPassword] = useState('');
-  const [newUsername, setNewUsername] = useState('');
-  const { changeAccountUsername } = useApiActions();
-  const { loaded, loading, error, setError, action } = changeAccountUsername;
+  const [newPassword, setNewPassword] = useState('');
+  const { changeAccountPassword } = useApiActions();
+  const { error, loading, setError, loaded, action, response } =
+    changeAccountPassword;
   const [showPassword, setShowPassword] = useState(false);
-  const urlManager = useUrlManager();
   const authManager = useAuthManager();
 
   useEffect(() => {
     if (loaded) {
-      authManager.updateUsernameAndToken(user);
-      urlManager.updateUrlParam(allowedUrlParams.username, user.username);
-      setUsernameUpdate(false);
+      authManager.updateToken(response);
+      setPasswordUpdate(false);
     }
   }, [loaded]);
 
-  const handleSubmitUsernameUpdate = () => {
-    action(newUsername, confirmedPassword, user.email);
+  const handleSubmitPasswordUpdate = () => {
+    action(newPassword, confirmedPassword, user.email);
   };
 
   if (error) {
@@ -69,12 +57,33 @@ const UsernameUpdateView = ({ user, setUsernameUpdate }) => {
 
   return (
     <>
-      <StyledTextField
-        label="Novo korisničko ime"
-        variant="outlined"
-        onChange={(e) => setNewUsername(e.target.value)}
-        value={newUsername}
-      />
+      <h2>Ažuriraj</h2>
+      <StyledFormControl variant="outlined">
+        <InputLabel htmlFor="outlined-adornment-password">
+          Nova šifra
+        </InputLabel>
+        <OutlinedInput
+          id="outlined-adornment-password"
+          type={showPassword ? 'text' : 'password'}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={() => setShowPassword((show) => !show)}
+                onMouseDown={(event) => {
+                  event.preventDefault();
+                }}
+                edge="end"
+              >
+                <VisibilityOff />
+              </IconButton>
+            </InputAdornment>
+          }
+          onChange={(e) => setNewPassword(e.target.value)}
+          value={newPassword}
+          label="Nova šifra"
+        />
+      </StyledFormControl>
       <StyledFormControl variant="outlined">
         <InputLabel htmlFor="outlined-adornment-password">
           Potvrdi trenutnom šifrom
@@ -100,11 +109,11 @@ const UsernameUpdateView = ({ user, setUsernameUpdate }) => {
           label="Potvrdi trenutnom šifrom"
         />
       </StyledFormControl>
-      <StyledButton variant="outlined" onClick={handleSubmitUsernameUpdate}>
+      <StyledButton variant="outlined" onClick={handleSubmitPasswordUpdate}>
         Potvrdi
       </StyledButton>
     </>
   );
 };
 
-export default UsernameUpdateView;
+export default PasswordUpdateView;

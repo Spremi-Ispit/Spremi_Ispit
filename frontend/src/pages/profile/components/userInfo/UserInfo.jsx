@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import Loader from '../../../../../../components/Loader';
+import Loader from '../../../../components/Loader';
 import AdminControlls from './components/AdminControlls';
-import { userRole } from '../../../../../../redux/app/state';
-import ErrorDialog from '../../../../../../components/dialogs/ErrorDialog';
-import { useUrlManager } from '../../../../../../utils/managers/UrlManager';
-import {
-  selectRole,
-  selectUsername,
-} from '../../../../../../redux/app/selectors';
-import { useApiActions } from '../../../../../../api/useApiActions';
+import { userRole } from '../../../../redux/app/state';
+import ErrorDialog from '../../../../components/dialogs/ErrorDialog';
+import { useUrlManager } from '../../../../utils/managers/UrlManager';
+import { selectRole, selectUsername } from '../../../../redux/app/selectors';
+import { useApiActions } from '../../../../api/useApiActions';
 import UserView from './components/UserView/UserView';
 
 export const UserInfo = () => {

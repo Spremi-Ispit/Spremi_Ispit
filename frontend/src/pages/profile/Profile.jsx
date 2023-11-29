@@ -3,24 +3,24 @@ import Navbar from '../../components/navbar/Navbar';
 import Breadcrumbs from '../../components/Breadcrumbs';
 import styled from 'styled-components';
 import SideNavbar from './components/SideNavbar/SideNavbar';
-import MainContent from './components/mainContent/MainContent';
 import {
   allowedUrlParams,
   useUrlManager,
 } from '../../utils/managers/UrlManager';
 import { useSelector } from 'react-redux';
 import { selectUsername } from '../../redux/app/selectors';
+import { Outlet } from 'react-router-dom';
 
 const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-left: 20px;
+  margin-right: 20px;
   height: 100%;
   flex: 1;
 `;
 
-const MainContainer = styled.div`
+const ProfileDiv = styled.div`
   display: flex;
   flex: 1;
 `;
@@ -42,13 +42,13 @@ export const Profile = () => {
   const viewToRender = (
     <>
       <Navbar />
-      <MainContainer>
+      <ProfileDiv>
         <SideNavbar />
         <ContentContainer>
           <Breadcrumbs />
-          <MainContent />
+          <Outlet />
         </ContentContainer>
-      </MainContainer>
+      </ProfileDiv>
     </>
   );
 

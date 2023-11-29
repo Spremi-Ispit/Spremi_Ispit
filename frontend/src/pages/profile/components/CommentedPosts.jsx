@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import PostView from '../../../../../components/postView/PostView';
-import { ErrorDialog } from '../../../../../components/dialogs/ErrorDialog';
-import Loader from '../../../../../components/Loader';
+import PostView from '../../../components/postView/PostView';
+import Loader from '../../../components/Loader';
 import Typography from '@mui/material/Typography';
 import Fade from '@mui/material/Fade';
+import ErrorDialog from '../../../components/dialogs/ErrorDialog';
 import styled from 'styled-components';
 import Paper from '@mui/material/Paper';
 import { Divider } from '@mui/material';
-import { useUrlManager } from '../../../../../utils/managers/UrlManager';
-import models from '../../../../../models';
-import { useApiActions } from '../../../../../api/useApiActions';
+import { useUrlManager } from '../../../utils/managers/UrlManager';
+import models from '../../../models';
+import { useApiActions } from '../../../api/useApiActions';
 
 const StyledPaper = styled(Paper)`
   padding: 10px;
@@ -33,24 +33,19 @@ const StyledDivider = styled(Divider)`
 `;
 
 const Container = styled.div`
-  flex: 1;
+  width: 800px;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-export const Posts = () => {
+export const CommentedPosts = () => {
   const [posts, setPosts] = useState([]);
   const urlManager = useUrlManager();
   const { urlUsername } = urlManager.getParams();
-  const { loadUserPosts } = useApiActions();
-  const { loading, error, setError, action, loaded, response } = loadUserPosts;
-
-  useEffect(() => {
-    if (urlUsername) {
-      action(urlUsername);
-    }
-  }, [urlUsername]);
+  const { loadCommentedPosts } = useApiActions();
+  const { loading, loaded, response, error, setError, action } =
+    loadCommentedPosts;
 
   useEffect(() => {
     if (loaded) {
@@ -58,10 +53,15 @@ export const Posts = () => {
     }
   }, [loaded]);
 
+  useEffect(() => {
+    if (urlUsername) {
+      action(urlUsername);
+    }
+  }, [urlUsername]);
+
   if (error) {
     return <ErrorDialog error={error} setError={setError} />;
   }
-
   if (loading) {
     return <Loader />;
   }
@@ -69,7 +69,7 @@ export const Posts = () => {
   if (posts.length === 0) {
     return (
       <Container>
-        <h1>Objave</h1>
+        <h1>Komentarisane objave</h1>
         <StyledDivider />
         <Fade in={true}>
           <StyledPaper elevation={4}>
@@ -82,7 +82,7 @@ export const Posts = () => {
 
   return (
     <Container>
-      <h1>Objave</h1>
+      <h1>Komentarisane objave</h1>
       <StyledDivider />
       {posts.map((data, index) => (
         <PostView key={index} data={models.post(data)} enableShowPost />
@@ -91,4 +91,4 @@ export const Posts = () => {
   );
 };
 
-export default Posts;
+export default CommentedPosts;

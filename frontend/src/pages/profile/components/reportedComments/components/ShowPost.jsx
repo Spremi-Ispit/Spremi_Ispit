@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { viewPostRoute } from '../../../../../../../router/routes';
-import Button from '../../../../../../../components/buttons/Button';
+import { viewPostRoute } from '../../../../../router/routes';
+import Button from '../../../../../components/buttons/Button';
 import styled from 'styled-components';
 
 const StyledButton = styled(Button)`

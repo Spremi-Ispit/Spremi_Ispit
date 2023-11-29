@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import Loader from '../../../../../../../components/Loader';
-import ErrorDialog from '../../../../../../../components/dialogs/ErrorDialog';
+import Loader from '../../../../../components/Loader';
+import ErrorDialog from '../../../../../components/dialogs/ErrorDialog';
 import styled from 'styled-components';
-import Button from '../../../../../../../components/buttons/Button';
-import { useApiActions } from '../../../../../../../api/useApiActions';
+import Button from '../../../../../components/buttons/Button';
+import { useApiActions } from '../../../../../api/useApiActions';
 
 const StyledButton = styled(Button)`
   && {

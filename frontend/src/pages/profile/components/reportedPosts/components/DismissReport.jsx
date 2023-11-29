@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import ReportOffIcon from '@mui/icons-material/ReportOff';
-import Loader from '../../../../../../../components/Loader';
-import ErrorDialog from '../../../../../../../components/dialogs/ErrorDialog';
+import Loader from '../../../../../components/Loader';
+import ErrorDialog from '../../../../../components/dialogs/ErrorDialog';
 import { Tooltip } from '@mui/material';
 import { Button } from '@mui/material';
 import styled from 'styled-components';
-import { useApiActions } from '../../../../../../../api/useApiActions';
+import { useApiActions } from '../../../../../api/useApiActions';
 
 const StyledButton = styled(Button)`
   && {

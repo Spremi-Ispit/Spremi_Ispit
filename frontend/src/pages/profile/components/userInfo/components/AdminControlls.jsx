@@ -4,11 +4,11 @@ import LockOpenIcon from '@mui/icons-material/LockOpen';
 import LockPersonIcon from '@mui/icons-material/LockPerson';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useState } from 'react';
-import AlertDialog from '../../../../../../../components/dialogs/AlertDialog';
-import ErrorDialog from '../../../../../../../components/dialogs/ErrorDialog';
-import Loader from '../../../../../../../components/Loader';
+import AlertDialog from '../../../../../components/dialogs/AlertDialog';
+import ErrorDialog from '../../../../../components/dialogs/ErrorDialog';
+import Loader from '../../../../../components/Loader';
 import styled from 'styled-components';
-import { useApiActions } from '../../../../../../../api/useApiActions';
+import { useApiActions } from '../../../../../api/useApiActions';
 
 const AdminControllsContainer = styled.div`
   display: flex;

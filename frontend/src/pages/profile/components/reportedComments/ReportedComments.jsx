@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import Loader from '../../../../../../components/Loader';
+import Loader from '../../../../components/Loader';
 import Typography from '@mui/material/Typography';
 import Fade from '@mui/material/Fade';
 import DismissReport from './components/DismissReport';
-import PostView from '../../../../../../components/postView/PostView';
+import PostView from '../../../../components/postView/PostView';
 import ShowPost from './components/ShowPost';
-import ErrorDialog from '../../../../../../components/dialogs/ErrorDialog';
+import ErrorDialog from '../../../../components/dialogs/ErrorDialog';
 import styled from 'styled-components';
 import Paper from '@mui/material/Paper';
 import { Divider } from '@mui/material';
-import models from '../../../../../../models';
-import { useApiActions } from '../../../../../../api/useApiActions';
+import models from '../../../../models';
+import { useApiActions } from '../../../../api/useApiActions';
 
 const StyledPaper = styled(Paper)`
   padding: 10px;

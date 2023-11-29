@@ -7,9 +7,6 @@ export const profileSlice = createSlice({
     ...state,
   },
   reducers: {
-    setProfileView: (state, action) => {
-      state.profileView = action.payload;
-    },
     setSideNavbarHidden: (state, action) => {
       state.sideNavbarHidden = action.payload;
     },

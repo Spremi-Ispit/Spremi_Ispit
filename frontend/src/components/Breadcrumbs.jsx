@@ -23,12 +23,17 @@ export const Breadcrumbs = () => {
 
   if (location.pathname === homeRoute) return null;
 
+  const currentPath = location.pathname.split('/');
+  currentPath.shift();
+
   return (
     <BreadcrumbsContainer>
       <StyledLink to={homeRoute}>Home</StyledLink>
       {'>'}
       <StyledLink>
-        {location.pathname.charAt(1).toUpperCase() + location.pathname.slice(2)}
+        {currentPath.map(
+          (path) => path.charAt(0).toUpperCase() + path.slice(1)
+        )}
       </StyledLink>
     </BreadcrumbsContainer>
   );
