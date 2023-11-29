@@ -1,7 +1,7 @@
 @REM ______________SETUP ENVIRONMENT______________
 @echo off
 :input
-set /p env=Where is backend? (local/host): 
+set /p env=Backend running on? (local/host): 
 
 if /i "%env%"=="local" (
     set environment=.env.local.development
@@ -37,23 +37,38 @@ if /i "%env%"=="local" (
 )
 
 :input2
-set /p build=Build for deployment (y/n):
+set /p deploy=Want to deploy the project to the hosting? (y/n):
 
-if /i "%build%"=="y" (
-    echo Updating the project version...
-    call npm version patch
-    echo Building the project...
-    call npm run build
-    echo The project has been built.
-
-    goto end
-) else if /i "%build%"=="n" (
+if /i "%deploy%"=="y" (
+    goto next2
+) else if /i "%deploy%"=="n" (
     goto end
 ) else (
     echo Invalid input.
     goto input2
 )
-:end
 
+:next2
+
+:input3
+set /p version=Bump version? (y/n):
+
+if /i "%version%"=="y" (
+    echo Updating the project version...
+    call npm version patch
+    goto next3
+) else if /i "%version%"=="n" (
+    goto next3
+) else (
+    echo Invalid input.
+    goto input3
+)
+
+
+:next3
+
+echo Building the project...
+call npm run build
+echo The project has been built.
 
 :end
