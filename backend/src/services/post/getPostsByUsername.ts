@@ -26,7 +26,7 @@ export const getPostsByUsername = async (req) => {
       userPosts.push(mapPostToPostPreviewDTO(post, userID));
     });
 
-    return response.OK('Posts found', userPosts);
+    return response.OK(userPosts);
   } else {
     return response.NOT_FOUND('User not found');
   }

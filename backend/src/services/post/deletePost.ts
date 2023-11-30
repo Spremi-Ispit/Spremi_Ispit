@@ -26,6 +26,6 @@ export const deletePost = async (req) => {
     await post.remove();
     return response.OK('Post deleted');
   } else {
-    return response.NOT_FOUND('Post not found', id);
+    return response.NOT_FOUND(id);
   }
 };

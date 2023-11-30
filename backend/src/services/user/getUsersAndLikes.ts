@@ -20,5 +20,5 @@ export const getUsersAndLikes = async (req) => {
     });
   });
 
-  return response.OK(`Users retrieved`, usersResponse);
+  return response.OK(usersResponse);
 };

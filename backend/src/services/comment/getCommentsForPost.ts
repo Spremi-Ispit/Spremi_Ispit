@@ -39,8 +39,8 @@ export const getCommentsForPost = async (req) => {
   });
 
   if (commentsToReturn.length > 0) {
-    return response.OK(`Comments retrieved`, commentsToReturn);
+    return response.OK(commentsToReturn);
   } else {
-    return response.OK(`No comments`, []);
+    return response.OK([]);
   }
 };

@@ -26,5 +26,5 @@ export const getReportedPosts = async (req) => {
     }
   }
 
-  return response.OK('Reported posts', postsToReturn);
+  return response.OK(postsToReturn);
 };

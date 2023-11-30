@@ -17,7 +17,7 @@ export const getPostById = async (req) => {
   });
 
   if (post) {
-    return response.OK('Posts found', mapPostToPostPreviewDTO(post, userID));
+    return response.OK(mapPostToPostPreviewDTO(post, userID));
   } else {
     return response.NOT_FOUND('Post not found');
   }

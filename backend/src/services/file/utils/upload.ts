@@ -48,8 +48,7 @@ export async function uploadFile(req, id, directory) {
     files[key].mv(filepath, async (err) => {
       if (err) {
         return response.INTERNAL_SERVER_ERROR(
-          `An unexpected error occured`,
-          err
+          `An unexpected error occured: ${err}`
         );
       } else {
         return await insertFileInfoIntoTable(

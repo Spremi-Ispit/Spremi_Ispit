@@ -61,5 +61,5 @@ export const getPostsForHomepageFilters = async (req) => {
     })()
   };
 
-  return response.OK(`Posts retrived`, data);
+  return response.OK(data);
 };

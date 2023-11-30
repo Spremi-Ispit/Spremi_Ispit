@@ -6,7 +6,7 @@ export const getYearsOfStudy = async (req) => {
   const years = await YearOfStudy.find();
 
   if (years) {
-    return response.OK(`Years retrieved`, years);
+    return response.OK(years);
   } else {
     return response.OK(`No years found`);
   }

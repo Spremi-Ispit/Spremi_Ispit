@@ -47,7 +47,7 @@ export const createPost = async (req) => {
       examinationPeriod
     });
     await postEntity.save();
-    return response.OK(`Post created`, postEntity.id);
+    return response.OK(postEntity.id);
   } else {
     return response.BAD_REQUEST(`Bad request`);
   }

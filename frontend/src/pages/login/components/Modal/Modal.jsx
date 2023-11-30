@@ -89,7 +89,7 @@ const InputEmail = styled(Input)`
 function Modal({ setOpenModal }) {
   const { resetPassword } = useApiActions();
 
-  const { action, loaded, error, setError } = resetPassword;
+  const { action, error, setError, response } = resetPassword;
 
   const handleSubmit = () => {
     action('darjandrugarinovic@gmail.com');
@@ -99,8 +99,8 @@ function Modal({ setOpenModal }) {
     return <ErrorDialog error={error} setError={setError} />;
   }
 
-  if (loaded) {
-    alert('Mail with reset code has been sent');
+  if (response) {
+    alert(response);
   }
 
   return (

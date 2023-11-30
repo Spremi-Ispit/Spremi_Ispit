@@ -20,7 +20,7 @@ export const createPostLike = async (req) => {
     post.likedBy.push(user);
     await post.save();
 
-    return response.CREATED(`Post like created`, postLikeDislikeStatus.liked);
+    return response.CREATED(postLikeDislikeStatus.liked);
   } else {
     return response.NOT_FOUND(`Your profile was not found`);
   }

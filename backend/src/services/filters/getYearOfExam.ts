@@ -6,7 +6,7 @@ export const getYearOfExam = async (req) => {
   const yearOfExame = await YearOfExam.find();
 
   if (yearOfExame) {
-    return response.OK('YearOfExamp retrived', yearOfExame);
+    return response.OK(yearOfExame);
   } else {
     return response.OK('No tags found');
   }

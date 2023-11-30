@@ -42,5 +42,5 @@ export const getCommentedPosts = async (req) => {
     mapCommentedPosts.push(mapPostToPostPreviewDTO(commentedPost, userID));
   });
 
-  return response.OK('Commented posts', mapCommentedPosts);
+  return response.OK(mapCommentedPosts);
 };

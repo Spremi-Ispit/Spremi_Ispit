@@ -20,10 +20,7 @@ export const createCommentLike = async (req) => {
     comment.likedBy.push(user);
     await comment.save();
 
-    return response.CREATED(
-      `Comment like created`,
-      commentLikeDislikeStatus.liked
-    );
+    return response.CREATED(commentLikeDislikeStatus.liked);
   } else {
     return response.NOT_FOUND(`Your profile was not found`);
   }

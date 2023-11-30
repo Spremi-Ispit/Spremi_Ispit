@@ -23,10 +23,7 @@ export const deleteCommentDislike = async (req) => {
 
     await comment.save();
 
-    return response.CREATED(
-      `Comment dislike deleted`,
-      commentLikeDislikeStatus.none
-    );
+    return response.CREATED(commentLikeDislikeStatus.none);
   } else {
     return response.NOT_FOUND(`Your profile was not found`);
   }

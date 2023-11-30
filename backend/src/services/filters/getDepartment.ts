@@ -19,7 +19,7 @@ export const getDepartment = async (req) => {
   });
 
   if (departments) {
-    return response.OK('Department retrived', departments);
+    return response.OK(departments);
   } else {
     return response.OK('No departmens found');
   }

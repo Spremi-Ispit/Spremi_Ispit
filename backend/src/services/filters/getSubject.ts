@@ -27,7 +27,7 @@ export const getSubject = async (req) => {
   });
 
   if (subjects) {
-    return response.OK('Subject retrived', subjects);
+    return response.OK(subjects);
   } else {
     return response.OK('No subjects found');
   }

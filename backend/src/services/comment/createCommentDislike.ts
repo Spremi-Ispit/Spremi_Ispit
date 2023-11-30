@@ -20,10 +20,7 @@ export const createCommentDislike = async (req) => {
     comment.dislikedBy.push(user);
     await comment.save();
 
-    return response.CREATED(
-      `Comment dislike created`,
-      commentLikeDislikeStatus.disliked
-    );
+    return response.CREATED(commentLikeDislikeStatus.disliked);
   } else {
     return response.NOT_FOUND(`Your profile was not found`);
   }

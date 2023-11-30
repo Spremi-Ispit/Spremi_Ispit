@@ -3,12 +3,11 @@ import { errorLogger } from '../errorLogger';
 import HttpStatus from './httpStatus';
 
 class Response {
-  constructor(statusCode, httpStatus, message, data) {
+  constructor(statusCode, httpStatus, response) {
     this.timeStamp = new Date().toLocaleString();
     this.statusCode = statusCode;
     this.httpStatus = httpStatus;
-    this.message = message;
-    this.data = data;
+    this.response = response;
   }
 }
 

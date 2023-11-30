@@ -22,7 +22,7 @@ export const createComment = async (req) => {
       text
     });
     await newComment.save();
-    return response.OK(`Comment created`, newComment.id);
+    return response.OK(newComment.id);
   } else {
     return response.BAD_REQUEST(`User or post doesnt exist`);
   }

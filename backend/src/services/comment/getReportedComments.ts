@@ -38,7 +38,7 @@ export const getReportedComments = async (req) => {
   });
 
   if (comments) {
-    return response.OK('Reported comments', comments);
+    return response.OK(comments);
   } else {
     return response.NOT_FOUND(`No reported comments`);
   }

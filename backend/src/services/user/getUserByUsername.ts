@@ -12,7 +12,7 @@ export const getUserByUsername = async (req) => {
   });
 
   if (user) {
-    return response.OK(`User found`, user);
+    return response.OK(user);
   } else {
     return response.NOT_FOUND(`No user found`);
   }

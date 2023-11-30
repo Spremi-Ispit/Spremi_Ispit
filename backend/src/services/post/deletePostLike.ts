@@ -21,7 +21,7 @@ export const deletePostLike = async (req) => {
 
     await post.save();
 
-    return response.CREATED(`Post like deleted`, postLikeDislikeStatus.none);
+    return response.CREATED(postLikeDislikeStatus.none);
   } else {
     return response.NOT_FOUND(`Your profile was not found`);
   }

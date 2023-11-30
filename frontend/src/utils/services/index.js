@@ -30,7 +30,7 @@ const request = async (method, url, DTO, formData, setUploadProgress) => {
     });
 
     const axiosResData = res.data;
-    return mapDTOtoData(axiosResData);
+    return axiosResData.response;
   } catch (error) {
     axiosErrorLoger(error);
     if (error.response) {
@@ -44,7 +44,7 @@ const request = async (method, url, DTO, formData, setUploadProgress) => {
       }
 
       throw new Error(
-        `Request made, but the server responded with an error: ${error.response.data.message}.`
+        `Request made, but the server responded with an error: ${error.response.data.response}.`
       );
     } else if (error.request) {
       throw new Error(
@@ -68,7 +68,7 @@ const getVideoFile = async (url) => {
     axiosErrorLoger(error);
     if (error.response) {
       throw new Error(
-        `Request made, but the server responded with an error: ${error.response.data.message}.`
+        `Request made, but the server responded with an error: ${error.response.data.response}.`
       );
     } else if (error.request) {
       throw new Error(
@@ -101,12 +101,6 @@ function axiosErrorLoger(error) {
   } else {
     console.log(`Error occured while setting up the request `, error);
   }
-}
-
-function mapDTOtoData(dto) {
-  const { data } = dto;
-
-  return data;
 }
 
 const services = {

@@ -6,7 +6,7 @@ export const getType = async (req) => {
   const type = await Type.find();
 
   if (type) {
-    return response.OK('Type retrived', type);
+    return response.OK(type);
   } else {
     return response.OK('No tags found');
   }

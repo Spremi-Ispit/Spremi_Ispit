@@ -20,10 +20,7 @@ export const createPostDislike = async (req) => {
     post.dislikedBy.push(user);
     await post.save();
 
-    return response.CREATED(
-      `Post dislike created`,
-      postLikeDislikeStatus.disliked
-    );
+    return response.CREATED(postLikeDislikeStatus.disliked);
   } else {
     return response.NOT_FOUND(`Your profile was not found`);
   }
