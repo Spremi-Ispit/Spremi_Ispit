@@ -13,7 +13,7 @@ import { homeRoute } from '../../../router/routes';
 import {
   validateEmail,
   //validatePassword
-} from '../../../utils/authValidation';
+} from '../../../utils/validation';
 import styled from 'styled-components';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';

@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { instanceToPlain } from 'class-transformer';
 import response from '../../utils/response/index';
-import { validateEmail } from '../../utils/authManager';
+import { validateEmail } from '../../utils/validation';
 import { User } from '../../entities/User';
 
 export const loginUser = async (req) => {

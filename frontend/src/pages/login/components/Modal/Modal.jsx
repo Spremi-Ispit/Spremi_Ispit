@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Input } from '@mui/material';
 import close from '../../../../assets/close.png';
 import { useApiActions } from '../../../../api/useApiActions';
 import ErrorDialog from '../../../../components/dialogs/ErrorDialog';
 import styled from 'styled-components';
+import { validateEmail } from '../../../../utils/validation';
 
 const ModalWrapper = styled.div`
-  width: 450px;
-  height: 420px;
+  max-width: 450px;
+  width: 100%;
   border-radius: 12px;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -17,23 +18,24 @@ const ModalWrapper = styled.div`
   position: fixed;
 `;
 
-const Title = styled.div`
+const TitleH1 = styled.h1`
   display: inline-block;
   text-align: center;
-  margin-top: 10px;
   font-family: Poppins;
-  font-weight: 600;
-  font-size: 16px;
+  flex: 1;
 `;
 
-const ButtonClose = styled.button`
+const CloseDialogButton = styled.button`
   border: none;
   font-size: 25px;
   cursor: pointer;
-  background-color: #fff;
-  font-family: Poppins;
-  font-weight: 600;
-  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+`;
+
+const CloseDialogDiv = styled.div`
   display: flex;
   justify-content: end;
 `;
@@ -53,11 +55,10 @@ const Buttons = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 2em;
 `;
 
 const Button = styled.button`
-  width: 150px;
+  width: 120px;
   height: 45px;
   margin: 10px;
   border: none;
@@ -65,34 +66,39 @@ const Button = styled.button`
   border-radius: 8px;
   font-size: 20px;
   cursor: pointer;
-  background-color: #023e8a;
+  background-color: ${({ disable }) => !disable && '#023e8a'};
 
   :hover {
-    background-color: #03045e;
+    background-color: ${({ disable }) => !disable && '#03045e'};
   }
 `;
 
-const Paragraph = styled(Title)`
-  && {
-    padding: 2em;
-  }
+const Paragraph = styled.p`
+  font-weight: 600;
+  font-size: 16px;
+  padding: 2em;
+  font-family: Poppins;
 `;
 const InputEmail = styled(Input)`
   && {
+    width: 80%;
     display: flex;
     justify-content: center;
-    width: 200px;
     padding-left: 0.5em;
     padding-right: 0.5em;
   }
 `;
-function Modal({ setOpenModal }) {
-  const { resetPassword } = useApiActions();
 
+function Modal({ setOpenModal }) {
+  const [mail, setMail] = useState('');
+  const [mailValid, setMailValid] = useState(false);
+  const { resetPassword } = useApiActions();
   const { action, error, setError, response } = resetPassword;
 
   const handleSubmit = () => {
-    action('darjandrugarinovic@gmail.com');
+    if (mail) {
+      action(mail);
+    }
   };
 
   if (error) {
@@ -103,29 +109,43 @@ function Modal({ setOpenModal }) {
     alert(response);
   }
 
+  const handleChange = (event) => {
+    const value = event.target.value;
+    const valid = validateEmail(value);
+    if (valid) {
+      setMailValid(true);
+      setMail(value);
+    } else {
+      setMailValid(false);
+      setMail('');
+    }
+  };
+
   return (
     <ModalWrapper>
-      <ButtonClose onClick={() => setOpenModal(false)}>
-        <img src={close} alt="close" />
-      </ButtonClose>
-      <Title>
-        <h1>Zaboravili ste šifru?</h1>
+      <CloseDialogDiv>
+        <CloseDialogButton onClick={() => setOpenModal(false)}>
+          <img src={close} alt="close" />
+        </CloseDialogButton>
+      </CloseDialogDiv>
+      <TitleH1>Zaboravili ste šifru?</TitleH1>
+      <Body>
         <Paragraph>
           Unesite e-mail kako bi smo Vam poslali kod za pristup aplikaciji
         </Paragraph>
-      </Title>
-      <Body>
         <InputEmail
           placeholder="E-mail"
           fullWidth
           type="email"
-          margin="normal"
           variant="outlined"
           autoComplete="Email"
+          onChange={handleChange}
         />
         <Buttons>
           <Button onClick={() => setOpenModal(false)}>Odustani</Button>
-          <Button onClick={handleSubmit}>Nastavi</Button>
+          <Button onClick={handleSubmit} disable={!mailValid}>
+            Nastavi
+          </Button>
         </Buttons>
       </Body>
     </ModalWrapper>

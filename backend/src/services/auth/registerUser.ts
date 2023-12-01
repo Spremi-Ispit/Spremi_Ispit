@@ -1,7 +1,7 @@
 // @ts-nocheck
 import bcrypt from 'bcrypt';
 import response from '../../utils/response/index';
-import { validateEmail } from '../../utils/authManager';
+import { validateEmail } from '../../utils/validation';
 import { User } from '../../entities/User';
 import { userRole } from '../../utils/enums';
 import { loginUser } from './loginUser';
