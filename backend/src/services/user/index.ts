@@ -8,4 +8,4 @@ export { unbanUserAccount } from './unbanUserAccount';
 export { updatePassword } from './updatePassword';
 export { updateUsername } from './updateUsername';
 export { updateUserRole } from './updateUserRole';
-export { resetPassword } from './resetPassword';
+export { resetPassword, resetPasswordConfirm } from './resetPassword';

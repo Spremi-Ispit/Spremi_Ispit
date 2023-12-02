@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
-import { FormLabel, Link } from '@mui/material';
+import { FormLabel } from '@mui/material';
 import Loader from '../../../components/Loader';
 import ErrorDialog from '../../../components/dialogs/ErrorDialog';
 import { useAuthManager } from '../../../utils/managers/AuthManager';
@@ -67,14 +67,18 @@ const StyledPaper = styled(Paper)`
   }
 `;
 
-const StyledLink = styled(Link)`
-  && {
-    margin-top: 10px;
-    text-decoration: none;
-    font-family: Poppins;
-    font-weight: 600;
-    font-size: 20px;
-    color: #000000;
+const ForgotPasswordDiv = styled.div`
+  margin-top: 10px;
+  text-decoration: none;
+  font-family: Poppins;
+  font-weight: 600;
+  font-size: 20px;
+  color: #000000;
+
+  cursor: pointer;
+
+  :hover {
+    text-decoration: underline;
   }
 `;
 
@@ -182,16 +186,13 @@ const Form = () => {
           >
             Prijavi me
           </StyledButton>
-          <StyledLink
-            href="#"
-            color="inherit"
-            underline="always"
+          <ForgotPasswordDiv
             onClick={() => {
               setModalOpen(true);
             }}
           >
             Ne sećаš se lozinke?
-          </StyledLink>
+          </ForgotPasswordDiv>
           {modalOpen && <Modal setOpenModal={setModalOpen} />}
         </StyledPaper>
       </StyledForm>

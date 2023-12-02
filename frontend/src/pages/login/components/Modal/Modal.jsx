@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Input } from '@mui/material';
 import close from '../../../../assets/close.png';
 import { useApiActions } from '../../../../api/useApiActions';
 import ErrorDialog from '../../../../components/dialogs/ErrorDialog';
 import styled from 'styled-components';
 import { validateEmail } from '../../../../utils/validation';
+import Loader from '../../../../components/Loader';
+import { useNavigate } from 'react-router-dom';
+import { resetPasswordRoute } from '../../../../router/routes';
 
 const ModalWrapper = styled.div`
   max-width: 450px;
@@ -93,21 +96,21 @@ function Modal({ setOpenModal }) {
   const [mail, setMail] = useState('');
   const [mailValid, setMailValid] = useState(false);
   const { resetPassword } = useApiActions();
-  const { action, error, setError, response } = resetPassword;
+  const { action, error, setError, response, loading } = resetPassword;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (response) {
+      alert(response);
+      navigate(resetPasswordRoute);
+    }
+  }, [response, navigate]);
 
   const handleSubmit = () => {
     if (mail) {
       action(mail);
     }
   };
-
-  if (error) {
-    return <ErrorDialog error={error} setError={setError} />;
-  }
-
-  if (response) {
-    alert(response);
-  }
 
   const handleChange = (event) => {
     const value = event.target.value;
@@ -120,6 +123,14 @@ function Modal({ setOpenModal }) {
       setMail('');
     }
   };
+
+  if (loading) {
+    return <Loader />;
+  }
+
+  if (error) {
+    return <ErrorDialog error={error} setError={setError} />;
+  }
 
   return (
     <ModalWrapper>

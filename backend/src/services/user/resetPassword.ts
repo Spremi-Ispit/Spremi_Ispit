@@ -9,6 +9,9 @@ import bcrypt from 'bcrypt';
 const now = () => Number(new Date());
 const sec = 1000;
 const min = 60 * sec;
+const expirationTime = 10 * min;
+
+const resetRequests = [];
 
 export const resetPassword = async (req) => {
   const { email } = req.body;
@@ -25,34 +28,55 @@ export const resetPassword = async (req) => {
     return response.NOT_FOUND(`User not found`);
   }
 
-  const oldPassword = user.password;
-
   const uuid = uuidv4();
-  const hashedPassword = await bcrypt.hash(uuid, 10);
-  user.password = hashedPassword;
-  await user.save();
+  resetRequests.push({ email, resetCode: uuid });
 
   setTimeout(async () => {
-    const updatedUser = await User.findOne({
-      where: { email }
+    const indexOfResetRequest = resetRequests.findIndex((request) => {
+      return request.resetCode === uuid;
     });
 
-    if (user.password === updatedUser.password) {
-      updatedUser.password = oldPassword;
-      await updatedUser.save();
+    if (indexOfResetRequest !== -1) {
+      resetRequests.splice(indexOfResetRequest, 1);
     }
-  }, 10 * min);
+  }, expirationTime);
 
   try {
     sendEmail({
       to: email,
       subject: 'Password reset',
       text: `Use the following code to login and change the password. It will expire at: ${new Date(
-        now() + 10 * min
-      )}. Code: ${uuid} `
+        now() + expirationTime
+      )}. \n Code: ${uuid} `
     });
+
     return response.OK(`Mail with the reset code has been sent.`);
   } catch (err) {
     return response.BAD_REQUEST(`Mail delivery failed`);
   }
+};
+
+export const resetPasswordConfirm = async (req) => {
+  const { resetCode, password } = req.body;
+
+  const indexOfResetRequest = resetRequests.findIndex((request) => {
+    return request.resetCode === resetCode;
+  });
+
+  if (indexOfResetRequest === -1) {
+    return response.BAD_REQUEST(`Bad request`);
+  }
+
+  const resetRequest = resetRequests.splice(indexOfResetRequest, 1)[0];
+  const { email } = resetRequest;
+
+  const user = await User.findOne({
+    where: { email }
+  });
+
+  const hashedPassword = await bcrypt.hash(password, 10);
+  user.password = hashedPassword;
+  await user.save();
+
+  return response.OK(`Password has been updated`);
 };

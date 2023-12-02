@@ -51,3 +51,8 @@ export const resetPassword = async (req, res) => {
   const response = await userServices.resetPassword(req);
   return res.status(response.statusCode).send(response);
 };
+
+export const resetPasswordConfirm = async (req, res) => {
+  const response = await userServices.resetPasswordConfirm(req);
+  return res.status(response.statusCode).send(response);
+};
