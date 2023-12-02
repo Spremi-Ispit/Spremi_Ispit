@@ -8,6 +8,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Logout from './components/Logout';
 import Users from './components/Users';
+import Wiki from './components/Wiki';
 
 const headerHeight = '54px';
 
@@ -33,6 +34,7 @@ export const Navbar = () => {
       <StyledNav>
         <Logo />
         <About />
+        <Wiki />
         <ReportBug />
         <Users />
         <Profile />
