@@ -38,9 +38,3 @@ Platforma se nalazi na:
 - [Rad sa Git-om](https://docs.google.com/document/d/118dBSjOZmIkGSI6xehqTRq-v22wReFTUcprthWl9aJM/edit?usp=sharing)
 - [VSCode ekstenzije](https://docs.google.com/document/d/1NniQqS0b02xZUTM7sHaBabt01OS-G_KODQHU9w9xUcY/edit?usp=sharing)
 
-## Projekat podrzavaju
-
-<img src="https://github.com/DarjanDrugarinovic/Spremi_Ispit/assets/93605825/61bd53ec-6846-4224-bc79-921706499475" alt="BEST" width="200"/>
-<img src="https://github.com/DarjanDrugarinovic/Spremi_Ispit/assets/93605825/09cc448f-800c-43c7-819e-02e71de562bf" alt="SPEF" width="200"/>
-
-
