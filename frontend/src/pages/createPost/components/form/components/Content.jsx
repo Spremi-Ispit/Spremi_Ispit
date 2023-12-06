@@ -22,11 +22,7 @@ export const Content = ({ setDescription }) => {
   };
 
   return (
-    <StyledTextareaAutosize
-      minRows={10}
-      placeholder="Sadržaj"
-      onChange={handleTextareaChange}
-    />
+    <StyledTextareaAutosize minRows={10} onChange={handleTextareaChange} />
   );
 };
 

@@ -141,7 +141,6 @@ export const Form = () => {
       />
       <StyledTextareaAutosize
         minRows={10}
-        placeholder="Sadrzaj"
         onChange={handleTextareaChange}
         value={description}
       />

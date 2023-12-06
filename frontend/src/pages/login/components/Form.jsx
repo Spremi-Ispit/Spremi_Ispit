@@ -14,6 +14,7 @@ import eye from '../../../../src/assets/eye.png';
 import eyeOff from '../../../../src/assets/eyeoff.png';
 import Modal from './Modal/Modal';
 import { useApiActions } from '../../../api/useApiActions';
+import { registerRoute } from '../../../router/routes';
 
 const TextH4 = styled(Typography)`
   && {
@@ -121,8 +122,15 @@ const Form = () => {
     }
   }, [response]);
 
-  const handleSubmit = () => {
-    action(email, password);
+  const handleSubmit = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      action(email, password);
+    }
+  };
+
+  const isFormValid = () => {
+    return email.length > 0 && password.length > 0;
   };
 
   const handleToggle = () => {
@@ -141,7 +149,7 @@ const Form = () => {
 
   return (
     <>
-      <StyledForm>
+      <StyledForm onKeyDown={handleSubmit}>
         <TextH4 variant="h4">Prijavljivanje</TextH4>
         <StyledPaper elevation={0}>
           <DivWrapper>
@@ -177,8 +185,8 @@ const Form = () => {
             fullWidth
             variant="outlined"
             size="large"
-            onClick={handleSubmit}
-            disabled={loading}
+            onClick={() => action(email, password)}
+            disabled={loading || !isFormValid()}
           >
             Prijavi me
           </StyledButton>
@@ -191,6 +199,15 @@ const Form = () => {
             }}
           >
             Ne sećаš se lozinke?
+          </StyledLink>
+          <StyledLink>
+            Nemaš profil?{' '}
+            <a
+              style={{ cursor: 'pointer' }}
+              onClick={() => navigate(registerRoute)}
+            >
+              Registruj se
+            </a>
           </StyledLink>
           {modalOpen && <Modal setOpenModal={setModalOpen} />}
         </StyledPaper>

@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ErrorDialog from '../../../components/dialogs/ErrorDialog';
 import Loader from '../../../components/Loader';
-import { homeRoute } from '../../../router/routes';
+import { homeRoute, loginRoute } from '../../../router/routes';
 import {
   validateEmail,
   //validatePassword
@@ -22,6 +22,8 @@ import { useAuthManager } from '../../../utils/managers/AuthManager';
 import { screensCSS } from '../../../utils/useScreens';
 import Button from '../../../components/buttons/Button';
 import { useApiActions } from '../../../api/useApiActions';
+import ReCAPTCHA from 'react-google-recaptcha';
+import { Link } from '@mui/material';
 
 const StyledButton = styled(Button)`
   && {
@@ -31,13 +33,32 @@ const StyledButton = styled(Button)`
 
 const StyledForm = styled.form`
   text-align: center;
-  width: 50%;
-  margin-top: 100px;
+  width: 40%;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 
   @media ${screensCSS.tablet} {
     margin-top: 20px;
     width: 90%;
   }
+`;
+
+const StyledLink = styled(Link)`
+  && {
+    margin-top: 10px;
+    text-decoration: none;
+    font-family: Poppins;
+    font-weight: 600;
+    font-size: 20px;
+    color: #000000;
+  }
+`;
+
+const DivWrapper = styled.div`
+  position: relative;
+  width: 80%;
 `;
 
 const StyledPaper = styled(Paper)`
@@ -62,6 +83,7 @@ export const Form = () => {
   const token = useSelector(selectToken);
   const navigate = useNavigate();
   const authManager = useAuthManager();
+  const [recaptcha, setReacaptcha] = useState(false);
 
   useEffect(() => {
     if (token !== null) {
@@ -69,12 +91,30 @@ export const Form = () => {
     }
   }, [token, navigate]);
 
+  const submitRegister = () => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      action(email, password);
+    }
+    if (recaptcha === false) return;
+
+    if (password !== passwordConfirm) {
+      setDialogMessage(`Passwords don't match`);
+    } else if (validateEmail(email) === null) {
+      setDialogMessage('Mail is not valid');
+    } else {
+      action(email, password);
+    }
+  };
+
   const handleRegister = () => {
     // if (validatePassword(password) === null) {
     //   setDialogMessage(
     //     `Password must contain minimum eight characters, at least one letter and one number:`
     //   );
     // } else
+
+    if (recaptcha === false) return;
 
     if (password !== passwordConfirm) {
       setDialogMessage(`Passwords don't match`);
@@ -95,9 +135,13 @@ export const Form = () => {
     return <ErrorDialog error={error} setError={setError} />;
   }
 
+  const onChangeRecaptcha = () => {
+    setReacaptcha(true);
+  };
+
   return (
     <>
-      <StyledForm>
+      <StyledForm onKeyDown={submitRegister}>
         <Typography variant="h4">Registracija</Typography>
         <StyledPaper elevation={0}>
           <TextField
@@ -126,6 +170,12 @@ export const Form = () => {
             onChange={(e) => setPasswordConfirm(e.target.value)}
             autoComplete="current-password"
           />
+          <DivWrapper>
+            <ReCAPTCHA
+              onChange={onChangeRecaptcha}
+              sitekey="6LfQPBwpAAAAABBHiyViwEfJ6YJNw1_S5jcPXiBb"
+            />
+          </DivWrapper>
 
           <StyledButton
             fullWidth
@@ -136,6 +186,16 @@ export const Form = () => {
           >
             Registruj me
           </StyledButton>
+
+          <StyledLink>
+            Već imaš profil?{' '}
+            <a
+              style={{ cursor: 'pointer' }}
+              onClick={() => navigate(loginRoute)}
+            >
+              Uloguj se
+            </a>
+          </StyledLink>
         </StyledPaper>
       </StyledForm>
       <Dialog open={dialogMessage !== ''} onClose={() => setDialogMessage('')}>

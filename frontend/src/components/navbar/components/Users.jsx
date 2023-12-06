@@ -8,8 +8,9 @@ import { useSelector } from 'react-redux';
 const Users = () => {
   const location = useLocation();
   const token = useSelector(selectToken);
+  const role = JSON.parse(localStorage.getItem('app'))?.role;
 
-  if (location.pathname === usersRoute || !token) {
+  if (location.pathname === usersRoute || !token || role !== 'admin') {
     return null;
   }
 

@@ -8,6 +8,9 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Logout from './components/Logout';
 import Users from './components/Users';
+import { userRole } from '../../redux/app/state';
+import { selectRole } from '../../redux/app/selectors';
+// import { userRole } from '../../utils/enums';
 
 const headerHeight = '54px';
 
@@ -28,13 +31,15 @@ const StyledNav = styled.nav`
 `;
 
 export const Navbar = () => {
+  const role = JSON.parse(localStorage.getItem('app'))?.role;
+
   return (
     <NavbarDiv>
       <StyledNav>
         <Logo />
         <About />
         <ReportBug />
-        <Users />
+        {role === 'admin' && <Users />}
         <Profile />
         {/***** AUTH *****/}
         <Register />

@@ -46,7 +46,7 @@ export default function Router() {
         <Route path={routes.loginRoute} element={<Login />} />
         <Route path={routes.registerRoute} element={<Register />} />
         <Route path={routes.aboutRoute} element={<About />} />
-        <Route path={'*'} element={<Home />} />
+        <Route path="*" element={<Home />} />
       </Routes>
     </BrowserRouter>
   );
