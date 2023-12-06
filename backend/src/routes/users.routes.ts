@@ -10,7 +10,8 @@ import {
   blacklistUserAccount,
   updatePassword,
   updateUsername,
-  resetPassword
+  resetPassword,
+  resetPasswordConfirm
 } from '../controllers/user.controller';
 import { authorizeUserOnApiRequest } from '../middleware/authorizeUserOnApiRequest';
 import { authorizeAdminOnApiRequest } from '../middleware/authorizeAdminOnApiRequest';
@@ -32,6 +33,7 @@ usersRoutes
   .post(authorizeUserOnApiRequest, updateUsername);
 
 usersRoutes.route('/resetPassword').post(resetPassword);
+usersRoutes.route('/resetPasswordConfirm').post(resetPasswordConfirm);
 
 //ADMIN OPERATIONS
 usersRoutes

@@ -11,6 +11,7 @@ import Users from './components/Users';
 import { userRole } from '../../redux/app/state';
 import { selectRole } from '../../redux/app/selectors';
 // import { userRole } from '../../utils/enums';
+import Wiki from './components/Wiki';
 
 const headerHeight = '54px';
 
@@ -38,6 +39,7 @@ export const Navbar = () => {
       <StyledNav>
         <Logo />
         <About />
+        <Wiki />
         <ReportBug />
         {role === 'admin' && <Users />}
         <Profile />

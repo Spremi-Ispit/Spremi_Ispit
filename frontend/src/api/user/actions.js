@@ -1,4 +1,5 @@
 export { resetPassword } from './resetPassword';
+export { resetPasswordConfirm } from './resetPasswordConfirm';
 export { loadUserInfo } from './loadUserInfo';
 export { updateUserRole } from './updateUserRole';
 export { loadUsernamesWithRoles } from './loadUsernamesWithRoles';

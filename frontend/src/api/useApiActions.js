@@ -17,6 +17,7 @@ export const useApiActions = () => {
 
     //-------------------USER----------------
     resetPassword: useAPIAction(userActions.resetPassword),
+    resetPasswordConfirm: useAPIAction(userActions.resetPasswordConfirm),
     loadUserInfo: useAPIAction(userActions.loadUserInfo),
     updateUserRole: useAPIAction(userActions.updateUserRole),
     loadUsernamesWithRoles: useAPIAction(userActions.loadUsernamesWithRoles),

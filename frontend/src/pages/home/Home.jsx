@@ -83,7 +83,10 @@ export const Home = () => {
 
   useEffect(() => {
     if (!validOrder) {
-      urlManager.updateUrlParam(allowedUrlParams.order, orders.newest);
+      urlManager.updateUrlParamAndReplaceLastHistoryEntry(
+        allowedUrlParams.order,
+        orders.newest
+      );
     }
   }, [urlOrder]);
 
