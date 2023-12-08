@@ -11,3 +11,8 @@ export const registerUser = async (req, res) => {
   const response = await authServices.registerUser(req);
   return res.status(response.statusCode).send(response);
 };
+
+export const registrationConfirm = async (req, res) => {
+  const response = await authServices.registrationConfirm(req);
+  return res.status(response.statusCode).send(response);
+};

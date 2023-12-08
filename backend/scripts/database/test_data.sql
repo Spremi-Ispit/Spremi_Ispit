@@ -1,4 +1,4 @@
-USE `spremiis_dev`; 
+USE spremiis_dev; 
 
 
 INSERT INTO `user` (`username`, `email`, `password`, `role`) VALUES
@@ -13,6 +13,7 @@ SET banned = true
 where username='a';
 
 
+
 INSERT INTO `department`(`name`) VALUES
 ('Opšti'),
 ('Računarstvo i informatika'),
@@ -23,12 +24,14 @@ INSERT INTO `department`(`name`) VALUES
 ('Elektroenergetika');
 
 
+
 INSERT INTO `year_of_study`(`name`) VALUES
 ('I'),
 ('II'),
 ('III'),
 ('IV'),
 ('V');
+
 
 INSERT INTO `yearOfStudyOnDepartment` (`departmentId`, `yearOfStudyId`) VALUES
 (1, 1),
@@ -51,6 +54,7 @@ INSERT INTO `yearOfStudyOnDepartment` (`departmentId`, `yearOfStudyId`) VALUES
 (6, 4),
 (7, 4);
 
+
 INSERT INTO `examination_period`(`name`) VALUES
 ('Januar'),
 ('Mart'),
@@ -61,6 +65,7 @@ INSERT INTO `examination_period`(`name`) VALUES
 ('Oktobar'),
 ('Oktobar2'),
 ('Decembar');
+
 
 
 INSERT INTO `year_of_exam`(`name`) VALUES
@@ -79,6 +84,7 @@ INSERT INTO `year_of_exam`(`name`) VALUES
 ('2011'),
 ('2010');
 
+
 INSERT INTO `type`(`name`) VALUES
 ('Blanket'),
 ('Skripta'),
@@ -87,6 +93,7 @@ INSERT INTO `type`(`name`) VALUES
 ('Kolokvijum II'),
 ('Predavanja'),
 ('Racunske');
+
 
 INSERT INTO `subject`(`name`) VALUES
 -- I GODINA
@@ -314,6 +321,7 @@ INSERT INTO `subject`(`name`) VALUES
 ('Zaštita u elektroenergetici'); -- 203
 
 
+
 INSERT INTO `subjectOnDepartment` (`departmentId`, `subjectId`) VALUES
 (1, 1),
 (1, 2),
@@ -521,6 +529,7 @@ INSERT INTO `subjectOnDepartment` (`departmentId`, `subjectId`) VALUES
 
 
 
+
 INSERT INTO `subjectOnYearOfStudy` (`yearOfStudyId`, `subjectId`) VALUES
 (1, 1),
 (1, 2),
@@ -725,4 +734,97 @@ INSERT INTO `subjectOnYearOfStudy` (`yearOfStudyId`, `subjectId`) VALUES
 (4, 201),
 (4, 202),
 (4, 203);
+
+
+   
+
+INSERT INTO `post` (`title`,`text`,`date`, `userId`, `subjectId`, `typeId`, `yearOfExamId`, `examinationPeriodId`) VALUES
+( '', '', '2022-12-03 23:59:59', 1, 15, 1, 3, 1),
+( '', '', '2022-12-03 23:59:59', 1, 15, 2, 3, null),
+( '', '', '2022-12-03 23:59:59', 1, 15, 1, 3, null),
+( '', '', '2022-12-03 23:59:59', 2, 15, 2, 3, null),
+( '', '', '2022-12-03 23:59:59', 3, 15, 1, 3, null),
+( '', '', '2022-12-03 23:59:59', 1, 15, 2, 3, null),
+( '', '', '2022-12-03 23:59:59', 1, 15, 1, 3, null),
+( '', '', '2022-12-03 23:59:59', 1, 15, 2, 3, null),
+( '', '', '2022-12-03 23:59:59', 1, 15, 1, 3, null),
+( '', '', '2022-12-03 23:59:59', 1, 15, 2, 3, null),
+( '', '', '2022-12-03 23:59:59', 1, null, null, null, null);
+
+UPDATE `post` SET title = 'Paralelni sistemi' WHERE id = 1;
+UPDATE `post` SET title = 'Naslov2' WHERE id = 2;
+UPDATE `post` SET title = 'Naslov3' WHERE id = 3;
+UPDATE `post` SET title = 'Naslov4' WHERE id = 4;
+UPDATE `post` SET title = 'Naslov5' WHERE id = 5;
+UPDATE `post` SET title = 'Naslov6' WHERE id = 6;
+UPDATE `post` SET title = 'Naslov7' WHERE id = 7;
+UPDATE `post` SET title = 'Naslov8' WHERE id = 8;
+UPDATE `post` SET title = 'Naslov9' WHERE id = 9;
+UPDATE `post` SET title = 'Naslov10' WHERE id = 10;
+UPDATE `post` SET title = 'Bag' WHERE id = 11;
+
+UPDATE `post` SET text = 'Danasnji blanket' WHERE id = 1;
+UPDATE `post` SET text = 'quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto' WHERE id = 2;
+UPDATE `post` SET text = 'est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla' WHERE id = 3;
+UPDATE `post` SET text = 'et iusto sed quo iure\nvoluptatem occaecati omnis eligendi aut ad\nvoluptatem doloribus vel accusantium quis pariatur\nmolestiae porro eius odio et labore et velit aut' WHERE id = 4;
+UPDATE `post` SET text = 'ullam et saepe reiciendis voluptatem adipisci\nsit amet autem assumenda provident rerum culpa\nquis hic commodi nesciunt rem tenetur doloremque ipsam iure\nquis sunt voluptatem rerum illo velit' WHERE id = 5;
+UPDATE `post` SET text = 'repudiandae veniam quaerat sunt sed\nalias aut fugiat sit autem sed est\nvoluptatem omnis possimus esse voluptatibus quis\nest aut tenetur dolor neque' WHERE id = 6;
+UPDATE `post` SET text = 'ut aspernatur corporis harum nihil quis provident sequi\nmollitia nobis aliquid molestiae\nperspiciatis et ea nemo ab reprehenderit accusantium quas\nvoluptate dolores velit et doloremque molestiae' WHERE id = 7;
+UPDATE `post` SET text = 'dolore placeat quibusdam ea quo vitae\nmagni quis enim qui quis quo nemo aut saepe\nquidem repellat excepturi ut quia\nsunt ut sequi eos ea sed quas' WHERE id = 8;
+UPDATE `post` SET text = 'dignissimos aperiam dolorem qui eum\nfacilis quibusdam animi sint suscipit qui sint possimus cum\nquaerat magni maiores excepturi\nipsam ut commodi dolor voluptatum modi aut vitae' WHERE id = 9;
+UPDATE `post` SET text = 'consectetur animi nesciunt iure dolore\nenim quia ad\nveniam autem ut quam aut nobis\net est aut quod aut provident voluptas autem voluptas' WHERE id = 10;
+UPDATE `post` SET text = 'Prijavi bag' WHERE id = 11;
+
+
+INSERT INTO `post_file` (`path`, `ext`, `postId`) VALUES
+('posts/1/1.docx', '.docx', '1'),
+('posts/1/1.pdf', '.pdf', '1'),
+('posts/1/2.png', '.png', '1'),
+('posts/1/3.jpg', '.jpg', '1'),
+('posts/1/1.png', '.png', '1'),
+('posts/1/1.mp4', '.mp4', '1'),
+('posts/1/1.txt', '.txt', '1');
+
+
+INSERT INTO `postLikedBy` (`postId`, `userId`) VALUES
+(1, 1),
+(1, 2),
+(1, 3),
+(2, 1),
+(3, 1),
+(3, 2),
+(4, 1);
+
+
+INSERT INTO `postDislikedBy` (`postId`, `userId`) VALUES
+(2, 3),
+(3, 3),
+(4, 3);
+
+
+INSERT INTO `comment` (`text`, `date`, `userId`, `postId`) VALUES
+( 'Ovo je prvi komentar ', '2022-12-03 23:59:59', 1, 1),
+( 'Ovo je drugi komentar ', '2022-12-04 23:59:59', 2, 1),
+( 'Ovo je treci komentar ', '2022-12-05 23:59:59', 3, 1),
+( 'Ovo je cetvrti komentar ', '2022-12-06 23:59:59', 1, 1);
+
+
+INSERT INTO `commentLikedBy` (`commentId`, `userId`) VALUES
+(1, 1),
+(1, 3),
+(2, 1),
+(3, 1),
+(3, 2),
+(4, 1);
+
+
+INSERT INTO `commentDislikedBy` (`commentId`, `userId`) VALUES
+(1, 2);
+
+
+
+INSERT INTO `comment_file` (`path`, `ext`, `commentId`) VALUES
+('comments/1/2.docx', '.docx', '1'),
+('comments/1/2.pdf', '.pdf', '1'),
+('comments/1/4.png', '.png', '1');
 

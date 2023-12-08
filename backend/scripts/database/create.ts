@@ -1,7 +1,7 @@
 // @ts-nocheck
 import mysql from 'mysql2/promise';
-import env from '../config/env';
-import { dataSource } from './datasource';
+import env from '../../src/config/env';
+import { dataSource } from '../../src/entities/DataSource';
 
 const createDatabase = async () => {
   try {

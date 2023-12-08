@@ -60,6 +60,7 @@ export const useApiActions = () => {
     //-------------------AUTH----------------
     login: useAPIAction(authActions.login),
     register: useAPIAction(authActions.register),
+    registrationConfirm: useAPIAction(authActions.registrationConfirm),
   };
 };
 

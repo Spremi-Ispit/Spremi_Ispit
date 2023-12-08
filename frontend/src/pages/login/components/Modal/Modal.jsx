@@ -112,15 +112,17 @@ function Modal({ setOpenModal }) {
     }
   };
 
-  const handleChange = (event) => {
+  const handleChange = async (event) => {
     const value = event.target.value;
-    const valid = validateEmail(value);
-    if (valid) {
-      setMailValid(true);
-      setMail(value);
-    } else {
+
+    const emailError = await validateEmail(value);
+
+    if (emailError) {
       setMailValid(false);
       setMail('');
+    } else {
+      setMailValid(true);
+      setMail(value);
     }
   };
 

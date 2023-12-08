@@ -1,5 +1,6 @@
 export const homeRoute = '/';
 export const registerRoute = '/register';
+export const registrationConfirmRoute = '/registrationConfirm';
 export const loginRoute = '/login';
 export const createPostRoute = '/createPost';
 export const usersRoute = '/users';

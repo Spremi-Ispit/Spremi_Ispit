@@ -9,16 +9,17 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ErrorDialog from '../../../components/dialogs/ErrorDialog';
 import Loader from '../../../components/Loader';
-import { homeRoute, loginRoute } from '../../../router/routes';
+import { homeRoute, registrationConfirmRoute } from '../../../router/routes';
 import {
   validateEmail,
+  validatePassword,
   //validatePassword
 } from '../../../utils/validation';
 import styled from 'styled-components';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import { selectToken } from '../../../redux/app/selectors';
-import { useAuthManager } from '../../../utils/managers/AuthManager';
+// import { useAuthManager } from '../../../utils/managers/AuthManager';
 import { screensCSS } from '../../../utils/useScreens';
 import Button from '../../../components/buttons/Button';
 import { useApiActions } from '../../../api/useApiActions';
@@ -82,8 +83,6 @@ export const Form = () => {
   const { loading, error, setError, response, action } = register;
   const token = useSelector(selectToken);
   const navigate = useNavigate();
-  const authManager = useAuthManager();
-  const [recaptcha, setReacaptcha] = useState(false);
 
   useEffect(() => {
     if (token !== null) {
@@ -91,43 +90,33 @@ export const Form = () => {
     }
   }, [token, navigate]);
 
-  const submitRegister = () => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      action(email, password);
+  const handleRegister = async () => {
+    const emailError = await validateEmail(email);
+    if (emailError) {
+      return setDialogMessage(emailError);
     }
-    if (recaptcha === false) return;
 
     if (password !== passwordConfirm) {
-      setDialogMessage(`Passwords don't match`);
-    } else if (validateEmail(email) === null) {
-      setDialogMessage('Mail is not valid');
-    } else {
-      action(email, password);
+      return setDialogMessage('Sifre nisu iste');
     }
-  };
 
-  const handleRegister = () => {
-    // if (validatePassword(password) === null) {
-    //   setDialogMessage(
-    //     `Password must contain minimum eight characters, at least one letter and one number:`
-    //   );
-    // } else
-
-    if (recaptcha === false) return;
-
-    if (password !== passwordConfirm) {
-      setDialogMessage(`Passwords don't match`);
-    } else if (validateEmail(email) === null) {
-      setDialogMessage('Mail is not valid');
-    } else {
-      action(email, password);
+    const passwordError = await validatePassword(password);
+    if (passwordError) {
+      return setDialogMessage(passwordError);
     }
+
+    const passwordConfirmError = await validatePassword(passwordConfirm);
+    if (passwordConfirmError) {
+      return setDialogMessage('passwordConfirm: ' + passwordConfirmError);
+    }
+
+    action(email, password);
   };
 
   useEffect(() => {
     if (response) {
-      authManager.login(response);
+      alert(response);
+      navigate(registrationConfirmRoute);
     }
   }, [response]);
 

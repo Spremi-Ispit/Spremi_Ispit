@@ -1,3 +1,3 @@
 // @ts-nocheck
 export { loginUser } from './loginUser';
-export { registerUser } from './registerUser';
+export { registerUser, registrationConfirm } from './registerUser';

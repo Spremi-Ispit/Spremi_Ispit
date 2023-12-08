@@ -2,10 +2,10 @@
 import mysql from 'mysql2/promise';
 import fs from 'fs';
 import path from 'path';
-import env from '../config/env';
+import env from '../../src/config/env';
 
 const populateDatabase = async () => {
-  const filePath = path.join(__dirname, './test_data/database.sql');
+  const filePath = path.join(__dirname, './test_data.sql');
 
   const sqlData = fs.readFileSync(filePath).toString();
 

@@ -17,6 +17,7 @@ import UserInfo from '../pages/profile/components/userInfo/UserInfo';
 import ReportedPosts from '../pages/profile/components/reportedPosts/ReportedPosts';
 import ReportedComments from '../pages/profile/components/reportedComments/ReportedComments';
 import ResetPassword from '../pages/ResetPassword/ResetPassword';
+import RegistrationConfirm from '../pages/registrationConfirm/RegistrationConfirm';
 
 export default function Router() {
   return (
@@ -48,6 +49,10 @@ export default function Router() {
         <Route path={routes.registerRoute} element={<Register />} />
         <Route path={routes.aboutRoute} element={<About />} />
         <Route path={routes.resetPasswordRoute} element={<ResetPassword />} />
+        <Route
+          path={routes.registrationConfirmRoute}
+          element={<RegistrationConfirm />}
+        />
         <Route path={'*'} element={<Home />} />
       </Routes>
     </BrowserRouter>

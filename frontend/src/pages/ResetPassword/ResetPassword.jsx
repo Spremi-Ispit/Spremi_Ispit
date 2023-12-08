@@ -50,7 +50,7 @@ const ResetPassword = () => {
       alert(response);
       navigate(-1);
     }
-  }, [response]);
+  }, [response, navigate]);
 
   const handleResetCodeChange = (event) => {
     const value = event.target.value;

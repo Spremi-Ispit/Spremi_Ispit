@@ -1,16 +1,37 @@
 // @ts-nocheck
+import * as Yup from 'yup';
 
-export const validateEmail = (email) => {
-  return String(email)
-    .toLowerCase()
-    .match(
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    );
+export const validateEmail = async (email) => {
+  const schema = Yup.object({
+    email: Yup.string().email().required()
+  });
+
+  try {
+    await schema.validate({ email });
+    return null;
+  } catch (err) {
+    return err.errors[0];
+  }
 };
 
-// https://stackoverflow.com/questions/19605150/regex-for-password-must-contain-at-least-eight-characters-at-least-one-number-a
-export const validatePassword = (password) => {
-  return String(password)
-    .toLowerCase()
-    .match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/);
+export const validatePassword = async (password) => {
+  const schema = Yup.object({
+    password: Yup.string()
+      .min(8, 'password must contain 8 or more characters')
+      .matches(/[a-z]/, 'password must contain at least 1 lowercase letter')
+      .matches(/[A-Z]/, 'password must contain at least 1 uppercase letter')
+      .matches(/\d/, 'password must contain at least 1 number')
+      .matches(
+        /[!@#$%^&*(),.?":{}|<>]/,
+        'password must contain at least 1 special character'
+      )
+      .required()
+  });
+
+  try {
+    await schema.validate({ password });
+    return null;
+  } catch (err) {
+    return err.errors[0];
+  }
 };

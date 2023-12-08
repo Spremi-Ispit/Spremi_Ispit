@@ -1,6 +1,6 @@
 // @ts-nocheck
 import env from './config/env';
-import { initializeDatasource } from './database/datasource';
+import { initializeDatasource } from './entities/DataSource';
 import { createApp } from './config/app';
 import { createServer } from './config/server';
 

@@ -1,17 +1,17 @@
 // @ts-nocheck
-import { Comment } from '../entities/Comment';
-import { CommentFile } from '../entities/CommentFile';
-import { Post } from '../entities/Post';
-import { PostFile } from '../entities/PostFile';
-import { User } from '../entities/User';
-import { Blacklist } from '../entities/Blacklist';
+import { Comment } from './Comment';
+import { CommentFile } from './CommentFile';
+import { Post } from './Post';
+import { PostFile } from './PostFile';
+import { User } from './User';
+import { Blacklist } from './Blacklist';
 import { DataSource } from 'typeorm';
-import { Department } from '../entities/filters/Department';
-import { Subject } from '../entities/filters/Subject';
-import { YearOfStudy } from '../entities/filters/YearOfStudy';
-import { Type } from '../entities/filters/Type';
-import { YearOfExam } from '../entities/filters/YearOfExam';
-import { ExaminationPeriod } from '../entities/filters/ExaminationPeriod';
+import { Department } from './filters/Department';
+import { Subject } from './filters/Subject';
+import { YearOfStudy } from './filters/YearOfStudy';
+import { Type } from './filters/Type';
+import { YearOfExam } from './filters/YearOfExam';
+import { ExaminationPeriod } from './filters/ExaminationPeriod';
 import env from '../config/env';
 
 export const dataSource = new DataSource({
@@ -41,6 +41,7 @@ export const dataSource = new DataSource({
 export const initializeDatasource = async () => {
   try {
     await dataSource.initialize();
+    console.log('');
     console.log('Data Source has been initialized!');
   } catch (err) {
     console.error('Error during Data Source initialization', err);
