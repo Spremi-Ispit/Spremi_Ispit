@@ -10,9 +10,7 @@ const StyledNavLink = styled(NavLink)`
   margin: 0;
 `;
 
-const LogoDiv = styled.div`
-  flex: 1;
-`;
+const LogoDiv = styled.div``;
 
 const StyledImg = styled.img`
   width: 50px;
@@ -24,7 +22,6 @@ export const Logo = () => {
     <LogoDiv>
       <StyledNavLink to={`${homeRoute}`}>
         <StyledImg src={logo} alt="logo" />
-        <span>SI</span>
       </StyledNavLink>
     </LogoDiv>
   );

@@ -12,23 +12,28 @@ import { userRole } from '../../redux/app/state';
 import { selectRole } from '../../redux/app/selectors';
 // import { userRole } from '../../utils/enums';
 import Wiki from './components/Wiki';
+import Menu from './components/Menu';
 
-const headerHeight = '54px';
+const headerHeight = 64;
 
 const NavbarDiv = styled.div`
   position: relative;
-  height: ${headerHeight};
+  height: ${headerHeight}px;
 `;
 
 const StyledNav = styled.nav`
   position: fixed;
-  height: ${headerHeight};
+  height: ${headerHeight}px;
   display: flex;
   align-items: center;
   width: 100%;
-  background-color: var(--secondary);
+  background-color: #1a1a1a;
   z-index: 999;
-  padding-right: 20px;
+`;
+
+const SpremiIspitLabel = styled.label`
+  font-size: 2rem;
+  color: white;
 `;
 
 export const Navbar = () => {
@@ -37,16 +42,17 @@ export const Navbar = () => {
   return (
     <NavbarDiv>
       <StyledNav>
+        <Menu />
         <Logo />
-        <About />
+        <SpremiIspitLabel>Spremi Ispit</SpremiIspitLabel>;
+        {/* <About />
         <Wiki />
         <ReportBug />
         {role === 'admin' && <Users />}
         <Profile />
-        {/***** AUTH *****/}
         <Register />
         <Login />
-        <Logout />
+        <Logout /> */}
       </StyledNav>
     </NavbarDiv>
   );
