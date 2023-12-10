@@ -14,6 +14,7 @@ import { selectRole } from '../../redux/app/selectors';
 import Wiki from './components/Wiki';
 import Menu from './components/Menu';
 import Search from './components/Search';
+import CreatePost from './components/CreatePost';
 
 const headerHeight = 64;
 
@@ -28,7 +29,7 @@ const StyledNav = styled.nav`
   display: flex;
   align-items: center;
   width: 100%;
-  background-color: #1a1a1a;
+  background-color: #222328;
   z-index: 999;
 `;
 
@@ -37,6 +38,7 @@ const SpremiIspitLabel = styled.label`
   font-family: Libre Bodoni;
   font-size: 400;
   font-style: italic;
+  white-space: nowrap;
 `;
 
 export const Navbar = () => {
@@ -49,7 +51,7 @@ export const Navbar = () => {
         <Logo />
         <SpremiIspitLabel>Spremi Ispit</SpremiIspitLabel>
         <Search />
-        <button>Kreiraj objavu</button>
+        <CreatePost />
         {/* <About />
         <Wiki />
         <ReportBug />
