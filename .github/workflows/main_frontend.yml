@@ -25,6 +25,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      - name: Put to .env
+        run: echo ${{ secrets.MAIN_FRONTEND_ENV }} .env
+
       - name: 🔨 Build Project
         run: |
           cd frontend
