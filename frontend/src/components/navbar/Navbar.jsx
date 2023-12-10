@@ -15,6 +15,7 @@ import Wiki from './components/Wiki';
 import Menu from './components/Menu';
 import Search from './components/Search';
 import CreatePost from './components/CreatePost';
+import { fonts } from '../../fonts';
 
 const headerHeight = 64;
 
@@ -35,9 +36,7 @@ const StyledNav = styled.nav`
 
 const SpremiIspitLabel = styled.label`
   color: white;
-  font-family: Libre Bodoni;
-  font-size: 400;
-  font-style: italic;
+  ${fonts(400, 400, 'italic')}
   white-space: nowrap;
 `;
 
