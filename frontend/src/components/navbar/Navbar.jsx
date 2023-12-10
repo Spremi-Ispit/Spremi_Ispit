@@ -33,8 +33,10 @@ const StyledNav = styled.nav`
 `;
 
 const SpremiIspitLabel = styled.label`
-  font-size: 2rem;
   color: white;
+  font-family: Libre Bodoni;
+  font-size: 400;
+  font-style: italic;
 `;
 
 export const Navbar = () => {
