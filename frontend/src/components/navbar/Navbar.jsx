@@ -13,6 +13,7 @@ import { selectRole } from '../../redux/app/selectors';
 // import { userRole } from '../../utils/enums';
 import Wiki from './components/Wiki';
 import Menu from './components/Menu';
+import { fonts } from '../../fonts';
 
 const headerHeight = 64;
 
@@ -33,9 +34,7 @@ const StyledNav = styled.nav`
 
 const SpremiIspitLabel = styled.label`
   color: white;
-  font-family: Libre Bodoni;
-  font-size: 400;
-  font-style: italic;
+  ${fonts(400, 400, 'italic')}
 `;
 
 export const Navbar = () => {
