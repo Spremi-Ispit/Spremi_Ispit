@@ -13,6 +13,10 @@ const StyledTextField = styled(TextField)`
   }
 `;
 
+const SearchDiv = styled.div`
+  width: 100%;
+`;
+
 export const Search = () => {
   const urlManager = useUrlManager();
   const { urlSearch } = urlManager.getParams();
@@ -22,12 +26,15 @@ export const Search = () => {
   };
 
   return (
-    <StyledTextField
-      defaultValue={urlSearch}
-      label="Pretraga po naslovu ili sadržaju"
-      onChange={debounce(handleOnChange, 500)}
-      fullWidth
-    />
+    <SearchDiv>
+      <input type="text" placeholder="Search.." name="search"></input>
+      {/* <StyledTextField
+        defaultValue={urlSearch}
+        label="Pretraga po naslovu ili sadržaju"
+        onChange={debounce(handleOnChange, 500)}
+        fullWidth
+      /> */}
+    </SearchDiv>
   );
 };
 export default Search;

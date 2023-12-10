@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Navbar from '../../components/navbar/Navbar';
 import Fliters from '../../components/filters/Fliters';
-import Search from './components/Search';
 import CreatePost from './components/CreatePost';
 import Posts from './components/Posts';
 import PaginationAndPostPerPage from './components/pagination/PaginationAndPostPerPage';
@@ -124,13 +123,10 @@ export const Home = () => {
     <>
       <Navbar />
       <HomeDiv>
-        {sidePanel()}
+        {/* {sidePanel()} */}
         <ContentContainer>
           <CreatePost />
-          <SearchDiv>
-            <Search />
-            {sidePanelSwitcher()}
-          </SearchDiv>
+          <SearchDiv>{sidePanelSwitcher()}</SearchDiv>
           <PostsDiv>
             <Posts />
           </PostsDiv>

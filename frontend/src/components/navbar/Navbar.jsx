@@ -13,6 +13,7 @@ import { selectRole } from '../../redux/app/selectors';
 // import { userRole } from '../../utils/enums';
 import Wiki from './components/Wiki';
 import Menu from './components/Menu';
+import Search from './components/Search';
 
 const headerHeight = 64;
 
@@ -44,7 +45,9 @@ export const Navbar = () => {
       <StyledNav>
         <Menu />
         <Logo />
-        <SpremiIspitLabel>Spremi Ispit</SpremiIspitLabel>;
+        <SpremiIspitLabel>Spremi Ispit</SpremiIspitLabel>
+        <Search />
+        <button>Kreiraj objavu</button>
         {/* <About />
         <Wiki />
         <ReportBug />
