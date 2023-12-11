@@ -4,10 +4,6 @@
   flex-direction: column;
   position: relative;
   background-color: #efefef;
-
-  --primary: #023e8a;
-  --secondary: #03045e;
-  --background: #fefefe;
 }
 
 * {

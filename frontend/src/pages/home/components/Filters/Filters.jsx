@@ -15,6 +15,7 @@ const FiltersDiv = styled.div`
 const FiltersHeaderDiv = styled.div`
   text-transform: uppercase;
   font-weight: bold;
+  margin-bottom: 5px;
 `;
 const FiltersContainerDiv = styled.div`
   display: flex;
@@ -24,7 +25,8 @@ const FiltersContainerDiv = styled.div`
 const Filters = () => {
   return (
     <FiltersDiv>
-      <FiltersHeaderDiv>Detaljna pretraga</FiltersHeaderDiv>
+      <FiltersHeaderDiv>Detaljna pretraga </FiltersHeaderDiv>
+
       <FiltersContainerDiv>
         <YearOfStudy />
         <Department />

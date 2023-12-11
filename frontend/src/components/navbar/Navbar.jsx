@@ -2,14 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import Logo from './components/Logo';
 import Login from './components/Login';
-import Register from './components/Register';
 import Logout from './components/Logout';
-import { userRole } from '../../redux/app/state';
-import { selectRole, selectToken } from '../../redux/app/selectors';
-// import { userRole } from '../../utils/enums';
+import { selectToken } from '../../redux/app/selectors';
 import Search from './components/Search';
 import CreatePost from './components/CreatePost';
-import Menu from './components/components/Menu/Menu';
+import Menu from './components/Menu';
 import { useSelector } from 'react-redux';
 
 const headerHeight = 64;

@@ -7,7 +7,6 @@ import { useAppActions } from '../../../../redux/useAppActions';
 import { useSelector } from 'react-redux';
 import { selectRole } from '../../../../redux/app/selectors';
 import { selectSideNavbarHidden } from '../../../../redux/profile/selectors';
-import SidePanel from '../../../../components/SidePanel';
 import { screens, useScreens } from '../../../../utils/useScreens';
 import NavLink from './components/NavLink';
 import {
@@ -18,6 +17,7 @@ import {
   profileReportedPostsRoute,
 } from '../../../../router/routes';
 import { assets } from '../../../../assets';
+import SidePanel from '../../../../components/SidePanel';
 
 const StyledDivider = styled(Divider)`
   && {

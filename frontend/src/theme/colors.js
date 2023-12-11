@@ -1,6 +1,6 @@
 export default {
   navbar: '#222328',
-  background: '#191a1e',
+  background: '#efefef',
   filteri: '#2c2d32',
   button: '#023e8a',
   buttonDisabled: 'grey',
