@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import logo from '../../../assets/Logo.jpg';
 import { homeRoute } from '../../../router/routes';
 import NavLink from './components/NavLink';
+import { fonts } from '../../../theme/fonts';
 
 const StyledNavLink = styled(NavLink)`
   display: flex;
@@ -17,11 +18,18 @@ const StyledImg = styled.img`
   height: 50px;
 `;
 
+const SpremiIspitLabel = styled.label`
+  color: white;
+  ${fonts(16, 400, 'italic')}
+  cursor: pointer;
+`;
+
 export const Logo = () => {
   return (
     <LogoDiv>
       <StyledNavLink to={`${homeRoute}`}>
         <StyledImg src={logo} alt="logo" />
+        <SpremiIspitLabel>Spremi Ispit</SpremiIspitLabel>
       </StyledNavLink>
     </LogoDiv>
   );

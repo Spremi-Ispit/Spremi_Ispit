@@ -1,18 +1,25 @@
 import React from 'react';
-import { Button as MUIButton } from '@mui/material';
 import styled from 'styled-components';
+import colors from '../../theme/colors';
+import { fonts } from '../../theme/fonts';
 
-export const Button = styled(MUIButton)`
-  && {
-    background-color: var(--primary);
-    color: white;
+export const Button = styled.button`
+  background: none;
+  border: none;
+  background-color: ${colors.button};
+  color: white;
+  white-space: nowrap;
+  cursor: pointer;
 
-    :hover {
-      background-color: var(--secondary);
-    }
-
-    background-color: ${({ disabled }) => (disabled ? 'grey' : '')};
+  :hover {
+    background-color: ${colors.buttonHover};
   }
+
+  background-color: ${({ disabled }) => disabled && colors.buttonDisabled};
+  padding: 8px 12px;
+  border-radius: 5%;
+  transition: 0.3s;
+  ${fonts(14, 400)}
 `;
 
 export default Button;

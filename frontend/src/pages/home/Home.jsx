@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Navbar from '../../components/navbar/Navbar';
-import Fliters from '../../components/filters/Fliters';
 import CreatePost from './components/CreatePost';
 import Posts from './components/Posts';
 import PaginationAndPostPerPage from './components/pagination/PaginationAndPostPerPage';
@@ -18,6 +17,7 @@ import { screens, screensCSS, useScreens } from '../../utils/useScreens';
 import TuneIcon from '@mui/icons-material/Tune';
 import Button from '../../components/buttons/Button';
 import WelcomeModal from './components/WelcomeModal';
+import Filters from './components/Filters/Filters';
 
 const ContentContainer = styled.div`
   flex: 1;
@@ -101,7 +101,7 @@ export const Home = () => {
           closedPanelWidth={40}
         >
           <StyledH2>Filteri</StyledH2>
-          <Fliters />
+          {/* <Fliters /> */}
           <Order />
         </SidePanel>
       );
@@ -125,7 +125,7 @@ export const Home = () => {
       <HomeDiv>
         {/* {sidePanel()} */}
         <ContentContainer>
-          <CreatePost />
+          <Filters />
           <SearchDiv>{sidePanelSwitcher()}</SearchDiv>
           <PostsDiv>
             <Posts />

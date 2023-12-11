@@ -9,9 +9,9 @@ const Login = () => {
   const location = useLocation();
   const token = useSelector(selectToken);
 
-  if (location.pathname === loginRoute || token) {
-    return null;
-  }
+  // if (location.pathname === loginRoute || token) {
+  //   return null;
+  // }
 
   return <NavLink to={`${loginRoute}`}>Prijava</NavLink>;
 };

@@ -1,7 +1,7 @@
 import React from 'react';
-import NavLink from './components/NavLink';
+import NavLink from '../../NavLink';
 import { useLocation } from 'react-router-dom';
-import { aboutRoute } from '../../../router/routes';
+import { aboutRoute } from '../../../../../../router/routes';
 
 const About = () => {
   const location = useLocation();

@@ -45,12 +45,16 @@ export const CreatePost = () => {
 
   return (
     <CreatePostDiv>
-      <StyledButton
-        variant="contained"
-        onClick={() => navigate(createPostRoute)}
-      >
-        KREIRAJ OBJAVU
-      </StyledButton>
+      <CreatePostContainer>
+        <StyledH2>Imaš pitanje ili materijal?</StyledH2>
+        <StyledButton
+          variant="contained"
+          onClick={() => navigate(createPostRoute)}
+        >
+          KREIRAJ OBJAVU
+        </StyledButton>
+      </CreatePostContainer>
+      <StyledDivider />
     </CreatePostDiv>
   );
 };

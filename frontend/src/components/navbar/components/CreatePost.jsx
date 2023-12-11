@@ -1,18 +1,18 @@
 import React from 'react';
+import Button from '../../buttons/Button';
 import styled from 'styled-components';
+import NavLink from './components/NavLink';
+import { createPostRoute } from '../../../router/routes';
 
-const CreatePostButton = styled.button`
-  white-space: nowrap;
+const StyledButton = styled(Button)`
+  text-transform: uppercase;
 `;
 
 const CreatePost = () => {
   return (
-    <>
-      <CreatePostButton>Kreiraj objavu</CreatePostButton>;
-      <button type="submit">
-        <i class="fa fa-search"></i>
-      </button>
-    </>
+    <NavLink to={`${createPostRoute}`}>
+      <StyledButton>Kreiraj objavu</StyledButton>
+    </NavLink>
   );
 };
 

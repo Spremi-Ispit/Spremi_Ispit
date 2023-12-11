@@ -4,7 +4,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 const StyledMenuIcon = styled(MenuIcon)`
   color: white;
-  margin: 0px 20px;
+  margin-right: 10px;
 `;
 
 const Menu = () => {
@@ -12,3 +12,9 @@ const Menu = () => {
 };
 
 export default Menu;
+
+// <About />
+// <Wiki />
+// <ReportBug />
+// {role === 'admin' && <Users />}
+// <Profile />

@@ -1,21 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import Logo from './components/Logo';
-import Profile from './components/Profile';
-import About from './components/About';
-import ReportBug from './components/ReportBug';
 import Login from './components/Login';
 import Register from './components/Register';
 import Logout from './components/Logout';
-import Users from './components/Users';
 import { userRole } from '../../redux/app/state';
-import { selectRole } from '../../redux/app/selectors';
+import { selectRole, selectToken } from '../../redux/app/selectors';
 // import { userRole } from '../../utils/enums';
-import Wiki from './components/Wiki';
-import Menu from './components/Menu';
 import Search from './components/Search';
 import CreatePost from './components/CreatePost';
-import { fonts } from '../../fonts';
+import Menu from './components/components/Menu/Menu';
+import { useSelector } from 'react-redux';
 
 const headerHeight = 64;
 
@@ -34,31 +29,28 @@ const StyledNav = styled.nav`
   z-index: 999;
 `;
 
-const SpremiIspitLabel = styled.label`
-  color: white;
-  ${fonts(400, 400, 'italic')}
+const SideDiv = styled.div`
+  padding: 0px 10px;
+  display: flex;
+  align-items: center;
   white-space: nowrap;
 `;
 
 export const Navbar = () => {
-  const role = JSON.parse(localStorage.getItem('app'))?.role;
+  const token = useSelector(selectToken);
 
   return (
     <NavbarDiv>
       <StyledNav>
-        <Menu />
-        <Logo />
-        <SpremiIspitLabel>Spremi Ispit</SpremiIspitLabel>
+        <SideDiv>
+          <Menu />
+          <Logo />
+        </SideDiv>
         <Search />
-        <CreatePost />
-        {/* <About />
-        <Wiki />
-        <ReportBug />
-        {role === 'admin' && <Users />}
-        <Profile />
-        <Register />
-        <Login />
-        <Logout /> */}
+        <SideDiv>
+          <CreatePost />
+          {!token ? <Login /> : <Logout />}
+        </SideDiv>
       </StyledNav>
     </NavbarDiv>
   );
