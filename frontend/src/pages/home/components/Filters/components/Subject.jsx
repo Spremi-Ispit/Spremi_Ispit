@@ -1,27 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import InputLabel from '@mui/material/InputLabel';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-import { FormControl } from '@mui/material';
-import PropTypes from 'prop-types';
 import {
   allowedUrlParams,
   useUrlManager,
-} from '../../../utils/managers/UrlManager';
-import { filtersVariant } from '../enums';
-import { useApiActions } from '../../../api/useApiActions';
+} from '../../../../../utils/managers/UrlManager';
+import { useApiActions } from '../../../../../api/useApiActions';
 
 const SubjectDiv = styled.div`
-  margin-bottom: 10px;
-
-  .MuiFormControl-root {
-    background: white;
-  }
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 `;
 
-/** @param {Subject.propTypes} props */
-export const Subject = ({ variant }) => {
+export const Subject = () => {
   const urlManager = useUrlManager();
   const { urlYearOfStudy, urlDepartment, urlSubject } = urlManager.getParams();
   const [subjects, setSubjects] = useState([]);
@@ -53,40 +44,21 @@ export const Subject = ({ variant }) => {
     return <h1>greska prilikom pribavljanja filtera</h1>;
   }
 
-  if (!loaded || subjects.length === 0 || !urlDepartment) {
-    return null;
-  }
-
   return (
     <SubjectDiv>
-      <FormControl size="small" fullWidth variant={variant}>
-        <InputLabel shrink>Predmet</InputLabel>
-        <Select
-          value={urlSubject ?? ''}
-          label="Predmet"
-          onChange={handleChange}
-          displayEmpty
-        >
-          <MenuItem value={''}>Sve</MenuItem>
-          {subjects.length > 0
-            ? subjects.map((subject) => (
-                <MenuItem key={subject.name} value={subject.name}>
-                  {subject.name}
-                </MenuItem>
-              ))
-            : null}
-        </Select>
-      </FormControl>
+      <label>Predmet </label>
+      <select value={urlSubject ?? ''} onChange={handleChange}>
+        <option value="">Sve</option>
+        {!loaded || subjects.length === 0 || !urlDepartment
+          ? null
+          : subjects.map((subject) => (
+              <option key={subject.name} value={subject.name}>
+                {subject.name}
+              </option>
+            ))}
+      </select>
     </SubjectDiv>
   );
-};
-
-Subject.propTypes = {
-  variant: PropTypes.oneOf(Object.values(filtersVariant)),
-};
-
-Subject.defaultProps = {
-  variant: filtersVariant.filled,
 };
 
 export default Subject;

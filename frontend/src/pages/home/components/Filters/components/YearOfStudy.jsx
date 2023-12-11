@@ -7,9 +7,9 @@ import {
 import { useApiActions } from '../../../../../api/useApiActions';
 
 const YearOfStudyDiv = styled.div`
-  margin: 10px;
   display: flex;
   flex-direction: column;
+  flex: 1;
 `;
 
 export const YearOfStudy = () => {
@@ -50,7 +50,7 @@ export const YearOfStudy = () => {
 
   return (
     <YearOfStudyDiv>
-      <label>Odaberi godinu studija: </label>
+      <label>Godina studija: </label>
       <select value={urlYearOfStudy ?? ''} onChange={handleChange}>
         <option value="">Sve</option>
         {yearsOfStudy.map((urlYearOfStudy) => (

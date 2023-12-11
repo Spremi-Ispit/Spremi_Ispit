@@ -1,25 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import InputLabel from '@mui/material/InputLabel';
-import { FormControl, MenuItem, Select } from '@mui/material';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 import {
   allowedUrlParams,
   useUrlManager,
-} from '../../../utils/managers/UrlManager';
-import { filtersVariant } from '../enums';
-import { useApiActions } from '../../../api/useApiActions';
+} from '../../../../../utils/managers/UrlManager';
+import { useApiActions } from '../../../../../api/useApiActions';
 
 const TypeDiv = styled.div`
-  margin-bottom: 10px;
-
-  .MuiFormControl-root {
-    background: white;
-  }
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 `;
 
-/** @param {Type.propTypes} props */
-const Type = ({ variant }) => {
+const Type = () => {
   const urlManager = useUrlManager();
 
   const { urlType, urlSubject } = urlManager.getParams();
@@ -49,40 +42,21 @@ const Type = ({ variant }) => {
     return <h1>greska prilikom pribavljanja filtera</h1>;
   }
 
-  if (!loaded || types.length === 0 || !urlSubject) {
-    return null;
-  }
-
   return (
     <TypeDiv>
-      <FormControl size="small" fullWidth variant={variant}>
-        <InputLabel shrink>Tip</InputLabel>
-        <Select
-          value={urlType ?? ''}
-          label="Tip"
-          onChange={handleChange}
-          displayEmpty
-        >
-          <MenuItem value={''}>Sve</MenuItem>
-          {types.length > 0
-            ? types.map((type) => (
-                <MenuItem key={type.name} value={type.name}>
-                  {type.name}
-                </MenuItem>
-              ))
-            : null}
-        </Select>
-      </FormControl>
+      <label>Tip: </label>
+      <select value={urlType ?? ''} onChange={handleChange}>
+        <option value="">Sve</option>
+        {!loaded || types.length === 0 || !urlSubject
+          ? null
+          : types.map((type) => (
+              <option key={type.name} value={type.name}>
+                {type.name}
+              </option>
+            ))}
+      </select>
     </TypeDiv>
   );
-};
-
-Type.propTypes = {
-  variant: PropTypes.oneOf(Object.values(filtersVariant)),
-};
-
-Type.defaultProps = {
-  variant: filtersVariant.filled,
 };
 
 export default Type;

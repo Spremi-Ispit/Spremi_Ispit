@@ -1,25 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import InputLabel from '@mui/material/InputLabel';
 import styled from 'styled-components';
-import { FormControl, MenuItem, Select } from '@mui/material';
-import PropTypes from 'prop-types';
 import {
   allowedUrlParams,
   useUrlManager,
-} from '../../../utils/managers/UrlManager';
-import { filtersVariant } from '../enums';
-import { useApiActions } from '../../../api/useApiActions';
+} from '../../../../../utils/managers/UrlManager';
+import { useApiActions } from '../../../../../api/useApiActions';
 
 const ExaminationPeriodDiv = styled.div`
-  margin-bottom: 10px;
-
-  .MuiFormControl-root {
-    background: white;
-  }
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 `;
 
-/** @param {ExaminationPeriod.propTypes} props */
-const ExaminationPeriod = ({ variant }) => {
+const ExaminationPeriod = () => {
   const urlManager = useUrlManager();
 
   const { loadExaminationPeriods } = useApiActions();
@@ -51,43 +44,24 @@ const ExaminationPeriod = ({ variant }) => {
     return <h1>greska prilikom pribavljanja filtera</h1>;
   }
 
-  if (!loaded || examinationPeriods.length === 0 || !urlType) {
-    return null;
-  }
-
   return (
     <ExaminationPeriodDiv>
-      <FormControl size="small" fullWidth variant={variant}>
-        <InputLabel shrink>Ispitni rok</InputLabel>
-        <Select
-          value={urlExaminationPeriod ?? ''}
-          label="Ispitni rok"
-          onChange={handleChange}
-          displayEmpty
-        >
-          <MenuItem value={''}>Sve</MenuItem>
-          {examinationPeriods.length > 0
-            ? examinationPeriods.map((examinationPeriod) => (
-                <MenuItem
-                  key={examinationPeriod.name}
-                  value={examinationPeriod.name}
-                >
-                  {examinationPeriod.name}
-                </MenuItem>
-              ))
-            : null}
-        </Select>
-      </FormControl>
+      <label>Ispitni rok: </label>
+      <select value={urlExaminationPeriod ?? ''} onChange={handleChange}>
+        <option value="">Sve</option>
+        {!loaded || examinationPeriods.length === 0 || !urlType
+          ? null
+          : examinationPeriods.map((examinationPeriod) => (
+              <option
+                key={examinationPeriod.name}
+                value={examinationPeriod.name}
+              >
+                {examinationPeriod.name}
+              </option>
+            ))}
+      </select>
     </ExaminationPeriodDiv>
   );
-};
-
-ExaminationPeriod.propTypes = {
-  variant: PropTypes.oneOf(Object.values(filtersVariant)),
-};
-
-ExaminationPeriod.defaultProps = {
-  variant: filtersVariant.filled,
 };
 
 export default ExaminationPeriod;

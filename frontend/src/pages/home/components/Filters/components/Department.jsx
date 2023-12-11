@@ -7,9 +7,9 @@ import {
 import { useApiActions } from '../../../../../api/useApiActions';
 
 const DepartmentDiv = styled.div`
-  margin: 10px;
   display: flex;
   flex-direction: column;
+  flex: 1;
 `;
 
 export const Department = () => {
@@ -47,18 +47,16 @@ export const Department = () => {
 
   return (
     <DepartmentDiv>
-      <label>Odaberi smer: </label>
+      <label>Smer: </label>
       <select value={urlDepartment ?? ''} onChange={handleChange}>
         <option value="">Sve</option>
         {!loaded || departments.length === 0 || !urlYearOfStudy
           ? null
-          : departments.length > 0
-          ? departments.map((department) => (
+          : departments.map((department) => (
               <option key={department.name} value={department.name}>
                 {department.name}
               </option>
-            ))
-          : null}
+            ))}
       </select>
     </DepartmentDiv>
   );

@@ -23,16 +23,15 @@ const ContentContainer = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  margin: 5px;
-  margin-top: 20px;
-  align-items: center;
+  max-width: 800px;
 `;
 
 const HomeDiv = styled.div`
   display: flex;
   flex: 1;
   position: relative;
-  z-index: 0;
+  padding-top: 20px;
+  justify-content: center;
 `;
 
 const SearchDiv = styled.div`
