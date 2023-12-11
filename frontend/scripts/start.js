@@ -66,7 +66,7 @@ async function main() {
     environment = backendEnv.hosting;
   }
   s.stop(
-    `Utilizing the backend from the ${environment} environment. To change the environment run 'npm run setupEnv'.`
+    `Utilizing the backend from the ${environment} environment. To change the environment run: npm run setupEnv`
   );
 }
 
