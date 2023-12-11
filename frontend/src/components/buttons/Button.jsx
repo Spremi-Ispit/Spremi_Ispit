@@ -15,7 +15,7 @@ export const Button = styled.button`
     background-color: ${colors.buttonHover};
   }
 
-  background-color: ${({ disabled }) => disabled && colors.buttonDisabled};
+  background-color: ${({ $disabled }) => $disabled && colors.buttonDisabled};
   padding: 8px 12px;
   border-radius: 5%;
   transition: 0.3s;

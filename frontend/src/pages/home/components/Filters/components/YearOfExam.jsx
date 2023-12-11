@@ -39,7 +39,7 @@ export const YearOfExam = () => {
 
   return (
     <ExamDiv>
-      <label>Godina: </label>
+      <label>Godina</label>
       <select value={urlYearOfExam ?? ''} onChange={handleChange}>
         <option value="">Sve</option>
         {!loaded || yearsOfExam.length === 0 || !urlType

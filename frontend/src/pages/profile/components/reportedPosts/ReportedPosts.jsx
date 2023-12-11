@@ -8,7 +8,6 @@ import Typography from '@mui/material/Typography';
 import Fade from '@mui/material/Fade';
 import DismissReport from './components/DismissReport';
 import ErrorDialog from '../../../../components/dialogs/ErrorDialog';
-import models from '../../../../models';
 import { useApiActions } from '../../../../api/useApiActions';
 
 const StyledPaper = styled(Paper)`
@@ -89,7 +88,7 @@ export const ReportedPosts = () => {
       <StyledDivider />
       {posts.map((data, index) => (
         <PostPreviewContainer key={index}>
-          <PostView data={models.post(data)} />
+          <PostView data={data} />
           <DismissReport postId={data.id} setLoadPosts={action} />
         </PostPreviewContainer>
       ))}

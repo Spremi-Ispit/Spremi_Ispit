@@ -46,7 +46,7 @@ const ExaminationPeriod = () => {
 
   return (
     <ExaminationPeriodDiv>
-      <label>Ispitni rok: </label>
+      <label>Ispitni rok</label>
       <select value={urlExaminationPeriod ?? ''} onChange={handleChange}>
         <option value="">Sve</option>
         {!loaded || examinationPeriods.length === 0 || !urlType

@@ -14,7 +14,6 @@ import {
   useUrlManager,
 } from '../../../utils/managers/UrlManager';
 import { useAppActions } from '../../../redux/useAppActions';
-import models from '../../../models';
 import { useApiActions } from '../../../api/useApiActions';
 
 const PostDiv = styled.div`
@@ -203,7 +202,7 @@ export const Post = () => {
     return (
       <PostDiv>
         <PostView
-          data={models.post(post)}
+          data={post}
           enableDelete
           enableReport
           enableFiles

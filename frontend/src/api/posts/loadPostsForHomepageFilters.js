@@ -1,5 +1,4 @@
 import services from '../../utils/services';
-import { formatDate } from '../../utils/dateFormater';
 
 export const loadPostsForHomepageFilters = async (
   urlSearch,
@@ -10,22 +9,9 @@ export const loadPostsForHomepageFilters = async (
   urlSubject,
   urlType,
   urlYearOfExam,
-  currentPage,
-  postPerPage
+  post
 ) => {
-  let startIndex = undefined;
-  if (currentPage && postPerPage) {
-    startIndex = (currentPage - 1) * postPerPage;
-  }
-
-  let count = undefined;
-  if (postPerPage) {
-    count = postPerPage;
-  }
-
   let data = {
-    startIndex,
-    count,
     search: urlSearch,
     order: urlOrder,
     yearOfStudy: urlYearOfStudy,
@@ -34,27 +20,8 @@ export const loadPostsForHomepageFilters = async (
     subject: urlSubject,
     type: urlType,
     yearOfExam: urlYearOfExam,
+    post,
   };
 
-  const response = await services.post('/posts/postsForHomepageFilters', data);
-  return mapDTOToData(response);
+  return await services.post('/posts/postsForHomepageFilters', data);
 };
-
-function mapDTOToData(data) {
-  return {
-    posts: mapDTOToPosts(data.posts),
-    totalNumberOfPages: data.totalNumberOfPages,
-    totalNumberOfPosts: data.totalNumberOfPosts,
-  };
-}
-
-function mapDTOToPost(dto) {
-  return {
-    ...dto,
-    date: formatDate(new Date(dto.date)),
-  };
-}
-
-function mapDTOToPosts(dto) {
-  return dto.map((post) => mapDTOToPost(post));
-}

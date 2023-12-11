@@ -1,21 +1,16 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Navbar from '../../components/navbar/Navbar';
-import Posts from './components/Posts';
-import PaginationAndPostPerPage from './components/pagination/PaginationAndPostPerPage';
+import PostsPreview from './components/PostsPreview/PostsPreview';
 import {
   allowedUrlParams,
   useUrlManager,
 } from '../../utils/managers/UrlManager';
-import Order, { orders } from './components/Order';
-import { selectFiltersVisible } from '../../redux/home/selectors';
-import { useSelector } from 'react-redux';
-import { useAppActions } from '../../redux/useAppActions';
-import { screens, screensCSS, useScreens } from '../../utils/useScreens';
-import Button from '../../components/buttons/Button';
+import { orders } from './components/Filters/components/Order';
 import WelcomeModal from './components/WelcomeModal';
 import Filters from './components/Filters/Filters';
 import SidePanel from './components/SidePanel/SidePanel';
+import Footer from '../../components/Footer';
 
 const ContentContainer = styled.div`
   flex: 1;
@@ -32,21 +27,10 @@ const HomeDiv = styled.div`
   position: relative;
 `;
 
-const PostsDiv = styled.div`
-  width: 750px;
-  height: 100%;
-
-  @media ${screensCSS.tablet} {
-    width: 100%;
-  }
-`;
-
 export const Home = () => {
   const urlManager = useUrlManager();
   const { urlOrder } = urlManager.getParams();
-
   const validOrder = Object.values(orders).includes(urlOrder);
-  const screen = useScreens();
 
   useEffect(() => {
     if (!validOrder) {
@@ -66,12 +50,10 @@ export const Home = () => {
         <SidePanel />
         <ContentContainer>
           <Filters />
-          <PostsDiv>
-            <Posts />
-          </PostsDiv>
-          <PaginationAndPostPerPage />
+          <PostsPreview />
         </ContentContainer>
       </HomeDiv>
+      <Footer />
       <WelcomeModal />
     </>
   );

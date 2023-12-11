@@ -47,7 +47,7 @@ export const Department = () => {
 
   return (
     <DepartmentDiv>
-      <label>Smer: </label>
+      <label>Smer</label>
       <select value={urlDepartment ?? ''} onChange={handleChange}>
         <option value="">Sve</option>
         {!loaded || departments.length === 0 || !urlYearOfStudy

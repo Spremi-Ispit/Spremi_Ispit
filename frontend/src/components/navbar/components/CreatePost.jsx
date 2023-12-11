@@ -3,9 +3,18 @@ import Button from '../../buttons/Button';
 import styled from 'styled-components';
 import NavLink from './components/NavLink';
 import { createPostRoute } from '../../../router/routes';
+import colors from '../../../theme/colors';
 
 const StyledButton = styled(Button)`
   text-transform: uppercase;
+
+  background-color: ${colors.background};
+  color: black;
+
+  :hover {
+    background-color: ${colors.filteri};
+    color: white;
+  }
 `;
 
 const CreatePost = () => {

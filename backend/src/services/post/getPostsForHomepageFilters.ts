@@ -6,30 +6,29 @@ import { In } from 'typeorm';
 import { mapPostToPostPreviewDTO } from './utils/mapPostToPostPreviewDTO';
 import { buildPostsQueryForFilters } from './utils/buildPostsQueryForFilters';
 
-const extractPostsForPage = (postsQuery, startIndex, count) => {
-  if ((startIndex, count)) {
-    const perPage = count;
-    const page = Math.floor(startIndex / count) + 1;
-    const skip = perPage * page - perPage;
-    postsQuery = postsQuery.skip(skip).take(perPage);
-  }
+//****left over from the time when the app had paginaton*/
+// const extractPostsForPage = (postsQuery, startIndex, count) => {
+//   if ((startIndex, count)) {
+//     const perPage = count;
+//     const page = Math.floor(startIndex / count) + 1;
+//     const skip = perPage * page - perPage;
+//     postsQuery = postsQuery.skip(skip).take(perPage);
+//   }
 
-  return postsQuery;
-};
+//   return postsQueqry;
+// };
 
 export const getPostsForHomepageFilters = async (req) => {
-  let { startIndex, count } = req.body;
+  const { post } = req.body;
+
   let postsQuery = buildPostsQueryForFilters(req.body);
 
-  const totalNumberOfPosts = await postsQuery.getCount();
-  const totalNumberOfPages = count
-    ? Math.ceil(totalNumberOfPosts / count)
-    : totalNumberOfPosts;
-
-  postsQuery = extractPostsForPage(postsQuery, startIndex, count);
+  if (post && post.id) {
+    postsQuery = postsQuery.where(`post.id > ${post.id}`);
+  }
+  postsQuery = postsQuery.take(5);
 
   let postResults = await postsQuery.getRawAndEntities();
-
   let postsIds = [];
 
   postResults.raw.forEach((post) => {
@@ -46,20 +45,13 @@ export const getPostsForHomepageFilters = async (req) => {
   const status = checkIfLogged(req);
   const userID = status.userID;
 
-  const data = {
-    totalNumberOfPosts,
-    totalNumberOfPages,
-    posts: (() => {
-      const postArray = [];
-      postsIds.forEach((id, index) => {
-        const post = posts.find((post) => post.id === id);
-        if (post) {
-          postArray.push(mapPostToPostPreviewDTO(post, userID));
-        }
-      });
-      return postArray;
-    })()
-  };
+  const postArray = [];
+  postsIds.forEach((id, index) => {
+    const post = posts.find((post) => post.id === id);
+    if (post) {
+      postArray.push(mapPostToPostPreviewDTO(post, userID));
+    }
+  });
 
-  return response.OK(data);
+  return response.OK(postArray);
 };

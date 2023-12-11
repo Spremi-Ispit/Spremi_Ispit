@@ -8,7 +8,6 @@ import styled from 'styled-components';
 import Paper from '@mui/material/Paper';
 import { Divider } from '@mui/material';
 import { useUrlManager } from '../../../utils/managers/UrlManager';
-import models from '../../../models';
 import { useApiActions } from '../../../api/useApiActions';
 
 const StyledPaper = styled(Paper)`
@@ -85,7 +84,7 @@ export const CommentedPosts = () => {
       <h1>Komentarisane objave</h1>
       <StyledDivider />
       {posts.map((data, index) => (
-        <PostView key={index} data={models.post(data)} enableShowPost />
+        <PostView key={index} data={data} enableShowPost />
       ))}
     </Container>
   );

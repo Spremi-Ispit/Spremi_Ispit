@@ -5,7 +5,6 @@ import Footer from './components/footer/Footer';
 import Info from './components/Info';
 import Content from './components/Content';
 import { PostViewProvider } from './PostViewContext';
-import models from '../../models';
 import { allowedUrlParams } from '../../utils/managers/UrlManager';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { viewPostRoute } from '../../router/routes';
@@ -50,7 +49,7 @@ export const PostView = ({
     date,
     postedBy,
     likeStatus,
-  } = models.annoucment(data);
+  } = data;
   const location = useLocation();
   const [showMenu, setShowMenu] = useState(false);
   const [mouseX, setMouseX] = useState(0);

@@ -9,7 +9,6 @@ import ErrorDialog from '../../../../components/dialogs/ErrorDialog';
 import styled from 'styled-components';
 import Paper from '@mui/material/Paper';
 import { Divider } from '@mui/material';
-import models from '../../../../models';
 import { useApiActions } from '../../../../api/useApiActions';
 
 const StyledPaper = styled(Paper)`
@@ -97,7 +96,7 @@ export const ReportedComments = () => {
       <h1>Prijavljeni komentari</h1>
       <StyledDivider />
       {comments.map((comment) => {
-        const commentModel = models.comment(comment);
+        const commentModel = comment;
 
         return (
           <CommentPreviewContainer key={JSON.stringify(commentModel)}>

@@ -10,7 +10,6 @@ import {
 } from '../../../redux/viewPost/selectors';
 import { useUrlManager } from '../../../utils/managers/UrlManager';
 import { useAppActions } from '../../../redux/useAppActions';
-import models from '../../../models';
 import { useApiActions } from '../../../api/useApiActions';
 
 const PostViewDiv = styled.div`
@@ -65,7 +64,7 @@ export const Comments = () => {
       <>
         <h1>Komentari</h1>
         {comments.map((comment) => {
-          const commentModel = models.comment(comment);
+          const commentModel = comment;
           return (
             <PostViewDiv key={JSON.stringify(commentModel)}>
               <PostView

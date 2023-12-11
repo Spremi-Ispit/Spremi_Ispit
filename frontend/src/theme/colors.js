@@ -6,4 +6,5 @@ export default {
   buttonDisabled: 'grey',
   buttonHover: '#03045e',
   buttonTest: '#3c55dc',
+  footer: '#e3e3e3',
 };

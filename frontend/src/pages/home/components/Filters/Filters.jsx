@@ -6,11 +6,13 @@ import Subject from './components/Subject';
 import Type from './components/Type';
 import YearOfExam from './components/YearOfExam';
 import ExaminationPeriod from './components/ExaminationPeriod';
+import Order from './components/Order';
 
 const FiltersDiv = styled.div`
   display: flex;
   flex-direction: column;
   white-space: nowrap;
+  margin-bottom: 20px;
 `;
 const FiltersHeaderDiv = styled.div`
   text-transform: uppercase;
@@ -26,7 +28,6 @@ const Filters = () => {
   return (
     <FiltersDiv>
       <FiltersHeaderDiv>Detaljna pretraga </FiltersHeaderDiv>
-
       <FiltersContainerDiv>
         <YearOfStudy />
         <Department />
@@ -34,6 +35,7 @@ const Filters = () => {
         <Type />
         <ExaminationPeriod />
         <YearOfExam />
+        <Order />
       </FiltersContainerDiv>
     </FiltersDiv>
   );

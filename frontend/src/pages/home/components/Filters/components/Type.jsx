@@ -44,7 +44,7 @@ const Type = () => {
 
   return (
     <TypeDiv>
-      <label>Tip: </label>
+      <label>Tip</label>
       <select value={urlType ?? ''} onChange={handleChange}>
         <option value="">Sve</option>
         {!loaded || types.length === 0 || !urlSubject
