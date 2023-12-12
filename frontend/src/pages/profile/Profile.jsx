@@ -7,16 +7,19 @@ import {
   useUrlManager,
 } from '../../utils/managers/UrlManager';
 import { useSelector } from 'react-redux';
-import { selectUsername } from '../../redux/app/selectors';
+import {
+  selectSettingsSidePanelVisible,
+  selectUsername,
+} from '../../redux/app/selectors';
 import { Outlet } from 'react-router-dom';
+import Footer from '../../components/Footer';
+import SettingsSidePanel from '../../components/SettingsSidePanel/SettingsSidePanel';
 
 const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 20px;
-  margin-right: 20px;
-  height: 100%;
   flex: 1;
+  align-items: center;
 `;
 
 const ProfileDiv = styled.div`
@@ -24,10 +27,18 @@ const ProfileDiv = styled.div`
   flex: 1;
 `;
 
+const OutletDiv = styled.div`
+  flex: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
 export const Profile = () => {
   const urlManager = useUrlManager();
   const { urlUsername } = urlManager.getParams();
   const username = useSelector(selectUsername);
+  const settingsSidePanelVisible = useSelector(selectSettingsSidePanelVisible);
 
   useEffect(() => {
     if (!urlUsername) {
@@ -42,9 +53,12 @@ export const Profile = () => {
     <>
       <Navbar />
       <ProfileDiv>
-        <SideNavbar />
+        {settingsSidePanelVisible ? <SettingsSidePanel /> : <SideNavbar />}
         <ContentContainer>
-          <Outlet />
+          <OutletDiv>
+            <Outlet />
+          </OutletDiv>
+          <Footer />
         </ContentContainer>
       </ProfileDiv>
     </>

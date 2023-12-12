@@ -18,7 +18,7 @@ const OpenedPanelOverlayDiv = styled.div`
   background: ${colors.filteri};
   z-index: 2;
   height: 100%;
-  position: relative;
+  position: fixed;
 `;
 
 const SidePanelPlaceHolderDiv = styled.div`

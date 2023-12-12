@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import DoubleArrow from '@mui/icons-material/DoubleArrow';
 import { MenuItem } from '@mui/material';
-import PropTypes from 'prop-types';
+import colors from '../../../../../theme/colors';
 
 const ClosePanelArrow = styled(DoubleArrow)`
   && {
@@ -35,7 +35,7 @@ const OpenedPanelOverlayDiv = styled.div`
   width: ${({ width }) => width}px;
   left: ${({ closed, width }) => (closed ? `-${width}` : '0')}px;
   box-shadow: 2px 1px 5px 0 #393a3d26;
-  background: ${({ closed }) => (closed ? 'white' : '')};
+  background: ${colors.filteri};
   z-index: 2;
   height: 100%;
   position: fixed;
@@ -47,8 +47,11 @@ const ClosedPanelDiv = styled.div`
   cursor: pointer;
   display: flex;
   justify-content: center;
-  height: 100%;
   padding-top: 5px;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  bottom: 0;
 `;
 
 const SidePanelPlaceHolderDiv = styled.div`
@@ -56,14 +59,13 @@ const SidePanelPlaceHolderDiv = styled.div`
   min-width: ${({ width }) => width}px;
 `;
 
-/** @param {SidePanel.propTypes} props */
 export const SidePanel = ({
   hidden,
   setHidden,
   children,
   className,
-  closedPanelWidth,
-  openedPanelWidth,
+  closedPanelWidth = 40,
+  openedPanelWidth = 350,
 }) => {
   return (
     <SidePanelPlaceHolderDiv
@@ -90,24 +92,6 @@ export const SidePanel = ({
       </OpenedPanelOverlayDiv>
     </SidePanelPlaceHolderDiv>
   );
-};
-
-SidePanel.propTypes = {
-  hidden: PropTypes.bool,
-  setHidden: PropTypes.func,
-  children: PropTypes.node,
-  className: PropTypes.string,
-  closedPanelWidth: PropTypes.number,
-  openedPanelWidth: PropTypes.number,
-};
-
-SidePanel.defaultProps = {
-  hidden: false,
-  setHidden: () => {},
-  children: null,
-  className: '',
-  closedPanelWidth: 40,
-  openedPanelWidth: 350,
 };
 
 export default SidePanel;

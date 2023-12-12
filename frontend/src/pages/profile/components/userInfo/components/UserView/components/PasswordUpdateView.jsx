@@ -18,6 +18,7 @@ const StyledFormControl = styled(FormControl)`
   && {
     margin-top: 10px;
     margin-bottom: 10px;
+    background-color: white;
   }
 `;
 

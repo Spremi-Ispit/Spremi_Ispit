@@ -5,7 +5,6 @@ export const loginRoute = '/login';
 export const createPostRoute = '/createPost';
 export const usersRoute = '/users';
 export const viewPostRoute = '/viewPost';
-export const aboutRoute = '/about';
 export const resetPasswordRoute = '/resetPassword';
 
 export const profileRoute = '/profile';

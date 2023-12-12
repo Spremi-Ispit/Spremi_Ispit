@@ -3,12 +3,10 @@ import styled from 'styled-components';
 import colors from '../theme/colors';
 import CopyrightIcon from '@mui/icons-material/Copyright';
 import NavLink from './navbar/components/components/NavLink';
-import { aboutRoute } from '../router/routes';
-import { fonts } from '../theme/fonts';
 
 const FooterDiv = styled.footer`
   background-color: ${colors.footer};
-  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: rgba(0, 0, 0, 0.75) 3px 1px 3px 0px;
   display: flex;
   flex-direction: column;
 `;

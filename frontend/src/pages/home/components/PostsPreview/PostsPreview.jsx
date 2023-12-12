@@ -129,7 +129,7 @@ export const PostsPreview = () => {
     <>
       <PostsPreviewDiv>
         {posts.map((post, index) => {
-          return <PostPreview key={index} post={post} />;
+          return <PostPreview key={index} data={post} />;
         })}
       </PostsPreviewDiv>
       <MorePosts

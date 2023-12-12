@@ -10,7 +10,6 @@ import {
   ViewPost,
 } from '../pages';
 import PrivateRoutes from './PrivateRoutes';
-import About from '../pages/about/About';
 import Posts from '../pages/profile/components/Posts';
 import CommentedPosts from '../pages/profile/components/CommentedPosts';
 import UserInfo from '../pages/profile/components/userInfo/UserInfo';
@@ -47,7 +46,6 @@ export default function Router() {
         <Route path={routes.homeRoute} element={<Home />} />
         <Route path={routes.loginRoute} element={<Login />} />
         <Route path={routes.registerRoute} element={<Register />} />
-        <Route path={routes.aboutRoute} element={<About />} />
         <Route path={routes.resetPasswordRoute} element={<ResetPassword />} />
         <Route
           path={routes.registrationConfirmRoute}

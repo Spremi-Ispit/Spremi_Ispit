@@ -17,7 +17,7 @@ import {
   profileReportedPostsRoute,
 } from '../../../../router/routes';
 import { assets } from '../../../../assets';
-import SidePanel from '../../../../components/SidePanel';
+import SidePanel from './components/SidePanel';
 
 const StyledDivider = styled(Divider)`
   && {
@@ -36,20 +36,21 @@ const StyledH3 = styled.h3`
   text-align: left;
 `;
 
-const StlyedAccountCircleIcon = styled.img`
-  && {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-position: center;
-    object-fit: cover;
-  }
-`;
+// const StlyedAccountCircleIcon = styled.img`
+//   && {
+//     width: 30px;
+//     height: 30px;
+//     border-radius: 50%;
+//     background-position: center;
+//     object-fit: cover;
+//   }
+// `;
 
 const HeadingDiv = styled.div`
   display: flex;
   padding: 5px;
   align-items: center;
+  font-weight: bold;
 `;
 
 const HeadingTextDiv = styled.div`
@@ -71,24 +72,6 @@ export const SideNavbar = () => {
   const { setSideNavbarHidden } = profileActions;
   const screen = useScreens();
 
-  const adminView = () => {
-    if (role !== userRole.admin) {
-      return null;
-    }
-
-    return (
-      <>
-        <StyledH3>ADMIN</StyledH3>
-        <NavLink to={`${profileReportedPostsRoute}`}>
-          Prijavljene objave
-        </NavLink>
-        <NavLink to={`${profileReportedCommentsRoute}`}>
-          Prijavljeni komentari
-        </NavLink>
-      </>
-    );
-  };
-
   return (
     <SidePanel
       hidden={hidden}
@@ -97,7 +80,6 @@ export const SideNavbar = () => {
       closedPanelWidth={screen > screens.tablet ? 40 : 25}
     >
       <HeadingDiv>
-        <StlyedAccountCircleIcon src={assets.userAccount.avatar} />
         <HeadingTextDiv>{urlUsername}</HeadingTextDiv>
       </HeadingDiv>
       <StyledDivider />
@@ -108,7 +90,17 @@ export const SideNavbar = () => {
       </NavLink>
       <NavLink to={`${profileInfoRoute}`}>Informacije</NavLink>
       <StyledDivider />
-      {adminView()}
+      {role === userRole.admin && (
+        <>
+          <StyledH3>ADMIN</StyledH3>
+          <NavLink to={`${profileReportedPostsRoute}`}>
+            Prijavljene objave
+          </NavLink>
+          <NavLink to={`${profileReportedCommentsRoute}`}>
+            Prijavljeni komentari
+          </NavLink>
+        </>
+      )}
       <StyledDivider />
     </SidePanel>
   );

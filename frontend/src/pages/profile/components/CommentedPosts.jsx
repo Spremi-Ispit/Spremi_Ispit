@@ -31,11 +31,16 @@ const StyledDivider = styled(Divider)`
   }
 `;
 
-const Container = styled.div`
-  width: 800px;
+const PostsDiv = styled.div`
+  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  max-width: 800px;
+  width: 100%;
+`;
+
+const CommentedPostsH1 = styled.h1`
+  align-self: center;
 `;
 
 export const CommentedPosts = () => {
@@ -67,26 +72,26 @@ export const CommentedPosts = () => {
 
   if (posts.length === 0) {
     return (
-      <Container>
-        <h1>Komentarisane objave</h1>
+      <PostsDiv>
+        <CommentedPostsH1>Komentarisane objave</CommentedPostsH1>
         <StyledDivider />
         <Fade in={true}>
           <StyledPaper elevation={4}>
             <Typography variant="h5">Nema kreiranih objava!</Typography>
           </StyledPaper>
         </Fade>
-      </Container>
+      </PostsDiv>
     );
   }
 
   return (
-    <Container>
-      <h1>Komentarisane objave</h1>
+    <PostsDiv>
+      <CommentedPostsH1>Komentarisane objave</CommentedPostsH1>
       <StyledDivider />
       {posts.map((data, index) => (
         <PostPreview key={index} data={data} />
       ))}
-    </Container>
+    </PostsDiv>
   );
 };
 

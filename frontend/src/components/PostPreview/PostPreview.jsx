@@ -60,7 +60,7 @@ const PostedByNavlink = styled(NavLink)`
   }
 `;
 
-const PostPreview = ({ post }) => {
+const PostPreview = ({ data }) => {
   const {
     id,
     title,
@@ -73,7 +73,7 @@ const PostPreview = ({ post }) => {
     owner,
     likeStatus,
     files,
-  } = post; //files: [{id, ext, path}]
+  } = data; //files: [{id, ext, path}]
   const navigate = useNavigate();
 
   const handlePostPreviewClick = () => {
