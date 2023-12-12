@@ -39,7 +39,6 @@ const OpenedPanelOverlayDiv = styled.div`
   z-index: 2;
   height: 100%;
   position: fixed;
-  padding: 5px 10px;
 `;
 
 const ClosedPanelDiv = styled.div`

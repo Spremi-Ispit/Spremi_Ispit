@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 import { FormControl, MenuItem, Select } from '@mui/material';
 import {
   allowedUrlParams,
   useUrlManager,
-} from '../../../utils/managers/UrlManager';
-import { filtersVariant } from '../enums';
-import { useApiActions } from '../../../api/useApiActions';
+} from '../../../../../../../utils/managers/UrlManager';
+import { useApiActions } from '../../../../../../../api/useApiActions';
 
 const ExamDiv = styled.div`
   margin-bottom: 10px;
@@ -18,8 +16,7 @@ const ExamDiv = styled.div`
   }
 `;
 
-/** @param {YearOfExam.propTypes} props */
-export const YearOfExam = ({ variant }) => {
+export const YearOfExam = () => {
   const urlManager = useUrlManager();
   const [yearsOfExam, setYearsOfExam] = useState([]);
   const { urlYearOfExam, urlType } = urlManager.getParams();
@@ -50,7 +47,7 @@ export const YearOfExam = ({ variant }) => {
 
   return (
     <ExamDiv>
-      <FormControl size="small" fullWidth variant={variant}>
+      <FormControl size="small" fullWidth>
         <InputLabel shrink>Godina</InputLabel>
         <Select
           value={urlYearOfExam ?? ''}
@@ -70,14 +67,6 @@ export const YearOfExam = ({ variant }) => {
       </FormControl>
     </ExamDiv>
   );
-};
-
-YearOfExam.propTypes = {
-  variant: PropTypes.oneOf(Object.values(filtersVariant)),
-};
-
-YearOfExam.defaultProps = {
-  variant: filtersVariant.filled,
 };
 
 export default YearOfExam;

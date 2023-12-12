@@ -4,13 +4,8 @@ import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { FormControl } from '@mui/material';
-import PropTypes from 'prop-types';
-import {
-  allowedUrlParams,
-  useUrlManager,
-} from '../../../utils/managers/UrlManager';
-import { filtersVariant } from '../enums';
-import { useApiActions } from '../../../api/useApiActions';
+import { useUrlManager } from '../../../../../../../utils/managers/UrlManager';
+import { useApiActions } from '../../../../../../../api/useApiActions';
 
 const SubjectDiv = styled.div`
   margin-bottom: 10px;
@@ -20,8 +15,7 @@ const SubjectDiv = styled.div`
   }
 `;
 
-/** @param {Subject.propTypes} props */
-export const Subject = ({ variant }) => {
+export const Subject = () => {
   const urlManager = useUrlManager();
   const { urlYearOfStudy, urlDepartment, urlSubject } = urlManager.getParams();
   const [subjects, setSubjects] = useState([]);
@@ -59,7 +53,7 @@ export const Subject = ({ variant }) => {
 
   return (
     <SubjectDiv>
-      <FormControl size="small" fullWidth variant={variant}>
+      <FormControl size="small" fullWidth variant={'standard'}>
         <InputLabel shrink>Predmet</InputLabel>
         <Select
           value={urlSubject ?? ''}
@@ -79,14 +73,6 @@ export const Subject = ({ variant }) => {
       </FormControl>
     </SubjectDiv>
   );
-};
-
-Subject.propTypes = {
-  variant: PropTypes.oneOf(Object.values(filtersVariant)),
-};
-
-Subject.defaultProps = {
-  variant: filtersVariant.filled,
 };
 
 export default Subject;

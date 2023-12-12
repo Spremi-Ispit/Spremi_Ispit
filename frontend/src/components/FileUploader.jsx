@@ -5,20 +5,19 @@ import styled from 'styled-components';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { supporetdTypes } from '../utils/managers/FilesSelector';
 
-const StyledButton = styled(Button)`
+const UplaodAttachmentsButton = styled(Button)`
   padding-left: 0px;
-  margin-top: 10px;
-  margin-left: -5px;
 `;
 
-const StyledDeleteButton = styled(Button)`
+const DeleteAttachemtsButton = styled(Button)`
   && {
     margin-left: 10px;
   }
 `;
 
-const UploadContainer = styled.div`
-  margin-bottom: 10px;
+const FileUploaderDiv = styled.div`
+  margin: 10px 0px;
+  display: flex;
 `;
 
 export const FileUploader = ({ setFiles, files }) => {
@@ -39,10 +38,10 @@ export const FileUploader = ({ setFiles, files }) => {
   };
 
   return (
-    <UploadContainer>
-      <StyledButton onClick={() => inputRef.current.click()}>
+    <FileUploaderDiv>
+      <UplaodAttachmentsButton onClick={() => inputRef.current.click()}>
         <AttachFileIcon /> Dodaj prilog...
-      </StyledButton>
+      </UplaodAttachmentsButton>
       <input
         type="file"
         ref={inputRef}
@@ -54,15 +53,15 @@ export const FileUploader = ({ setFiles, files }) => {
         multiple="multiple"
       />
       {files.length > 0 ? (
-        <StyledDeleteButton
+        <DeleteAttachemtsButton
           variant="outlined"
           startIcon={<DeleteIcon />}
           onClick={() => setFiles([])}
         >
           Obriši prilog
-        </StyledDeleteButton>
+        </DeleteAttachemtsButton>
       ) : null}
-    </UploadContainer>
+    </FileUploaderDiv>
   );
 };
 

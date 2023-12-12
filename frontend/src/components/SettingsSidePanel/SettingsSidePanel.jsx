@@ -8,7 +8,6 @@ import { selectSettingsSidePanelVisible } from '../../redux/app/selectors';
 import colors from '../../theme/colors';
 
 const OpenedPanelOverlayDiv = styled.div`
-  padding-top: 10px;
   color: white;
   display: flex;
   flex-direction: column;
@@ -20,12 +19,22 @@ const OpenedPanelOverlayDiv = styled.div`
   z-index: 2;
   height: 100%;
   position: relative;
-  padding: 5px 10px;
 `;
 
 const SidePanelPlaceHolderDiv = styled.div`
   display: flex;
   width: ${({ width }) => width}px;
+`;
+
+const ItemDiv = styled.div`
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const GreyItemDiv = styled(ItemDiv)`
+  background-color: #38393e;
 `;
 
 export const SettingsSidePanel = () => {
@@ -41,9 +50,15 @@ export const SettingsSidePanel = () => {
         closed={!sidePanelVisible}
         width={openedPanelWidth}
       >
-        <Wiki />
-        <Profile />
-        <Users />
+        <ItemDiv>
+          <Profile />
+        </ItemDiv>
+        <GreyItemDiv>
+          <Users />
+        </GreyItemDiv>
+        <ItemDiv>
+          <Wiki />
+        </ItemDiv>
       </OpenedPanelOverlayDiv>
     </SidePanelPlaceHolderDiv>
   );

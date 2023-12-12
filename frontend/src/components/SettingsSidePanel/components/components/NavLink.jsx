@@ -7,7 +7,7 @@ export default styled(NavLink)`
   color: white;
   :hover {
     text-decoration: underline;
-    color: white !important;
+    color: white;
   }
   margin: 0px 10px;
 `;

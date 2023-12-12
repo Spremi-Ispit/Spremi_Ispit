@@ -3,13 +3,11 @@ import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import { FormControl, MenuItem } from '@mui/material';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 import {
   allowedUrlParams,
   useUrlManager,
-} from '../../../utils/managers/UrlManager';
-import { useApiActions } from '../../../api/useApiActions';
-import { filtersVariant } from '../enums';
+} from '../../../../../../../utils/managers/UrlManager';
+import { useApiActions } from '../../../../../../../api/useApiActions';
 
 const YearOfStudyDiv = styled.div`
   margin-bottom: 10px;
@@ -19,8 +17,7 @@ const YearOfStudyDiv = styled.div`
   }
 `;
 
-/** @param {YearOfStudy.propTypes} props */
-export const YearOfStudy = ({ variant }) => {
+export const YearOfStudy = () => {
   const urlManager = useUrlManager();
   const { urlYearOfStudy } = urlManager.getParams();
   const [yearsOfStudy, setYearsOfStudy] = useState([]);
@@ -58,7 +55,7 @@ export const YearOfStudy = ({ variant }) => {
 
   return (
     <YearOfStudyDiv>
-      <FormControl size="small" fullWidth variant={variant}>
+      <FormControl size="small" fullWidth variant="standard">
         <InputLabel shrink>Godina studija</InputLabel>
         <Select
           value={urlYearOfStudy ?? ''}
@@ -76,14 +73,6 @@ export const YearOfStudy = ({ variant }) => {
       </FormControl>
     </YearOfStudyDiv>
   );
-};
-
-YearOfStudy.propTypes = {
-  variant: PropTypes.oneOf(Object.values(filtersVariant)),
-};
-
-YearOfStudy.defaultProps = {
-  variant: filtersVariant.filled,
 };
 
 export default YearOfStudy;

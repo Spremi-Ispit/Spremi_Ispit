@@ -2,13 +2,11 @@ import React, { useState, useEffect } from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import styled from 'styled-components';
 import { FormControl, MenuItem, Select } from '@mui/material';
-import PropTypes from 'prop-types';
 import {
   allowedUrlParams,
   useUrlManager,
-} from '../../../utils/managers/UrlManager';
-import { filtersVariant } from '../enums';
-import { useApiActions } from '../../../api/useApiActions';
+} from '../../../../../../../utils/managers/UrlManager';
+import { useApiActions } from '../../../../../../../api/useApiActions';
 
 const ExaminationPeriodDiv = styled.div`
   margin-bottom: 10px;
@@ -18,8 +16,7 @@ const ExaminationPeriodDiv = styled.div`
   }
 `;
 
-/** @param {ExaminationPeriod.propTypes} props */
-const ExaminationPeriod = ({ variant }) => {
+const ExaminationPeriod = () => {
   const urlManager = useUrlManager();
 
   const { loadExaminationPeriods } = useApiActions();
@@ -57,7 +54,7 @@ const ExaminationPeriod = ({ variant }) => {
 
   return (
     <ExaminationPeriodDiv>
-      <FormControl size="small" fullWidth variant={variant}>
+      <FormControl size="small" fullWidth variant={'standard'}>
         <InputLabel shrink>Ispitni rok</InputLabel>
         <Select
           value={urlExaminationPeriod ?? ''}
@@ -80,14 +77,6 @@ const ExaminationPeriod = ({ variant }) => {
       </FormControl>
     </ExaminationPeriodDiv>
   );
-};
-
-ExaminationPeriod.propTypes = {
-  variant: PropTypes.oneOf(Object.values(filtersVariant)),
-};
-
-ExaminationPeriod.defaultProps = {
-  variant: filtersVariant.filled,
 };
 
 export default ExaminationPeriod;

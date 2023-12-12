@@ -7,8 +7,6 @@ import OpenInNewTab from './components/OpenInNewTab';
 import Download from './components/Download';
 
 const Container = styled.div`
-  width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -29,12 +27,11 @@ const MainViewDiv = styled.div`
 
 const SelectFileDiv = styled.div`
   display: flex;
-  margin: 10px;
   gap: 5px;
 `;
 
-export const FileViewer = (props) => {
-  const { files } = props; //files = [{src: URL.createObjectURL(...), name: "fileName"},...]
+export const FileViewer = ({ files, hideActions = false }) => {
+  //files = [{src: URL.createObjectURL(...), name: "fileName"},...]
   const [activeFileIndex, setActiveFileIndex] = useState(0);
 
   useEffect(() => {
@@ -66,10 +63,12 @@ export const FileViewer = (props) => {
           })}
         </select>
       </SelectFileDiv>
-      <ActionsDiv>
-        <OpenInNewTab activeFile={files[activeFileIndex]} />
-        <Download activeFile={files[activeFileIndex]} />
-      </ActionsDiv>
+      {!hideActions && (
+        <ActionsDiv>
+          <OpenInNewTab activeFile={files[activeFileIndex]} />
+          <Download activeFile={files[activeFileIndex]} />
+        </ActionsDiv>
+      )}
     </Container>
   ) : null;
 };

@@ -7,12 +7,13 @@ import ErrorDialog from '../../../../components/dialogs/ErrorDialog';
 import { homeRoute } from '../../../../router/routes';
 import UploadProgress from '../../../../components/UploadProgress';
 import Actions from './components/Actions';
-import Files from './components/Files';
 import Title from './components/Title';
 import Content from './components/Content';
-import FiltersWrapper from './components/FiltersWrapper';
 import { useUrlManager } from '../../../../utils/managers/UrlManager';
 import { useApiActions } from '../../../../api/useApiActions';
+import Filters from './components/Filters/Fliters';
+import FileUploader from '../../../../components/FileUploader';
+import FileViewer from '../../../../components/fileViewer/FileViewer';
 
 const StyledPaper = styled(Paper)`
   && {
@@ -45,27 +46,22 @@ export const Form = () => {
     } = urlManager.getParams();
 
     if (title.trim() === '') {
-      setMessage('Title can not be empty.');
-      return;
-    }
-
-    if (description.trim() === '') {
-      setMessage('Description can not be empty.');
+      setMessage('Unesite naslov');
       return;
     }
 
     if (!urlYearOfStudy) {
-      setMessage('Year of study can not be empty.');
+      setMessage('Odaberite godinu studija');
       return;
     }
 
     if (!urlDepartment) {
-      setMessage('Department can not be empty.');
+      setMessage('Odaberite smer');
       return;
     }
 
     if (!urlSubject) {
-      setMessage('Subject can not be empty.');
+      setMessage('Odaberite predmet');
       return;
     }
 
@@ -110,8 +106,15 @@ export const Form = () => {
     <StyledPaper elevation={0}>
       <Title setTitle={setTitle} />
       <Content setDescription={setDescription} />
-      <Files files={attachments} setFiles={setAttachemnts} />
-      <FiltersWrapper />
+      <FileViewer
+        files={attachments.map((attachment) => ({
+          src: URL.createObjectURL(attachment),
+          name: attachment.name,
+        }))}
+        hideActions
+      />
+      <FileUploader setFiles={setAttachemnts} files={attachments} />
+      <Filters />
       <Actions onSubmit={onSubmit} onCancel={onCancel} uploading={loading} />
       {uploadProgessComponent()}
       <Dialog message={message} setMessage={setMessage} />

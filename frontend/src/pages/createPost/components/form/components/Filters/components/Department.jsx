@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import InputLabel from '@mui/material/InputLabel';
-import PropTypes from 'prop-types';
 import { FormControl, MenuItem, Select } from '@mui/material';
 import {
   allowedUrlParams,
   useUrlManager,
-} from '../../../utils/managers/UrlManager';
-import { useApiActions } from '../../../api/useApiActions';
-import { filtersVariant } from '../enums';
+} from '../../../../../../../utils/managers/UrlManager';
+import { useApiActions } from '../../../../../../../api/useApiActions';
 
 const DepartmentDiv = styled.div`
   margin-bottom: 10px;
@@ -18,8 +16,7 @@ const DepartmentDiv = styled.div`
   }
 `;
 
-/** @param {Department.propTypes} props */
-export const Department = ({ variant }) => {
+export const Department = () => {
   const urlManager = useUrlManager();
   const { urlYearOfStudy, urlDepartment } = urlManager.getParams();
   const [departments, setDepartments] = useState([]);
@@ -58,7 +55,7 @@ export const Department = ({ variant }) => {
 
   return (
     <DepartmentDiv>
-      <FormControl size="small" fullWidth variant={variant}>
+      <FormControl size="small" fullWidth variant={'standard'}>
         <InputLabel shrink>Smer</InputLabel>
         <Select
           value={urlDepartment ?? ''}
@@ -78,14 +75,6 @@ export const Department = ({ variant }) => {
       </FormControl>
     </DepartmentDiv>
   );
-};
-
-Department.propTypes = {
-  variant: PropTypes.oneOf(Object.values(filtersVariant)),
-};
-
-Department.defaultProps = {
-  variant: filtersVariant.filled,
 };
 
 export default Department;

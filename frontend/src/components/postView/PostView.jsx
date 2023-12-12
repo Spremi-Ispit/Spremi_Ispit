@@ -27,7 +27,7 @@ const PostViewDiv = styled.div`
 
 const HeaderDiv = styled.div`
   font-weight: bold;
-  padding: 10px;
+  margin-bottom: 10px;
 `;
 
 const DescriptionDiv = styled.div`
@@ -36,7 +36,6 @@ const DescriptionDiv = styled.div`
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  padding: 10px 10px 0 10px;
   margin-bottom: 10px;
 `;
 
@@ -65,6 +64,10 @@ const UserDiv = styled.div`
 
 const AttachmentsDiv = styled.div``;
 
+const MainDiv = styled.div`
+  padding: 10px;
+`;
+
 const PostView = ({
   data,
   addLike,
@@ -91,22 +94,24 @@ const PostView = ({
 
   return (
     <PostViewDiv>
-      <HeaderDiv>{title}</HeaderDiv>
-      <DescriptionDiv>{text}</DescriptionDiv>
-      <AttachmentsDiv>
-        {files.length > 0 && (
-          <FileViewer
-            files={files.map((file) => {
-              const src = env.VITE_BACKEND_URL + '/files/' + file.path; //'http://localhost:4000/files/1.png' or .../1.pdf
+      <MainDiv>
+        <HeaderDiv>{title}</HeaderDiv>
+        <DescriptionDiv>{text}</DescriptionDiv>
+        <AttachmentsDiv>
+          {files.length > 0 && (
+            <FileViewer
+              files={files.map((file) => {
+                const src = env.VITE_BACKEND_URL + '/files/' + file.path; //'http://localhost:4000/files/1.png' or .../1.pdf
 
-              return {
-                src,
-                name: file.path, //'1.png' or '1.pdf'
-              };
-            })}
-          />
-        )}
-      </AttachmentsDiv>
+                return {
+                  src,
+                  name: file.path, //'1.png' or '1.pdf'
+                };
+              })}
+            />
+          )}
+        </AttachmentsDiv>
+      </MainDiv>
       <StyledDivider />
       <FooterDiv>
         <LikeDislike

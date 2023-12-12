@@ -2,13 +2,11 @@ import React, { useState, useEffect } from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import { FormControl, MenuItem, Select } from '@mui/material';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 import {
   allowedUrlParams,
   useUrlManager,
-} from '../../../utils/managers/UrlManager';
-import { filtersVariant } from '../enums';
-import { useApiActions } from '../../../api/useApiActions';
+} from '../../../../../../../utils/managers/UrlManager';
+import { useApiActions } from '../../../../../../../api/useApiActions';
 
 const TypeDiv = styled.div`
   margin-bottom: 10px;
@@ -18,8 +16,7 @@ const TypeDiv = styled.div`
   }
 `;
 
-/** @param {Type.propTypes} props */
-const Type = ({ variant }) => {
+const Type = () => {
   const urlManager = useUrlManager();
 
   const { urlType, urlSubject } = urlManager.getParams();
@@ -55,7 +52,7 @@ const Type = ({ variant }) => {
 
   return (
     <TypeDiv>
-      <FormControl size="small" fullWidth variant={variant}>
+      <FormControl size="small" fullWidth variant={'standard'}>
         <InputLabel shrink>Tip</InputLabel>
         <Select
           value={urlType ?? ''}
@@ -75,14 +72,6 @@ const Type = ({ variant }) => {
       </FormControl>
     </TypeDiv>
   );
-};
-
-Type.propTypes = {
-  variant: PropTypes.oneOf(Object.values(filtersVariant)),
-};
-
-Type.defaultProps = {
-  variant: filtersVariant.filled,
 };
 
 export default Type;
