@@ -12,7 +12,7 @@ import Filters from './components/Filters/Filters';
 import SidePanel from './components/SidePanel/SidePanel';
 import Footer from '../../components/Footer';
 
-const ContentContainer = styled.div`
+const ContentDiv = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -21,10 +21,16 @@ const ContentContainer = styled.div`
   margin: 0 auto;
 `;
 
+const MainDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  position: relative;
+`;
+
 const HomeDiv = styled.div`
   display: flex;
   flex: 1;
-  position: relative;
 `;
 
 export const Home = () => {
@@ -48,12 +54,14 @@ export const Home = () => {
       <Navbar />
       <HomeDiv>
         <SidePanel />
-        <ContentContainer>
-          <Filters />
-          <PostsPreview />
-        </ContentContainer>
+        <MainDiv>
+          <ContentDiv>
+            <Filters />
+            <PostsPreview />
+          </ContentDiv>
+          <Footer />
+        </MainDiv>
       </HomeDiv>
-      <Footer />
       <WelcomeModal />
     </>
   );

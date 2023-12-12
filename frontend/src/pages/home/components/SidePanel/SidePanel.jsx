@@ -4,11 +4,7 @@ import { useSelector } from 'react-redux';
 import { selectFiltersVisible } from '../../../../redux/home/selectors';
 import Wiki from './components/Wiki';
 import colors from '../../../../theme/colors';
-import ReportBug from './components/ReportBug';
 import Profile from './components/Profile';
-import About from './components/About';
-import { selectRole } from '../../../../redux/app/selectors';
-import { userRole } from '../../../../redux/app/state';
 import Users from './components/Users';
 
 const OpenedPanelOverlayDiv = styled.div`
@@ -23,13 +19,13 @@ const OpenedPanelOverlayDiv = styled.div`
   background: ${colors.filteri};
   z-index: 2;
   height: 100%;
-  position: fixed;
+  position: relative;
   padding: 5px 10px;
 `;
 
 const SidePanelPlaceHolderDiv = styled.div`
   display: flex;
-  min-width: ${({ width }) => width}px;
+  width: ${({ width }) => width}px;
 `;
 
 export const SidePanel = () => {
@@ -43,9 +39,7 @@ export const SidePanel = () => {
     >
       <OpenedPanelOverlayDiv closed={!filtersVisible} width={openedPanelWidth}>
         <Wiki />
-        <ReportBug />
         <Profile />
-        <About />
         <Users />
       </OpenedPanelOverlayDiv>
     </SidePanelPlaceHolderDiv>

@@ -3,6 +3,10 @@ import styled from 'styled-components';
 import colors from '../../theme/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Divider } from '@mui/material';
+import NavLink from '../navbar/components/components/NavLink';
+import { profileRoute, viewPostRoute } from '../../router/routes';
+import { useNavigate } from 'react-router-dom';
+import { allowedUrlParams } from '../../utils/managers/UrlManager';
 
 const StyledDivider = styled(Divider)`
   && {
@@ -15,6 +19,7 @@ const PostPreviewDiv = styled.div`
   background-color: white;
   margin-bottom: 20px;
   box-shadow: rgba(0, 0, 0, 0.75) 0px 1px 3px;
+  cursor: pointer;
 `;
 
 const HeaderDiv = styled.div`
@@ -47,7 +52,13 @@ const LikesDiv = styled.div`
   gap: 5px;
 `;
 
-const PostedByDiv = styled.div``;
+const PostedByNavlink = styled(NavLink)`
+  color: black;
+
+  :hover {
+    color: black;
+  }
+`;
 
 const PostPreview = ({ post }) => {
   const {
@@ -63,9 +74,24 @@ const PostPreview = ({ post }) => {
     likeStatus,
     files,
   } = post; //files: [{id, ext, path}]
+  const navigate = useNavigate();
+
+  const handlePostPreviewClick = () => {
+    const urlPostId = `${allowedUrlParams.postId}=${id}`;
+    navigate({
+      pathname: viewPostRoute,
+      search: `${location.search}&${urlPostId}`,
+    });
+  };
+
+  const handlePostedByClick = (e) => {
+    e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
+    navigate(`${profileRoute}?username=${postedBy}`);
+  };
 
   return (
-    <PostPreviewDiv>
+    <PostPreviewDiv onClick={handlePostPreviewClick}>
       <HeaderDiv>{title}</HeaderDiv>
       <DescriptionDiv>{text}</DescriptionDiv>
       <StyledDivider />
@@ -74,7 +100,13 @@ const PostPreview = ({ post }) => {
           <FavoriteIcon />
           {likes - dislikes}
         </LikesDiv>
-        <PostedByDiv>{postedBy}</PostedByDiv>
+
+        <PostedByNavlink
+          to={`${profileRoute}?username=${postedBy}`}
+          onClick={handlePostedByClick}
+        >
+          {postedBy}
+        </PostedByNavlink>
       </FooterDiv>
     </PostPreviewDiv>
   );

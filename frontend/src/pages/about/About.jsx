@@ -41,7 +41,7 @@ const About = () => {
       <AboutDiv>
         <ContentDiv>
           <Title>
-            <h1>O nama</h1>
+            <h1>O projektu</h1>
             <Paragraph>
               Ovo je open-source projekat koji razvijaju studenti da bi olaksali
               pripremu/polaganje ispita. Cilj platforme je da olaksa deljenje

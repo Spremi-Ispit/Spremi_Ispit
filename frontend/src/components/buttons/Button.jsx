@@ -19,7 +19,7 @@ export const Button = styled.button`
   padding: 8px 12px;
   border-radius: 5%;
   transition: 0.3s;
-  ${fonts(14, 400)}
+  ${fonts(12, 400)}
 `;
 
 export default Button;

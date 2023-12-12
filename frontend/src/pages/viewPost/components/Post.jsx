@@ -201,13 +201,13 @@ export const Post = () => {
   if (post) {
     return (
       <PostDiv>
-        <PostView
+        {/* <PostView
           data={post}
           enableDelete
           enableReport
           enableFiles
           type={postViewType.post}
-        />
+        /> */}
       </PostDiv>
     );
   }
