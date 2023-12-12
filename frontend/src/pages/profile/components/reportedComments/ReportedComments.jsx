@@ -3,13 +3,13 @@ import Loader from '../../../../components/Loader';
 import Typography from '@mui/material/Typography';
 import Fade from '@mui/material/Fade';
 import DismissReport from './components/DismissReport';
-import PostView from '../../../../components/postView2/PostView';
 import ShowPost from './components/ShowPost';
 import ErrorDialog from '../../../../components/dialogs/ErrorDialog';
 import styled from 'styled-components';
 import Paper from '@mui/material/Paper';
 import { Divider } from '@mui/material';
 import { useApiActions } from '../../../../api/useApiActions';
+import PostPreview from '../../../../components/PostPreview/PostPreview';
 
 const StyledPaper = styled(Paper)`
   padding: 10px;
@@ -96,19 +96,14 @@ export const ReportedComments = () => {
       <h1>Prijavljeni komentari</h1>
       <StyledDivider />
       {comments.map((comment) => {
-        const commentModel = comment;
-
         return (
-          <CommentPreviewContainer key={JSON.stringify(commentModel)}>
+          <CommentPreviewContainer key={JSON.stringify(comment)}>
             <PostViewDiv>
-              <PostView data={commentModel} />
+              <PostPreview data={comment} />
             </PostViewDiv>
             <ControllsDiv>
-              <ShowPost postId={commentModel.postId} />
-              <DismissReport
-                commentId={commentModel.id}
-                setLoadComments={action}
-              />
+              <ShowPost postId={comment.postId} />
+              <DismissReport commentId={comment.id} setLoadComments={action} />
             </ControllsDiv>
           </CommentPreviewContainer>
         );

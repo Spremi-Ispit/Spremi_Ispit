@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Paper from '@mui/material/Paper';
 import { Divider } from '@mui/material';
-import PostView from '../../../../components/postView2/PostView';
 import Loader from '../../../../components/Loader';
 import Typography from '@mui/material/Typography';
 import Fade from '@mui/material/Fade';
 import DismissReport from './components/DismissReport';
 import ErrorDialog from '../../../../components/dialogs/ErrorDialog';
 import { useApiActions } from '../../../../api/useApiActions';
+import PostPreview from '../../../../components/PostPreview/PostPreview';
 
 const StyledPaper = styled(Paper)`
   padding: 10px;
@@ -88,7 +88,7 @@ export const ReportedPosts = () => {
       <StyledDivider />
       {posts.map((data, index) => (
         <PostPreviewContainer key={index}>
-          <PostView data={data} />
+          <PostPreview data={data} />
           <DismissReport postId={data.id} setLoadPosts={action} />
         </PostPreviewContainer>
       ))}

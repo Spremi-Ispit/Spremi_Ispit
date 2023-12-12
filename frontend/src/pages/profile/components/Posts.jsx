@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import PostView from '../../../components/postView2/PostView';
 import { ErrorDialog } from '../../../components/dialogs/ErrorDialog';
 import Loader from '../../../components/Loader';
 import Typography from '@mui/material/Typography';
@@ -9,6 +8,7 @@ import Paper from '@mui/material/Paper';
 import { Divider } from '@mui/material';
 import { useUrlManager } from '../../../utils/managers/UrlManager';
 import { useApiActions } from '../../../api/useApiActions';
+import PostPreview from '../../../components/PostPreview/PostPreview';
 
 const StyledPaper = styled(Paper)`
   padding: 10px;
@@ -84,7 +84,7 @@ export const Posts = () => {
       <h1>Objave</h1>
       <StyledDivider />
       {posts.map((data, index) => (
-        <PostView key={index} data={data} enableShowPost />
+        <PostPreview key={index} data={data} />
       ))}
     </Container>
   );

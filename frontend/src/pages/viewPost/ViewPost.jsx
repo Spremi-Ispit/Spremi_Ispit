@@ -5,6 +5,7 @@ import Post from './components/Post';
 import { CreateComment } from './components/CreateComment/CreateComment';
 import Comments from './components/Comments';
 import Footer from './components/Footer/Footer';
+import SettingsSidePanel from '../../components/SettingsSidePanel/SettingsSidePanel';
 
 const ContentDiv = styled.div`
   width: 100%;
@@ -13,6 +14,10 @@ const ContentDiv = styled.div`
   flex-direction: column;
   align-items: center;
   padding-top: 20px;
+`;
+
+const MainDiv = styled.div`
+  display: flex;
 `;
 
 export const ViewPost = () => {
@@ -25,12 +30,15 @@ export const ViewPost = () => {
   return (
     <>
       <Navbar />
-      <ContentDiv>
-        <Post />
-        <Comments />
-        <CreateComment ref={createCommentRef} />
-      </ContentDiv>
-      <Footer ref={createCommentRef} />
+      <MainDiv>
+        <SettingsSidePanel />
+        <ContentDiv>
+          <Post />
+          <Comments />
+          <CreateComment ref={createCommentRef} />
+          <Footer ref={createCommentRef} />
+        </ContentDiv>
+      </MainDiv>
     </>
   );
 };
