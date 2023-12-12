@@ -15,4 +15,7 @@ export const actionCreator = {
   setWelcomeModalViewed: (value) => (dispatch, getState) => {
     dispatch(actions.setWelcomeModalViewed(value));
   },
+  setSettingsSidePanelVisible: (value) => (dispatch, getState) => {
+    dispatch(actions.setSettingsSidePanelVisible(value));
+  },
 };

@@ -14,7 +14,6 @@ import useActions from '../../../../../pages/viewPost/useActions';
 const StyledReportIconButton = styled(IconButton)`
   && {
     margin-right: -8px;
-    color: var(--primary);
   }
 `;
 

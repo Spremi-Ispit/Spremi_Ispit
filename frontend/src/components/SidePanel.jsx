@@ -11,11 +11,7 @@ const ClosePanelArrow = styled(DoubleArrow)`
   }
 `;
 
-const OpenPanelArrow = styled(DoubleArrow)`
-  && {
-    color: var(--primary);
-  }
-`;
+const OpenPanelArrow = styled(DoubleArrow)``;
 
 const StyledMenuItem = styled(MenuItem)`
   && {
@@ -39,7 +35,7 @@ const OpenedPanelOverlayDiv = styled.div`
   width: ${({ width }) => width}px;
   left: ${({ closed, width }) => (closed ? `-${width}` : '0')}px;
   box-shadow: 2px 1px 5px 0 #393a3d26;
-  background: ${({ closed }) => (closed ? 'white' : 'var(--primary)')};
+  background: ${({ closed }) => (closed ? 'white' : '')};
   z-index: 2;
   height: 100%;
   position: fixed;

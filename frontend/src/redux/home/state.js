@@ -4,9 +4,7 @@ import {
 } from '../../utils/managers/LocalStorageManager';
 
 const initialState = {
-  filters: {
-    visible: true,
-  },
+  //add prev url params so when go back page, it loads from url
 };
 
 export default localStorageManager.getState(keys.home) ?? initialState;

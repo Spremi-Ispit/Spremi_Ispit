@@ -6,13 +6,16 @@ import { fonts } from '../../theme/fonts';
 export const Button = styled.button`
   background: none;
   border: none;
-  background-color: ${colors.button};
+  background-color: ${colors.filteri};
   color: white;
   white-space: nowrap;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   :hover {
-    background-color: ${colors.buttonHover};
+    background-color: ${colors.navbar};
   }
 
   background-color: ${({ $disabled }) => $disabled && colors.buttonDisabled};

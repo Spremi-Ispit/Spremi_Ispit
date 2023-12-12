@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import Loader from '../../../components/Loader';
-import PostView, { postViewType } from '../../../components/postView/PostView';
+import PostView from '../../../components/PostView/PostView';
 import ErrorDialog from '../../../components/dialogs/ErrorDialog';
 import {
   selectCommentsLoading,
@@ -22,15 +22,21 @@ export const Comments = () => {
   const dispatch = useDispatch();
   const urlManager = useUrlManager();
   const { urlPostId } = urlManager.getParams();
-
   const [comments, setComments] = useState([]);
   const postLoading = useSelector(selectPostLoading);
   const commentsLoading = useSelector(selectCommentsLoading);
   const { viewPostActions } = useAppActions();
   const { setCommentsLoading } = viewPostActions;
-
   const { loadComments } = useApiActions();
   const { loaded, error, setError, response, action } = loadComments;
+  const {
+    addCommentLike,
+    removeCommentLike,
+    addCommentDislike,
+    removeCommentDislike,
+    reportComment,
+    deleteComment,
+  } = useApiActions();
 
   useEffect(() => {
     if (postLoading) {
@@ -59,20 +65,26 @@ export const Comments = () => {
     return <Loader />;
   }
 
+  const onSuccessfulDeletion = () => {
+    setCommentsLoading(true);
+  };
+
   if (comments.length > 0) {
     return (
       <>
         <h1>Komentari</h1>
         {comments.map((comment) => {
-          const commentModel = comment;
           return (
-            <PostViewDiv key={JSON.stringify(commentModel)}>
+            <PostViewDiv key={JSON.stringify(comment)}>
               <PostView
-                data={commentModel}
-                enableDelete
-                enableReport
-                enableFiles
-                type={postViewType.comment}
+                data={comment}
+                addLike={addCommentLike}
+                removeLike={removeCommentLike}
+                addDislike={addCommentDislike}
+                removeDislike={removeCommentDislike}
+                report={reportComment}
+                delete={deleteComment}
+                onSuccessfulDeletion={onSuccessfulDeletion}
               />
             </PostViewDiv>
           );

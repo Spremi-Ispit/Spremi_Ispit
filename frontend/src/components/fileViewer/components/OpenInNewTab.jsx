@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
-import DownloadIcon from '@mui/icons-material/Download';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import Tooltip from '@mui/material/Tooltip';
 
@@ -19,29 +18,11 @@ const ButtonDiv = styled.div`
   }
 `;
 
-const ActionsDiv = styled.div`
-  display: flex;
-  justify-content: end;
-  width: 100%;
-`;
-
-const Actions = ({ activeFile }) => {
-  const downloadRef = useRef(null);
+const OpenInNewTab = ({ activeFile }) => {
   const openRef = useRef(null);
 
   return (
-    <ActionsDiv>
-      <Tooltip title="Download">
-        <ButtonDiv onClick={() => downloadRef.current.click()}>
-          <DownloadIcon color="action" />
-        </ButtonDiv>
-      </Tooltip>
-      <a
-        href={activeFile.src}
-        download
-        style={{ display: 'none' }}
-        ref={downloadRef}
-      />
+    <>
       <Tooltip title="Open file in new tab">
         <ButtonDiv onClick={() => openRef.current.click()}>
           <OpenInNewIcon color="action" />
@@ -52,8 +33,8 @@ const Actions = ({ activeFile }) => {
         style={{ display: 'none' }}
         ref={openRef}
       />
-    </ActionsDiv>
+    </>
   );
 };
 
-export default Actions;
+export default OpenInNewTab;

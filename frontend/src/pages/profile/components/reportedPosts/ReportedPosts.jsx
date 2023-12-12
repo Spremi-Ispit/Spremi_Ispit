@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Paper from '@mui/material/Paper';
 import { Divider } from '@mui/material';
-import PostView from '../../../../components/postView/PostView';
+import PostView from '../../../../components/postView2/PostView';
 import Loader from '../../../../components/Loader';
 import Typography from '@mui/material/Typography';
 import Fade from '@mui/material/Fade';

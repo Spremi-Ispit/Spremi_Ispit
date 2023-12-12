@@ -2,8 +2,8 @@ import React from 'react';
 import NavLink from './components/NavLink';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { profileInfoRoute, profileRoute } from '../../../../../router/routes';
-import { selectToken } from '../../../../../redux/app/selectors';
+import { selectToken } from '../../../redux/app/selectors';
+import { profileInfoRoute, profileRoute } from '../../../router/routes';
 
 const Profile = () => {
   const location = useLocation();

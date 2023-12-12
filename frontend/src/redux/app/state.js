@@ -14,6 +14,7 @@ export const initialState = {
   role: userRole.visitor,
   username: null,
   welcomeModalViewed: false,
+  settingsSidePanelVisible: true,
 };
 
 export default localStorageManager.getState(keys.app) ?? initialState;

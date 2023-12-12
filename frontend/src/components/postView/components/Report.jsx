@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 import { CircularProgress, Tooltip } from '@mui/material';
 import { useSelector } from 'react-redux';
 import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
-import AlertDialog from '../../../../dialogs/AlertDialog';
+import AlertDialog from '../../dialogs/AlertDialog';
 import { useNavigate } from 'react-router-dom';
-import { loginRoute } from '../../../../../router/routes';
+import { loginRoute } from '../../../router/routes';
 import styled from 'styled-components';
 import { IconButton } from '@mui/material';
-import { selectToken } from '../../../../../redux/app/selectors';
-import ErrorDialog from '../../../../dialogs/ErrorDialog';
-import useActions from '../../../../../pages/viewPost/useActions';
+import { selectToken } from '../../../redux/app/selectors';
+import ErrorDialog from '../../dialogs/ErrorDialog';
 
 const StyledReportIconButton = styled(IconButton)`
   && {
@@ -17,8 +16,7 @@ const StyledReportIconButton = styled(IconButton)`
   }
 `;
 
-export const Report = ({ postId }) => {
-  const { reportPost } = useActions();
+export const Report = ({ postId, reportPost }) => {
   const { loading, error, setError, action } = reportPost;
   const navigate = useNavigate();
 
@@ -62,7 +60,5 @@ export const Report = ({ postId }) => {
       />
     </>
   );
-
-  return viewToRender;
 };
 export default Report;

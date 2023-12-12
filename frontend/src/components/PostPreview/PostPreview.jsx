@@ -84,12 +84,6 @@ const PostPreview = ({ post }) => {
     });
   };
 
-  const handlePostedByClick = (e) => {
-    e.stopPropagation();
-    e.nativeEvent.stopImmediatePropagation();
-    navigate(`${profileRoute}?username=${postedBy}`);
-  };
-
   return (
     <PostPreviewDiv onClick={handlePostPreviewClick}>
       <HeaderDiv>{title}</HeaderDiv>
@@ -102,8 +96,7 @@ const PostPreview = ({ post }) => {
         </LikesDiv>
 
         <PostedByNavlink
-          to={`${profileRoute}?username=${postedBy}`}
-          onClick={handlePostedByClick}
+          to={`${profileRoute}?${allowedUrlParams.username}=${postedBy}`}
         >
           {postedBy}
         </PostedByNavlink>

@@ -19,12 +19,12 @@ import { buildPostsQueryForFilters } from './utils/buildPostsQueryForFilters';
 // };
 
 export const getPostsForHomepageFilters = async (req) => {
-  const { post } = req.body;
+  const { postId } = req.body;
 
   let postsQuery = buildPostsQueryForFilters(req.body);
 
-  if (post && post.id) {
-    postsQuery = postsQuery.where(`post.id > ${post.id}`);
+  if (postId) {
+    postsQuery = postsQuery.where(`post.id > ${postId}`);
   }
   postsQuery = postsQuery.take(5);
 

@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import Navbar from '../../components/navbar/Navbar';
-import Breadcrumbs from '../../components/Breadcrumbs';
 import styled from 'styled-components';
 import SideNavbar from './components/SideNavbar/SideNavbar';
 import {
@@ -45,7 +44,6 @@ export const Profile = () => {
       <ProfileDiv>
         <SideNavbar />
         <ContentContainer>
-          <Breadcrumbs />
           <Outlet />
         </ContentContainer>
       </ProfileDiv>

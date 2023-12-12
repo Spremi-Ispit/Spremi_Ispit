@@ -17,5 +17,8 @@ export const appSlice = createSlice({
     setWelcomeModalViewed: (state, action) => {
       state.welcomeModalViewed = action.payload;
     },
+    setSettingsSidePanelVisible: (state, action) => {
+      state.settingsSidePanelVisible = action.payload;
+    },
   },
 });

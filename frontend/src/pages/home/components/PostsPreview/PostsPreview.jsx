@@ -90,6 +90,7 @@ export const PostsPreview = () => {
   useEffect(() => {
     if (morePosts) {
       const lastPost = morePosts ? posts[posts.length - 1] : undefined;
+
       action(
         urlSearch,
         urlOrder,
@@ -99,7 +100,7 @@ export const PostsPreview = () => {
         urlSubject,
         urlType,
         urlYearOfExam,
-        lastPost
+        lastPost.id
       );
     }
   }, [morePosts]);

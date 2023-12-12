@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import Typography from '@mui/material/Typography';
 import Navbar from '../../components/navbar/Navbar';
-import Breadcrumbs from '../../components/Breadcrumbs';
 import Form from './components/form/Form';
 
 const Container = styled.div`
@@ -32,7 +31,6 @@ export const CreatePost = () => {
   return (
     <>
       <Navbar />
-      <Breadcrumbs />
       <Container>
         <ContentContainer>
           <PageHeading variant="h5">Kreiranje objave</PageHeading>

@@ -9,8 +9,8 @@ import {
 import { orders } from './components/Filters/components/Order';
 import WelcomeModal from './components/WelcomeModal';
 import Filters from './components/Filters/Filters';
-import SidePanel from './components/SidePanel/SidePanel';
 import Footer from '../../components/Footer';
+import SettingsSidePanel from '../../components/SettingsSidePanel/SettingsSidePanel';
 
 const ContentDiv = styled.div`
   flex: 1;
@@ -53,7 +53,7 @@ export const Home = () => {
     <>
       <Navbar />
       <HomeDiv>
-        <SidePanel />
+        <SettingsSidePanel />
         <MainDiv>
           <ContentDiv>
             <Filters />

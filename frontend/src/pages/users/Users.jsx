@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Navbar from '../../components/navbar/Navbar';
-import Breadcrumbs from '../../components/Breadcrumbs';
 import Footer from '../../components/Footer';
 import UsersTable from './components/UsersTable';
 import PromoteUserForm from './components/PromoteUserForm';
@@ -30,7 +29,6 @@ export const Users = () => {
   return (
     <>
       <Navbar />
-      <Breadcrumbs />
       <UsersDiv>
         <h1>Najaktivniji članovi</h1>
         <UsersTable />

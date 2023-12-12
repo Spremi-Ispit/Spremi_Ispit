@@ -1,7 +1,7 @@
 import React from 'react';
 import NavLink from './components/NavLink';
 import { useSelector } from 'react-redux';
-import { selectToken } from '../../../../../redux/app/selectors';
+import { selectToken } from '../../../redux/app/selectors';
 
 const Wiki = () => {
   const token = useSelector(selectToken);

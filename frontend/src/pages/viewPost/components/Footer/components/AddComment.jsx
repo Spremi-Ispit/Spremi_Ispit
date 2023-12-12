@@ -1,16 +1,17 @@
 import React from 'react';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import { loginRoute } from '../../../../../router/routes';
-import { Button } from '@mui/material';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { selectToken } from '../../../../../redux/app/selectors';
 import { useNavigate } from 'react-router-dom';
+import Button from '../../../../../components/buttons/Button';
 
-const StyledButton = styled(Button)`
-  && {
-    background-color: var(--primary);
-  }
+const AddCommentButton = styled(Button)`
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const AddCommentDiv = styled.div`
@@ -33,13 +34,10 @@ export const AddComment = React.forwardRef((props, ref) => {
 
   return (
     <AddCommentDiv>
-      <StyledButton
-        variant="contained"
-        onClick={handleCreateComment}
-        endIcon={<ArrowDownwardIcon />}
-      >
+      <AddCommentButton onClick={handleCreateComment}>
         komentar
-      </StyledButton>
+        <ArrowDownwardIcon />
+      </AddCommentButton>
     </AddCommentDiv>
   );
 });

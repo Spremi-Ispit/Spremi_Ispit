@@ -1,6 +1,6 @@
 import React from 'react';
-import { postViewType } from '../../components/postView/PostView';
-import { usePostViewContext } from '../../components/postView/PostViewContext';
+import { postViewType } from '../../components/postView2/PostView';
+import { usePostViewContext } from '../../components/postView2/PostViewContext';
 import { useApiActions } from '../../api/useApiActions';
 
 const useActions = () => {

@@ -8,12 +8,6 @@ export const viewPostSlice = createSlice({
     setPostLoading: (state, action) => {
       state.postLoading = action.payload;
     },
-    setNextPost: (state, action) => {
-      state.nextPost = action.payload;
-    },
-    setPrevPost: (state, action) => {
-      state.prevPost = action.payload;
-    },
     setCommentsLoading: (state, action) => {
       state.commentsLoading = action.payload;
     },

@@ -9,7 +9,7 @@ export const loadPostsForHomepageFilters = async (
   urlSubject,
   urlType,
   urlYearOfExam,
-  post
+  postId
 ) => {
   let data = {
     search: urlSearch,
@@ -20,7 +20,7 @@ export const loadPostsForHomepageFilters = async (
     subject: urlSubject,
     type: urlType,
     yearOfExam: urlYearOfExam,
-    post,
+    postId,
   };
 
   return await services.post('/posts/postsForHomepageFilters', data);

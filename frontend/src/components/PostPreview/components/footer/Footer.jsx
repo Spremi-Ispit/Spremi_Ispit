@@ -40,10 +40,8 @@ const StyledDivider = styled(Divider)`
 const StyledButton = styled(Button)`
   && {
     margin-right: 5px;
-    background: var(--primary);
     color: white;
     :hover {
-      background: var(--secondary);
     }
   }
 `;

@@ -1,151 +1,139 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import Paper from '@mui/material/Paper';
-import Footer from './components/footer/Footer';
-import Info from './components/Info';
-import Content from './components/Content';
-import { PostViewProvider } from './PostViewContext';
+import colors from '../../theme/colors';
+import { Divider } from '@mui/material';
+import NavLink from '../navbar/components/components/NavLink';
+import { profileRoute } from '../../router/routes';
 import { allowedUrlParams } from '../../utils/managers/UrlManager';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { viewPostRoute } from '../../router/routes';
-import detectMouseButton, { mouseButtons } from '../../utils/detectMouseButton';
-import ContextMenu, { contextMenuOption } from '../ContextMenu';
+import FileViewer from '../fileViewer/FileViewer';
+import env from '../../config/env';
+import LikeDislike from './components/LikeDislike';
+import Delete from './components/Delete';
+import Report from './components/Report';
 
-const StyledPaper = styled(Paper)`
-  min-height: 150px;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  cursor: ${({ link }) => (link ? 'pointer' : '')};
-  height: fit-content;
-  padding: 5px;
-  margin-bottom: 15px;
-  margin-top: 8px;
-  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.75) !important;
+const StyledDivider = styled(Divider)`
+  && {
+    margin-left: auto;
+    margin-right: auto;
+  }
 `;
 
-export const postViewType = {
-  post: 'post',
-  comment: 'comment',
-};
+const PostViewDiv = styled.div`
+  background-color: white;
+  margin-bottom: 20px;
+  box-shadow: rgba(0, 0, 0, 0.75) 0px 1px 3px;
+  flex: 1;
+`;
 
-export const PostView = ({
+const HeaderDiv = styled.div`
+  font-weight: bold;
+  padding: 10px;
+`;
+
+const DescriptionDiv = styled.div`
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 10px 10px 0 10px;
+  margin-bottom: 10px;
+`;
+
+const FooterDiv = styled.div`
+  font-weight: bold;
+  justify-content: space-between;
+  display: flex;
+  padding: 10px;
+  background-color: ${colors.background};
+  align-items: center;
+`;
+
+const PostedByNavlink = styled(NavLink)`
+  color: black;
+
+  :hover {
+    color: black;
+  }
+`;
+
+const UserDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const AttachmentsDiv = styled.div``;
+
+const PostView = ({
   data,
-  enableDelete = false,
-  enableReport = false,
-  enableFiles = false,
-  enableShowPost = false,
-  enableOpenInNewTab = false,
-  type,
-  shortDescription = false,
+  addLike,
+  removeLike,
+  addDislike,
+  removeDislike,
+  report,
+  delete: deletePost,
+  onSuccessfulDeletion,
 }) => {
   const {
     id,
     title,
     text,
-    files,
+    date,
     likes,
     dislikes,
-    date,
     postedBy,
+    userId,
+    owner,
     likeStatus,
-  } = data;
-  const location = useLocation();
-  const [showMenu, setShowMenu] = useState(false);
-  const [mouseX, setMouseX] = useState(0);
-  const [mouseY, setMouseY] = useState(0);
-  const navigate = useNavigate();
-
-  const createNewLocation = () => {
-    const urlPostId = `${allowedUrlParams.postId}=${id}`;
-    let newLocation = {
-      pathname: viewPostRoute,
-      search: `${location.search}&${urlPostId}`,
-    };
-    return newLocation;
-  };
-
-  const openInNewTab = () => {
-    const { pathname, search } = createNewLocation();
-    const newWindow = window.open(
-      `${pathname}?${search}`,
-      '_blank',
-      'noopener,noreferrer'
-    );
-    if (newWindow) newWindow.opener = null;
-  };
-
-  const open = () => {
-    const newLocation = createNewLocation();
-    navigate(newLocation);
-  };
-
-  const showContextMenu = (ev) => {
-    setShowMenu(true);
-    setMouseX(ev.pageX - 75);
-    setMouseY(ev.pageY - 20);
-  };
-
-  const handleOnMouseDown = (ev) => {
-    if (location.pathname === viewPostRoute) {
-      return;
-    }
-
-    const button = detectMouseButton(ev);
-
-    if (button === mouseButtons.left) {
-      open();
-    }
-
-    if (button === mouseButtons.right) {
-      showContextMenu(ev);
-    }
-
-    if (button === mouseButtons.middle) {
-      openInNewTab();
-    }
-  };
+    files,
+  } = data; //files: [{id, ext, path}]
 
   return (
-    <PostViewProvider value={{ type }}>
-      <StyledPaper
-        elevation={1}
-        link={enableShowPost ? 1 : 0}
-        onMouseDown={handleOnMouseDown}
-        onContextMenu={(e) => e.preventDefault()}
-      >
-        <Content
-          files={files}
-          title={title}
-          description={text}
-          enableFiles={enableFiles}
-          shortDescription={shortDescription}
-        />
-        <Info postedBy={postedBy} date={date} />
-        <Footer
+    <PostViewDiv>
+      <HeaderDiv>{title}</HeaderDiv>
+      <DescriptionDiv>{text}</DescriptionDiv>
+      <AttachmentsDiv>
+        {files.length > 0 && (
+          <FileViewer
+            files={files.map((file) => {
+              const src = env.VITE_BACKEND_URL + '/files/' + file.path; //'http://localhost:4000/files/1.png' or .../1.pdf
+
+              return {
+                src,
+                name: file.path, //'1.png' or '1.pdf'
+              };
+            })}
+          />
+        )}
+      </AttachmentsDiv>
+      <StyledDivider />
+      <FooterDiv>
+        <LikeDislike
+          postId={id}
           likes={likes}
           dislikes={dislikes}
           likeStatus={likeStatus}
-          postId={id}
-          postedBy={postedBy}
-          enableShowPost={enableShowPost}
-          enableDelete={enableDelete}
-          enableReport={enableReport}
+          addPostLike={addLike}
+          removePostLike={removeLike}
+          addPostDislike={addDislike}
+          removePostDislike={removeDislike}
         />
-        <ContextMenu
-          showMenu={showMenu}
-          onMouseLeave={() => setShowMenu(false)}
-          mouseX={mouseX}
-          mouseY={mouseY}
-          options={[
-            contextMenuOption({
-              name: 'Open in new tab',
-              action: openInNewTab,
-            }),
-          ]}
-        />
-      </StyledPaper>
-    </PostViewProvider>
+        <UserDiv>
+          <PostedByNavlink
+            to={`${profileRoute}?${allowedUrlParams.username}=${postedBy}`}
+          >
+            {postedBy}
+          </PostedByNavlink>
+          <Delete
+            postId={id}
+            deletePost={deletePost}
+            onSuccessfulDeletion={onSuccessfulDeletion}
+          />
+          <Report postId={id} reportPost={report} />
+        </UserDiv>
+      </FooterDiv>
+    </PostViewDiv>
   );
 };
 

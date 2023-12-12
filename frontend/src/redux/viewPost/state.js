@@ -5,8 +5,6 @@ import {
 
 const initialState = {
   postLoading: false,
-  nextPost: false,
-  prevPost: false,
   commentsLoading: false,
 };
 

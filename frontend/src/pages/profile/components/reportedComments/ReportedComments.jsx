@@ -3,7 +3,7 @@ import Loader from '../../../../components/Loader';
 import Typography from '@mui/material/Typography';
 import Fade from '@mui/material/Fade';
 import DismissReport from './components/DismissReport';
-import PostView from '../../../../components/postView/PostView';
+import PostView from '../../../../components/postView2/PostView';
 import ShowPost from './components/ShowPost';
 import ErrorDialog from '../../../../components/dialogs/ErrorDialog';
 import styled from 'styled-components';

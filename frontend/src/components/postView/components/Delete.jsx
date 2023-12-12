@@ -1,40 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { CircularProgress, Tooltip } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { homeRoute } from '../../../../../router/routes';
 import styled from 'styled-components';
 import { IconButton } from '@mui/material';
-import AlertDialog from '../../../../dialogs/AlertDialog';
-import { useAppActions } from '../../../../../redux/useAppActions';
-import { usePostViewContext } from '../../../PostViewContext';
-import { postViewType } from '../../../PostView';
-import useActions from '../../../../../pages/viewPost/useActions';
+import AlertDialog from '../../dialogs/AlertDialog';
 
 const StyledDeleteIconButton = styled(IconButton)`
   && {
     margin-right: -8px;
-    color: var(--primary);
   }
 `;
 
-export const Delete = ({ postId }) => {
-  const { deletePost } = useActions();
+export const Delete = ({ postId, deletePost, onSuccessfulDeletion }) => {
   const { loading, loaded, error, action } = deletePost;
-  const navigate = useNavigate();
   const [dialogOpen, setDialogOpen] = useState(false);
-
-  const { type } = usePostViewContext();
 
   useEffect(() => {
     if (loaded) {
-      if (type === postViewType.post) {
-        navigate(homeRoute);
-      }
-
-      if (type === postViewType.comment) {
-        setCommentsLoading(true);
-      }
+      onSuccessfulDeletion();
     }
   }, [loaded]);
 
@@ -42,10 +25,7 @@ export const Delete = ({ postId }) => {
     action(postId);
   };
 
-  const { viewPostActions } = useAppActions();
-  const { setCommentsLoading } = viewPostActions;
-
-  const viewToRender = (
+  return (
     <>
       {loading ? <CircularProgress /> : null}
       {error ? 'Brisanje neuspesno' : null}
@@ -66,8 +46,6 @@ export const Delete = ({ postId }) => {
       />
     </>
   );
-
-  return viewToRender;
 };
 
 export default Delete;
