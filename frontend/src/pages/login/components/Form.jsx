@@ -39,6 +39,7 @@ const StyledButton = styled(Button)`
     font-weight: 600;
     font-size: 18px;
     width: 80%;
+    margin-bottom: 30px;
   }
 `;
 
@@ -168,6 +169,9 @@ const Form = () => {
 
   const handleToggle = () => {
     if (type === 'password') {
+      setIcon(eye);
+      setType('text');
+    } else if (type === 'passwordConfirm') {
       setIcon(eye);
       setType('text');
     } else {
