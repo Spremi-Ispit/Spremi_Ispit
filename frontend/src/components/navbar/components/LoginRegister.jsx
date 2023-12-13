@@ -16,7 +16,8 @@ const LoginRegister = () => {
   if (location.pathname !== loginRoute) {
     return <NavLink to={`${loginRoute}`}>Prijava</NavLink>;
   } else {
-    return <NavLink to={`${registerRoute}`}>Registracija</NavLink>;
+    // return <NavLink to={`${registerRoute}`}>Registracija</NavLink>;
+    return <NavLink to={`${loginRoute}`}>Prijava</NavLink>;
   }
 };
 

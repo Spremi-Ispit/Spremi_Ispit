@@ -43,6 +43,8 @@ const AboutDiv = styled.div`
   text-align: justify;
   padding: 10px;
   align-items: center;
+  padding-left: 50px;
+  padding-right: 50px;
 `;
 
 const HeaderDiv = styled.div`
