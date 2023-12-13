@@ -125,14 +125,12 @@ export const PostsPreview = () => {
     );
   }
 
-  console.log(posts);
-
   return (
     <>
       <PostsPreviewDiv>
-        {/* {posts.map((post, index) => {
+        {posts.map((post, index) => {
           return <PostPreview key={index} data={post} />;
-        })} */}
+        })}
       </PostsPreviewDiv>
       <MorePosts
         onClick={() => {
