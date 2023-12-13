@@ -2,18 +2,25 @@ import React from 'react';
 import NavLink from './components/NavLink';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectToken } from '../../../redux/app/selectors';
+import { selectUsername } from '../../../redux/app/selectors';
 import { profileInfoRoute, profileRoute } from '../../../router/routes';
+import { allowedUrlParams } from '../../../utils/managers/UrlManager';
 
 const Profile = () => {
   const location = useLocation();
-  const token = useSelector(selectToken);
+  const username = useSelector(selectUsername);
 
-  if (location.pathname === profileRoute || !token) {
+  if (location.pathname === profileRoute) {
     return null;
   }
 
-  return <NavLink to={`${profileInfoRoute}`}>Profil</NavLink>;
+  return (
+    <NavLink
+      to={`${profileInfoRoute}?${allowedUrlParams.username}=${username}`}
+    >
+      Profil
+    </NavLink>
+  );
 };
 
 export default Profile;

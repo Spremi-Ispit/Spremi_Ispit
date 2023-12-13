@@ -7,7 +7,8 @@ import colors from '../../../theme/colors';
 
 const StyledButton = styled(Button)`
   text-transform: uppercase;
-
+  font-size: small;
+  font-weight: bold;
   background-color: ${colors.background};
   color: black;
 

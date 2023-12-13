@@ -1,16 +1,8 @@
 import React, { useEffect } from 'react';
 import Loader from '../../../../../components/Loader';
 import ErrorDialog from '../../../../../components/dialogs/ErrorDialog';
-import styled from 'styled-components';
 import Button from '../../../../../components/buttons/Button';
 import { useApiActions } from '../../../../../api/useApiActions';
-
-const StyledButton = styled(Button)`
-  && {
-    margin-bottom: 30px;
-    margin-left: 10px;
-  }
-`;
 
 export const DismissReport = ({ commentId, setLoadComments }) => {
   const { dismissCommentReport } = useApiActions();
@@ -35,9 +27,9 @@ export const DismissReport = ({ commentId, setLoadComments }) => {
   }
 
   return (
-    <StyledButton variant="outlined" onClick={handleDismissReport}>
-      Poništi prijavu
-    </StyledButton>
+    <Button onClick={handleDismissReport}>
+      <h3>Poništi prijavu</h3>
+    </Button>
   );
 };
 

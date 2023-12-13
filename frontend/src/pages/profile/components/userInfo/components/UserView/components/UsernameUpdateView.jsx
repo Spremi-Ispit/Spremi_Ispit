@@ -7,7 +7,7 @@ import {
   InputLabel,
   OutlinedInput,
 } from '@mui/material';
-import { Button, TextField } from '@mui/material';
+import { TextField } from '@mui/material';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import ErrorDialog from '../../../../../../../components/dialogs/ErrorDialog';
 import Loader from '../../../../../../../components/Loader';
@@ -17,6 +17,8 @@ import {
 } from '../../../../../../../utils/managers/UrlManager';
 import { useAuthManager } from '../../../../../../../utils/managers/AuthManager';
 import { useApiActions } from '../../../../../../../api/useApiActions';
+import Button from '../../../../../../../components/buttons/Button';
+import colors from '../../../../../../../theme/colors';
 
 const StyledFormControl = styled(FormControl)`
   && {
@@ -30,12 +32,19 @@ const StyledTextField = styled(TextField)`
   && {
     margin-bottom: 10px;
     margin-top: 10px;
+    background-color: white;
   }
 `;
 
-const StyledButton = styled(Button)`
-  && {
-    margin-top: 10px;
+const SubmitButton = styled(Button)`
+  color: black;
+  background-color: ${colors.footer};
+  font-size: medium;
+  font-weight: bold;
+
+  :hover {
+    color: white;
+    background-color: ${colors.filteri};
   }
 `;
 
@@ -70,6 +79,7 @@ const UsernameUpdateView = ({ user, setUsernameUpdate }) => {
 
   return (
     <>
+      <h2>Promeni korisničko ime</h2>
       <StyledTextField
         label="Novo korisničko ime"
         variant="outlined"
@@ -101,9 +111,7 @@ const UsernameUpdateView = ({ user, setUsernameUpdate }) => {
           label="Potvrdi trenutnom šifrom"
         />
       </StyledFormControl>
-      <StyledButton variant="outlined" onClick={handleSubmitUsernameUpdate}>
-        Potvrdi
-      </StyledButton>
+      <SubmitButton onClick={handleSubmitUsernameUpdate}>Potvrdi</SubmitButton>
     </>
   );
 };

@@ -4,7 +4,7 @@ import colors from '../../theme/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Divider } from '@mui/material';
 import NavLink from '../navbar/components/components/NavLink';
-import { profileRoute, viewPostRoute } from '../../router/routes';
+import { profileInfoRoute, viewPostRoute } from '../../router/routes';
 import { useNavigate } from 'react-router-dom';
 import { allowedUrlParams } from '../../utils/managers/UrlManager';
 
@@ -20,6 +20,7 @@ const PostPreviewDiv = styled.div`
   margin-bottom: 20px;
   box-shadow: rgba(0, 0, 0, 0.75) 0px 1px 3px;
   cursor: pointer;
+  flex: 1;
 `;
 
 const HeaderDiv = styled.div`
@@ -60,7 +61,7 @@ const PostedByNavlink = styled(NavLink)`
   }
 `;
 
-const PostPreview = ({ data }) => {
+const PostPreview = ({ data, className }) => {
   const {
     id,
     title,
@@ -84,8 +85,14 @@ const PostPreview = ({ data }) => {
     });
   };
 
+  const handlePostedByClick = (e) => {
+    console.log('Aaaaaaaaaaaaa');
+    e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
+  };
+
   return (
-    <PostPreviewDiv onClick={handlePostPreviewClick}>
+    <PostPreviewDiv onClick={handlePostPreviewClick} className={className}>
       <HeaderDiv>{title}</HeaderDiv>
       <DescriptionDiv>{text}</DescriptionDiv>
       <StyledDivider />
@@ -96,7 +103,8 @@ const PostPreview = ({ data }) => {
         </LikesDiv>
 
         <PostedByNavlink
-          to={`${profileRoute}?${allowedUrlParams.username}=${postedBy}`}
+          to={`${profileInfoRoute}?${allowedUrlParams.username}=${postedBy}`}
+          onClick={handlePostedByClick}
         >
           {postedBy}
         </PostedByNavlink>

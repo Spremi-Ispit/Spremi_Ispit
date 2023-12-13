@@ -2,24 +2,17 @@ import React, { useEffect } from 'react';
 import Navbar from '../../components/navbar/Navbar';
 import styled from 'styled-components';
 import SideNavbar from './components/SideNavbar/SideNavbar';
-import {
-  allowedUrlParams,
-  useUrlManager,
-} from '../../utils/managers/UrlManager';
 import { useSelector } from 'react-redux';
-import {
-  selectSettingsSidePanelVisible,
-  selectUsername,
-} from '../../redux/app/selectors';
+import { selectSettingsSidePanelVisible } from '../../redux/app/selectors';
 import { Outlet } from 'react-router-dom';
 import Footer from '../../components/Footer';
 import SettingsSidePanel from '../../components/SettingsSidePanel/SettingsSidePanel';
+import { useAppActions } from '../../redux/useAppActions';
 
 const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-  align-items: center;
 `;
 
 const ProfileDiv = styled.div`
@@ -29,25 +22,20 @@ const ProfileDiv = styled.div`
 
 const OutletDiv = styled.div`
   flex: 1;
-  width: 100%;
-  display: flex;
+  margin-top: 20px;
   justify-content: center;
 `;
 
 export const Profile = () => {
-  const urlManager = useUrlManager();
-  const { urlUsername } = urlManager.getParams();
-  const username = useSelector(selectUsername);
   const settingsSidePanelVisible = useSelector(selectSettingsSidePanelVisible);
+  const { appActions, profileActions } = useAppActions();
+  const { setSettingsSidePanelVisible } = appActions;
+  const { setSideNavbarHidden } = profileActions;
 
   useEffect(() => {
-    if (!urlUsername) {
-      urlManager.updateUrlParamAndReplaceLastHistoryEntry(
-        allowedUrlParams.username,
-        username
-      );
-    }
-  }, [urlUsername]);
+    setSettingsSidePanelVisible(false);
+    setSideNavbarHidden(false);
+  }, []);
 
   const viewToRender = (
     <>

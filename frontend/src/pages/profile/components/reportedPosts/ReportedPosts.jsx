@@ -35,13 +35,24 @@ const PostPreviewContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
+  margin-bottom: 20px;
 `;
 
-const Container = styled.div`
-  width: 100%;
+const ReportedPostsDiv = styled.div`
+  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  max-width: 800px;
+  width: 100%;
+  margin: auto;
+`;
+
+const ReportedPostsH1 = styled.h1`
+  align-self: center;
+`;
+
+const StyledPostPreview = styled(PostPreview)`
+  margin-bottom: 0px;
 `;
 
 export const ReportedPosts = () => {
@@ -55,10 +66,10 @@ export const ReportedPosts = () => {
   }, []);
 
   useEffect(() => {
-    if (loaded) {
+    if (response) {
       setPosts(response);
     }
-  }, [loaded]);
+  }, [response]);
 
   if (error) {
     return <ErrorDialog error={error} setError={setError} />;
@@ -70,29 +81,31 @@ export const ReportedPosts = () => {
 
   if (posts.length === 0) {
     return (
-      <Container>
-        <h1>Prijavljene objave</h1>
+      <ReportedPostsDiv>
+        <ReportedPostsH1>Prijavljene objave</ReportedPostsH1>
         <StyledDivider />
         <Fade in={true}>
           <StyledPaper elevation={4}>
             <Typography variant="h5">Nema prijavljenih objava!</Typography>
           </StyledPaper>
         </Fade>
-      </Container>
+      </ReportedPostsDiv>
     );
   }
 
   return (
-    <Container>
-      <h1>Prijavljene objave</h1>
+    <ReportedPostsDiv>
+      <ReportedPostsH1>Prijavljene objave</ReportedPostsH1>
       <StyledDivider />
-      {posts.map((data, index) => (
-        <PostPreviewContainer key={index}>
-          <PostPreview data={data} />
-          <DismissReport postId={data.id} setLoadPosts={action} />
-        </PostPreviewContainer>
-      ))}
-    </Container>
+      {posts.map((data, index) => {
+        return (
+          <PostPreviewContainer key={index}>
+            <StyledPostPreview data={data} />
+            <DismissReport postId={data.id} setLoadPosts={action} />
+          </PostPreviewContainer>
+        );
+      })}
+    </ReportedPostsDiv>
   );
 };
 

@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import Logo from './components/Logo';
-import Login from './components/Login';
 import Logout from './components/Logout';
 import { selectToken } from '../../redux/app/selectors';
 import Search from './components/Search';
 import CreatePost from './components/CreatePost';
 import Menu from './components/Menu';
 import { useSelector } from 'react-redux';
+import LoginRegister from './components/LoginRegister';
 
 const headerHeight = 64;
 
@@ -46,7 +46,7 @@ export const Navbar = () => {
         <Search />
         <SideDiv>
           <CreatePost />
-          {!token ? <Login /> : <Logout />}
+          {!token ? <LoginRegister /> : <Logout />}
         </SideDiv>
       </StyledNav>
     </NavbarDiv>

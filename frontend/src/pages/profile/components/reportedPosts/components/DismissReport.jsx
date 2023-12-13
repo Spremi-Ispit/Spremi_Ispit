@@ -3,15 +3,13 @@ import ReportOffIcon from '@mui/icons-material/ReportOff';
 import Loader from '../../../../../components/Loader';
 import ErrorDialog from '../../../../../components/dialogs/ErrorDialog';
 import { Tooltip } from '@mui/material';
-import { Button } from '@mui/material';
 import styled from 'styled-components';
 import { useApiActions } from '../../../../../api/useApiActions';
+import Button from '../../../../../components/buttons/Button';
 
 const StyledButton = styled(Button)`
   && {
     margin-left: 10px;
-    margin-top: 8px;
-    margin-bottom: 15px;
   }
 `;
 

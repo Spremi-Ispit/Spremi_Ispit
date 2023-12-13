@@ -2,7 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { Divider } from '@mui/material';
 import { userRole } from '../../../../redux/app/state';
-import { useUrlManager } from '../../../../utils/managers/UrlManager';
+import {
+  allowedUrlParams,
+  useUrlManager,
+} from '../../../../utils/managers/UrlManager';
 import { useAppActions } from '../../../../redux/useAppActions';
 import { useSelector } from 'react-redux';
 import { selectRole } from '../../../../redux/app/selectors';
@@ -16,7 +19,6 @@ import {
   profileReportedCommentsRoute,
   profileReportedPostsRoute,
 } from '../../../../router/routes';
-import { assets } from '../../../../assets';
 import SidePanel from './components/SidePanel';
 
 const StyledDivider = styled(Divider)`
@@ -36,27 +38,16 @@ const StyledH3 = styled.h3`
   text-align: left;
 `;
 
-// const StlyedAccountCircleIcon = styled.img`
-//   && {
-//     width: 30px;
-//     height: 30px;
-//     border-radius: 50%;
-//     background-position: center;
-//     object-fit: cover;
-//   }
-// `;
-
 const HeadingDiv = styled.div`
   display: flex;
   padding: 5px;
   align-items: center;
   font-weight: bold;
+  justify-content: center;
 `;
 
-const HeadingTextDiv = styled.div`
+const HeadingTextDiv = styled.h3`
   font-style: italic;
-  font-size: 1rem;
-  margin-left: 6px;
   padding-right: 6px;
   white-space: nowrap;
   overflow: hidden;
@@ -72,6 +63,9 @@ export const SideNavbar = () => {
   const { setSideNavbarHidden } = profileActions;
   const screen = useScreens();
 
+  const navigateTo = (route) =>
+    `${route}?${allowedUrlParams.username}=${urlUsername}`;
+
   return (
     <SidePanel
       hidden={hidden}
@@ -84,19 +78,19 @@ export const SideNavbar = () => {
       </HeadingDiv>
       <StyledDivider />
       <StyledH3>PROFIL</StyledH3>
-      <NavLink to={`${profilePostsRoute}`}>Objave</NavLink>
-      <NavLink to={`${profileCommentedPostsRoute}`}>
+      <NavLink to={navigateTo(profilePostsRoute)}>Objave</NavLink>
+      <NavLink to={navigateTo(profileCommentedPostsRoute)}>
         Komentarisane objave
       </NavLink>
-      <NavLink to={`${profileInfoRoute}`}>Informacije</NavLink>
+      <NavLink to={navigateTo(profileInfoRoute)}>Informacije</NavLink>
       <StyledDivider />
       {role === userRole.admin && (
         <>
           <StyledH3>ADMIN</StyledH3>
-          <NavLink to={`${profileReportedPostsRoute}`}>
+          <NavLink to={navigateTo(profileReportedPostsRoute)}>
             Prijavljene objave
           </NavLink>
-          <NavLink to={`${profileReportedCommentsRoute}`}>
+          <NavLink to={navigateTo(profileReportedCommentsRoute)}>
             Prijavljeni komentari
           </NavLink>
         </>

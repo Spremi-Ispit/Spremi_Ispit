@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import DoubleArrow from '@mui/icons-material/DoubleArrow';
 import { MenuItem } from '@mui/material';
@@ -22,7 +22,7 @@ const StyledMenuItem = styled(MenuItem)`
     width: 80px;
     margin: auto;
     border-radius: 200px;
-    margin-top: 8px;
+    margin-top: 20px;
   }
 `;
 
@@ -52,6 +52,8 @@ const ClosedPanelDiv = styled.div`
   position: fixed;
   top: 0;
   bottom: 0;
+  background: ${colors.filteri};
+  color: white;
 `;
 
 const SidePanelPlaceHolderDiv = styled.div`
