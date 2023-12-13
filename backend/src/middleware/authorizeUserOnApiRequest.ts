@@ -6,6 +6,12 @@ import response from '../utils/response';
 
 export const authorizeUserOnApiRequest = (req, res, next) => {
   const authHeader = req.headers['authorization'];
+
+  if (!authHeader) {
+    const myResponse = response.BAD_REQUEST(`authorization header is missing`);
+    return res.status(myResponse.statusCode).send(myResponse);
+  }
+
   const token = authHeader && authHeader.split(' ')[1];
 
   if (token === 'undefined' || token === 'null') {

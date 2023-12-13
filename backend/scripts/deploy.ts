@@ -1,8 +1,7 @@
 // @ts-nocheck
 /* eslint-disable */
 import fs from 'fs';
-import { intro, outro, confirm, select } from '@clack/prompts';
-import { execa } from 'execa';
+import { intro, outro, select } from '@clack/prompts';
 import color from 'picocolors';
 import { checkIsOperationCanceled } from './utils';
 import { spawn } from 'child_process';
@@ -72,7 +71,6 @@ const deploy = async () => {
   }
 
   //-----------------------
-
   outro('Bulding the project...');
   await building();
   outro('The project has been build!');

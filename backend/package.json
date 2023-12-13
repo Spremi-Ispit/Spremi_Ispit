@@ -32,7 +32,7 @@
     "yup": "^1.3.2"
   },
   "scripts": {
-    "build": "npx tsc && node ./scripts/database/_copyTestDataToDist.js",
+    "build": "rimraf dist && npx tsc && node ./scripts/database/_copyTestDataToDist.js",
     "setupEnv": "npm run build && node ./dist/scripts/setupEnv.js",
     "start": "npm run build && node ./dist/scripts/start.js",
     "startAndWatch": "nodemon -e ts --exec \"npm run start\"",

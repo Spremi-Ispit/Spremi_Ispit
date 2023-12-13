@@ -10,7 +10,6 @@ export const allowedUrlParams = {
   examinationPeriod: 'examinationPeriod',
   yearOfExam: 'yearOfExam',
   postId: 'postId',
-  totalNumberOfPosts: 'totalNumberOfPosts',
   username: 'username',
 };
 
