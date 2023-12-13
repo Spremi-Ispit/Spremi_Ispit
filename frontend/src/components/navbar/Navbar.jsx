@@ -5,7 +5,7 @@ import Logout from './components/Logout';
 import { selectToken } from '../../redux/app/selectors';
 import Search from './components/Search';
 import CreatePost from './components/CreatePost';
-import Menu from './components/Menu';
+import SettingsSidePanelMenu from './components/SettingsSidePanelMenu';
 import { useSelector } from 'react-redux';
 import LoginRegister from './components/LoginRegister';
 
@@ -40,7 +40,7 @@ export const Navbar = () => {
     <NavbarDiv>
       <StyledNav>
         <SideDiv>
-          <Menu />
+          <SettingsSidePanelMenu />
           <Logo />
         </SideDiv>
         <Search />

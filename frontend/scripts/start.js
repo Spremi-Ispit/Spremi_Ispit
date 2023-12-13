@@ -44,7 +44,7 @@ async function main() {
 
   if (!exist) {
     outro(
-      'Before running the frontend, you have to setup the environment. Execute: "npm run setupEnv"'
+      'Before running the frontend, you have to setup the environment. Execute: npm run setupEnv'
     );
     process.exit();
   }

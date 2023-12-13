@@ -40,11 +40,6 @@ const GreyItemDiv = styled(ItemDiv)`
   background-color: #38393e;
 `;
 
-const MoreOptionsH3 = styled.h3`
-  font-style: italic;
-  margin: 10px;
-`;
-
 export const SettingsSidePanel = () => {
   const sidePanelVisible = useSelector(selectSettingsSidePanelVisible);
   const closedPanelWidth = 0;
@@ -52,6 +47,10 @@ export const SettingsSidePanel = () => {
 
   const token = useSelector(selectToken);
   const authItems = [<Profile />, <Users />, <Wiki />];
+
+  if (!token) {
+    return null;
+  }
 
   return (
     <SidePanelPlaceHolderDiv
@@ -61,19 +60,13 @@ export const SettingsSidePanel = () => {
         closed={!sidePanelVisible}
         width={openedPanelWidth}
       >
-        {!token ? (
-          <MoreOptionsH3>
-            Dobicete jos opcija kada se prijavite... :)
-          </MoreOptionsH3>
-        ) : (
-          authItems.map((item, index) => {
-            if (index % 2 === 0) {
-              return <ItemDiv>{item}</ItemDiv>;
-            } else {
-              return <GreyItemDiv>{item}</GreyItemDiv>;
-            }
-          })
-        )}
+        {authItems.map((item, index) => {
+          if (index % 2 === 0) {
+            return <ItemDiv>{item}</ItemDiv>;
+          } else {
+            return <GreyItemDiv>{item}</GreyItemDiv>;
+          }
+        })}
       </OpenedPanelOverlayDiv>
     </SidePanelPlaceHolderDiv>
   );

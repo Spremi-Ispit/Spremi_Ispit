@@ -5,11 +5,6 @@ dotenv.config({ path: `.env` });
 
 const env = process.env;
 
-const nodeEnv = {
-  development: 'development',
-  production: 'production'
-};
-
 export default {
   NODE_ENV: env.NODE_ENV, //development || production
   ACCESS_TOKEN_SECRET: env.ACCESS_TOKEN_SECRET,
@@ -21,11 +16,7 @@ export default {
   DB_PASSWORD: env.DB_PASSWORD,
   DB_NAME: env.DB_NAME,
   SERVER_PORT: env.SERVER_PORT,
-  SERVER_STORAGE: path.join(
-    __dirname,
-    env.NODE_ENV === nodeEnv.development ? '../../../' : '../../',
-    `${env.SERVER_STORAGE}`
-  ),
+  SERVER_STORAGE: path.join(__dirname, '../../../', `${env.SERVER_STORAGE}`),
   SERVER_ADDRESS: env.SERVER_ADDRESS,
   MAIL_HOST: env.MAIL_HOST,
   MAIL_ADDR: env.MAIL_ADDR,
