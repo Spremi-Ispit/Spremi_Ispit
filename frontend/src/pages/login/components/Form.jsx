@@ -14,8 +14,9 @@ import eye from '../../../../src/assets/eye.png';
 import eyeOff from '../../../../src/assets/eyeoff.png';
 import Modal from './Modal/Modal';
 import { useApiActions } from '../../../api/useApiActions';
-import { registerRoute } from '../../../router/routes';
+import { homeRoute, registerRoute } from '../../../router/routes';
 import { validateEmail, validatePassword } from '../../../utils/validation';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const TextH4 = styled(Typography)`
   && {
@@ -38,6 +39,7 @@ const StyledButton = styled(Button)`
     font-weight: 600;
     font-size: 18px;
     width: 80%;
+    margin-bottom: 30px;
   }
 `;
 
@@ -57,7 +59,7 @@ const StyledForm = styled.form`
 
 const StyledPaper = styled(Paper)`
   && {
-    padding: 20px;
+    padding-top: 20px;
     margin-bottom: 30px;
     min-height: 150px;
     display: flex;
@@ -120,11 +122,22 @@ const StyledNavlink = styled(NavLink)`
 const Form = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
   const navigate = useNavigate();
-  const { login } = useApiActions();
+  const { login, register } = useApiActions();
   const { loading, error, setError, response, action } = login;
+  const {
+    loading: loadingRegister,
+    error: errorRegister,
+    setError: setErrorRegister,
+    response: responseRegister,
+    action: actionRegister,
+  } = register;
   const authManager = useAuthManager();
+
   const [modalOpen, setModalOpen] = useState(false);
+  const [recaptcha, setReacaptcha] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
 
   const [type, setType] = useState('password');
   const [icon, setIcon] = useState(eyeOff);
@@ -136,10 +149,17 @@ const Form = () => {
     }
   }, [response]);
 
-  const handleEnter = (e) => {
+  const handleLoginEnter = (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
-      handleSubmit();
+      handleLogin();
+    }
+  };
+
+  const handleRegisterEnter = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleRegister();
     }
   };
 
@@ -151,13 +171,16 @@ const Form = () => {
     if (type === 'password') {
       setIcon(eye);
       setType('text');
+    } else if (type === 'passwordConfirm') {
+      setIcon(eye);
+      setType('text');
     } else {
       setIcon(eyeOff);
       setType('password');
     }
   };
 
-  const handleSubmit = async () => {
+  const handleLogin = async () => {
     const emailError = await validateEmail(email);
     if (emailError) {
       return setError(emailError);
@@ -168,7 +191,40 @@ const Form = () => {
       return setError(passwordError);
     }
 
-    action(email, password);
+    action(email, password).then((res) => {
+      if (res.statusCode === 200) navigate(homeRoute);
+    });
+  };
+
+  const onChangeRecaptcha = () => {
+    setReacaptcha(true);
+  };
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    if (recaptcha === false) {
+      return setDialogMessage('Robot? o.O');
+    }
+    const emailError = await validateEmail(email);
+    if (emailError) {
+      return setDialogMessage(emailError);
+    }
+
+    if (password !== passwordConfirm) {
+      return setDialogMessage('Sifre nisu iste');
+    }
+
+    const passwordError = await validatePassword(password);
+    if (passwordError) {
+      return setDialogMessage(passwordError);
+    }
+
+    const passwordConfirmError = await validatePassword(passwordConfirm);
+    if (passwordConfirmError) {
+      return setDialogMessage('passwordConfirm: ' + passwordConfirmError);
+    }
+
+    actionRegister(email, password);
   };
 
   if (error) {
@@ -177,8 +233,10 @@ const Form = () => {
 
   return (
     <>
-      <StyledForm onKeyDown={handleEnter}>
-        <TextH4 variant="h4">Prijavljivanje</TextH4>
+      <StyledForm onKeyDown={isLogin ? handleLoginEnter : handleRegisterEnter}>
+        <TextH4 variant="h4">
+          {isLogin ? 'Prijavljivanje' : 'Registracija'}
+        </TextH4>
         <StyledPaper elevation={0}>
           <DivWrapper>
             <StyledLbl>Email</StyledLbl>
@@ -208,23 +266,67 @@ const Form = () => {
               <img src={icon} />
             </Span>
           </DivWrapper>
+          {isLogin ? (
+            <></>
+          ) : (
+            <>
+              <DivWrapper>
+                <TextField
+                  placeholder="Potvrdi šifru"
+                  margin="normal"
+                  type="password"
+                  fullWidth
+                  variant="outlined"
+                  onChange={(e) => setPasswordConfirm(e.target.value)}
+                  autoComplete="current-password"
+                />
+              </DivWrapper>
+              <ReCAPTCHA
+                onChange={onChangeRecaptcha}
+                sitekey="6LfQPBwpAAAAABBHiyViwEfJ6YJNw1_S5jcPXiBb"
+              />
+            </>
+          )}
           <StyledButton
-            onClick={handleSubmit}
+            onClick={isLogin ? handleLogin : handleRegister}
             disabled={loading || !isFormValid()}
           >
-            Prijavi me
+            {isLogin ? 'Prijavi me' : 'Registruj me'}
           </StyledButton>
-          <ForgotPasswordDiv
-            onClick={() => {
-              setModalOpen(true);
+          <div
+            style={{
+              width: '100%',
+              borderTop: '1px solid #CECECE',
+              backgroundColor: '#EFEFEF',
             }}
           >
-            Zaboravio si sifru?
-          </ForgotPasswordDiv>
-          <RedirectToRegisterDiv>
-            Nemaš profil?
-            <StyledNavlink to={`${registerRoute}`}>Registruj se</StyledNavlink>
-          </RedirectToRegisterDiv>
+            {isLogin ? (
+              <ForgotPasswordDiv
+                onClick={() => {
+                  setModalOpen(true);
+                }}
+              >
+                Zaboravio si sifru?
+              </ForgotPasswordDiv>
+            ) : (
+              <></>
+            )}
+
+            <RedirectToRegisterDiv>
+              {isLogin ? 'Nemaš profil?' : 'Već imaš profil?'}
+              <div
+                style={{
+                  cursor: 'pointer',
+                  marginBottom: '15px',
+                  marginTop: '5px',
+                }}
+                onClick={() => setIsLogin(!isLogin)}
+              >
+                {isLogin ? 'Registruj se' : 'Prijavi se'}
+              </div>
+            </RedirectToRegisterDiv>
+          </div>
+
           {modalOpen && <Modal setOpenModal={setModalOpen} />}
         </StyledPaper>
       </StyledForm>
