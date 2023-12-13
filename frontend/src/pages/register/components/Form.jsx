@@ -14,27 +14,16 @@ import {
   loginRoute,
   registrationConfirmRoute,
 } from '../../../router/routes';
-import {
-  validateEmail,
-  validatePassword,
-  //validatePassword
-} from '../../../utils/validation';
+import { validateEmail, validatePassword } from '../../../utils/validation';
 import styled from 'styled-components';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import { selectToken } from '../../../redux/app/selectors';
-// import { useAuthManager } from '../../../utils/managers/AuthManager';
 import { screensCSS } from '../../../utils/useScreens';
 import Button from '../../../components/buttons/Button';
 import { useApiActions } from '../../../api/useApiActions';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { NavLink } from 'react-router-dom';
-
-const StyledButton = styled(Button)`
-  && {
-    margin: 10px;
-  }
-`;
 
 const StyledForm = styled.form`
   text-align: center;
@@ -60,6 +49,24 @@ const StyledPaper = styled(Paper)`
   background-color: #cccccc;
   align-items: center;
   width: 100%;
+`;
+
+const StyledNavlink = styled(NavLink)`
+  margin-left: 5px;
+`;
+
+const RedirectToLoginDiv = styled.div`
+  margin-top: 5px;
+`;
+
+const StyledButton = styled(Button)`
+  && {
+    margin: 10px;
+    font-family: Poppins;
+    font-weight: 600;
+    font-size: 18px;
+    width: 80%;
+  }
 `;
 
 export const Form = () => {
@@ -161,17 +168,13 @@ export const Form = () => {
             onChange={onChangeRecaptcha}
             sitekey="6LfQPBwpAAAAABBHiyViwEfJ6YJNw1_S5jcPXiBb"
           />
-          <StyledButton
-            fullWidth
-            variant="outlined"
-            size="large"
-            onClick={handleRegister}
-            disabled={loading}
-          >
+          <StyledButton onClick={handleRegister} disabled={loading}>
             Registruj me
           </StyledButton>
-          Već imaš profil?
-          <NavLink onClick={() => navigate(loginRoute)}> Uloguj se</NavLink>
+          <RedirectToLoginDiv>
+            Već imaš profil?
+            <StyledNavlink to={`${loginRoute}`}> Uloguj se</StyledNavlink>
+          </RedirectToLoginDiv>
         </StyledPaper>
       </StyledForm>
       <Dialog open={dialogMessage !== ''} onClose={() => setDialogMessage('')}>

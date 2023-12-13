@@ -37,6 +37,7 @@ const PostsDiv = styled.div`
   flex-direction: column;
   max-width: 800px;
   width: 100%;
+  margin: auto;
 `;
 
 const CommentedPostsH1 = styled.h1`

@@ -7,12 +7,13 @@ import {
   InputLabel,
   OutlinedInput,
 } from '@mui/material';
-import { Button } from '@mui/material';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import ErrorDialog from '../../../../../../../components/dialogs/ErrorDialog';
 import Loader from '../../../../../../../components/Loader';
 import { useAuthManager } from '../../../../../../../utils/managers/AuthManager';
 import { useApiActions } from '../../../../../../../api/useApiActions';
+import colors from '../../../../../../../theme/colors';
+import Button from '../../../../../../../components/buttons/Button';
 
 const StyledFormControl = styled(FormControl)`
   && {
@@ -22,12 +23,17 @@ const StyledFormControl = styled(FormControl)`
   }
 `;
 
-const StyledButton = styled(Button)`
-  && {
-    margin-top: 10px;
+const SubmitButton = styled(Button)`
+  color: black;
+  background-color: ${colors.footer};
+  font-size: medium;
+  font-weight: bold;
+
+  :hover {
+    color: white;
+    background-color: ${colors.filteri};
   }
 `;
-
 const PasswordUpdateView = ({ user, setPasswordUpdate }) => {
   const [confirmedPassword, setConfirmedPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
@@ -58,7 +64,7 @@ const PasswordUpdateView = ({ user, setPasswordUpdate }) => {
 
   return (
     <>
-      <h2>Ažuriraj</h2>
+      <h2>Promeni šifru</h2>
       <StyledFormControl variant="outlined">
         <InputLabel htmlFor="outlined-adornment-password">
           Nova šifra
@@ -110,9 +116,7 @@ const PasswordUpdateView = ({ user, setPasswordUpdate }) => {
           label="Potvrdi trenutnom šifrom"
         />
       </StyledFormControl>
-      <StyledButton variant="outlined" onClick={handleSubmitPasswordUpdate}>
-        Potvrdi
-      </StyledButton>
+      <SubmitButton onClick={handleSubmitPasswordUpdate}>Potvrdi</SubmitButton>
     </>
   );
 };

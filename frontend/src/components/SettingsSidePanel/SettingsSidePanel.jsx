@@ -4,7 +4,10 @@ import { useSelector } from 'react-redux';
 import Wiki from './components/Wiki';
 import Profile from './components/Profile';
 import Users from './components/Users';
-import { selectSettingsSidePanelVisible } from '../../redux/app/selectors';
+import {
+  selectSettingsSidePanelVisible,
+  selectToken,
+} from '../../redux/app/selectors';
 import colors from '../../theme/colors';
 
 const OpenedPanelOverlayDiv = styled.div`
@@ -37,10 +40,18 @@ const GreyItemDiv = styled(ItemDiv)`
   background-color: #38393e;
 `;
 
+const MoreOptionsH3 = styled.h3`
+  font-style: italic;
+  margin: 10px;
+`;
+
 export const SettingsSidePanel = () => {
   const sidePanelVisible = useSelector(selectSettingsSidePanelVisible);
   const closedPanelWidth = 0;
   const openedPanelWidth = 200;
+
+  const token = useSelector(selectToken);
+  const authItems = [<Profile />, <Users />, <Wiki />];
 
   return (
     <SidePanelPlaceHolderDiv
@@ -50,15 +61,19 @@ export const SettingsSidePanel = () => {
         closed={!sidePanelVisible}
         width={openedPanelWidth}
       >
-        <ItemDiv>
-          <Profile />
-        </ItemDiv>
-        <GreyItemDiv>
-          <Users />
-        </GreyItemDiv>
-        <ItemDiv>
-          <Wiki />
-        </ItemDiv>
+        {!token ? (
+          <MoreOptionsH3>
+            Dobicete jos opcija kada se prijavite... :)
+          </MoreOptionsH3>
+        ) : (
+          authItems.map((item, index) => {
+            if (index % 2 === 0) {
+              return <ItemDiv>{item}</ItemDiv>;
+            } else {
+              return <GreyItemDiv>{item}</GreyItemDiv>;
+            }
+          })
+        )}
       </OpenedPanelOverlayDiv>
     </SidePanelPlaceHolderDiv>
   );

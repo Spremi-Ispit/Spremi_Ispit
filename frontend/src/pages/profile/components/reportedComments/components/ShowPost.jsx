@@ -2,14 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { viewPostRoute } from '../../../../../router/routes';
 import Button from '../../../../../components/buttons/Button';
-import styled from 'styled-components';
-
-const StyledButton = styled(Button)`
-  && {
-    margin-bottom: 30px;
-    margin-left: 10px;
-  }
-`;
+import { allowedUrlParams } from '../../../../../utils/managers/UrlManager';
 
 export const ShowPost = ({ postId }) => {
   const navigate = useNavigate();
@@ -17,14 +10,14 @@ export const ShowPost = ({ postId }) => {
   const handleShowPost = () => {
     navigate({
       pathname: viewPostRoute,
-      search: `postId=${postId}`,
+      search: `${allowedUrlParams.postId}=${postId}`,
     });
   };
 
   return (
-    <StyledButton variant="outlined" onClick={handleShowPost}>
-      Prikaži objavu
-    </StyledButton>
+    <Button onClick={handleShowPost}>
+      <h3> Prikaži objavu</h3>
+    </Button>
   );
 };
 

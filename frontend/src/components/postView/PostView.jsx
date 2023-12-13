@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import colors from '../../theme/colors';
 import { Divider } from '@mui/material';
 import NavLink from '../navbar/components/components/NavLink';
-import { profileRoute } from '../../router/routes';
+import { profileInfoRoute } from '../../router/routes';
 import { allowedUrlParams } from '../../utils/managers/UrlManager';
 import FileViewer from '../fileViewer/FileViewer';
 import env from '../../config/env';
@@ -77,6 +77,7 @@ const PostView = ({
   report,
   delete: deletePost,
   onSuccessfulDeletion,
+  className,
 }) => {
   const {
     id,
@@ -93,7 +94,7 @@ const PostView = ({
   } = data; //files: [{id, ext, path}]
 
   return (
-    <PostViewDiv>
+    <PostViewDiv className={className}>
       <MainDiv>
         <HeaderDiv>{title}</HeaderDiv>
         <DescriptionDiv>{text}</DescriptionDiv>
@@ -126,7 +127,7 @@ const PostView = ({
         />
         <UserDiv>
           <PostedByNavlink
-            to={`${profileRoute}?${allowedUrlParams.username}=${postedBy}`}
+            to={`${profileInfoRoute}?${allowedUrlParams.username}=${postedBy}`}
           >
             {postedBy}
           </PostedByNavlink>

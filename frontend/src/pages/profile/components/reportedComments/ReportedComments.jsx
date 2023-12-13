@@ -36,22 +36,28 @@ const CommentPreviewContainer = styled.div`
   width: 100%;
 `;
 
-const Container = styled.div`
-  width: 100%;
+const ReportedCommentsDiv = styled.div`
+  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  max-width: 750px;
-`;
-
-const PostViewDiv = styled.div`
   max-width: 800px;
-  min-width: 800px;
+  width: 100%;
+  margin: auto;
 `;
 
 const ControllsDiv = styled.div`
-  margin-top: 8px;
-  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 10px;
+`;
+
+const StyledPostPreview = styled(PostPreview)`
+  margin-bottom: 0px;
+`;
+
+const ReportedCommentsH1 = styled.h1`
+  align-self: center;
 `;
 
 export const ReportedComments = () => {
@@ -79,28 +85,26 @@ export const ReportedComments = () => {
 
   if (comments.length === 0) {
     return (
-      <Container>
-        <h1>Prijavljeni komentari</h1>
+      <ReportedCommentsDiv>
+        <ReportedCommentsH1>Prijavljeni komentari</ReportedCommentsH1>
         <StyledDivider />
         <Fade in={true}>
           <StyledPaper elevation={4}>
             <Typography variant="h5">Nema prijavljenih komentara!</Typography>
           </StyledPaper>
         </Fade>
-      </Container>
+      </ReportedCommentsDiv>
     );
   }
 
   return (
-    <Container>
-      <h1>Prijavljeni komentari</h1>
+    <ReportedCommentsDiv>
+      <ReportedCommentsH1>Prijavljeni komentari</ReportedCommentsH1>
       <StyledDivider />
       {comments.map((comment) => {
         return (
           <CommentPreviewContainer key={JSON.stringify(comment)}>
-            <PostViewDiv>
-              <PostPreview data={comment} />
-            </PostViewDiv>
+            <StyledPostPreview data={comment} />
             <ControllsDiv>
               <ShowPost postId={comment.postId} />
               <DismissReport commentId={comment.id} setLoadComments={action} />
@@ -108,7 +112,7 @@ export const ReportedComments = () => {
           </CommentPreviewContainer>
         );
       })}
-    </Container>
+    </ReportedCommentsDiv>
   );
 };
 

@@ -22,7 +22,7 @@ export const getReportedPosts = async (req) => {
     const response = await getPostById(req);
 
     if (response.httpStatus === HttpStatus.OK.status) {
-      postsToReturn.push(response.data);
+      postsToReturn.push(response.response);
     }
   }
 

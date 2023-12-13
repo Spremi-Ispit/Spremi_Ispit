@@ -109,8 +109,12 @@ const Span = styled.span`
   left: 90%;
 `;
 
-const RedirectToLoginDiv = styled.div`
+const RedirectToRegisterDiv = styled.div`
   margin-top: 5px;
+`;
+
+const StyledNavlink = styled(NavLink)`
+  margin-left: 5px;
 `;
 
 const Form = () => {
@@ -205,9 +209,6 @@ const Form = () => {
             </Span>
           </DivWrapper>
           <StyledButton
-            fullWidth
-            variant="outlined"
-            size="large"
             onClick={handleSubmit}
             disabled={loading || !isFormValid()}
           >
@@ -220,13 +221,10 @@ const Form = () => {
           >
             Zaboravio si sifru?
           </ForgotPasswordDiv>
-          <RedirectToLoginDiv>
-            Imaš profil?
-            <NavLink onClick={() => navigate(registerRoute)}>
-              {' '}
-              Uloguj se
-            </NavLink>
-          </RedirectToLoginDiv>
+          <RedirectToRegisterDiv>
+            Nemaš profil?
+            <StyledNavlink to={`${registerRoute}`}>Registruj se</StyledNavlink>
+          </RedirectToRegisterDiv>
           {modalOpen && <Modal setOpenModal={setModalOpen} />}
         </StyledPaper>
       </StyledForm>
