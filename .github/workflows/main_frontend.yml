@@ -30,11 +30,14 @@ jobs:
 
       - name: Frontend before build
         run: |
+          cd frontend
           pwd
           ls
 
       - name: 🔨 Build Project
         run: |
+          pwd
+          ls
           cd frontend
           npm install
           npm run build
