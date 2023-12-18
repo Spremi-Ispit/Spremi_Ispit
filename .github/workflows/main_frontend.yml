@@ -27,7 +27,7 @@ jobs:
 
       - name: Put to .env
         run: |
-          echo ${{ secrets.MAIN_FRONTEND_ENV }} frontend/.env
+          echo ${{ secrets.MAIN_FRONTEND_ENV }} > frontend/.env
           cd frontend
           pwd
           ls
