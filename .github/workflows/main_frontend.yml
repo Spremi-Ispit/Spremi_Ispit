@@ -30,13 +30,13 @@ jobs:
           echo ${{ secrets.MAIN_FRONTEND_ENV }} > frontend/.env
           cd frontend
           pwd
-          ls
+          ls -a
 
       - name: Frontend before build
         run: |
           cd frontend
           pwd
-          ls
+          ls -a
 
       - name: 🔨 Build Project
         run: |
