@@ -43,7 +43,8 @@
     "populateDatabase": "npx tsx ./scripts/database/populate.ts",
     "generateTestData": "node ./scripts/database/_generateTestData.js",
     "deploy": "npm run build && node ./dist/scripts/deploy.js",
-    "zip": "npm run build && node ./dist/scripts/zip.js"
+    "zip": "npm run build && node ./dist/scripts/zip.js",
+    "gitCommitCaseSensitive": "npm run build && node ./dist/scripts/gitCommitCaseSensitive.js"
   },
   "author": "",
   "license": "ISC"

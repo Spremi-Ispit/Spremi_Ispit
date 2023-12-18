@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - main
-    # paths:
-    #   - "frontend/**/*"
+    paths:
+      - "frontend/**/*"
 
 jobs:
   web-deploy:
@@ -27,21 +27,13 @@ jobs:
 
       - name: Put to .env
         run: |
-          echo ${{ secrets.MAIN_FRONTEND_ENV }} > frontend/.env
           cd frontend
-          pwd
-          ls -a
-
-      - name: Frontend before build
-        run: |
-          cd frontend
+          echo ${{ secrets.MAIN_FRONTEND_ENV }} > .env
           pwd
           ls -a
 
       - name: 🔨 Build Project
         run: |
-          pwd
-          ls
           cd frontend
           npm install
           npm run build
