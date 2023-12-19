@@ -21,7 +21,7 @@ app.use('/backend/users', routes.usersRoutes);
 app.use('/backend/filters', routes.filtersRoutes);
 
 app.get('/backend/ping', (req, res) => {
-  res.send("🏓 Pong!");
+  res.send("🏓 Ping, pong!");
 });
 
 export const createApp = () => app;
