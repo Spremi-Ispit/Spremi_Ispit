@@ -32,8 +32,6 @@ jobs:
           cd backend
           npm install
           npm run build
-          mkdir tmp
-          mv dist package.json tmp
 
       - name: 📂 Upload
         uses: appleboy/scp-action@v0.1.4
@@ -42,7 +40,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
-          source: "backend/tmp"
+          source: "backend/dist,backend/package.json"
           target: backend
       - name: 🔄 Restart application
         uses: appleboy/ssh-action@v1.0.0
