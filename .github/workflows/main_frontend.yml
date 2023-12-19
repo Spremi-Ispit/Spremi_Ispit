@@ -1,4 +1,4 @@
-name: 🚀 Deploy on push master
+name: 🚀 Deploy frontend on push main
 
 on:
   push:
