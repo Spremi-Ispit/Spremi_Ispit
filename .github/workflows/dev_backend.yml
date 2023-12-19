@@ -1,15 +1,15 @@
 name: 🚀 Deploy backend on push dev
 
 on:
-  push
+  push:
     # branches:
     #   - dev
     # paths:
     #   - "backend/**/*"
 
 jobs:
-  build:
-    name: Build
+  build_and_deploy:
+    name: Build and Deploy
     runs-on: ubuntu-latest
     steps:
       - name: 🚚 Get latest code
@@ -32,32 +32,24 @@ jobs:
           cd backend
           npm install
           npm run build
-  upload:
-    name: Upload
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - name: copy file via ssh password
-      uses: appleboy/scp-action@v0.1.4
-      with:
-        host: ${{ secrets.SERVER }}
-        username: ${{ secrets.SSH_USERNAME }}
-        password: ${{ secrets.SSH_PASSWORD }}
-        port: ${{ secrets.SSH_PORT }}
-        source: "backend/dist/"
-        target: dev.spremiispit.com/backend
-  restart:
-    name: Restart
-    runs-on: ubuntu-latest
-    steps:
-    - name: executing remote ssh commands using password
-      uses: appleboy/ssh-action@v1.0.0
-      with:
-        host: ${{ secrets.SERVER }}
-        username: ${{ secrets.SSH_USERNAME }}
-        password: ${{ secrets.SSH_PASSWORD }}
-        port: ${{ secrets.SSH_PORT }}
-        script: |
-          cloudlinux-selector stop --interpreter nodejs --user spremiis --app-root /home/spremiis/dev.spremiispit.com/backend
-          cloudlinux-selector install-modules --interpreter nodejs --user spremiis --app-root /home/spremiis/dev.spremiispit.com/backend
-          cloudlinux-selector start --interpreter nodejs --user spremiis --app-root /home/spremiis/dev.spremiispit.com/backend
+
+      - name: 📂 Upload
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.SERVER }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: ${{ secrets.SSH_PORT }}
+          source: "backend/dist/"
+          target: dev.spremiispit.com/backend
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SERVER }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cloudlinux-selector stop --interpreter nodejs --user spremiis --app-root /home/spremiis/dev.spremiispit.com/backend
+            cloudlinux-selector install-modules --interpreter nodejs --user spremiis --app-root /home/spremiis/dev.spremiispit.com/backend
+            cloudlinux-selector start --interpreter nodejs --user spremiis --app-root /home/spremiis/dev.spremiispit.com/backend
