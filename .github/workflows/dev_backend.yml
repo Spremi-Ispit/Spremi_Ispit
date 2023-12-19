@@ -1,11 +1,11 @@
 name: 🚀 Deploy backend on push dev
 
 on:
-  push:
-    branches:
-      - dev
-    paths:
-      - "backend/**/*"
+  push
+    # branches:
+    #   - dev
+    # paths:
+    #   - "backend/**/*"
 
 jobs:
   build:
