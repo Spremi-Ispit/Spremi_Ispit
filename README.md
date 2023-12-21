@@ -7,19 +7,12 @@ Platforma se nalazi na:
 - `https://spremiispit.com/`
 <br/>
 
-**Zelis da se prikljucis razvoju?**
+**Zelis da se prikljucis razvoju? [Kontaktiraj nas](https://docs.google.com/document/d/1ktu2u97ZVWWkA9iWx_NgcXP7n91FJ2GnkX14wuvooW0/edit?usp=sharing)** 
 
-- [Rad na projektu](https://docs.google.com/document/d/1ktu2u97ZVWWkA9iWx_NgcXP7n91FJ2GnkX14wuvooW0/edit?usp=sharing)
+**Zelis da:**
+- [prijavis bag/predlozis feature](https://docs.google.com/document/d/1AefnDWibn1vOFxZAfTC9L-vOkv2DqdEr94SYz4Nx_4o/edit?usp=sharing)
+- [vidis na cemu se trenutno radi](https://trello.com/b/gF0nh6ti/spremiispit)
 
-**Zelis da prijavis bag?**
-
-- [Prijavi bag](https://docs.google.com/document/d/1AefnDWibn1vOFxZAfTC9L-vOkv2DqdEr94SYz4Nx_4o/edit)
-- [Bagovi koji se trenutno resavaju](https://trello.com/b/gF0nh6ti/spremiispit-bagovi)
-
-**Zelis da predlozis feature?**
-
-- [Predlozi feature](https://docs.google.com/document/d/1lioQpJ-_ftFTDAWsX8oLl_LilrZ1pzFI072O7fatrGo/edit?usp=sharing)
-- [Featuri koji se trenutno razvijaju](https://trello.com/b/2Z2MOeqO/spremiispit-featuers)
 
 ## Dokumentacija 
 
@@ -34,7 +27,6 @@ Platforma se nalazi na:
   - [Backend](https://docs.google.com/document/d/1cXAO0ck8LHWprjVG-H5cCPdwNGJ7icwVorjL45wxDB4/edit?usp=sharing)
   - [Problemi prilikom pokretanja](https://docs.google.com/document/d/1nfrieiwq_xHJP0rLRROuo7rsm7R1gXOOkml7KH5pdaw/edit?usp=sharing)
 - [Struktura projekta](https://docs.google.com/document/d/1Vq2z7Kx_fRaNpyl-2-wBLTEcomYKPWVxOzM2CHXtpzo/edit?usp=sharing)
-- [Upload na hosting](https://docs.google.com/document/d/1tPSE0MB331TDl-9uoBuCEFQy3UrlzqXEi1HE6Muv-CM/edit?usp=sharing)
 - [Rad sa Git-om](https://docs.google.com/document/d/118dBSjOZmIkGSI6xehqTRq-v22wReFTUcprthWl9aJM/edit?usp=sharing)
 - [VSCode ekstenzije](https://docs.google.com/document/d/1NniQqS0b02xZUTM7sHaBabt01OS-G_KODQHU9w9xUcY/edit?usp=sharing)
 
