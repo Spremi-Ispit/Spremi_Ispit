@@ -10,8 +10,8 @@ Platforma se nalazi na:
 **Zelis da se prikljucis razvoju? [Kontaktiraj nas](https://docs.google.com/document/d/1ktu2u97ZVWWkA9iWx_NgcXP7n91FJ2GnkX14wuvooW0/edit?usp=sharing)** 
 
 **Zelis da:**
-- [prijavis bag/predlozis feature](https://docs.google.com/document/d/1AefnDWibn1vOFxZAfTC9L-vOkv2DqdEr94SYz4Nx_4o/edit?usp=sharing)
-- [vidis na cemu se trenutno radi](https://trello.com/b/gF0nh6ti/spremiispit)
+- [Prijavis bag/predlozis feature](https://docs.google.com/document/d/1AefnDWibn1vOFxZAfTC9L-vOkv2DqdEr94SYz4Nx_4o/edit?usp=sharing)
+- [Vidis na cemu se trenutno radi](https://trello.com/b/gF0nh6ti/spremiispit)
 
 
 ## Dokumentacija 
