@@ -1,6 +1,6 @@
-import ErrorBoundary from "./components/ErrorBoundary";
-import useCorrectAppVersion from "./config/useCorrectAppVersion";
-import Router from "./router/Router";
+import ErrorBoundary from './components/ErrorBoundary';
+import useCorrectAppVersion from './config/useCorrectAppVersion';
+import Router from './router/Router';
 
 function App() {
   useCorrectAppVersion();
@@ -15,3 +15,4 @@ function App() {
 }
 
 export default App;
+// test;
