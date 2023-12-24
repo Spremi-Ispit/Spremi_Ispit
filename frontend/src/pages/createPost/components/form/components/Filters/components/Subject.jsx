@@ -4,7 +4,10 @@ import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { FormControl } from '@mui/material';
-import { useUrlManager } from '../../../../../../../utils/managers/UrlManager';
+import {
+  allowedUrlParams,
+  useUrlManager,
+} from '../../../../../../../utils/managers/UrlManager';
 import { useApiActions } from '../../../../../../../api/useApiActions';
 
 const SubjectDiv = styled.div`

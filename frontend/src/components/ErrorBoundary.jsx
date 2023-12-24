@@ -31,12 +31,23 @@ export class ErrorBoundary extends React.Component {
     if (this.state.hasError) {
       return (
         <ErrorBoundaryDiv>
-          <h2>Error:</h2>
+          <h1>Oops! :(</h1>
           <br />
-          <h3>{this.state.error.toString()}</h3>
+          <h4>
+            Desila se nepoznata greska, ali da bi smo je resili treba da nam
+            objasnis kako je do nje doslo! :)
+          </h4>
+          <br />
+          <a
+            as="a"
+            href="https://docs.google.com/document/d/1AefnDWibn1vOFxZAfTC9L-vOkv2DqdEr94SYz4Nx_4o/edit?usp=sharing"
+            target="_blank"
+          >
+            🐞Prijavi gresku
+          </a>
           <br />
           <br />
-          <h4>Please contact the admin.</h4>
+          <p>{this.state.error.toString()}</p>
         </ErrorBoundaryDiv>
       );
     }

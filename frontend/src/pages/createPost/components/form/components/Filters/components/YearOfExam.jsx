@@ -47,7 +47,7 @@ export const YearOfExam = () => {
 
   return (
     <ExamDiv>
-      <FormControl size="small" fullWidth>
+      <FormControl size="small" fullWidth variant="standard">
         <InputLabel shrink>Godina</InputLabel>
         <Select
           value={urlYearOfExam ?? ''}

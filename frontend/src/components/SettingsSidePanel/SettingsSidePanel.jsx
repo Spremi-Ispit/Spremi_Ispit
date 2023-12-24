@@ -51,6 +51,7 @@ export const SettingsSidePanel = () => {
   if (!token) {
     return null;
   }
+  aaa;
 
   return (
     <SidePanelPlaceHolderDiv
@@ -62,9 +63,9 @@ export const SettingsSidePanel = () => {
       >
         {authItems.map((item, index) => {
           if (index % 2 === 0) {
-            return <ItemDiv>{item}</ItemDiv>;
+            return <ItemDiv key={item}>{item}</ItemDiv>;
           } else {
-            return <GreyItemDiv>{item}</GreyItemDiv>;
+            return <GreyItemDiv key={item}>{item}</GreyItemDiv>;
           }
         })}
       </OpenedPanelOverlayDiv>
