@@ -51,7 +51,6 @@ export const SettingsSidePanel = () => {
   if (!token) {
     return null;
   }
-  aaa;
 
   return (
     <SidePanelPlaceHolderDiv
