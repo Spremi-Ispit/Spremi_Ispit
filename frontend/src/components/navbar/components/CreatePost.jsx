@@ -11,18 +11,18 @@ const StyledButton = styled(Button)`
   font-weight: bold;
   background-color: ${colors.background};
   color: black;
-
+`;
+const StyledNavLink = styled(NavLink)`
   :hover {
-    background-color: ${colors.filteri};
-    color: white;
+    text-decoration: none;
   }
 `;
 
 const CreatePost = () => {
   return (
-    <NavLink to={`${createPostRoute}`}>
+    <StyledNavLink to={`${createPostRoute}`}>
       <StyledButton>Kreiraj objavu</StyledButton>
-    </NavLink>
+    </StyledNavLink>
   );
 };
 
