@@ -23,7 +23,6 @@ UPDATE `post` SET title = 'Naslov7' WHERE id = 7;
 UPDATE `post` SET title = 'Naslov8' WHERE id = 8;
 UPDATE `post` SET title = 'Naslov9' WHERE id = 9;
 UPDATE `post` SET title = 'Naslov10' WHERE id = 10;
-UPDATE `post` SET title = 'Bag' WHERE id = 11;
 
 UPDATE `post` SET text = 'Danasnji blanket' WHERE id = 1;
 UPDATE `post` SET text = 'quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto' WHERE id = 2;
@@ -35,4 +34,3 @@ UPDATE `post` SET text = 'ut aspernatur corporis harum nihil quis provident sequ
 UPDATE `post` SET text = 'dolore placeat quibusdam ea quo vitae\nmagni quis enim qui quis quo nemo aut saepe\nquidem repellat excepturi ut quia\nsunt ut sequi eos ea sed quas' WHERE id = 8;
 UPDATE `post` SET text = 'dignissimos aperiam dolorem qui eum\nfacilis quibusdam animi sint suscipit qui sint possimus cum\nquaerat magni maiores excepturi\nipsam ut commodi dolor voluptatum modi aut vitae' WHERE id = 9;
 UPDATE `post` SET text = 'consectetur animi nesciunt iure dolore\nenim quia ad\nveniam autem ut quam aut nobis\net est aut quod aut provident voluptas autem voluptas' WHERE id = 10;
-UPDATE `post` SET text = 'Prijavi bag' WHERE id = 11;
