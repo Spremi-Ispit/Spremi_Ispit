@@ -1,9 +1,7 @@
 import React from 'react';
 import { ImageView } from './components/ImageView';
-import { PDFView } from './components/PDFView';
 import { VideoView } from './components/VideoView';
 import { FilesSelector } from '../../../../utils/managers/FilesSelector';
-import DocumentView from './components/DocumentView';
 import GoogleDocsViewer from './components/GoogleDocsViewer';
 
 export const MainView = ({ file }) => {
@@ -15,17 +13,16 @@ export const MainView = ({ file }) => {
     return <ImageView file={file} />;
   }
 
-  if (filesSelector.isFileDocument(file)) {
+  if (filesSelector.isFileDoc(file)) {
     return <GoogleDocsViewer file={file} />;
   }
 
   if (filesSelector.isFileText(file)) {
-    return <DocumentView file={file} />;
+    return <GoogleDocsViewer file={file} />;
   }
 
   if (filesSelector.isFilePDF(file)) {
     return <GoogleDocsViewer file={file} />;
-    // return <PDFView file={file} />;
   }
 
   if (filesSelector.isFileVideo(file)) {
