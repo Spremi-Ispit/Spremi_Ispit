@@ -6,7 +6,6 @@ import Typography from '@mui/material/Typography';
 import UploadProgress from '../../../../../components/UploadProgress';
 import FileUploader from '../../../../../components/FileUploader';
 import { useUrlManager } from '../../../../../utils/managers/UrlManager';
-import FileViewer from '../../../../../components/fileViewer/FileViewer';
 import Dialog from '../../../../..//components/dialogs/Dialog';
 import { Button } from '../../../../../components/buttons/Button';
 import { useAppActions } from '../../../../../redux/useAppActions';
@@ -53,11 +52,16 @@ const ControllsContainer = styled.div`
   justify-content: center;
 `;
 
+const UploadedDiv = styled.div`
+  display: flex;
+  gap: 5px;
+`;
+
 export const Form = () => {
   const token = useSelector(selectToken);
   const navigate = useNavigate();
   const [message, setMessage] = useState('');
-  const [attachments, setAttachemnts] = useState([]);
+  const [files, setFiles] = useState([]);
   const [description, setDescription] = useState('');
   const [uploadProgress, setUploadProgress] = useState(0);
   const urlManager = useUrlManager();
@@ -66,12 +70,13 @@ export const Form = () => {
   const { loading, error, setError, loaded, action } = addComment;
   const { viewPostActions } = useAppActions();
   const { setCommentsLoading } = viewPostActions;
+  const [activeFileIndex, setActiveFileIndex] = useState(0);
 
   useEffect(() => {
     if (!loading) {
       setMessage('');
       setDescription('');
-      setAttachemnts([]);
+      setFiles([]);
     }
   }, [loading]);
 
@@ -103,7 +108,7 @@ export const Form = () => {
     if (checkCommentParams()) {
       const comment = {
         description,
-        attachments,
+        attachments: files,
       };
       action(comment, urlPostId, setUploadProgress);
     }
@@ -131,20 +136,34 @@ export const Form = () => {
     return null;
   };
 
+  const handleChange = (event) => {
+    const value = event.target.value;
+    const selectedFileIndex = files.findIndex((el) => el.name === value);
+    setActiveFileIndex(selectedFileIndex);
+  };
+
   return (
     <StyledPaper elevation={0} onClick={handleFormClick}>
-      <FileViewer
-        files={attachments.map((attachment) => ({
-          src: URL.createObjectURL(attachment),
-          name: attachment.name,
-        }))}
-      />
       <StyledTextareaAutosize
         minRows={10}
         onChange={handleTextareaChange}
         value={description}
       />
-      <FileUploader setFiles={setAttachemnts} files={attachments} />
+      {!!files.length && (
+        <UploadedDiv>
+          <label>Dodali ste:</label>
+          <select value={files[activeFileIndex].name} onChange={handleChange}>
+            {files.map((file) => {
+              return (
+                <option value={file.name} key={file.src}>
+                  {file.name.split('/').pop()}
+                </option>
+              );
+            })}
+          </select>
+        </UploadedDiv>
+      )}
+      <FileUploader setFiles={setFiles} files={files} />
       <ControllsContainer>
         <Button disabled={loading} onClick={onSubmit} variant="outlined">
           <ControllsText variant="button" color="inherit">
