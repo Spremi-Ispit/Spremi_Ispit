@@ -81,7 +81,7 @@ const ForgotPasswordDiv = styled.div`
 
   cursor: pointer;
 
-  :hover {
+  :active {
     text-decoration: underline;
   }
 `;

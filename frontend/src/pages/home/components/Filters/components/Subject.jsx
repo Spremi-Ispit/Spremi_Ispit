@@ -5,6 +5,7 @@ import {
   useUrlManager,
 } from '../../../../../utils/managers/UrlManager';
 import { useApiActions } from '../../../../../api/useApiActions';
+import { fonts } from '../../../../../theme/fonts';
 
 const SubjectDiv = styled.div`
   display: flex;
@@ -12,6 +13,15 @@ const SubjectDiv = styled.div`
   flex: 1;
 `;
 
+const Label = styled.div`
+  margin-bottom: 10px;
+  ${fonts(15, 600, 'italic', 'Libre Bodoni')}
+`;
+
+const Select = styled.select`
+  height: 2em;
+  ${fonts(15, 600, 'normal', 'Libre Bodoni')}
+`;
 export const Subject = () => {
   const urlManager = useUrlManager();
   const { urlYearOfStudy, urlDepartment, urlSubject } = urlManager.getParams();
@@ -46,8 +56,8 @@ export const Subject = () => {
 
   return (
     <SubjectDiv>
-      <label>Predmet </label>
-      <select value={urlSubject ?? ''} onChange={handleChange}>
+      <Label>Predmet </Label>
+      <Select value={urlSubject ?? ''} onChange={handleChange}>
         <option value="">Sve</option>
         {!loaded || subjects.length === 0 || !urlDepartment
           ? null
@@ -56,7 +66,7 @@ export const Subject = () => {
                 {subject.name}
               </option>
             ))}
-      </select>
+      </Select>
     </SubjectDiv>
   );
 };

@@ -5,11 +5,21 @@ import {
   useUrlManager,
 } from '../../../../../utils/managers/UrlManager';
 import { useApiActions } from '../../../../../api/useApiActions';
+import { fonts } from '../../../../../theme/fonts';
 
 const TypeDiv = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
+`;
+const Label = styled.div`
+  margin-bottom: 10px;
+  ${fonts(15, 600, 'italic', 'Libre Bodoni')}
+`;
+
+const Select = styled.select`
+  height: 2em;
+  ${fonts(15, 600, 'normal', 'Libre Bodoni')}
 `;
 
 const Type = () => {
@@ -44,8 +54,8 @@ const Type = () => {
 
   return (
     <TypeDiv>
-      <label>Tip</label>
-      <select value={urlType ?? ''} onChange={handleChange}>
+      <Label>Tip</Label>
+      <Select value={urlType ?? ''} onChange={handleChange}>
         <option value="">Sve</option>
         {!loaded || types.length === 0 || !urlSubject
           ? null
@@ -54,7 +64,7 @@ const Type = () => {
                 {type.name}
               </option>
             ))}
-      </select>
+      </Select>
     </TypeDiv>
   );
 };

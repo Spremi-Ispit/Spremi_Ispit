@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import colors from '../theme/colors';
 import CopyrightIcon from '@mui/icons-material/Copyright';
 import { Link, NavLink } from 'react-router-dom';
+import { screensCSS } from '../utils/useScreens';
 
 const FooterDiv = styled.footer`
   background-color: ${colors.footer};
@@ -13,6 +14,10 @@ const FooterDiv = styled.footer`
 
 const CaregoriesDiv = styled.div`
   display: flex;
+
+  @media ${screensCSS.tablet} {
+    display: grid;
+  }
 `;
 
 const CopyRightDiv = styled.div`
@@ -24,6 +29,14 @@ const CopyRightDiv = styled.div`
   padding: 5px;
   color: white;
   background-color: ${colors.filteri};
+
+  @media ${screensCSS.tablet} {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    justify-items: center;
+    flex-direction: column;
+  }
 `;
 
 const SectionDiv = styled.div`
