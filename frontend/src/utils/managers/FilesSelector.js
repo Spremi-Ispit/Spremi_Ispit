@@ -32,7 +32,7 @@ export class FilesSelector {
     return false;
   }
 
-  isFileDocument(file) {
+  isFileDoc(file) {
     return this.#checkFileType(file, supporetdTypes.doc, supporetdTypes.docx);
   }
 

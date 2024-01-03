@@ -13,7 +13,6 @@ import { useUrlManager } from '../../../../utils/managers/UrlManager';
 import { useApiActions } from '../../../../api/useApiActions';
 import Filters from './components/Filters/Fliters';
 import FileUploader from '../../../../components/FileUploader';
-import FileViewer from '../../../../components/fileViewer/FileViewer';
 
 const StyledPaper = styled(Paper)`
   && {
@@ -24,9 +23,14 @@ const StyledPaper = styled(Paper)`
   }
 `;
 
+const UploadedDiv = styled.div`
+  display: flex;
+  gap: 5px;
+`;
+
 export const Form = () => {
   const [message, setMessage] = useState('');
-  const [attachments, setAttachemnts] = useState([]);
+  const [files, setFiles] = useState([]);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const navigate = useNavigate();
@@ -34,6 +38,7 @@ export const Form = () => {
   const { createPost } = useApiActions();
   const { error, setError, action, loaded, loading } = createPost;
   const urlManager = useUrlManager();
+  const [activeFileIndex, setActiveFileIndex] = useState(0);
 
   const onSubmit = () => {
     const {
@@ -68,7 +73,7 @@ export const Form = () => {
     const post = {
       title,
       description,
-      attachments,
+      attachments: files,
       filters: {
         subject: urlSubject,
         type: urlType,
@@ -102,18 +107,31 @@ export const Form = () => {
     return null;
   };
 
+  const handleChange = (event) => {
+    const value = event.target.value;
+    const selectedFileIndex = files.findIndex((el) => el.name === value);
+    setActiveFileIndex(selectedFileIndex);
+  };
+
   return (
     <StyledPaper elevation={0}>
       <Title setTitle={setTitle} />
       <Content setDescription={setDescription} />
-      <FileViewer
-        files={attachments.map((attachment) => ({
-          src: URL.createObjectURL(attachment),
-          name: attachment.name,
-        }))}
-        hideActions
-      />
-      <FileUploader setFiles={setAttachemnts} files={attachments} />
+      {!!files.length && (
+        <UploadedDiv>
+          <label>Dodali ste:</label>
+          <select value={files[activeFileIndex].name} onChange={handleChange}>
+            {files.map((file) => {
+              return (
+                <option value={file.name} key={file.src}>
+                  {file.name.split('/').pop()}
+                </option>
+              );
+            })}
+          </select>
+        </UploadedDiv>
+      )}
+      <FileUploader setFiles={setFiles} files={files} />
       <Filters />
       <Actions onSubmit={onSubmit} onCancel={onCancel} uploading={loading} />
       {uploadProgessComponent()}
