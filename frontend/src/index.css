@@ -1,17 +1,18 @@
 #root {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   position: relative;
   background-color: #efefef;
-}
-
-body {
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  min-width: fit-content;
+  min-height: 100vh;
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+    sans-serif;
 }

@@ -46,8 +46,14 @@ const SectionDiv = styled.div`
   flex-direction: column;
   text-align: justify;
   padding: 10px;
-  padding-left: 50px;
-  padding-right: 50px;
+
+  @media ${screensCSS.tablet} {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    justify-items: center;
+    flex-direction: column;
+  }
 `;
 
 const LeftDiv = styled(SectionDiv)``;

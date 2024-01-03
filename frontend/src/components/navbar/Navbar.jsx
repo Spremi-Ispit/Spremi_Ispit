@@ -12,25 +12,70 @@ import LoginRegister from './components/LoginRegister';
 const headerHeight = 64;
 
 const NavbarDiv = styled.div`
-  position: relative;
-  height: ${headerHeight}px;
-`;
-
-const StyledNav = styled.nav`
-  position: fixed;
-  height: ${headerHeight}px;
-  display: flex;
   align-items: center;
-  width: 100%;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  min-width: fit-content;
   background-color: #222328;
   z-index: 999;
+  height: ${headerHeight}px;
+
+  /* GRID LAYOUT */
+  display: grid;
+
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  gap: 0px;
+  height: 100%;
 `;
 
-const SideDiv = styled.div`
+const LeftDiv = styled.div`
   padding: 0px 10px;
   display: flex;
   align-items: center;
   white-space: nowrap;
+
+  /* GRID LAYOUT */
+
+  grid-row-start: 1;
+  grid-column-start: 1;
+
+  grid-row-end: 2;
+  grid-column-end: 2;
+`;
+
+const MiddleDiv = styled.div`
+  padding: 0px 10px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+
+  /* GRID LAYOUT */
+
+  grid-row-start: 1;
+  grid-column-start: 2;
+
+  grid-row-end: 2;
+  grid-column-end: 3;
+`;
+
+const RightDiv = styled.div`
+  padding: 0px 10px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+
+  /* GRID LAYOUT */
+
+  grid-row-start: 1;
+  grid-column-start: 3;
+
+  grid-row-end: 2;
+  grid-column-end: 4;
+
+  justify-content: end;
 `;
 
 export const Navbar = () => {
@@ -38,17 +83,17 @@ export const Navbar = () => {
 
   return (
     <NavbarDiv>
-      <StyledNav>
-        <SideDiv>
-          <SettingsSidePanelMenu />
-          <Logo />
-        </SideDiv>
+      <LeftDiv>
+        <SettingsSidePanelMenu />
+        <Logo />
+      </LeftDiv>
+      <MiddleDiv>
         <Search />
-        <SideDiv>
-          <CreatePost />
-          {!token ? <LoginRegister /> : <Logout />}
-        </SideDiv>
-      </StyledNav>
+      </MiddleDiv>
+      <RightDiv>
+        <CreatePost />
+        {!token ? <LoginRegister /> : <Logout />}
+      </RightDiv>
     </NavbarDiv>
   );
 };
