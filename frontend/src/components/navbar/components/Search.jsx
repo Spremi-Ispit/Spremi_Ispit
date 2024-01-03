@@ -46,7 +46,8 @@ export const Search = () => {
     <SearchDiv>
       <input
         type="text"
-        placeholder="Pretraga po naslovu ili sadržaju.."
+        size="4"
+        placeholder="Pretraga po naslovu ili sadržaju..."
         defaultValue={urlSearch}
         onChange={debounce(handleOnChange, 500)}
       />

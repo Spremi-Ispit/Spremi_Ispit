@@ -1,10 +1,20 @@
 import React from 'react';
+import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import NavLink from './components/NavLink';
 import { selectToken } from '../../../redux/app/selectors';
 import { useAuthManager } from '../../../utils/managers/AuthManager';
+import { screens, useScreens } from '../../../utils/useScreens';
+import LogoutIcon from '@mui/icons-material/Logout';
+
+const StyleNavLink = styled(NavLink)`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+`;
 
 const Logout = () => {
+  const screen = useScreens();
   const token = useSelector(selectToken);
   const authManager = useAuthManager();
 
@@ -12,7 +22,11 @@ const Logout = () => {
     return null;
   }
 
-  return <NavLink onClick={() => authManager.logout()}>Odjavi se</NavLink>;
+  return (
+    <StyleNavLink onClick={() => authManager.logout()}>
+      {screen > screens.tablet && 'Odjavi se'} <LogoutIcon />
+    </StyleNavLink>
+  );
 };
 
 export default Logout;
