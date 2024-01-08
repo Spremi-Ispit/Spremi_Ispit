@@ -5,7 +5,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import styled from 'styled-components';
 import { selectToken } from '../../../redux/app/selectors';
 import NavLink from './components/NavLink';
-import { loginRoute } from '../../../router/routes';
+import { loginRoute, registerRoute } from '../../../router/routes';
 import { screens, useScreens } from '../../../utils/useScreens';
 
 const StyleNavLink = styled(NavLink)`
@@ -22,16 +22,15 @@ const LoginRegister = () => {
     return null;
   }
 
-  if (location.pathname !== loginRoute) {
-    return (
-      <StyleNavLink to={`${loginRoute}`}>
-        {screen > screens.tablet && 'Prijava'} <LoginIcon />
-      </StyleNavLink>
-    );
-  } else {
-    // return <NavLink to={`${registerRoute}`}>Registracija</NavLink>;
-    return <StyleNavLink to={`${loginRoute}`}>Registracija</StyleNavLink>;
+  if (location.pathname === loginRoute) {
+    return <StyleNavLink to={`${registerRoute}`}>Registracija</StyleNavLink>;
   }
+
+  return (
+    <StyleNavLink to={`${loginRoute}`}>
+      {screen > screens.tablet && 'Prijava'} <LoginIcon />
+    </StyleNavLink>
+  );
 };
 
 export default LoginRegister;
