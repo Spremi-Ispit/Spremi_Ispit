@@ -4,6 +4,7 @@ import logo from '../../../assets/Logo.jpg';
 import { homeRoute } from '../../../router/routes';
 import NavLink from './components/NavLink';
 import { fonts } from '../../../theme/fonts';
+import { screens, useScreens } from '../../../utils/useScreens';
 
 const StyledNavLink = styled(NavLink)`
   display: flex;
@@ -25,11 +26,14 @@ const SpremiIspitLabel = styled.label`
 `;
 
 export const Logo = () => {
+  const screen = useScreens();
   return (
     <LogoDiv>
       <StyledNavLink to={`${homeRoute}`}>
         <StyledImg src={logo} alt="logo" />
-        <SpremiIspitLabel>Spremi Ispit</SpremiIspitLabel>
+        {screen > screens.tablet && (
+          <SpremiIspitLabel>Spremi Ispit</SpremiIspitLabel>
+        )}
       </StyledNavLink>
     </LogoDiv>
   );

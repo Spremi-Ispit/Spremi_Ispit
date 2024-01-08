@@ -5,11 +5,21 @@ import {
   useUrlManager,
 } from '../../../../../utils/managers/UrlManager';
 import { useApiActions } from '../../../../../api/useApiActions';
+import { fonts } from '../../../../../theme/fonts';
 
 const ExaminationPeriodDiv = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
+`;
+const Label = styled.label`
+  margin-bottom: 10px;
+  ${fonts(15, 600, 'italic', 'Libre Bodoni')}
+`;
+
+const Select = styled.select`
+  height: 2em;
+  ${fonts(15, 600, 'normal', 'Libre Bodoni')}
 `;
 
 const ExaminationPeriod = () => {
@@ -46,8 +56,8 @@ const ExaminationPeriod = () => {
 
   return (
     <ExaminationPeriodDiv>
-      <label>Ispitni rok</label>
-      <select value={urlExaminationPeriod ?? ''} onChange={handleChange}>
+      <Label>Ispitni rok</Label>
+      <Select value={urlExaminationPeriod ?? ''} onChange={handleChange}>
         <option value="">Sve</option>
         {!loaded || examinationPeriods.length === 0 || !urlType
           ? null
@@ -59,7 +69,7 @@ const ExaminationPeriod = () => {
                 {examinationPeriod.name}
               </option>
             ))}
-      </select>
+      </Select>
     </ExaminationPeriodDiv>
   );
 };

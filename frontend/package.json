@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "node ./scripts/start.js",
+    "dev": "vite --host",
     "setupEnv": "node ./scripts/setupEnv.js",
     "deploy": "node ./scripts/deploy.js",
     "build": "tsc && vite build",

@@ -5,19 +5,33 @@ import {
   allowedUrlParams,
   useUrlManager,
 } from '../../../utils/managers/UrlManager';
+import search_icon_dark from '../../../assets/search-b.png';
 
 const SearchDiv = styled.div`
-  width: 100%;
-  padding: 0px 20px;
   display: flex;
-  justify-content: center;
-  height: 40px;
-`;
-
-const SearchInput = styled.input`
-  flex: 1;
-  max-width: 600px;
+  align-items: center;
+  background: #fff;
   padding: 0px 10px;
+  border-radius: 50px;
+  flex: 1;
+
+  input {
+    flex: 1;
+    padding: 6px;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    color: #222;
+
+    &::placeholder {
+      color: #222;
+    }
+  }
+
+  img {
+    width: 20px;
+    cursor: pointer;
+  }
 `;
 
 export const Search = () => {
@@ -30,12 +44,14 @@ export const Search = () => {
 
   return (
     <SearchDiv>
-      <SearchInput
-        defaultValue={urlSearch}
+      <input
         type="text"
-        placeholder="Pretraga po naslovu ili sadržaju.."
+        size="4"
+        placeholder="Pretraga po naslovu ili sadržaju..."
+        defaultValue={urlSearch}
         onChange={debounce(handleOnChange, 500)}
       />
+      <img src={search_icon_dark} alt="" />
     </SearchDiv>
   );
 };

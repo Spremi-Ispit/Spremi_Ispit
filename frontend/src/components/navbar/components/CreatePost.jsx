@@ -1,16 +1,22 @@
 import React from 'react';
-import Button from '../../buttons/Button';
 import styled from 'styled-components';
+import PostAddIcon from '@mui/icons-material/PostAdd';
+import Button from '../../buttons/Button';
 import NavLink from './components/NavLink';
 import { createPostRoute } from '../../../router/routes';
 import colors from '../../../theme/colors';
+import { screens, useScreens } from '../../../utils/useScreens';
+
+const StyledPostAddIcon = styled(PostAddIcon)``;
 
 const StyledButton = styled(Button)`
-  text-transform: uppercase;
   font-size: small;
   font-weight: bold;
   background-color: ${colors.background};
   color: black;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 `;
 const StyledNavLink = styled(NavLink)`
   :hover {
@@ -19,9 +25,15 @@ const StyledNavLink = styled(NavLink)`
 `;
 
 const CreatePost = () => {
+  const screen = useScreens();
+
   return (
     <StyledNavLink to={`${createPostRoute}`}>
-      <StyledButton>Kreiraj objavu</StyledButton>
+      {
+        <StyledButton>
+          {screen > screens.tablet && 'Kreiraj objavu'} <StyledPostAddIcon />
+        </StyledButton>
+      }
     </StyledNavLink>
   );
 };

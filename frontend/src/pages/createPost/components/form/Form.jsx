@@ -121,9 +121,9 @@ export const Form = () => {
         <UploadedDiv>
           <label>Dodali ste:</label>
           <select value={files[activeFileIndex].name} onChange={handleChange}>
-            {files.map((file) => {
+            {files.map((file, index) => {
               return (
-                <option value={file.name} key={file.src}>
+                <option value={file.name} key={index}>
                   {file.name.split('/').pop()}
                 </option>
               );

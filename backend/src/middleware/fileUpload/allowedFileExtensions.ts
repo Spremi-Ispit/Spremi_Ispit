@@ -3,10 +3,10 @@ const images = ['.jpg', '.png', '.jpeg'];
 const docs = ['.pdf', '.doc', '.docx', '.txt'];
 const videos = ['.mp4'];
 
-const allowed_ext = {
-  images: images,
-  docs: docs,
-  videos: videos
+export const allowedFileExtensions = {
+  images,
+  docs,
+  videos
 };
 
-export default allowed_ext;
+export const allowedFileExtensionsArray = [...images, docs, videos];

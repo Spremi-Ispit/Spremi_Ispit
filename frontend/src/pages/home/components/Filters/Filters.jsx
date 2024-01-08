@@ -7,6 +7,7 @@ import Type from './components/Type';
 import YearOfExam from './components/YearOfExam';
 import ExaminationPeriod from './components/ExaminationPeriod';
 import Order from './components/Order';
+import { screensCSS } from '../../../../utils/useScreens';
 
 const FiltersDiv = styled.div`
   display: flex;
@@ -22,6 +23,11 @@ const FiltersHeaderDiv = styled.div`
 const FiltersContainerDiv = styled.div`
   display: flex;
   gap: 20px;
+
+  @media ${screensCSS.tablet} {
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+  }
 `;
 
 const Filters = () => {

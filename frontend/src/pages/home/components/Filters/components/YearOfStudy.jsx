@@ -5,11 +5,21 @@ import {
   useUrlManager,
 } from '../../../../../utils/managers/UrlManager';
 import { useApiActions } from '../../../../../api/useApiActions';
+import { fonts } from '../../../../../theme/fonts';
 
 const YearOfStudyDiv = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
+`;
+
+const Label = styled.div`
+  margin-bottom: 10px;
+  ${fonts(15, 600, 'italic', 'Libre Bodoni')}
+`;
+const Select = styled.select`
+  height: 2em;
+  ${fonts(15, 600, 'normal', 'Libre Bodoni')}
 `;
 
 export const YearOfStudy = () => {
@@ -50,15 +60,15 @@ export const YearOfStudy = () => {
 
   return (
     <YearOfStudyDiv>
-      <label>Godina studija </label>
-      <select value={urlYearOfStudy ?? ''} onChange={handleChange}>
+      <Label>Godina studija </Label>
+      <Select value={urlYearOfStudy ?? ''} onChange={handleChange}>
         <option value="">Sve</option>
         {yearsOfStudy.map((urlYearOfStudy) => (
           <option key={urlYearOfStudy.name} value={urlYearOfStudy.name}>
             {urlYearOfStudy.name}
           </option>
         ))}
-      </select>
+      </Select>
     </YearOfStudyDiv>
   );
 };

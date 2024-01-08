@@ -5,11 +5,21 @@ import {
   useUrlManager,
 } from '../../../../../utils/managers/UrlManager';
 import { useApiActions } from '../../../../../api/useApiActions';
+import { fonts } from '../../../../../theme/fonts';
 
 const DepartmentDiv = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
+`;
+
+const Label = styled.div`
+  margin-bottom: 10px;
+  ${fonts(15, 600, 'italic', 'Libre Bodoni')}
+`;
+const Select = styled.select`
+  height: 2em;
+  ${fonts(15, 600, 'normal', 'Libre Bodoni')}
 `;
 
 export const Department = () => {
@@ -47,8 +57,8 @@ export const Department = () => {
 
   return (
     <DepartmentDiv>
-      <label>Smer</label>
-      <select value={urlDepartment ?? ''} onChange={handleChange}>
+      <Label>Smer</Label>
+      <Select value={urlDepartment ?? ''} onChange={handleChange}>
         <option value="">Sve</option>
         {!loaded || departments.length === 0 || !urlYearOfStudy
           ? null
@@ -57,7 +67,7 @@ export const Department = () => {
                 {department.name}
               </option>
             ))}
-      </select>
+      </Select>
     </DepartmentDiv>
   );
 };
