@@ -62,9 +62,9 @@ export const SettingsSidePanel = () => {
       >
         {authItems.map((item, index) => {
           if (index % 2 === 0) {
-            return <ItemDiv key={item}>{item}</ItemDiv>;
+            return <ItemDiv key={index}>{item}</ItemDiv>;
           } else {
-            return <GreyItemDiv key={item}>{item}</GreyItemDiv>;
+            return <GreyItemDiv key={index}>{item}</GreyItemDiv>;
           }
         })}
       </OpenedPanelOverlayDiv>

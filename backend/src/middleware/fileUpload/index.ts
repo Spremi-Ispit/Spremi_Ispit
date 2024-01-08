@@ -1,35 +1,22 @@
 // @ts-nocheck
-import fileUpload from 'express-fileupload';
-import filesPayloadExists from './filesPayloadExists';
-import fileExtLimiter from './fileExtLimiter';
-import fileSizeLimiter from './fileSizeLimiter';
-import allowed_ext from './allowedFileExtensions';
+import { createFileUploadMiddleware } from './createFileUploadMiddleware';
+import { checkFilesPayload } from './checkFilesPayload';
+import checkFilesExtension from './checkFilesExtension';
+import checkFilesCount from './checkFilesCount';
 
-function recursion(obj, numOfKeys) {
-  if (numOfKeys < 0) return [];
-  const key = Object.keys(obj)[numOfKeys]; //fetched the key at second index
-  return obj[key].concat(recursion(obj, numOfKeys - 1));
-}
+const fileUploadMiddleware = async (req, res, next) => {
+  try {
+    await createFileUploadMiddleware(req, res);
+    await checkFilesPayload(req, res);
+    // await checkFilesExtension(req, res);
+    // await checkFilesCount(req, res);
+  } catch (err) {
+    console.log(err);
+    err.response = 'File upload failed: ' + err.response;
+    return res.status(err.statusCode).send(err);
+  }
 
-export const fileMiddleware = (req, res, next) => {
-  const fileUploadMiddleware = fileUpload({ createParentPath: true });
-  const filesPayloadExistsMiddleware = filesPayloadExists;
-  const fileExtLimiterMiddleware = fileExtLimiter(
-    recursion(allowed_ext, Object.keys(allowed_ext).length - 1)
-  );
-  const fileSizeLimiterMiddleware = fileSizeLimiter;
-
-  fileUploadMiddleware(req, res, (err) => {
-    if (err) {
-      return res.status(500).json({ error: 'File upload failed.' });
-    }
-
-    filesPayloadExistsMiddleware(req, res, (err) => {
-      fileExtLimiterMiddleware(req, res, (err) => {
-        fileSizeLimiterMiddleware(req, res, (err) => {
-          next();
-        });
-      });
-    });
-  });
+  next();
 };
+
+export default fileUploadMiddleware;

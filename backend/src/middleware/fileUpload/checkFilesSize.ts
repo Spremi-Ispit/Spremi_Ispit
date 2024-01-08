@@ -2,6 +2,7 @@
 import path from 'path';
 import allowed_ext from './allowedFileExtensions';
 import response from '../../utils/response';
+import { extractFiles } from './extractFiles';
 
 const IMAGE_MB = 5;
 const DOC_MB = 5;
@@ -10,21 +11,8 @@ const IMAGE_SIZE_LIMIT = IMAGE_MB * 1024 * 1024; // 5 MB
 const DOC_SIZE_LIMIT = DOC_MB * 1024 * 1024; // 5 MB
 const VIDEO_SIZE_LIMIT = VIDEO_MB * 1024 * 1024; // 500 MB
 
-const fileSizeLimiter = (req, res, next) => {
-  const files = req.files;
-  const images = [];
-  const docs = [];
-  const videos = [];
-
-  Object.keys(files).forEach((key) => {
-    if (allowed_ext.images.includes(path.extname(files[key].name))) {
-      images.push(files[key]);
-    } else if (allowed_ext.docs.includes(path.extname(files[key].name))) {
-      docs.push(files[key]);
-    } else if (allowed_ext.videos.includes(path.extname(files[key].name))) {
-      videos.push(files[key]);
-    }
-  });
+const checkFilesSize = (req, res, next) => {
+  const { docs, images, videos } = extractFiles(req);
 
   if (images.length > 10)
     return response.BAD_REQUEST("Images number can't be greater than 10");
@@ -68,4 +56,4 @@ function checkFilesSizeLimit(filesToCheck, limit) {
   return largeFiles;
 }
 
-export default fileSizeLimiter;
+export default checkFilesSize;
