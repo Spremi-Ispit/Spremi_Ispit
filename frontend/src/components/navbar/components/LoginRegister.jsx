@@ -10,9 +10,12 @@ import { screens, useScreens } from '../../../utils/useScreens';
 
 const StyleNavLink = styled(NavLink)`
   display: flex;
-  align-items: center;
-  gap: 5px;
+  :hover {
+    border-bottom: 1px solid white;
+    text-decoration: none;
+  }
 `;
+
 const LoginRegister = () => {
   const screen = useScreens();
   const location = useLocation();
@@ -25,6 +28,9 @@ const LoginRegister = () => {
   if (location.pathname === loginRoute) {
     return <StyleNavLink to={`${registerRoute}`}>Registracija</StyleNavLink>;
   }
+
+  // Register link should be visible in the navbar only on the login page,
+  // on every other page there should be Login link
 
   return (
     <StyleNavLink to={`${loginRoute}`}>

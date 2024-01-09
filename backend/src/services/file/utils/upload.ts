@@ -38,28 +38,28 @@ function getExtension(file) {
 
 export async function uploadFile(req, id, directory) {
   const files = req.files;
-  Object.keys(files).forEach((key) => {
+  const moveAndSaveFilePromises = Object.keys(files).map((key) => {
     const file = files[key];
     const uniqueFileName = `${directory}/${id}/${file.name}`;
     const filepath = path.join(env.SERVER_STORAGE, uniqueFileName);
-
     const ext = getExtension(file);
 
-    files[key].mv(filepath, async (err) => {
-      if (err) {
-        return response.INTERNAL_SERVER_ERROR(
-          `An unexpected error occured: ${err}`
-        );
-      } else {
-        return await insertFileInfoIntoTable(
-          directory,
-          uniqueFileName,
-          ext,
-          id
-        );
-      }
+    return new Promise((resolve, reject) => {
+      file.mv(filepath, async (err) => {
+        if (err) {
+          reject(
+            response.INTERNAL_SERVER_ERROR(
+              `An unexpected error occured: ${err}`
+            )
+          );
+        } else {
+          await insertFileInfoIntoTable(directory, uniqueFileName, ext, id);
+          resolve();
+        }
+      });
     });
   });
 
+  await Promise.all(moveAndSaveFilePromises);
   return response.OK('Files uploaded');
 }
