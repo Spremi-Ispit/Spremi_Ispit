@@ -10,6 +10,8 @@ import { screens, useScreens } from '../../../utils/useScreens';
 
 const StyleNavLink = styled(NavLink)`
   display: flex;
+  gap: 5px;
+
   :hover {
     border-bottom: 1px solid white;
     text-decoration: none;

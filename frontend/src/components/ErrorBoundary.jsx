@@ -33,10 +33,7 @@ export class ErrorBoundary extends React.Component {
         <ErrorBoundaryDiv>
           <h1>Oops! :(</h1>
           <br />
-          <h4>
-            Desila se nepoznata greska, ali da bi smo je resili treba da nam
-            objasnis kako je do nje doslo! :)
-          </h4>
+          <h4>Nepoznata greska, sta se desilo? :)</h4>
           <br />
           <a
             as="a"
