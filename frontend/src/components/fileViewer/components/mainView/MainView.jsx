@@ -29,7 +29,12 @@ export const MainView = ({ file }) => {
     return <VideoView file={file} />;
   }
 
-  return <h3>Ne umemo da prikazemo ovaj tip datoteke</h3>;
+  return (
+    <h3>
+      Ne umemo da prikazemo ovaj tip datoteke. Preuzmite datoteku ili pokusajte
+      da otvorite u novoj kartici.
+    </h3>
+  );
 };
 
 export default MainView;
