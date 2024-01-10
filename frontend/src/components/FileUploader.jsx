@@ -3,7 +3,7 @@ import AttachFileIcon from '@mui/icons-material/AttachFile';
 import { Button } from '../components/buttons/Button';
 import styled from 'styled-components';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { supporetdTypes } from '../utils/managers/FilesSelector';
+// import { supporetdTypes } from '../utils/managers/FilesSelector';
 
 const UplaodAttachmentsButton = styled(Button)`
   padding-left: 0px;
@@ -47,9 +47,9 @@ export const FileUploader = ({ setFiles, files }) => {
         ref={inputRef}
         style={{ display: 'none' }}
         onChange={onInputChange}
-        accept={`${Object.values(supporetdTypes)
-          .map((type) => `.${type}`)
-          .toString()}`}
+        // accept={`${Object.values(supporetdTypes)
+        //   .map((type) => `.${type}`)
+        //   .toString()}`}
         multiple="multiple"
       />
       {files.length > 0 ? (

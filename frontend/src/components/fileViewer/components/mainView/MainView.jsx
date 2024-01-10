@@ -29,7 +29,7 @@ export const MainView = ({ file }) => {
     return <VideoView file={file} />;
   }
 
-  return null;
+  return <h3>Ne umemo da prikazemo ovaj tip datoteke</h3>;
 };
 
 export default MainView;
