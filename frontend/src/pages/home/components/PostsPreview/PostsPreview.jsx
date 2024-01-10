@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import styled from 'styled-components';
 import Paper from '@mui/material/Paper';
@@ -8,7 +7,6 @@ import Fade from '@mui/material/Fade';
 import ErrorDialog from '../../../../components/dialogs/ErrorDialog';
 import Loader from '../../../../components/Loader';
 import { useUrlManager } from '../../../../utils/managers/UrlManager';
-import { useAppActions } from '../../../../redux/useAppActions';
 import { useApiActions } from '../../../../api/useApiActions';
 import PostPreview from '../../../../components/PostPreview/PostPreview';
 import MorePosts from './components/MorePosts';

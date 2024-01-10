@@ -16,7 +16,9 @@ export const deletePost = async (req) => {
     await removePostFiles(post.id);
 
     const comments = await Comment.find({
-      post
+      where: {
+        post: post
+      }
     });
 
     for (const comment of comments) {

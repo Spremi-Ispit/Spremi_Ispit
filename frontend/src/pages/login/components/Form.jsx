@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import TextField from '@mui/material/TextField';
-import { NavLink, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
@@ -16,7 +15,8 @@ import Modal from './Modal/Modal';
 import { useApiActions } from '../../../api/useApiActions';
 import { homeRoute, registerRoute } from '../../../router/routes';
 import { validateEmail, validatePassword } from '../../../utils/validation';
-import ReCAPTCHA from 'react-google-recaptcha';
+import { useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const TextH4 = styled(Typography)`
   && {
@@ -114,33 +114,25 @@ const Span = styled.span`
 const RedirectToRegisterDiv = styled.div`
   margin-top: 5px;
 `;
+const StyledNavLink = styled(NavLink)`
+  color: black;
+  margin-left: 2px;
 
-const StyledNavlink = styled(NavLink)`
-  margin-left: 5px;
+  :hover {
+    text-decoration: underline;
+  }
 `;
 
 const Form = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [passwordConfirm, setPasswordConfirm] = useState('');
-  const navigate = useNavigate();
-  const { login, register } = useApiActions();
+  const { login } = useApiActions();
   const { loading, error, setError, response, action } = login;
-  const {
-    loading: loadingRegister,
-    error: errorRegister,
-    setError: setErrorRegister,
-    response: responseRegister,
-    action: actionRegister,
-  } = register;
   const authManager = useAuthManager();
-
   const [modalOpen, setModalOpen] = useState(false);
-  const [recaptcha, setReacaptcha] = useState(false);
-  const [isLogin, setIsLogin] = useState(true);
-
   const [type, setType] = useState('password');
   const [icon, setIcon] = useState(eyeOff);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (response) {
@@ -153,13 +145,6 @@ const Form = () => {
     if (e.key === 'Enter') {
       e.preventDefault();
       handleLogin();
-    }
-  };
-
-  const handleRegisterEnter = (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      handleRegister();
     }
   };
 
@@ -196,47 +181,14 @@ const Form = () => {
     });
   };
 
-  const onChangeRecaptcha = () => {
-    setReacaptcha(true);
-  };
-
-  const handleRegister = async (e) => {
-    e.preventDefault();
-    if (recaptcha === false) {
-      return setDialogMessage('Robot? o.O');
-    }
-    const emailError = await validateEmail(email);
-    if (emailError) {
-      return setDialogMessage(emailError);
-    }
-
-    if (password !== passwordConfirm) {
-      return setDialogMessage('Sifre nisu iste');
-    }
-
-    const passwordError = await validatePassword(password);
-    if (passwordError) {
-      return setDialogMessage(passwordError);
-    }
-
-    const passwordConfirmError = await validatePassword(passwordConfirm);
-    if (passwordConfirmError) {
-      return setDialogMessage('passwordConfirm: ' + passwordConfirmError);
-    }
-
-    actionRegister(email, password);
-  };
-
   if (error) {
     return <ErrorDialog error={error} setError={setError} />;
   }
 
   return (
     <>
-      <StyledForm onKeyDown={isLogin ? handleLoginEnter : handleRegisterEnter}>
-        <TextH4 variant="h4">
-          {isLogin ? 'Prijavljivanje' : 'Registracija'}
-        </TextH4>
+      <StyledForm onKeyDown={handleLoginEnter}>
+        <TextH4 variant="h4">Prijavljivanje</TextH4>
         <StyledPaper elevation={0}>
           <DivWrapper>
             <StyledLbl>Email</StyledLbl>
@@ -266,64 +218,30 @@ const Form = () => {
               <img src={icon} />
             </Span>
           </DivWrapper>
-          {isLogin ? (
-            <></>
-          ) : (
-            <>
-              <DivWrapper>
-                <TextField
-                  placeholder="Potvrdi šifru"
-                  margin="normal"
-                  type="password"
-                  fullWidth
-                  variant="outlined"
-                  onChange={(e) => setPasswordConfirm(e.target.value)}
-                  autoComplete="current-password"
-                />
-              </DivWrapper>
-              <ReCAPTCHA
-                onChange={onChangeRecaptcha}
-                sitekey="6LfQPBwpAAAAABBHiyViwEfJ6YJNw1_S5jcPXiBb"
-              />
-            </>
-          )}
           <StyledButton
-            onClick={isLogin ? handleLogin : handleRegister}
+            onClick={handleLogin}
             disabled={loading || !isFormValid()}
           >
-            {isLogin ? 'Prijavi me' : 'Registruj me'}
+            Prijavi me
           </StyledButton>
           <div
             style={{
               width: '100%',
               borderTop: '1px solid #CECECE',
               backgroundColor: '#EFEFEF',
+              paddingBottom: '5px',
             }}
           >
-            {isLogin ? (
-              <ForgotPasswordDiv
-                onClick={() => {
-                  setModalOpen(true);
-                }}
-              >
-                Zaboravio si sifru?
-              </ForgotPasswordDiv>
-            ) : (
-              <></>
-            )}
-
+            <ForgotPasswordDiv
+              onClick={() => {
+                setModalOpen(true);
+              }}
+            >
+              Zaboravio si sifru?
+            </ForgotPasswordDiv>
             <RedirectToRegisterDiv>
-              {isLogin ? 'Nemaš profil?' : 'Već imaš profil?'}
-              <div
-                style={{
-                  cursor: 'pointer',
-                  marginBottom: '15px',
-                  marginTop: '5px',
-                }}
-                onClick={() => setIsLogin(!isLogin)}
-              >
-                {isLogin ? 'Registruj se' : 'Prijavi se'}
-              </div>
+              Nemaš profil?
+              <StyledNavLink to={registerRoute}>Registruj se</StyledNavLink>
             </RedirectToRegisterDiv>
           </div>
 

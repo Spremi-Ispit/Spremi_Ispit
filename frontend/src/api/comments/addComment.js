@@ -15,7 +15,11 @@ export const addComment = async (comment, postID, setUploadProgress) => {
     });
     formData.append('commentId', commentId);
 
-    await services.postFile('/upload/comment', formData, setUploadProgress);
+    return await services.postFile(
+      '/upload/comment',
+      formData,
+      setUploadProgress
+    );
   }
 };
 

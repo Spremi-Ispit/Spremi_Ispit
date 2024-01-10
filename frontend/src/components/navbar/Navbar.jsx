@@ -8,6 +8,7 @@ import CreatePost from './components/CreatePost';
 import SettingsSidePanelMenu from './components/SettingsSidePanelMenu';
 import { useSelector } from 'react-redux';
 import LoginRegister from './components/LoginRegister';
+import { screensCSS } from '../../utils/useScreens';
 
 const headerHeight = 64;
 
@@ -29,6 +30,10 @@ const NavbarDiv = styled.div`
 
   gap: 0px;
   height: 100%;
+
+  @media ${screensCSS.tablet} {
+    display: flex;
+  }
 `;
 
 const LeftDiv = styled.div`
@@ -59,6 +64,10 @@ const MiddleDiv = styled.div`
 
   grid-row-end: 2;
   grid-column-end: 3;
+
+  @media ${screensCSS.tablet} {
+    flex: 1;
+  }
 `;
 
 const RightDiv = styled.div`

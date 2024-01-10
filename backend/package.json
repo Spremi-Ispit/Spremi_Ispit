@@ -35,7 +35,7 @@
     "build": "rimraf dist && npx tsc && node ./scripts/database/_copyTestDataToDist.js",
     "setupEnv": "npm run build && node ./dist/scripts/setupEnv.js",
     "start": "npm run build && node ./dist/scripts/start.js",
-    "startAndWatch": "nodemon -e ts --exec \"npm run start\"",
+    "dev": "nodemon -e ts --exec \"npm run start\"",
     "start_on_hosting_example": "cross-env NODE_ENV=production node ./dist/src/src/index.js",
     "releasePort": "npm run build && node ./dist/scripts/releasePort.js",
     "dropDatabase": "node ./dist/scripts/database/drop.js",

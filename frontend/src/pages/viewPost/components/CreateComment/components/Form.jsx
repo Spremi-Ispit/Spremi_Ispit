@@ -67,10 +67,16 @@ export const Form = () => {
   const urlManager = useUrlManager();
   const { urlPostId } = urlManager.getParams();
   const { addComment } = useApiActions();
-  const { loading, error, setError, loaded, action } = addComment;
+  const { loading, error, setError, action, response } = addComment;
   const { viewPostActions } = useAppActions();
   const { setCommentsLoading } = viewPostActions;
   const [activeFileIndex, setActiveFileIndex] = useState(0);
+
+  useEffect(() => {
+    if (response) {
+      reloadComments();
+    }
+  }, [response]);
 
   useEffect(() => {
     if (!loading) {
@@ -79,12 +85,6 @@ export const Form = () => {
       setFiles([]);
     }
   }, [loading]);
-
-  useEffect(() => {
-    if (loaded) {
-      reloadComments();
-    }
-  }, [loaded]);
 
   const handleTextareaChange = (event) => {
     const value = event.target.value;
@@ -153,9 +153,9 @@ export const Form = () => {
         <UploadedDiv>
           <label>Dodali ste:</label>
           <select value={files[activeFileIndex].name} onChange={handleChange}>
-            {files.map((file) => {
+            {files.map((file, index) => {
               return (
-                <option value={file.name} key={file.src}>
+                <option value={file.name} key={index}>
                   {file.name.split('/').pop()}
                 </option>
               );

@@ -24,6 +24,16 @@ import Button from '../../../components/buttons/Button';
 import { useApiActions } from '../../../api/useApiActions';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { NavLink } from 'react-router-dom';
+import { FormLabel } from '@mui/material';
+
+const TextH4 = styled(Typography)`
+  && {
+    font-family: Poppins;
+    font-weight: 600;
+    font-size: 40px;
+    font-style: italic;
+  }
+`;
 
 const StyledForm = styled.form`
   text-align: center;
@@ -40,19 +50,26 @@ const StyledForm = styled.form`
 `;
 
 const StyledPaper = styled(Paper)`
-  padding: 20px;
-  margin-bottom: 30px;
-  min-height: 150px;
-  display: flex;
-  flex-direction: column;
-  border: 0.5px solid;
-  background-color: #cccccc;
-  align-items: center;
-  width: 100%;
+  && {
+    padding-top: 20px;
+    margin-bottom: 30px;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    border: none;
+    box-shadow: -1px 2px 9px 1px #b9b9b9;
+  }
 `;
 
-const StyledNavlink = styled(NavLink)`
-  margin-left: 5px;
+const StyledNavLink = styled(NavLink)`
+  color: black;
+  margin-left: 2px;
+
+  :hover {
+    text-decoration: underline;
+  }
 `;
 
 const RedirectToLoginDiv = styled.div`
@@ -66,6 +83,23 @@ const StyledButton = styled(Button)`
     font-weight: 600;
     font-size: 18px;
     width: 80%;
+  }
+`;
+
+const DivWrapper = styled.div`
+  position: relative;
+  width: 80%;
+`;
+
+const StyledLbl = styled(FormLabel)`
+  && {
+    display: flex;
+    flex-direction: row;
+    margin-right: auto;
+    font-family: Poppins;
+    font-weight: 600;
+    font-size: 18px;
+    color: black;
   }
 `;
 
@@ -136,34 +170,42 @@ export const Form = () => {
   return (
     <>
       <StyledForm onKeyDown={handleEnter}>
-        <Typography variant="h4">Registracija</Typography>
+        <TextH4 variant="h4">Registracija</TextH4>
         <StyledPaper elevation={0}>
-          <TextField
-            placeholder="Email"
-            fullWidth
-            margin="normal"
-            variant="outlined"
-            onChange={(e) => setEmail(e.target.value)}
-            autoComplete="Email"
-          />
-          <TextField
-            placeholder="Šifra"
-            type="password"
-            autoComplete="current-password"
-            margin="normal"
-            fullWidth
-            variant="outlined"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <TextField
-            placeholder="Potvrdi šifru"
-            margin="normal"
-            type="password"
-            fullWidth
-            variant="outlined"
-            onChange={(e) => setPasswordConfirm(e.target.value)}
-            autoComplete="current-password"
-          />
+          <DivWrapper>
+            <StyledLbl>Email</StyledLbl>
+            <TextField
+              placeholder="Email"
+              fullWidth
+              margin="normal"
+              variant="outlined"
+              onChange={(e) => setEmail(e.target.value)}
+              autoComplete="Email"
+            />
+          </DivWrapper>
+          <DivWrapper>
+            <StyledLbl>Šifra</StyledLbl>
+            <TextField
+              placeholder="Šifra"
+              type="password"
+              autoComplete="current-password"
+              margin="normal"
+              fullWidth
+              variant="outlined"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </DivWrapper>
+          <DivWrapper>
+            <TextField
+              placeholder="Potvrdi šifru"
+              margin="normal"
+              type="password"
+              fullWidth
+              variant="outlined"
+              onChange={(e) => setPasswordConfirm(e.target.value)}
+              autoComplete="current-password"
+            />
+          </DivWrapper>
           <ReCAPTCHA
             onChange={onChangeRecaptcha}
             sitekey="6LfQPBwpAAAAABBHiyViwEfJ6YJNw1_S5jcPXiBb"
@@ -171,10 +213,19 @@ export const Form = () => {
           <StyledButton onClick={handleRegister} disabled={loading}>
             Registruj me
           </StyledButton>
-          <RedirectToLoginDiv>
-            Već imaš profil?
-            <StyledNavlink to={`${loginRoute}`}> Uloguj se</StyledNavlink>
-          </RedirectToLoginDiv>
+          <div
+            style={{
+              width: '100%',
+              borderTop: '1px solid #CECECE',
+              backgroundColor: '#EFEFEF',
+              paddingBottom: '5px',
+            }}
+          >
+            <RedirectToLoginDiv>
+              Već imaš profil?
+              <StyledNavLink to={`${loginRoute}`}>Prijavi se</StyledNavLink>
+            </RedirectToLoginDiv>
+          </div>
         </StyledPaper>
       </StyledForm>
       <Dialog open={dialogMessage !== ''} onClose={() => setDialogMessage('')}>

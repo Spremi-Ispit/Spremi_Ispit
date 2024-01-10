@@ -9,8 +9,12 @@ import LogoutIcon from '@mui/icons-material/Logout';
 
 const StyleNavLink = styled(NavLink)`
   display: flex;
-  align-items: center;
   gap: 5px;
+
+  :hover {
+    border-bottom: 1px solid white;
+    text-decoration: none;
+  }
 `;
 
 const Logout = () => {

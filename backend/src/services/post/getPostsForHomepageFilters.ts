@@ -23,11 +23,6 @@ export const getPostsForHomepageFilters = async (req) => {
 
   let postsQuery = buildPostsQueryForFilters(req.body);
 
-  // if (postId) {
-  //   postsQuery = postsQuery.where(`post.id > ${postId}`);
-  // }
-  // postsQuery = postsQuery.take(5);
-
   let postResults = await postsQuery.getRawAndEntities();
   let postsIds = [];
 
@@ -39,12 +34,11 @@ export const getPostsForHomepageFilters = async (req) => {
   if (!postId) {
     postsIds = postsIds.splice(0, count);
   } else {
-    const postIndex = postsIds.findIndex((id) => id === postId);
+    const postIndex = postsIds.findIndex((id) => id === Number(postId));
     const nextPostIndex = postIndex + 1;
     postsIds = postsIds.splice(nextPostIndex, nextPostIndex + count);
   }
 
-  console.log(postsIds);
   const posts = await Post.find({
     where: {
       id: In(postsIds)
