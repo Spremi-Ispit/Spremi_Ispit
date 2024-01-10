@@ -34,7 +34,7 @@ export const getPostsForHomepageFilters = async (req) => {
   if (!postId) {
     postsIds = postsIds.splice(0, count);
   } else {
-    const postIndex = postsIds.findIndex((id) => id === postId);
+    const postIndex = postsIds.findIndex((id) => id === Number(postId));
     const nextPostIndex = postIndex + 1;
     postsIds = postsIds.splice(nextPostIndex, nextPostIndex + count);
   }
