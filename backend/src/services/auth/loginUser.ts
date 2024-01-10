@@ -18,7 +18,9 @@ export const loginUser = async (req) => {
   if (user) {
     if (await bcrypt.compare(password, user.password)) {
       const plainUser = instanceToPlain(user);
-      const accessToken = jwt.sign(plainUser, process.env.ACCESS_TOKEN_SECRET);
+      const { password, id, ...jwtUser } = plainUser;
+      const accessToken = jwt.sign(jwtUser, process.env.ACCESS_TOKEN_SECRET);
+
       return response.OK({
         token: accessToken,
         role: user.role,
