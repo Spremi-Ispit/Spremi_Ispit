@@ -6,6 +6,7 @@ export const createPostRoute = '/createPost';
 export const usersRoute = '/users';
 export const viewPostRoute = '/viewPost';
 export const resetPasswordRoute = '/resetPassword';
+export const videosRoute = '/videos';
 
 export const profileRoute = '/profile';
 export const profilePostsRoute = '/profile/posts';

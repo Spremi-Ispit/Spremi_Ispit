@@ -32,7 +32,7 @@ export const MainView = ({ file }) => {
   return (
     <h3>
       Ne umemo da prikazemo ovaj tip datoteke. Preuzmite datoteku ili pokusajte
-      da otvorite u novoj kartici.
+      da je otvorite u novoj kartici.
     </h3>
   );
 };

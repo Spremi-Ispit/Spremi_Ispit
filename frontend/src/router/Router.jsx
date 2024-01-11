@@ -17,6 +17,7 @@ import ReportedPosts from '../pages/profile/components/reportedPosts/ReportedPos
 import ReportedComments from '../pages/profile/components/reportedComments/ReportedComments';
 import ResetPassword from '../pages/ResetPassword/ResetPassword';
 import RegistrationConfirm from '../pages/registrationConfirm/RegistrationConfirm';
+import Videos from '../pages/Videos/Videos';
 
 export default function Router() {
   return (
@@ -25,6 +26,7 @@ export default function Router() {
         <Route element={<PrivateRoutes />}>
           <Route path={routes.createPostRoute} element={<CreatePost />} exact />
           <Route path={routes.usersRoute} element={<Users />} exact />
+          <Route path={routes.videosRoute} element={<Videos />} exact />
           <Route path={routes.profileRoute} element={<Profile />}>
             <Route path={routes.profilePostsRoute} element={<Posts />} />
             <Route

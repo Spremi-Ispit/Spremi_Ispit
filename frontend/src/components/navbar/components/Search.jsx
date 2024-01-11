@@ -6,6 +6,8 @@ import {
   useUrlManager,
 } from '../../../utils/managers/UrlManager';
 import search_icon_dark from '../../../assets/search-b.png';
+import { homeRoute } from '../../../router/routes';
+import { useLocation } from 'react-router-dom';
 
 const SearchDiv = styled.div`
   display: flex;
@@ -35,12 +37,17 @@ const SearchDiv = styled.div`
 `;
 
 export const Search = () => {
+  const location = useLocation();
   const urlManager = useUrlManager();
   const { urlSearch } = urlManager.getParams();
 
   const handleOnChange = (event) => {
     urlManager.updateUrlParam(allowedUrlParams.search, event.target.value);
   };
+
+  if (location.pathname !== homeRoute) {
+    return null;
+  }
 
   return (
     <SearchDiv>

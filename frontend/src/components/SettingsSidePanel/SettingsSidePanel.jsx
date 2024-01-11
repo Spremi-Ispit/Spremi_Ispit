@@ -4,11 +4,9 @@ import { useSelector } from 'react-redux';
 import Wiki from './components/Wiki';
 import Profile from './components/Profile';
 import Users from './components/Users';
-import {
-  selectSettingsSidePanelVisible,
-  selectToken,
-} from '../../redux/app/selectors';
+import { selectSettingsSidePanelVisible } from '../../redux/app/selectors';
 import colors from '../../theme/colors';
+import Videos from './components/Videos';
 
 const OpenedPanelOverlayDiv = styled.div`
   color: white;
@@ -45,12 +43,7 @@ export const SettingsSidePanel = () => {
   const closedPanelWidth = 0;
   const openedPanelWidth = 200;
 
-  const token = useSelector(selectToken);
-  const authItems = [<Profile />, <Users />, <Wiki />];
-
-  if (!token) {
-    return null;
-  }
+  const items = [<Profile />, <Users />, <Wiki />, <Videos />];
 
   return (
     <SidePanelPlaceHolderDiv
@@ -60,7 +53,7 @@ export const SettingsSidePanel = () => {
         closed={!sidePanelVisible}
         width={openedPanelWidth}
       >
-        {authItems.map((item, index) => {
+        {items.map((item, index) => {
           if (index % 2 === 0) {
             return <ItemDiv key={index}>{item}</ItemDiv>;
           } else {
