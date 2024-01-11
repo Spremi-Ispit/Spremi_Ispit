@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import colors from '../theme/colors';
 import CopyrightIcon from '@mui/icons-material/Copyright';
-import { Link, NavLink } from 'react-router-dom';
 import { screensCSS } from '../utils/useScreens';
 
 const FooterDiv = styled.footer`
@@ -10,6 +9,7 @@ const FooterDiv = styled.footer`
   box-shadow: rgba(0, 0, 0, 0.75) 3px 1px 3px 0px;
   display: flex;
   flex-direction: column;
+  margin-top: 20px;
 `;
 
 const CaregoriesDiv = styled.div`

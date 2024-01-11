@@ -176,9 +176,7 @@ const Form = () => {
       return setError(passwordError);
     }
 
-    action(email, password).then((res) => {
-      if (res.statusCode === 200) navigate(homeRoute);
-    });
+    action(email, password);
   };
 
   if (error) {

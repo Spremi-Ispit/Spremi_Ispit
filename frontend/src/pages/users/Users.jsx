@@ -7,12 +7,18 @@ import PromoteUserForm from './components/PromoteUserForm';
 import { userRole } from '../../redux/app/state';
 import { useSelector } from 'react-redux';
 import { selectRole } from '../../redux/app/selectors';
+import SettingsSidePanel from '../../components/SettingsSidePanel/SettingsSidePanel';
 
-const UsersDiv = styled.div`
+const MainDiv = styled.div`
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+const UsersDiv = styled.div`
+  display: flex;
+  flex: 1;
 `;
 
 export const Users = () => {
@@ -30,9 +36,12 @@ export const Users = () => {
     <>
       <Navbar />
       <UsersDiv>
-        <h1>Najaktivniji članovi</h1>
-        <UsersTable />
-        {promoteUserForm()}
+        <SettingsSidePanel />
+        <MainDiv>
+          <h1>Najaktivniji članovi</h1>
+          <UsersTable />
+          {promoteUserForm()}
+        </MainDiv>
       </UsersDiv>
       <Footer />
     </>
