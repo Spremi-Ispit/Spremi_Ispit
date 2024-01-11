@@ -8,8 +8,15 @@ import { userRole } from '../../redux/app/state';
 import { useSelector } from 'react-redux';
 import { selectRole } from '../../redux/app/selectors';
 import SettingsSidePanel from '../../components/SettingsSidePanel/SettingsSidePanel';
+import Bounty from './components/Bounty';
 
 const MainDiv = styled.div`
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+`;
+
+const ContentDiv = styled.div`
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -38,9 +45,12 @@ export const Users = () => {
       <UsersDiv>
         <SettingsSidePanel />
         <MainDiv>
-          <h1>Najaktivniji članovi</h1>
-          <UsersTable />
-          {promoteUserForm()}
+          <Bounty />
+          <ContentDiv>
+            <h1>Najaktivniji članovi</h1>
+            <UsersTable />
+            {promoteUserForm()}
+          </ContentDiv>
         </MainDiv>
       </UsersDiv>
       <Footer />

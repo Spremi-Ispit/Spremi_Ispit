@@ -7,6 +7,9 @@ import Users from './components/Users';
 import { selectSettingsSidePanelVisible } from '../../redux/app/selectors';
 import colors from '../../theme/colors';
 import Videos from './components/Videos';
+import CommunityGithub from './components/CommunityGithub';
+import CommunityDrives from './components/CommunityDrives';
+import CommunityTools from './components/CommunityTools';
 
 const OpenedPanelOverlayDiv = styled.div`
   color: white;
@@ -43,7 +46,15 @@ export const SettingsSidePanel = () => {
   const closedPanelWidth = 0;
   const openedPanelWidth = 200;
 
-  const items = [<Profile />, <Users />, <Wiki />, <Videos />];
+  const items = [
+    <Profile />,
+    <Users />,
+    <Wiki />,
+    <Videos />,
+    <CommunityGithub />,
+    <CommunityDrives />,
+    <CommunityTools />,
+  ];
 
   return (
     <SidePanelPlaceHolderDiv

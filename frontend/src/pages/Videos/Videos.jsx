@@ -531,27 +531,4 @@ const playlists = [
       },
     ],
   },
-  {
-    name: 'Korisni google drive-ovi',
-    subjects: [
-      {
-        name: 'Google Drive sa materijalima za prvu godinu studija + 2,3,4 godinu na modulu RI',
-        links: [
-          {
-            name: 'Predavanje',
-            link: 'https://drive.google.com/drive/u/0/folders/1zZ5jtm-FiUYCrONDLx-KtOAAjmYCJBG3',
-          },
-        ],
-      },
-      {
-        name: 'Drive kolege @nenad_dj sa korisnim materijalima za RI',
-        links: [
-          {
-            name: 'Predavanje',
-            link: 'https://elfakrs-my.sharepoint.com/:f:/g/personal/djordjevic_nenad_elfak_rs/EpAgotjh785Hv_Cowb1sjhIBhy8PBKac3_gXTtWqk1su2Q',
-          },
-        ],
-      },
-    ],
-  },
 ];

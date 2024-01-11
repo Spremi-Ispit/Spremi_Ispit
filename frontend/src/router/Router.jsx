@@ -18,41 +18,57 @@ import ReportedComments from '../pages/profile/components/reportedComments/Repor
 import ResetPassword from '../pages/ResetPassword/ResetPassword';
 import RegistrationConfirm from '../pages/registrationConfirm/RegistrationConfirm';
 import Videos from '../pages/Videos/Videos';
+import CommunityTools from '../pages/CommunityTools/CommunityTools';
+import CommunityGithub from '../pages/CommunityGithub/CommunityGithub';
+import CommunityDrives from '../pages/CommunityDrives/CommunityDrives';
 
 export default function Router() {
+  const privateRoutes = (
+    <Route element={<PrivateRoutes />}>
+      <Route path={routes.createPostRoute} element={<CreatePost />} exact />
+      <Route path={routes.usersRoute} element={<Users />} exact />
+      <Route path={routes.profileRoute} element={<Profile />}>
+        <Route path={routes.profilePostsRoute} element={<Posts />} />
+        <Route
+          path={routes.profileCommentedPostsRoute}
+          element={<CommentedPosts />}
+        />
+        <Route path={routes.profileInfoRoute} element={<UserInfo />} />
+        <Route
+          path={routes.profileReportedPostsRoute}
+          element={<ReportedPosts />}
+        />
+        <Route
+          path={routes.profileReportedCommentsRoute}
+          element={<ReportedComments />}
+        />
+      </Route>
+    </Route>
+  );
+
+  const publicRoutes = (
+    <>
+      <Route path={routes.videosRoute} element={<Videos />} exact />
+      <Route path={routes.viewPostRoute} element={<ViewPost />} exact />
+      <Route path={routes.homeRoute} element={<Home />} />
+      <Route path={routes.loginRoute} element={<Login />} />
+      <Route path={routes.registerRoute} element={<Register />} />
+      <Route path={routes.resetPasswordRoute} element={<ResetPassword />} />
+      <Route
+        path={routes.registrationConfirmRoute}
+        element={<RegistrationConfirm />}
+      />
+      <Route path={routes.communityGithubRoute} element={<CommunityGithub />} />
+      <Route path={routes.communityDrivesRoute} element={<CommunityDrives />} />
+      <Route path={routes.communityToolsRoute} element={<CommunityTools />} />
+    </>
+  );
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<PrivateRoutes />}>
-          <Route path={routes.createPostRoute} element={<CreatePost />} exact />
-          <Route path={routes.usersRoute} element={<Users />} exact />
-          <Route path={routes.profileRoute} element={<Profile />}>
-            <Route path={routes.profilePostsRoute} element={<Posts />} />
-            <Route
-              path={routes.profileCommentedPostsRoute}
-              element={<CommentedPosts />}
-            />
-            <Route path={routes.profileInfoRoute} element={<UserInfo />} />
-            <Route
-              path={routes.profileReportedPostsRoute}
-              element={<ReportedPosts />}
-            />
-            <Route
-              path={routes.profileReportedCommentsRoute}
-              element={<ReportedComments />}
-            />
-          </Route>
-        </Route>
-        <Route path={routes.videosRoute} element={<Videos />} exact />
-        <Route path={routes.viewPostRoute} element={<ViewPost />} exact />
-        <Route path={routes.homeRoute} element={<Home />} />
-        <Route path={routes.loginRoute} element={<Login />} />
-        <Route path={routes.registerRoute} element={<Register />} />
-        <Route path={routes.resetPasswordRoute} element={<ResetPassword />} />
-        <Route
-          path={routes.registrationConfirmRoute}
-          element={<RegistrationConfirm />}
-        />
+        {privateRoutes}
+        {publicRoutes}
         <Route path={'*'} element={<Home />} />
       </Routes>
     </BrowserRouter>
