@@ -40,6 +40,11 @@ const FiltersContainerDiv = styled.div`
     display: grid;
     grid-template-columns: 150px 150px 150px;
   }
+
+  @media (max-width: 560px) {
+    display: grid;
+    grid-template-columns: 150px 150px;
+  }
 `;
 
 const StyledExpandMoreIcon = styled(ExpandMoreIcon)`
