@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import Wiki from './components/Wiki';
+import DoubleArrow from '@mui/icons-material/DoubleArrow';
+import { MenuItem } from '@mui/material';
 import Profile from './components/Profile';
 import Users from './components/Users';
 import { selectSettingsSidePanelVisible } from '../../redux/app/selectors';
@@ -10,6 +12,14 @@ import Videos from './components/Videos';
 import CommunityGithub from './components/CommunityGithub';
 import CommunityDrives from './components/CommunityDrives';
 import CommunityTools from './components/CommunityTools';
+import { useAppActions } from '../../redux/useAppActions';
+
+const ClosePanelArrow = styled(DoubleArrow)`
+  && {
+    color: white;
+    transform: rotate(180deg);
+  }
+`;
 
 const OpenedPanelOverlayDiv = styled.div`
   color: white;
@@ -41,8 +51,23 @@ const GreyItemDiv = styled(ItemDiv)`
   background-color: #38393e;
 `;
 
+const StyledMenuItem = styled(MenuItem)`
+  && {
+    display: flex;
+    justify-content: center;
+    border: 1px solid white;
+    color: white;
+    width: 80px;
+    margin: auto;
+    border-radius: 200px;
+    margin-top: 20px;
+  }
+`;
+
 export const SettingsSidePanel = () => {
   const sidePanelVisible = useSelector(selectSettingsSidePanelVisible);
+  const { appActions } = useAppActions();
+  const { setSettingsSidePanelVisible } = appActions;
   const closedPanelWidth = 0;
   const openedPanelWidth = 200;
 
@@ -71,6 +96,11 @@ export const SettingsSidePanel = () => {
             return <GreyItemDiv key={index}>{item}</GreyItemDiv>;
           }
         })}
+        <StyledMenuItem
+          onClick={() => setSettingsSidePanelVisible(!sidePanelVisible)}
+        >
+          <ClosePanelArrow />
+        </StyledMenuItem>
       </OpenedPanelOverlayDiv>
     </SidePanelPlaceHolderDiv>
   );
