@@ -135,6 +135,7 @@ const PostView = ({
             postId={id}
             deletePost={deletePost}
             onSuccessfulDeletion={onSuccessfulDeletion}
+            postedBy={postedBy}
           />
           <Report postId={id} reportPost={report} />
         </UserDiv>

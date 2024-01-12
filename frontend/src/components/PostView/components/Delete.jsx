@@ -4,6 +4,9 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import styled from 'styled-components';
 import { IconButton } from '@mui/material';
 import AlertDialog from '../../dialogs/AlertDialog';
+import { useSelector } from 'react-redux';
+import { selectRole, selectUsername } from '../../../redux/app/selectors';
+import { userRole } from '../../../redux/app/state';
 
 const StyledDeleteIconButton = styled(IconButton)`
   && {
@@ -11,9 +14,16 @@ const StyledDeleteIconButton = styled(IconButton)`
   }
 `;
 
-export const Delete = ({ postId, deletePost, onSuccessfulDeletion }) => {
+export const Delete = ({
+  postId,
+  deletePost,
+  onSuccessfulDeletion,
+  postedBy,
+}) => {
   const { loading, loaded, error, action } = deletePost;
   const [dialogOpen, setDialogOpen] = useState(false);
+  const username = useSelector(selectUsername);
+  const role = useSelector(selectRole);
 
   useEffect(() => {
     if (loaded) {
@@ -24,6 +34,10 @@ export const Delete = ({ postId, deletePost, onSuccessfulDeletion }) => {
   const handleSubmit = () => {
     action(postId);
   };
+
+  if (!(username === postedBy || role === userRole.admin)) {
+    return null;
+  }
 
   return (
     <>
