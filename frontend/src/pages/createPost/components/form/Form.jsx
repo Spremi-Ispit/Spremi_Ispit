@@ -36,7 +36,7 @@ export const Form = () => {
   const navigate = useNavigate();
   const [uploadProgress, setUploadProgress] = useState(0);
   const { createPost } = useApiActions();
-  const { error, setError, action, loaded, loading } = createPost;
+  const { error, setError, action, response, loading } = createPost;
   const urlManager = useUrlManager();
   const [activeFileIndex, setActiveFileIndex] = useState(0);
 
@@ -86,10 +86,10 @@ export const Form = () => {
   };
 
   useEffect(() => {
-    if (loaded) {
+    if (response) {
       navigate(homeRoute);
     }
-  }, [loaded]);
+  }, [response]);
 
   const onCancel = () => {
     navigate(homeRoute);

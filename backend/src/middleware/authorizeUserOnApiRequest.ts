@@ -26,7 +26,7 @@ export const authorizeUserOnApiRequest = (req, res, next) => {
     }
 
     const user = await User.findOne({
-      where: { id: decodedUser.id }
+      where: { email: decodedUser.email }
     });
 
     if (user.banned) {
@@ -34,7 +34,7 @@ export const authorizeUserOnApiRequest = (req, res, next) => {
       return res.status(myResponse.statusCode).send(myResponse);
     }
 
-    req.body.userID = decodedUser.id;
+    req.body.userID = user.id;
     next();
   });
 };

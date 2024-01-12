@@ -19,4 +19,6 @@ export const createPost = async (post, setUploadProgress) => {
 
     await services.postFile('/upload/post', formData, setUploadProgress);
   }
+
+  return postId;
 };
