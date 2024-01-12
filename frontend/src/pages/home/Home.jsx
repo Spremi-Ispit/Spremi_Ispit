@@ -26,6 +26,7 @@ const MainDiv = styled.div`
   flex-direction: column;
   flex: 1;
   position: relative;
+  padding: 0px 20px;
 `;
 
 const HomeDiv = styled.div`
