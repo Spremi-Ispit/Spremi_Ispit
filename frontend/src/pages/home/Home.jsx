@@ -19,6 +19,7 @@ const ContentDiv = styled.div`
   max-width: 800px;
   padding-top: 20px;
   margin: 0 auto;
+  padding: 20px;
 `;
 
 const MainDiv = styled.div`
@@ -26,7 +27,6 @@ const MainDiv = styled.div`
   flex-direction: column;
   flex: 1;
   position: relative;
-  padding: 0px 20px;
 `;
 
 const HomeDiv = styled.div`

@@ -25,12 +25,14 @@ const FiltersHeaderDiv = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
 `;
+
 const FiltersContainerDiv = styled.div`
   display: grid;
   justify-content: center;
   grid-template-columns: 170px 170px 170px 170px;
-  gap: 25px;
+  gap: 20px;
   margin-top: 20px;
   margin-bottom: 10px;
 
@@ -42,7 +44,6 @@ const FiltersContainerDiv = styled.div`
 
 const StyledExpandMoreIcon = styled(ExpandMoreIcon)`
   ${({ $filtersVisible }) => $filtersVisible && 'transform: rotateX(180deg);'}
-  cursor: pointer;
 `;
 
 const Filters = () => {
@@ -50,12 +51,9 @@ const Filters = () => {
 
   return (
     <FiltersDiv>
-      <FiltersHeaderDiv>
-        Detaljna pretraga{' '}
-        <StyledExpandMoreIcon
-          $filtersVisible={filtersVisible}
-          onClick={() => setFiltersVisible((prev) => !prev)}
-        />
+      <FiltersHeaderDiv onClick={() => setFiltersVisible((prev) => !prev)}>
+        Detaljna pretraga
+        <StyledExpandMoreIcon $filtersVisible={filtersVisible} />
       </FiltersHeaderDiv>
       {filtersVisible && (
         <FiltersContainerDiv>

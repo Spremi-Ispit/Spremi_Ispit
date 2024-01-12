@@ -4,7 +4,6 @@ import Button from '../../../../../components/buttons/Button';
 import colors from '../../../../../theme/colors';
 
 const MorePostsDiv = styled.div`
-  margin-bottom: 20px;
   display: flex;
   justify-content: center;
 `;
