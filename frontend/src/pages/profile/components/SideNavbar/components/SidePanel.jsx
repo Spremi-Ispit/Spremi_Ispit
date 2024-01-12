@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import DoubleArrow from '@mui/icons-material/DoubleArrow';
 import { MenuItem } from '@mui/material';

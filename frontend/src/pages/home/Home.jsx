@@ -19,6 +19,7 @@ const ContentDiv = styled.div`
   max-width: 800px;
   padding-top: 20px;
   margin: 0 auto;
+  padding: 20px;
 `;
 
 const MainDiv = styled.div`
