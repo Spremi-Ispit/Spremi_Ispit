@@ -21,6 +21,8 @@ export const addComment = async (comment, postID, setUploadProgress) => {
       setUploadProgress
     );
   }
+
+  return commentId;
 };
 
 export default addComment;
