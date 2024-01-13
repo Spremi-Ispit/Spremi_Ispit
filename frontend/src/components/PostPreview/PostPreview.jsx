@@ -3,10 +3,19 @@ import styled from 'styled-components';
 import colors from '../../theme/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Divider } from '@mui/material';
-import NavLink from '../navbar/components/components/NavLink';
+import { NavLink as NavLinkReactRouter, useNavigate } from 'react-router-dom';
 import { profileInfoRoute, viewPostRoute } from '../../router/routes';
-import { useNavigate } from 'react-router-dom';
 import { allowedUrlParams } from '../../utils/managers/UrlManager';
+
+const NavLink = styled(NavLinkReactRouter)`
+  text-decoration: none;
+  color: white;
+  :hover {
+    text-decoration: underline;
+    color: white;
+  }
+  margin: 0px 10px;
+`;
 
 const StyledDivider = styled(Divider)`
   && {
@@ -53,10 +62,17 @@ const LikesDiv = styled.div`
   gap: 5px;
 `;
 
-const PostedByNavlink = styled(NavLink)`
-  color: black;
-
+const PostedByDiv = styled.div`
   :hover {
+    text-decoration: underline;
+  }
+`;
+
+const PostPreviewNavlink = styled(NavLink)`
+  text-decoration: none;
+  color: black;
+  :hover {
+    text-decoration: none;
     color: black;
   }
 `;
@@ -77,39 +93,40 @@ const PostPreview = ({ data, className }) => {
   } = data; //files: [{id, ext, path}]
   const navigate = useNavigate();
 
-  const handlePostPreviewClick = () => {
-    const urlPostId = `${allowedUrlParams.postId}=${id}`;
+  const handlePostedByClick = (e) => {
+    e.preventDefault();
+
     navigate({
-      pathname: viewPostRoute,
-      search: `${location.search}&${urlPostId}`,
+      pathname: profileInfoRoute,
+      search: `${allowedUrlParams.username}=${postedBy}`,
     });
   };
 
-  const handlePostedByClick = (e) => {
-    console.log('Aaaaaaaaaaaaa');
-    e.stopPropagation();
-    e.nativeEvent.stopImmediatePropagation();
-  };
-
   return (
-    <PostPreviewDiv onClick={handlePostPreviewClick} className={className}>
-      <HeaderDiv>{title}</HeaderDiv>
-      <DescriptionDiv>{text}</DescriptionDiv>
-      <StyledDivider />
-      <FooterDiv>
-        <LikesDiv>
-          <FavoriteIcon />
-          {likes - dislikes}
-        </LikesDiv>
+    <PostPreviewNavlink
+      to={`${viewPostRoute}${location.search ? location.search + '&' : '?'}${
+        allowedUrlParams.postId
+      }=${id}`}
+    >
+      <PostPreviewDiv className={className}>
+        <HeaderDiv>{title}</HeaderDiv>
+        <DescriptionDiv>{text}</DescriptionDiv>
+        <StyledDivider />
+        <FooterDiv>
+          <LikesDiv>
+            <FavoriteIcon />
+            {likes - dislikes}
+          </LikesDiv>
 
-        <PostedByNavlink
-          to={`${profileInfoRoute}?${allowedUrlParams.username}=${postedBy}`}
-          onClick={handlePostedByClick}
-        >
-          {postedBy}
-        </PostedByNavlink>
-      </FooterDiv>
-    </PostPreviewDiv>
+          <PostedByDiv
+            onClick={handlePostedByClick}
+            onContextMenu={(e) => e.preventDefault()}
+          >
+            {postedBy}
+          </PostedByDiv>
+        </FooterDiv>
+      </PostPreviewDiv>
+    </PostPreviewNavlink>
   );
 };
 
