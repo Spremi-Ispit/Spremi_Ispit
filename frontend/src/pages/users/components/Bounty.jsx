@@ -1,20 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 import colors from '../../../theme/colors';
-import CreditScoreIcon from '@mui/icons-material/CreditScore';
 
 const BountyDiv = styled.div`
   display: flex;
+  align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   background: ${colors.footer};
 `;
 
 const Bounty = () => {
   return (
     <BountyDiv>
-      Prvih 5 rangiranih studenata (ne vazi za korisnika ADMIN) dobice 1000
-      dinara!
-      <CreditScoreIcon />
+      Na kraju januraskog ispitnog roka, prvih 5 rangiranih studenata dobice
+      1000 dinara! (ne vazi za korisnika ADMIN)
     </BountyDiv>
   );
 };
