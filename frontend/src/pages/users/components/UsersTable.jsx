@@ -64,8 +64,6 @@ export const UsersTable = () => {
       const usrRank = (usr) => usr.likes + usr.posts + usr.comments;
       usrs.sort((usr1, usr2) => usrRank(usr2) - usrRank(usr1));
       setUsers(usrs);
-
-      console.log(response);
     }
   }, [response]);
 
