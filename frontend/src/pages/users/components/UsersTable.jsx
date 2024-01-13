@@ -17,7 +17,7 @@ import styled from 'styled-components';
 import { useAppActions } from '../../../redux/useAppActions';
 import { selectRole, selectUsername } from '../../../redux/app/selectors';
 import { selectLoadUsersTable } from '../../../redux/users/selectors';
-import { profileRoute } from '../../../router/routes';
+import { profilePostsRoute } from '../../../router/routes';
 import { useScreens, screens } from '../../../utils/useScreens';
 import { useApiActions } from '../../../api/useApiActions';
 import { allowedUrlParams } from '../../../utils/managers/UrlManager';
@@ -88,7 +88,7 @@ export const UsersTable = () => {
 
   const handleVisitUserProfile = (username) => {
     navigate({
-      pathname: profileRoute,
+      pathname: profilePostsRoute,
       search: `${allowedUrlParams.username}=${username}`,
     });
   };
