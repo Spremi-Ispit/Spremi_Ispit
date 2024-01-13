@@ -52,18 +52,18 @@ const UsernameUpdateView = ({ user, setUsernameUpdate }) => {
   const [confirmedPassword, setConfirmedPassword] = useState('');
   const [newUsername, setNewUsername] = useState('');
   const { changeAccountUsername } = useApiActions();
-  const { loaded, loading, error, setError, action } = changeAccountUsername;
+  const { response, loading, error, setError, action } = changeAccountUsername;
   const [showPassword, setShowPassword] = useState(false);
   const urlManager = useUrlManager();
   const authManager = useAuthManager();
 
   useEffect(() => {
-    if (loaded) {
-      authManager.updateUsernameAndToken(user);
-      urlManager.updateUrlParam(allowedUrlParams.username, user.username);
+    if (response) {
+      urlManager.updateUrlParam(allowedUrlParams.username, response.username);
+      authManager.updateUsernameAndToken(response);
       setUsernameUpdate(false);
     }
-  }, [loaded]);
+  }, [response]);
 
   const handleSubmitUsernameUpdate = () => {
     action(newUsername, confirmedPassword, user.email);
