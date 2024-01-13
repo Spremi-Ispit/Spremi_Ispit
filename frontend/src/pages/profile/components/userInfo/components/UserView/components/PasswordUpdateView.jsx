@@ -14,6 +14,8 @@ import { useAuthManager } from '../../../../../../../utils/managers/AuthManager'
 import { useApiActions } from '../../../../../../../api/useApiActions';
 import colors from '../../../../../../../theme/colors';
 import Button from '../../../../../../../components/buttons/Button';
+import { validatePassword } from '../../../../../../../utils/validation';
+import Dialog from '../../../../../../../components/dialogs/Dialog';
 
 const StyledFormControl = styled(FormControl)`
   && {
@@ -24,14 +26,14 @@ const StyledFormControl = styled(FormControl)`
 `;
 
 const SubmitButton = styled(Button)`
-  color: black;
-  background-color: ${colors.footer};
+  color: white;
+  background-color: ${colors.filteri};
   font-size: medium;
   font-weight: bold;
 
   :hover {
-    color: white;
-    background-color: ${colors.filteri};
+    color: black;
+    background-color: ${colors.button};
   }
 `;
 const PasswordUpdateView = ({ user, setPasswordUpdate }) => {
@@ -42,6 +44,7 @@ const PasswordUpdateView = ({ user, setPasswordUpdate }) => {
     changeAccountPassword;
   const [showPassword, setShowPassword] = useState(false);
   const authManager = useAuthManager();
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
     if (loaded) {
@@ -50,7 +53,17 @@ const PasswordUpdateView = ({ user, setPasswordUpdate }) => {
     }
   }, [loaded]);
 
-  const handleSubmitPasswordUpdate = () => {
+  const handleSubmitPasswordUpdate = async () => {
+    const newPasswordError = await validatePassword(newPassword);
+    if (newPasswordError) {
+      return setMessage('Nova sifra: ' + newPasswordError);
+    }
+
+    const confirmedPasswordError = await validatePassword(confirmedPassword);
+    if (confirmedPasswordError) {
+      return setMessage('Potvrdi trenutnom sifrom: ' + confirmedPasswordError);
+    }
+
     action(newPassword, confirmedPassword, user.email);
   };
 
@@ -117,6 +130,7 @@ const PasswordUpdateView = ({ user, setPasswordUpdate }) => {
         />
       </StyledFormControl>
       <SubmitButton onClick={handleSubmitPasswordUpdate}>Potvrdi</SubmitButton>
+      <Dialog message={message} setMessage={setMessage} />
     </>
   );
 };

@@ -19,6 +19,8 @@ import { useAuthManager } from '../../../../../../../utils/managers/AuthManager'
 import { useApiActions } from '../../../../../../../api/useApiActions';
 import Button from '../../../../../../../components/buttons/Button';
 import colors from '../../../../../../../theme/colors';
+import { validatePassword } from '../../../../../../../utils/validation';
+import Dialog from '../../../../../../../components/dialogs/Dialog';
 
 const StyledFormControl = styled(FormControl)`
   && {
@@ -37,14 +39,14 @@ const StyledTextField = styled(TextField)`
 `;
 
 const SubmitButton = styled(Button)`
-  color: black;
-  background-color: ${colors.footer};
+  color: white;
+  background-color: ${colors.filteri};
   font-size: medium;
   font-weight: bold;
 
   :hover {
-    color: white;
-    background-color: ${colors.filteri};
+    color: black;
+    background-color: ${colors.button};
   }
 `;
 
@@ -56,6 +58,7 @@ const UsernameUpdateView = ({ user, setUsernameUpdate }) => {
   const [showPassword, setShowPassword] = useState(false);
   const urlManager = useUrlManager();
   const authManager = useAuthManager();
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
     if (response) {
@@ -65,7 +68,16 @@ const UsernameUpdateView = ({ user, setUsernameUpdate }) => {
     }
   }, [response]);
 
-  const handleSubmitUsernameUpdate = () => {
+  const handleSubmitUsernameUpdate = async () => {
+    const passwordConfirmError = await validatePassword(confirmedPassword);
+    if (passwordConfirmError) {
+      return setMessage(passwordConfirmError);
+    }
+
+    if (!newUsername.trim()) {
+      return setMessage('Username could not be empty');
+    }
+
     action(newUsername, confirmedPassword, user.email);
   };
 
@@ -112,6 +124,7 @@ const UsernameUpdateView = ({ user, setUsernameUpdate }) => {
         />
       </StyledFormControl>
       <SubmitButton onClick={handleSubmitUsernameUpdate}>Potvrdi</SubmitButton>
+      <Dialog message={message} setMessage={setMessage} />
     </>
   );
 };

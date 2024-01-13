@@ -12,7 +12,8 @@ const BountyDiv = styled.div`
 const Bounty = () => {
   return (
     <BountyDiv>
-      Prvih 5 rangiranih studenata (po broju lajkova) dobice 1000 dinara!
+      Prvih 5 rangiranih studenata (ne vazi za korisnika ADMIN) dobice 1000
+      dinara!
       <CreditScoreIcon />
     </BountyDiv>
   );

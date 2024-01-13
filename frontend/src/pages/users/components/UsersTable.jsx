@@ -40,7 +40,7 @@ export const mapUserRoleToView = (role) => {
 export const UsersTable = () => {
   const [users, setUsers] = useState([]);
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(100);
   const role = useSelector(selectRole);
   const username = useSelector(selectUsername);
   const loadUsersTable = useSelector(selectLoadUsersTable);
@@ -58,11 +58,12 @@ export const UsersTable = () => {
   }, []);
 
   useEffect(() => {
-    if (loaded) {
+    if (response) {
       setLoadUsersTable(false);
       setUsers(response);
+      console.log(response);
     }
-  }, [loaded]);
+  }, [response]);
 
   useEffect(() => {
     if (loadUsersTable) {
@@ -114,39 +115,51 @@ export const UsersTable = () => {
             <TableRow>
               <TableCell>Redni broj</TableCell>
               <TableCell>Korisnik</TableCell>
+              <TableCell>Objave</TableCell>
+              <TableCell>Komentari</TableCell>
               <TableCell>Lajkovi</TableCell>
-              {role === userRole.admin ? <TableCell>Rola</TableCell> : null}
+              <TableCell>Ukupno</TableCell>
+              {role === userRole.admin && <TableCell>Rola</TableCell>}
             </TableRow>
           </TableHead>
           <TableBody>
             {users
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((user) => {
+                const {
+                  username: tableUsername,
+                  likes,
+                  posts,
+                  comments,
+                } = user;
+
                 return (
                   <TableRow
                     hover
-                    selected={user.username === username}
+                    selected={tableUsername === username}
                     role="checkbox"
-                    tabIndex={-1}
                     key={JSON.stringify(user)}
                   >
                     <TableCell>
                       {users.findIndex(
-                        (someUser) => someUser.username === user.username
+                        (someUser) => someUser.username === tableUsername
                       ) + 1}
                     </TableCell>
                     <TableCell>
                       <StyledButton
-                        onClick={() => handleVisitUserProfile(user.username)}
+                        onClick={() => handleVisitUserProfile(tableUsername)}
                       >
-                        {user.username}
+                        {tableUsername}
                       </StyledButton>
                     </TableCell>
 
-                    <TableCell>{user.likes}</TableCell>
-                    {role === userRole.admin ? (
+                    <TableCell>{posts}</TableCell>
+                    <TableCell>{comments}</TableCell>
+                    <TableCell>{likes}</TableCell>
+                    <TableCell>{likes + posts + comments}</TableCell>
+                    {role === userRole.admin && (
                       <TableCell>{mapUserRoleToView(user.role)}</TableCell>
-                    ) : null}
+                    )}
                   </TableRow>
                 );
               })}
@@ -154,7 +167,7 @@ export const UsersTable = () => {
         </Table>
       </TableContainer>
       <TablePagination
-        rowsPerPageOptions={[5, 10, 20, 50, 100]}
+        rowsPerPageOptions={[100]}
         component="div"
         count={users.length}
         rowsPerPage={rowsPerPage}
