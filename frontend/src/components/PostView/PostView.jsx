@@ -10,6 +10,8 @@ import env from '../../config/env';
 import LikeDislike from './components/LikeDislike';
 import Delete from './components/Delete';
 import Report from './components/Report';
+import Markdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 const StyledDivider = styled(Divider)`
   && {
@@ -97,7 +99,9 @@ const PostView = ({
     <PostViewDiv className={className}>
       <MainDiv>
         <HeaderDiv>{title}</HeaderDiv>
-        <DescriptionDiv>{text}</DescriptionDiv>
+        <DescriptionDiv>
+          <Markdown remarkPlugins={[remarkGfm]}>{text}</Markdown>
+        </DescriptionDiv>
         <AttachmentsDiv>
           {files.length > 0 && (
             <FileViewer
