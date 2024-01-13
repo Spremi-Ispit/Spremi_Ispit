@@ -7,7 +7,7 @@ import {
   useUrlManager,
 } from '../../utils/managers/UrlManager';
 import { orders } from './components/Filters/components/Order';
-import WelcomeModal from './components/WelcomeModal';
+// import WelcomeModal from './components/WelcomeModal';
 import Filters from './components/Filters/Filters';
 import Footer from '../../components/Footer';
 import SettingsSidePanel from '../../components/SettingsSidePanel/SettingsSidePanel';
@@ -63,7 +63,7 @@ export const Home = () => {
           <Footer />
         </MainDiv>
       </HomeDiv>
-      <WelcomeModal />
+      {/* <WelcomeModal /> */}
     </>
   );
 };
