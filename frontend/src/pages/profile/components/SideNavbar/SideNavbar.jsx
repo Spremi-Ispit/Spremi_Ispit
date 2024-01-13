@@ -8,7 +8,7 @@ import {
 } from '../../../../utils/managers/UrlManager';
 import { useAppActions } from '../../../../redux/useAppActions';
 import { useSelector } from 'react-redux';
-import { selectRole } from '../../../../redux/app/selectors';
+import { selectRole, selectUsername } from '../../../../redux/app/selectors';
 import { selectSideNavbarHidden } from '../../../../redux/profile/selectors';
 import { screens, useScreens } from '../../../../utils/useScreens';
 import NavLink from './components/NavLink';
@@ -62,6 +62,7 @@ export const SideNavbar = () => {
   const { profileActions } = useAppActions();
   const { setSideNavbarHidden } = profileActions;
   const screen = useScreens();
+  const username = useSelector(selectUsername);
 
   const navigateTo = (route) =>
     `${route}?${allowedUrlParams.username}=${urlUsername}`;
@@ -82,7 +83,9 @@ export const SideNavbar = () => {
       <NavLink to={navigateTo(profileCommentedPostsRoute)}>
         Komentarisane objave
       </NavLink>
-      <NavLink to={navigateTo(profileInfoRoute)}>Informacije</NavLink>
+      {(username === urlUsername || role === userRole.admin) && (
+        <NavLink to={navigateTo(profileInfoRoute)}>Informacije</NavLink>
+      )}
       <StyledDivider />
       {role === userRole.admin && (
         <>

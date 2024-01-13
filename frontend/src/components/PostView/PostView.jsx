@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import colors from '../../theme/colors';
 import { Divider } from '@mui/material';
 import NavLink from '../navbar/components/components/NavLink';
-import { profileInfoRoute } from '../../router/routes';
+import { profilePostsRoute } from '../../router/routes';
 import { allowedUrlParams } from '../../utils/managers/UrlManager';
 import FileViewer from '../fileViewer/FileViewer';
 import env from '../../config/env';
@@ -127,7 +127,7 @@ const PostView = ({
         />
         <UserDiv>
           <PostedByNavlink
-            to={`${profileInfoRoute}?${allowedUrlParams.username}=${postedBy}`}
+            to={`${profilePostsRoute}?${allowedUrlParams.username}=${postedBy}`}
           >
             {postedBy}
           </PostedByNavlink>

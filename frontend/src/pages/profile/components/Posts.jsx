@@ -74,7 +74,7 @@ export const Posts = () => {
   if (posts.length === 0) {
     return (
       <PostsDiv>
-        <MyPostsH1>Moje objave</MyPostsH1>
+        <MyPostsH1>Objave</MyPostsH1>
         <StyledDivider />
         <Fade in={true}>
           <StyledPaper elevation={4}>
@@ -87,7 +87,7 @@ export const Posts = () => {
 
   return (
     <PostsDiv>
-      <MyPostsH1>Moje objave</MyPostsH1>
+      <MyPostsH1>Objave</MyPostsH1>
       <StyledDivider />
       {posts.map((data, index) => (
         <PostPreview key={index} data={data} />

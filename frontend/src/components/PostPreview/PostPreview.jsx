@@ -4,7 +4,7 @@ import colors from '../../theme/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Divider } from '@mui/material';
 import { NavLink as NavLinkReactRouter, useNavigate } from 'react-router-dom';
-import { profileInfoRoute, viewPostRoute } from '../../router/routes';
+import { profilePostsRoute, viewPostRoute } from '../../router/routes';
 import { allowedUrlParams } from '../../utils/managers/UrlManager';
 
 const NavLink = styled(NavLinkReactRouter)`
@@ -97,7 +97,7 @@ const PostPreview = ({ data, className }) => {
     e.preventDefault();
 
     navigate({
-      pathname: profileInfoRoute,
+      pathname: profilePostsRoute,
       search: `${allowedUrlParams.username}=${postedBy}`,
     });
   };

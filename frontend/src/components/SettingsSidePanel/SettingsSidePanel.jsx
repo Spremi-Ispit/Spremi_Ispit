@@ -30,7 +30,7 @@ const OpenedPanelOverlayDiv = styled.div`
   left: ${({ closed, width }) => (closed ? `-${width}` : '0')}px;
   box-shadow: 2px 1px 5px 0 #393a3d26;
   background: ${colors.filteri};
-  z-index: 2;
+  z-index: 99999;
   height: 100%;
   position: fixed;
 `;

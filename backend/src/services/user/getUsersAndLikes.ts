@@ -16,7 +16,9 @@ export const getUsersAndLikes = async (req) => {
     usersResponse.push({
       username: user.username,
       role: user.role,
-      likes: likes
+      likes: likes,
+      posts: user.posts.length,
+      comments: user.comments.length
     });
   });
 
