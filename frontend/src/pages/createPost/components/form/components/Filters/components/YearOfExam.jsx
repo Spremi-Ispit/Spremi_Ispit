@@ -57,7 +57,7 @@ export const YearOfExam = () => {
         >
           <MenuItem value={''}>Sve</MenuItem>
           {yearsOfExam.length > 0
-            ? yearsOfExam.map((yearOfExam) => (
+            ? yearsOfExam.reverse().map((yearOfExam) => (
                 <MenuItem key={yearOfExam.name} value={yearOfExam.name}>
                   {yearOfExam.name}
                 </MenuItem>
