@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import FormControl from '@mui/material/FormControl';
 import {
+  FormHelperText,
   IconButton,
   InputAdornment,
   InputLabel,
@@ -59,6 +60,8 @@ const UsernameUpdateView = ({ user, setUsernameUpdate }) => {
   const urlManager = useUrlManager();
   const authManager = useAuthManager();
   const [message, setMessage] = useState('');
+  const [confirmedPasswordError, setConfirmedPasswordError] = useState(null);
+  const [usernameError, setUsernameError] = useState(null);
 
   useEffect(() => {
     if (response) {
@@ -89,19 +92,42 @@ const UsernameUpdateView = ({ user, setUsernameUpdate }) => {
     return <Loader />;
   }
 
+  const handleUsernameChange = async (e) => {
+    const newUsername = e.target.value;
+
+    setNewUsername(newUsername);
+    if (!newUsername.trim()) {
+      setUsernameError('Username could not be empty');
+    } else {
+      setUsernameError(null);
+    }
+  };
+
+  const handleConfirmedPasswordChange = async (e) => {
+    const confirmedPassword = e.target.value;
+    setConfirmedPassword(confirmedPassword);
+
+    const passwordError = await validatePassword(confirmedPassword);
+    setConfirmedPasswordError(passwordError);
+  };
+
   return (
     <>
       <h2>Promeni korisničko ime</h2>
       <StyledTextField
         label="Novo korisničko ime"
         variant="outlined"
-        onChange={(e) => setNewUsername(e.target.value)}
+        onChange={handleUsernameChange}
         value={newUsername}
       />
+      {!!usernameError && (
+        <FormHelperText error>{usernameError}</FormHelperText>
+      )}
       <StyledFormControl variant="outlined">
         <InputLabel htmlFor="outlined-adornment-password">
           Potvrdi trenutnom šifrom
         </InputLabel>
+
         <OutlinedInput
           id="outlined-adornment-password"
           type={showPassword ? 'text' : 'password'}
@@ -119,9 +145,13 @@ const UsernameUpdateView = ({ user, setUsernameUpdate }) => {
               </IconButton>
             </InputAdornment>
           }
-          onChange={(e) => setConfirmedPassword(e.target.value)}
+          onChange={handleConfirmedPasswordChange}
           label="Potvrdi trenutnom šifrom"
+          error={!!confirmedPasswordError}
         />
+        {!!confirmedPasswordError && (
+          <FormHelperText error>{confirmedPasswordError}</FormHelperText>
+        )}
       </StyledFormControl>
       <SubmitButton onClick={handleSubmitUsernameUpdate}>Potvrdi</SubmitButton>
       <Dialog message={message} setMessage={setMessage} />
