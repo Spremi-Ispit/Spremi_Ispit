@@ -87,7 +87,7 @@ export const registrationConfirm = async (req) => {
 
   const activactionRequest = activactionRequests.splice(indexOfRequest, 1)[0];
 
-  const { email, password } = activactionRequest;
+  const { password } = activactionRequest;
 
   req.body.email = email;
   req.body.password = password;
