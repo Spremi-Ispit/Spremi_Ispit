@@ -43,6 +43,11 @@ const PostsDiv = styled.div`
 const MyPostsH1 = styled.h1`
   align-self: center;
 `;
+const PostsPreviewDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
 
 export const Posts = () => {
   const [posts, setPosts] = useState([]);
@@ -89,9 +94,11 @@ export const Posts = () => {
     <PostsDiv>
       <MyPostsH1>Objave</MyPostsH1>
       <StyledDivider />
-      {posts.map((data, index) => (
-        <PostPreview key={index} data={data} />
-      ))}
+      <PostsPreviewDiv>
+        {posts.map((data, index) => (
+          <PostPreview key={index} data={data} />
+        ))}
+      </PostsPreviewDiv>
     </PostsDiv>
   );
 };

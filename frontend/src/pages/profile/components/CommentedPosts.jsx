@@ -44,6 +44,12 @@ const CommentedPostsH1 = styled.h1`
   align-self: center;
 `;
 
+const PostsPreviewDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+
 export const CommentedPosts = () => {
   const [posts, setPosts] = useState([]);
   const urlManager = useUrlManager();
@@ -89,9 +95,11 @@ export const CommentedPosts = () => {
     <PostsDiv>
       <CommentedPostsH1>Komentarisane objave</CommentedPostsH1>
       <StyledDivider />
-      {posts.map((data, index) => (
-        <PostPreview key={index} data={data} />
-      ))}
+      <PostsPreviewDiv>
+        {posts.map((data, index) => (
+          <PostPreview key={index} data={data} />
+        ))}
+      </PostsPreviewDiv>
     </PostsDiv>
   );
 };
