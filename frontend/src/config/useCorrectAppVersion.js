@@ -9,6 +9,7 @@ const useCorrectAppVersion = () => {
 
     if (version !== actualVersion) {
       localStorage.clear();
+      window.location.reload();
       localStorageManager.setAppVersion(actualVersion);
     }
   }, []);
