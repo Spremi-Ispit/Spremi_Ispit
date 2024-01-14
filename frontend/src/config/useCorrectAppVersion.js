@@ -7,9 +7,23 @@ const useCorrectAppVersion = () => {
     const version = localStorageManager.getAppVersion();
     const actualVersion = PackageJSON.version;
 
-    if (version !== actualVersion) {
-      localStorage.clear();
+    async function handleHardReload(url) {
+      await fetch(url, {
+        headers: {
+          Pragma: 'no-cache',
+          Expires: '-1',
+          'Cache-Control': 'no-cache',
+        },
+      });
+      window.location.href = url;
+      window.location.reload();
       localStorageManager.setAppVersion(actualVersion);
+    }
+
+    if (version !== actualVersion) {
+      // localStorage.clear();
+      // window.location.reload();
+      handleHardReload(window.location.href);
     }
   }, []);
 };
