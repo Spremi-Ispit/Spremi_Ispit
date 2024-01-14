@@ -50,6 +50,7 @@ export const UsersTable = () => {
   const { loadUsersForUsersTable } = useApiActions();
   const { response, loaded, error, setError, action } = loadUsersForUsersTable;
   const screen = useScreens();
+  const excludedUsername = 'Admin';
 
   useEffect(() => {
     if (!loadUsersTable) {
@@ -60,8 +61,8 @@ export const UsersTable = () => {
   useEffect(() => {
     if (response) {
       setLoadUsersTable(false);
-      const usrs = response;
-      const usrRank = (usr) => usr.likes + usr.posts + usr.comments;
+      const usrs = response.filter((res) => res.username !== excludedUsername);
+      const usrRank = (usr) => usr.posts + usr.comments;
       usrs.sort((usr1, usr2) => usrRank(usr2) - usrRank(usr1));
       setUsers(usrs);
     }
@@ -83,7 +84,7 @@ export const UsersTable = () => {
   };
 
   useEffect(() => {
-    if (users.length > 0) {
+    if (users.length > 0 && username !== excludedUsername) {
       const myRating = users.findIndex((user) => user.username === username);
       setPage(Math.floor(myRating / rowsPerPage));
     }
@@ -119,7 +120,6 @@ export const UsersTable = () => {
               <TableCell>Korisnik</TableCell>
               <TableCell>Objave</TableCell>
               <TableCell>Komentari</TableCell>
-              <TableCell>Lajkovi</TableCell>
               <TableCell>Ukupno</TableCell>
               {role === userRole.admin && <TableCell>Rola</TableCell>}
             </TableRow>
@@ -157,8 +157,7 @@ export const UsersTable = () => {
 
                     <TableCell>{posts}</TableCell>
                     <TableCell>{comments}</TableCell>
-                    <TableCell>{likes}</TableCell>
-                    <TableCell>{likes + posts + comments}</TableCell>
+                    <TableCell>{posts + comments}</TableCell>
                     {role === userRole.admin && (
                       <TableCell>{mapUserRoleToView(user.role)}</TableCell>
                     )}

@@ -3,19 +3,9 @@ import styled from 'styled-components';
 import colors from '../../theme/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Divider } from '@mui/material';
-import { NavLink as NavLinkReactRouter, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { profilePostsRoute, viewPostRoute } from '../../router/routes';
 import { allowedUrlParams } from '../../utils/managers/UrlManager';
-
-const NavLink = styled(NavLinkReactRouter)`
-  text-decoration: none;
-  color: white;
-  :hover {
-    text-decoration: underline;
-    color: white;
-  }
-  margin: 0px 10px;
-`;
 
 const StyledDivider = styled(Divider)`
   && {
@@ -26,7 +16,6 @@ const StyledDivider = styled(Divider)`
 
 const PostPreviewDiv = styled.div`
   background-color: white;
-  margin-bottom: 20px;
   box-shadow: rgba(0, 0, 0, 0.75) 0px 1px 3px;
   cursor: pointer;
   flex: 1;
@@ -75,6 +64,7 @@ const PostPreviewNavlink = styled(NavLink)`
     text-decoration: none;
     color: black;
   }
+  width: 100%;
 `;
 
 const PostPreview = ({ data, className }) => {
@@ -107,8 +97,9 @@ const PostPreview = ({ data, className }) => {
       to={`${viewPostRoute}${location.search ? location.search + '&' : '?'}${
         allowedUrlParams.postId
       }=${id}`}
+      className={className}
     >
-      <PostPreviewDiv className={className}>
+      <PostPreviewDiv>
         <HeaderDiv>{title}</HeaderDiv>
         <DescriptionDiv>{text}</DescriptionDiv>
         <StyledDivider />

@@ -53,11 +53,17 @@ const ControllsDiv = styled.div`
 `;
 
 const StyledPostPreview = styled(PostPreview)`
-  margin-bottom: 0px;
+  width: 100%;
 `;
 
 const ReportedCommentsH1 = styled.h1`
   align-self: center;
+`;
+
+const CommentsPreviewDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 `;
 
 export const ReportedComments = () => {
@@ -101,17 +107,22 @@ export const ReportedComments = () => {
     <ReportedCommentsDiv>
       <ReportedCommentsH1>Prijavljeni komentari</ReportedCommentsH1>
       <StyledDivider />
-      {comments.map((comment) => {
-        return (
-          <CommentPreviewContainer key={JSON.stringify(comment)}>
-            <StyledPostPreview data={comment} />
-            <ControllsDiv>
-              <ShowPost postId={comment.postId} />
-              <DismissReport commentId={comment.id} setLoadComments={action} />
-            </ControllsDiv>
-          </CommentPreviewContainer>
-        );
-      })}
+      <CommentsPreviewDiv>
+        {comments.map((comment) => {
+          return (
+            <CommentPreviewContainer key={JSON.stringify(comment)}>
+              <StyledPostPreview data={comment} />
+              <ControllsDiv>
+                <ShowPost postId={comment.postId} />
+                <DismissReport
+                  commentId={comment.id}
+                  setLoadComments={action}
+                />
+              </ControllsDiv>
+            </CommentPreviewContainer>
+          );
+        })}
+      </CommentsPreviewDiv>
     </ReportedCommentsDiv>
   );
 };

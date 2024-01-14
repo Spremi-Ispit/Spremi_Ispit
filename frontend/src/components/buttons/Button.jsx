@@ -15,14 +15,15 @@ export const Button = styled.button`
   align-items: center;
 
   :hover {
-    background-color: #d0d0d0;
+    color: black;
+    background-color: ${colors.button};
   }
 
   background-color: ${({ $disabled }) => $disabled && colors.buttonDisabled};
   padding: 8px 12px;
   border-radius: 5%;
   transition: 0.3s;
-  ${fonts(12, 400)}
+  ${fonts(16, 400)}
 `;
 
 export default Button;

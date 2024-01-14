@@ -65,19 +65,19 @@ const tools = [
   },
   {
     name: 'Operativni sistemi lab 1 - Darjan Drugarinovic',
-    link: 'https://www.google.com',
+    link: 'https://spremiispit.com/viewPost?postId=3391',
   },
   {
     name: 'Operativni sistemi lab 2 - Darjan Drugarinovic',
-    link: 'https://www.google.com',
+    link: 'https://spremiispit.com/viewPost?postId=3392',
   },
   {
     name: 'Operativni sistemi lab 3 - Darjan Drugarinovic',
-    link: 'https://www.google.com',
+    link: 'https://spremiispit.com/viewPost?postId=3393',
   },
   {
     name: 'Operativni sistemi lab 4 - Darjan Drugarinovic',
-    link: 'https://www.google.com',
+    link: 'https://spremiispit.com/viewPost?postId=3394',
   },
 ];
 

@@ -25,6 +25,9 @@ const StyledPaper = styled(Paper)`
 const PostsPreviewDiv = styled.div`
   width: 100%;
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 `;
 
 export const PostsPreview = () => {

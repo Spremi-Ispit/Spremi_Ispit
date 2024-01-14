@@ -14,7 +14,7 @@ const Bounty = () => {
   return (
     <BountyDiv>
       Na kraju januraskog ispitnog roka, prvih 5 rangiranih studenata dobice
-      1000 dinara! (ne vazi za korisnika ADMIN)
+      2000 dinara!
     </BountyDiv>
   );
 };

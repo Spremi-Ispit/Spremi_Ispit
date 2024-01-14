@@ -8,6 +8,7 @@ import { validateEmail } from '../../../../utils/validation';
 import Loader from '../../../../components/Loader';
 import { useNavigate } from 'react-router-dom';
 import { resetPasswordRoute } from '../../../../router/routes';
+import Button from '../../../../components/buttons/Button';
 
 const ModalWrapper = styled.div`
   max-width: 450px;
@@ -58,22 +59,8 @@ const Buttons = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-
-const Button = styled.button`
-  width: 120px;
-  height: 45px;
-  margin: 10px;
-  border: none;
-  color: white;
-  border-radius: 8px;
-  font-size: 20px;
-  cursor: pointer;
-  background-color: ${({ disable }) => !disable && '#023e8a'};
-
-  :hover {
-    background-color: ${({ disable }) => !disable && '#03045e'};
-  }
+  margin: 20px;
+  gap: 10px;
 `;
 
 const Paragraph = styled.p`
