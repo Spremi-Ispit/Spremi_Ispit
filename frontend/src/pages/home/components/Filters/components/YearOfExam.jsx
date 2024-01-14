@@ -53,7 +53,7 @@ export const YearOfExam = () => {
         <option value="">Sve</option>
         {!loaded || yearsOfExam.length === 0 || !urlType
           ? null
-          : yearsOfExam.map((yearOfExam) => (
+          : yearsOfExam.reverse().map((yearOfExam) => (
               <option key={yearOfExam.name} value={yearOfExam.name}>
                 {yearOfExam.name}
               </option>
