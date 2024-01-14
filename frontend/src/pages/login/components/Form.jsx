@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField';
 import styled from 'styled-components';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
-import { FormLabel } from '@mui/material';
+import { FormHelperText, FormLabel } from '@mui/material';
 import Loader from '../../../components/Loader';
 import ErrorDialog from '../../../components/dialogs/ErrorDialog';
 import { useAuthManager } from '../../../utils/managers/AuthManager';
@@ -13,10 +13,11 @@ import eye from '../../../../src/assets/eye.png';
 import eyeOff from '../../../../src/assets/eyeoff.png';
 import Modal from './Modal/Modal';
 import { useApiActions } from '../../../api/useApiActions';
-import { homeRoute, registerRoute } from '../../../router/routes';
+import { registerRoute } from '../../../router/routes';
 import { validateEmail, validatePassword } from '../../../utils/validation';
 import { useNavigate } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
+import OutlinedInput from '@mui/material/OutlinedInput';
 
 const TextH4 = styled(Typography)`
   && {
@@ -30,6 +31,7 @@ const TextH4 = styled(Typography)`
 const DivWrapper = styled.div`
   position: relative;
   width: 80%;
+  margin: 10px 0px;
 `;
 
 const StyledButton = styled(Button)`
@@ -71,19 +73,9 @@ const StyledPaper = styled(Paper)`
   }
 `;
 
-const ForgotPasswordDiv = styled.div`
+const RegistrationDiv = styled.div`
   margin-top: 10px;
-  text-decoration: none;
-  font-family: Poppins;
-  font-weight: 600;
-  font-size: 20px;
   color: #000000;
-
-  cursor: pointer;
-
-  :active {
-    text-decoration: underline;
-  }
 `;
 
 const StyledLbl = styled(FormLabel)`
@@ -101,26 +93,35 @@ const StyledLbl = styled(FormLabel)`
 const InputField = styled(TextField)`
   && {
     margin: 0;
-    padding: 0.8em 0em;
   }
 `;
 
-const Span = styled.span`
-  position: absolute;
-  bottom: 20%;
-  left: 90%;
+const ForgotPasswordDiv = styled.div`
+  margin-top: 5px;
+  cursor: pointer;
+  :hover {
+    text-decoration: underline;
+  }
 `;
 
-const RedirectToRegisterDiv = styled.div`
-  margin-top: 5px;
-`;
 const StyledNavLink = styled(NavLink)`
   color: black;
   margin-left: 2px;
+  text-decoration: none;
+  font-family: Poppins;
+  font-weight: 600;
+  font-size: 18px;
 
   :hover {
     text-decoration: underline;
   }
+`;
+
+const FooterDiv = styled.div`
+  width: 100%;
+  border-top: 1px solid #cecece;
+  background-color: #efefef;
+  padding-bottom: 5px;
 `;
 
 const Form = () => {
@@ -130,9 +131,10 @@ const Form = () => {
   const { loading, error, setError, response, action } = login;
   const authManager = useAuthManager();
   const [modalOpen, setModalOpen] = useState(false);
-  const [type, setType] = useState('password');
-  const [icon, setIcon] = useState(eyeOff);
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const navigate = useNavigate();
+  const [passwordError, setPasswordError] = useState(null);
+  const [emailError, setEmailError] = useState(null);
 
   useEffect(() => {
     if (response) {
@@ -148,35 +150,34 @@ const Form = () => {
     }
   };
 
-  const isFormValid = () => {
-    return email.length > 0 && password.length > 0;
-  };
-
-  const handleToggle = () => {
-    if (type === 'password') {
-      setIcon(eye);
-      setType('text');
-    } else if (type === 'passwordConfirm') {
-      setIcon(eye);
-      setType('text');
-    } else {
-      setIcon(eyeOff);
-      setType('password');
-    }
-  };
-
   const handleLogin = async () => {
     const emailError = await validateEmail(email);
     if (emailError) {
-      return setError(emailError);
+      return alert(emailError);
     }
 
     const passwordError = await validatePassword(password);
     if (passwordError) {
-      return setError(passwordError);
+      return alert(passwordError);
     }
 
     action(email, password);
+  };
+
+  const handleEmailChange = async (e) => {
+    const email = e.target.value;
+    setEmail(email);
+
+    const emailError = await validateEmail(email);
+    setEmailError(emailError);
+  };
+
+  const handlePasswordChange = async (e) => {
+    const password = e.target.value;
+    setPassword(password);
+
+    const passwordError = await validatePassword(password);
+    setPasswordError(passwordError);
   };
 
   if (error) {
@@ -194,54 +195,50 @@ const Form = () => {
               placeholder="Email"
               fullWidth
               type="email"
-              margin="normal"
               variant="outlined"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={handleEmailChange}
               autoComplete="Email"
+              error={!!emailError}
             />
+            {!!emailError && (
+              <FormHelperText error>{emailError}</FormHelperText>
+            )}
           </DivWrapper>
           <DivWrapper>
             <StyledLbl>Šifra</StyledLbl>
-            <InputField
+            <OutlinedInput
               placeholder="Šifra"
-              type={type}
+              type={passwordVisible ? 'text' : 'password'}
               value={password}
-              margin="normal"
               fullWidth
               variant="outlined"
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={handlePasswordChange}
               autoComplete="current-password"
+              endAdornment={
+                <img
+                  onClick={() => setPasswordVisible((prev) => !prev)}
+                  style={{ cursor: 'pointer' }}
+                  src={passwordVisible ? eye : eyeOff}
+                />
+              }
+              error={!!passwordError}
             />
-            <Span onClick={handleToggle}>
-              <img src={icon} />
-            </Span>
+            {!!passwordError && (
+              <FormHelperText error>{passwordError}</FormHelperText>
+            )}
           </DivWrapper>
-          <StyledButton
-            onClick={handleLogin}
-            disabled={loading || !isFormValid()}
-          >
+          <StyledButton onClick={handleLogin} type="button">
             Prijavi me
           </StyledButton>
-          <div
-            style={{
-              width: '100%',
-              borderTop: '1px solid #CECECE',
-              backgroundColor: '#EFEFEF',
-              paddingBottom: '5px',
-            }}
-          >
-            <ForgotPasswordDiv
-              onClick={() => {
-                setModalOpen(true);
-              }}
-            >
-              Zaboravio si sifru?
-            </ForgotPasswordDiv>
-            <RedirectToRegisterDiv>
+          <FooterDiv>
+            <RegistrationDiv>
               Nemaš profil?
               <StyledNavLink to={registerRoute}>Registruj se</StyledNavLink>
-            </RedirectToRegisterDiv>
-          </div>
+            </RegistrationDiv>
+            <ForgotPasswordDiv onClick={() => setModalOpen(true)}>
+              Zaboravio si sifru?
+            </ForgotPasswordDiv>
+          </FooterDiv>
 
           {modalOpen && <Modal setOpenModal={setModalOpen} />}
         </StyledPaper>

@@ -24,7 +24,9 @@ import Button from '../../../components/buttons/Button';
 import { useApiActions } from '../../../api/useApiActions';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { NavLink } from 'react-router-dom';
-import { FormLabel } from '@mui/material';
+import { FormHelperText, FormLabel, OutlinedInput } from '@mui/material';
+import eye from '../../../../src/assets/eye.png';
+import eyeOff from '../../../../src/assets/eyeoff.png';
 
 const TextH4 = styled(Typography)`
   && {
@@ -66,6 +68,10 @@ const StyledPaper = styled(Paper)`
 const StyledNavLink = styled(NavLink)`
   color: black;
   margin-left: 2px;
+  text-decoration: none;
+  font-family: Poppins;
+  font-weight: 600;
+  font-size: 18px;
 
   :hover {
     text-decoration: underline;
@@ -89,6 +95,7 @@ const StyledButton = styled(Button)`
 const DivWrapper = styled.div`
   position: relative;
   width: 80%;
+  margin: 10px 0px;
 `;
 
 const StyledLbl = styled(FormLabel)`
@@ -113,6 +120,10 @@ export const Form = () => {
   const token = useSelector(selectToken);
   const navigate = useNavigate();
   const [recaptcha, setReacaptcha] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [passwordError, setPasswordError] = useState(null);
+  const [passwordConfirmError, setPasswordConfirmError] = useState(null);
+  const [emailError, setEmailError] = useState(null);
 
   useEffect(() => {
     if (token !== null) {
@@ -167,6 +178,31 @@ export const Form = () => {
       handleRegister();
     }
   };
+
+  const handlePasswordChange = async (e) => {
+    const password = e.target.value;
+    setPassword(password);
+
+    const passwordError = await validatePassword(password);
+    setPasswordError(passwordError);
+  };
+
+  const handlePasswordConfirmChange = async (e) => {
+    const passwordConfirm = e.target.value;
+    setPasswordConfirm(passwordConfirm);
+
+    const passwordConfirmError = await validatePassword(passwordConfirm);
+    setPasswordConfirmError(passwordConfirmError);
+  };
+
+  const handleEmailChange = async (e) => {
+    const email = e.target.value;
+    setEmail(email);
+
+    const emailError = await validateEmail(email);
+    setEmailError(emailError);
+  };
+
   return (
     <>
       <StyledForm onKeyDown={handleEnter}>
@@ -177,40 +213,63 @@ export const Form = () => {
             <TextField
               placeholder="Email"
               fullWidth
-              margin="normal"
+              type="email"
               variant="outlined"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={handleEmailChange}
               autoComplete="Email"
+              error={!!emailError}
             />
+            {!!emailError && (
+              <FormHelperText error>{emailError}</FormHelperText>
+            )}
           </DivWrapper>
           <DivWrapper>
             <StyledLbl>Šifra</StyledLbl>
-            <TextField
+            <OutlinedInput
               placeholder="Šifra"
-              type="password"
-              autoComplete="current-password"
-              margin="normal"
+              type={passwordVisible ? 'text' : 'password'}
+              value={password}
               fullWidth
               variant="outlined"
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={handlePasswordChange}
+              autoComplete="current-password"
+              endAdornment={
+                <img
+                  onClick={() => setPasswordVisible((prev) => !prev)}
+                  style={{ cursor: 'pointer' }}
+                  src={passwordVisible ? eye : eyeOff}
+                />
+              }
+              error={!!passwordError}
             />
+            {!!passwordError && (
+              <FormHelperText error>{passwordError}</FormHelperText>
+            )}
           </DivWrapper>
           <DivWrapper>
+            <StyledLbl>Potvrdi šifru</StyledLbl>
             <TextField
               placeholder="Potvrdi šifru"
-              margin="normal"
-              type="password"
+              type={passwordVisible ? 'text' : 'password'}
               fullWidth
               variant="outlined"
-              onChange={(e) => setPasswordConfirm(e.target.value)}
+              onChange={handlePasswordConfirmChange}
               autoComplete="current-password"
+              error={!!passwordConfirmError}
             />
+            {!!passwordConfirmError && (
+              <FormHelperText error>{passwordConfirmError}</FormHelperText>
+            )}
           </DivWrapper>
           <ReCAPTCHA
             onChange={onChangeRecaptcha}
             sitekey="6LfQPBwpAAAAABBHiyViwEfJ6YJNw1_S5jcPXiBb"
           />
-          <StyledButton onClick={handleRegister} disabled={loading}>
+          <StyledButton
+            onClick={handleRegister}
+            disabled={loading}
+            type="button"
+          >
             Registruj me
           </StyledButton>
           <div
