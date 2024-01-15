@@ -78,11 +78,14 @@ export const registrationConfirm = async (req) => {
   });
 
   if (indexOfRequest === -1) {
-    return response.BAD_REQUEST(`Bad request`);
+    return response.BAD_REQUEST(`Bad email`);
   }
 
-  if (activactionRequests[indexOfRequest].activactionCode !== activactionCode) {
-    return response.BAD_REQUEST(`Bad request`);
+  if (
+    activactionRequests[indexOfRequest].activactionCode !==
+    Number(activactionCode)
+  ) {
+    return response.BAD_REQUEST(`Bad activaction code`);
   }
 
   const activactionRequest = activactionRequests.splice(indexOfRequest, 1)[0];

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Navbar from '../../components/navbar/Navbar';
 import Button from '../../components/buttons/Button';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { homeRoute, registerRoute } from '../../router/routes';
+import { homeRoute } from '../../router/routes';
 import { useApiActions } from '../../api/useApiActions';
 import Loader from '../../components/Loader';
 import ErrorDialog from '../../components/dialogs/ErrorDialog';
