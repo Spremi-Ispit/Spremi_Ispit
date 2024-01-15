@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField';
 import styled from 'styled-components';
 import Navbar from '../../components/navbar/Navbar';
 import Button from '../../components/buttons/Button';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { homeRoute } from '../../router/routes';
 import { useApiActions } from '../../api/useApiActions';
 import Loader from '../../components/Loader';
@@ -45,6 +45,13 @@ const RegistrationConfirm = () => {
   const { registrationConfirm } = useApiActions();
   const { loading, error, setError, response, action } = registrationConfirm;
   const authManager = useAuthManager();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (!location.state) {
+      navigate(homeRoute);
+    }
+  }, []);
 
   useEffect(() => {
     if (response) {
@@ -58,7 +65,8 @@ const RegistrationConfirm = () => {
   };
 
   const handleSubmit = () => {
-    action(activactionCode);
+    const { email } = location.state;
+    action(email, activactionCode);
   };
 
   const handleActivactionCodeChange = (event) => {

@@ -1,6 +1,5 @@
 // @ts-nocheck
 import bcrypt from 'bcrypt';
-import { v4 as uuidv4 } from 'uuid';
 import response from '../../utils/response/index';
 import { validateEmail, validatePassword } from '../../utils/validation';
 import { User } from '../../entities/User';
@@ -14,6 +13,11 @@ const min = 60 * sec;
 const expirationTime = 10 * min;
 
 const activactionRequests = [];
+
+function randomIntFromInterval(min, max) {
+  // min and max included
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
 
 export const registerUser = async (req) => {
   const { email, password } = req.body;
@@ -36,13 +40,13 @@ export const registerUser = async (req) => {
     return response.BAD_REQUEST(`Email already exists`);
   }
 
-  const uuid = uuidv4();
-  activactionRequests.push({ email, activactionCode: uuid, password });
+  const code = randomIntFromInterval(1000, 9999);
+  activactionRequests.push({ email, activactionCode: code, password });
 
   setTimeout(async () => {
     const indexOfactivactionRequest = activactionRequests.findIndex(
       (request) => {
-        return request.activactionCode === uuid;
+        return request.email === email;
       }
     );
 
@@ -57,7 +61,7 @@ export const registerUser = async (req) => {
       subject: 'Registration process',
       text: `Use the following code to complete the registration. It will expire at: ${new Date(
         now() + expirationTime
-      )}. \n Code: ${uuid} `
+      )}. \n Code: ${code} `
     });
 
     return response.OK(`Mail with the activaction code has been sent.`);
@@ -67,22 +71,26 @@ export const registerUser = async (req) => {
 };
 
 export const registrationConfirm = async (req) => {
-  const { activactionCode } = req.body;
+  const { email, activactionCode } = req.body;
 
-  const indexOfActivactionRequest = activactionRequests.findIndex((request) => {
-    return request.activactionCode === activactionCode;
+  const indexOfRequest = activactionRequests.findIndex((request) => {
+    return request.email === email;
   });
 
-  if (indexOfActivactionRequest === -1) {
-    return response.BAD_REQUEST(`Bad request`);
+  if (indexOfRequest === -1) {
+    return response.BAD_REQUEST(`Bad email`);
   }
 
-  const activactionRequest = activactionRequests.splice(
-    indexOfActivactionRequest,
-    1
-  )[0];
+  if (
+    activactionRequests[indexOfRequest].activactionCode !==
+    Number(activactionCode)
+  ) {
+    return response.BAD_REQUEST(`Bad activaction code`);
+  }
 
-  const { email, password } = activactionRequest;
+  const activactionRequest = activactionRequests.splice(indexOfRequest, 1)[0];
+
+  const { password } = activactionRequest;
 
   req.body.email = email;
   req.body.password = password;

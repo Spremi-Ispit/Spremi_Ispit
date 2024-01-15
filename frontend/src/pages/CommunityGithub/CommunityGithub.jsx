@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Navbar from '../../components/navbar/Navbar';
 import SettingsSidePanel from '../../components/SettingsSidePanel/SettingsSidePanel';
+import Footer from '../../components/Footer';
 
 const MainDiv = styled.div`
   flex-grow: 1;
@@ -53,6 +54,7 @@ const CommunityGithub = () => {
           ))}
         </MainDiv>
       </CommunityGithubDiv>
+      <Footer />
     </>
   );
 };

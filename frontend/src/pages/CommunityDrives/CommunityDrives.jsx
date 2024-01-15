@@ -4,6 +4,7 @@ import Navbar from '../../components/navbar/Navbar';
 import SettingsSidePanel from '../../components/SettingsSidePanel/SettingsSidePanel';
 import { NavLink } from 'react-router-dom';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
+import Footer from '../../components/Footer';
 
 const StyledNavlink = styled(NavLink)`
   text-decoration: none;
@@ -54,6 +55,7 @@ const CommunityDrives = () => {
           ))}
         </MainDiv>
       </CommunityDrivesDiv>
+      <Footer />
     </>
   );
 };

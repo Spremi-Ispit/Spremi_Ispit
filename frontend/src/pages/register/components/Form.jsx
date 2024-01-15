@@ -160,7 +160,7 @@ export const Form = () => {
   useEffect(() => {
     if (response) {
       alert(response);
-      navigate(registrationConfirmRoute);
+      navigate(registrationConfirmRoute, { state: { email } });
     }
   }, [response]);
 

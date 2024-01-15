@@ -8,9 +8,9 @@ const useCorrectAppVersion = () => {
     const actualVersion = PackageJSON.version;
 
     if (version !== actualVersion) {
-      // localStorage.clear();
       localStorage.clear();
-      // --------------------------
+      // ---------HARD RELOAD---------
+      // https://stackoverflow.com/questions/2099201/javascript-hard-refresh-of-current-page
       const url = new URL(window.location.href);
       url.searchParams.set('reloadTime', Date.now().toString());
       window.location.href = url.toString();

@@ -17,14 +17,14 @@ export const validateEmail = async (email) => {
 export const validatePassword = async (password) => {
   const schema = Yup.object({
     password: Yup.string()
-      .min(8, 'password must contain 8 or more characters')
-      .matches(/[a-z]/, 'password must contain at least 1 lowercase letter')
       .matches(/[A-Z]/, 'password must contain at least 1 uppercase letter')
+      .matches(/[a-z]/, 'password must contain at least 1 lowercase letter')
       .matches(/\d/, 'password must contain at least 1 number')
       .matches(
         /[!@#$%^&*(),.?":{}|<>]/,
         'password must contain at least 1 special character'
       )
+      .min(8, 'password must contain 8 or more characters')
       .required()
   });
 

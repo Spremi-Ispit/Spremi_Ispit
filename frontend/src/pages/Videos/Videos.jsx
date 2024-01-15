@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Navbar from '../../components/navbar/Navbar';
 import SettingsSidePanel from '../../components/SettingsSidePanel/SettingsSidePanel';
+import Footer from '../../components/Footer';
 
 const MainDiv = styled.div`
   flex-grow: 1;
@@ -26,6 +27,27 @@ const Videos = () => {
       <UsersDiv>
         <SettingsSidePanel />
         <MainDiv>
+          <PlaylistH2>
+            Materijali preuzeti sa platforme Microsoft Stream
+          </PlaylistH2>
+          <a href="https://www.youtube.com/playlist?list=PLtPZX8kHjmdJAFQGNHShiwmGxXgrdrzr2">
+            Svi materijali
+          </a>
+          <div style={{ display: 'flex' }}>
+            <p>
+              **Na linku iznad se nalaze svi materijali preuzeti sa platforme
+              Microsoft Stream. Da bi smo napravili sortirane liste za svaki od
+              predmeta, potrebna nam je pomoc. Ako zelis da se prikljucis:
+              <a
+                as="a"
+                href="https://docs.google.com/document/d/1ktu2u97ZVWWkA9iWx_NgcXP7n91FJ2GnkX14wuvooW0/edit?usp=sharing"
+                target="_blank"
+              >
+                ➡️ kontaktiraj nas 📞
+              </a>
+            </p>
+          </div>
+          <br />
           {playlists.map((playlist) => (
             <div key={playlist.name}>
               <PlaylistH2>{playlist.name}</PlaylistH2>
@@ -46,6 +68,7 @@ const Videos = () => {
           ))}
         </MainDiv>
       </UsersDiv>
+      <Footer />
     </>
   );
 };

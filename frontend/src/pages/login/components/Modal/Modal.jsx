@@ -121,6 +121,15 @@ function Modal({ setOpenModal }) {
     return <ErrorDialog error={error} setError={setError} />;
   }
 
+  const handleEnter = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      e.stopPropagation();
+      e.nativeEvent.stopImmediatePropagation();
+      handleSubmit();
+    }
+  };
+
   return (
     <ModalWrapper>
       <CloseDialogDiv>
@@ -140,6 +149,7 @@ function Modal({ setOpenModal }) {
           variant="outlined"
           autoComplete="Email"
           onChange={handleChange}
+          onKeyDown={handleEnter}
         />
         <Buttons>
           <Button onClick={() => setOpenModal(false)}>Odustani</Button>
