@@ -11,12 +11,7 @@ const BountyDiv = styled.div`
 `;
 
 const Bounty = () => {
-  return (
-    <BountyDiv>
-      Na kraju januraskog ispitnog roka, prvih 5 rangiranih studenata dobice
-      2000 dinara!
-    </BountyDiv>
-  );
+  return <BountyDiv></BountyDiv>;
 };
 
 export default Bounty;
