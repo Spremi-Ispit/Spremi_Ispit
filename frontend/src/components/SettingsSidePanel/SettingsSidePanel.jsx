@@ -74,7 +74,7 @@ export const SettingsSidePanel = () => {
   const screen = useScreens();
 
   useEffect(() => {
-    if (screen <= screens.tablet) {
+    if (screen <= screens.laptop) {
       setSettingsSidePanelVisible(false);
     } else {
       setSettingsSidePanelVisible(true);
