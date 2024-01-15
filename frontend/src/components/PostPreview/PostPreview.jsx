@@ -65,6 +65,7 @@ const PostPreviewNavlink = styled(NavLink)`
     color: black;
   }
   width: 100%;
+  overflow-wrap: anywhere;
 `;
 
 const PostPreview = ({ data, className }) => {
