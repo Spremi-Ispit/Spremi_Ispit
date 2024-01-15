@@ -25,6 +25,7 @@ const PostViewDiv = styled.div`
   margin-bottom: 20px;
   box-shadow: rgba(0, 0, 0, 0.75) 0px 1px 3px;
   flex: 1;
+  overflow-wrap: anywhere;
 `;
 
 const HeaderDiv = styled.div`
