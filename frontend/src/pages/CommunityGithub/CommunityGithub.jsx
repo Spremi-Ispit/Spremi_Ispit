@@ -31,8 +31,8 @@ const CommunityGithub = () => {
   return (
     <>
       <Navbar />
+      <SettingsSidePanel />
       <CommunityGithubDiv>
-        <SettingsSidePanel />
         <MainDiv>
           {githubs.map((github) => (
             <div key={github.name}>

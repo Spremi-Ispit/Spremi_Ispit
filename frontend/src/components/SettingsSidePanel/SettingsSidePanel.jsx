@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import Wiki from './components/Wiki';
@@ -13,7 +13,6 @@ import CommunityGithub from './components/CommunityGithub';
 import CommunityDrives from './components/CommunityDrives';
 import CommunityTools from './components/CommunityTools';
 import { useAppActions } from '../../redux/useAppActions';
-import { screens, useScreens } from '../../utils/useScreens';
 
 const ClosePanelArrow = styled(DoubleArrow)`
   && {
@@ -71,15 +70,6 @@ export const SettingsSidePanel = () => {
   const { setSettingsSidePanelVisible } = appActions;
   const closedPanelWidth = 0;
   const openedPanelWidth = 200;
-  const screen = useScreens();
-
-  useEffect(() => {
-    if (screen <= screens.laptop) {
-      setSettingsSidePanelVisible(false);
-    } else {
-      setSettingsSidePanelVisible(true);
-    }
-  }, [screen]);
 
   const items = [
     <Profile />,

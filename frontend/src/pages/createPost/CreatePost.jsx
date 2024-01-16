@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Typography from '@mui/material/Typography';
 import Navbar from '../../components/navbar/Navbar';
 import Form from './components/form/Form';
+import SettingsSidePanel from '../../components/SettingsSidePanel/SettingsSidePanel';
 
 const Container = styled.div`
   flex: 1;
@@ -31,6 +32,7 @@ export const CreatePost = () => {
   return (
     <>
       <Navbar />
+      <SettingsSidePanel />
       <Container>
         <ContentContainer>
           <PageHeading variant="h5">Kreiranje objave</PageHeading>

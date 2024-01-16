@@ -38,8 +38,8 @@ const CommunityTools = () => {
   return (
     <>
       <Navbar />
+      <SettingsSidePanel />
       <CommunityToolsDiv>
-        <SettingsSidePanel />
         <MainDiv>
           <CommunityToolsH2>Alati zajednice</CommunityToolsH2>
           {tools.map((tool, index) => (

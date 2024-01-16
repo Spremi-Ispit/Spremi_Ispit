@@ -2,6 +2,7 @@ import {
   keys,
   localStorageManager,
 } from '../../utils/managers/LocalStorageManager';
+import { screens } from '../../utils/useScreens';
 
 export const userRole = {
   visitor: 'visitor',
@@ -14,7 +15,7 @@ export const initialState = {
   role: userRole.visitor,
   username: null,
   welcomeModalViewed: false,
-  settingsSidePanelVisible: false,
+  settingsSidePanelVisible: window.screen.width > screens.laptop,
 };
 
 export default localStorageManager.getState(keys.app) ?? initialState;
