@@ -467,6 +467,20 @@ const playlists = [
     ],
   },
   {
+    name: 'YT Playliste 8. Semestar',
+    subjects: [
+      {
+        name: 'Paralelni sistemi',
+        links: [
+          {
+            name: 'Predavanja i vezbe',
+            link: 'https://www.youtube.com/watch?app=desktop&v=44yBHDqrA2w&list=PLWLPHZCdUNsMOVb2-d4gavK7Riq-B--hE',
+          },
+        ],
+      },
+    ],
+  },
+  {
     name: '-----Izborni Predmeti-----',
     subjects: [
       {
