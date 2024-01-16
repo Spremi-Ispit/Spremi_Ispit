@@ -26,7 +26,6 @@ export default function Router() {
   const privateRoutes = (
     <Route element={<PrivateRoutes />}>
       <Route path={routes.createPostRoute} element={<CreatePost />} exact />
-      <Route path={routes.usersRoute} element={<Users />} exact />
       <Route path={routes.profileRoute} element={<Profile />}>
         <Route path={routes.profilePostsRoute} element={<Posts />} />
         <Route
@@ -48,6 +47,7 @@ export default function Router() {
 
   const publicRoutes = (
     <>
+      <Route path={routes.usersRoute} element={<Users />} exact />
       <Route path={routes.videosRoute} element={<Videos />} exact />
       <Route path={routes.viewPostRoute} element={<ViewPost />} exact />
       <Route path={routes.homeRoute} element={<Home />} />

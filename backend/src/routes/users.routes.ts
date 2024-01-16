@@ -18,7 +18,8 @@ import { authorizeAdminOnApiRequest } from '../middleware/authorizeAdminOnApiReq
 
 const usersRoutes = express.Router();
 
-usersRoutes.route('/likes').get(authorizeUserOnApiRequest, getUsersAndLikes);
+// usersRoutes.route('/likes').get(authorizeUserOnApiRequest, getUsersAndLikes);
+usersRoutes.route('/likes').get(getUsersAndLikes);
 usersRoutes
   .route('/roles')
   .get(authorizeUserOnApiRequest, getUsernamesWithRoles);

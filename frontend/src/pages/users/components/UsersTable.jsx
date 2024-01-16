@@ -15,7 +15,11 @@ import { userRole } from '../../../redux/app/state';
 import { Button } from '@mui/material';
 import styled from 'styled-components';
 import { useAppActions } from '../../../redux/useAppActions';
-import { selectRole, selectUsername } from '../../../redux/app/selectors';
+import {
+  selectRole,
+  selectToken,
+  selectUsername,
+} from '../../../redux/app/selectors';
 import { selectLoadUsersTable } from '../../../redux/users/selectors';
 import { profilePostsRoute } from '../../../router/routes';
 import { useScreens, screens } from '../../../utils/useScreens';
@@ -50,6 +54,7 @@ export const UsersTable = () => {
   const { loadUsersForUsersTable } = useApiActions();
   const { response, loaded, error, setError, action } = loadUsersForUsersTable;
   const screen = useScreens();
+  const token = useSelector(selectToken);
   const excludedUsername = 'Admin';
 
   useEffect(() => {
@@ -84,7 +89,7 @@ export const UsersTable = () => {
   };
 
   useEffect(() => {
-    if (users.length > 0 && username !== excludedUsername) {
+    if (users.length > 0 && username !== excludedUsername && token) {
       const myRating = users.findIndex((user) => user.username === username);
       setPage(Math.floor(myRating / rowsPerPage));
     }
