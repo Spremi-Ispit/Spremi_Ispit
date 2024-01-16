@@ -105,7 +105,7 @@ async function createUser(req, email, password) {
 
   const count = await User.count();
 
-  const username = `user${count + 1}`;
+  const username = `${email.split('@')[0]}${count + 1}`;
   const user = User.create({
     username,
     email,

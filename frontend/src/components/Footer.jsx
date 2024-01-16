@@ -141,7 +141,7 @@ export const Footer = () => {
         </RightDiv>
       </CaregoriesDiv>
       <CopyRightDiv>
-        <CopyrightIcon /> 2023
+        <CopyrightIcon /> 2024
       </CopyRightDiv>
     </FooterDiv>
   );
