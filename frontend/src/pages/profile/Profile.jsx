@@ -41,7 +41,8 @@ export const Profile = () => {
     <>
       <Navbar />
       <ProfileDiv>
-        {settingsSidePanelVisible ? <SettingsSidePanel /> : <SideNavbar />}
+        {settingsSidePanelVisible && <SettingsSidePanel />}
+        <SideNavbar />
         <ContentContainer>
           <OutletDiv>
             <Outlet />

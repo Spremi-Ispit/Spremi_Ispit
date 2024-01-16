@@ -30,8 +30,8 @@ export const ViewPost = () => {
   return (
     <>
       <Navbar />
+      <SettingsSidePanel />
       <MainDiv>
-        <SettingsSidePanel />
         <ContentDiv>
           <Post />
           <Comments />

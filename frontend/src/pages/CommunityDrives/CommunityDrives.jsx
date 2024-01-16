@@ -38,8 +38,8 @@ const CommunityDrives = () => {
   return (
     <>
       <Navbar />
+      <SettingsSidePanel />
       <CommunityDrivesDiv>
-        <SettingsSidePanel />
         <MainDiv>
           <CommunityDrivesH2>Drive linkovi</CommunityDrivesH2>
           {Drives.map((tool, index) => (

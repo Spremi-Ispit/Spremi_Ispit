@@ -24,8 +24,8 @@ const Videos = () => {
   return (
     <>
       <Navbar />
+      <SettingsSidePanel />
       <UsersDiv>
-        <SettingsSidePanel />
         <MainDiv>
           <PlaylistH2>
             Materijali preuzeti sa platforme Microsoft Stream

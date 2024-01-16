@@ -54,8 +54,8 @@ export const Home = () => {
   return (
     <>
       <Navbar />
+      <SettingsSidePanel />
       <HomeDiv>
-        <SettingsSidePanel />
         <MainDiv>
           <ContentDiv>
             <Filters />

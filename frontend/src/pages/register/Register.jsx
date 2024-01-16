@@ -4,6 +4,7 @@ import Form from './components/Form';
 import Footer from '../../components/Footer';
 import Navbar from '../../components/navbar/Navbar';
 import Motivation from './components/Motivation';
+import SettingsSidePanel from '../../components/SettingsSidePanel/SettingsSidePanel';
 // import AdditionalRegister from './components/additionalRegister/AdditionalRegister';
 
 const ContentContainer = styled.div`
@@ -17,6 +18,7 @@ export const Register = () => {
   return (
     <>
       <Navbar />
+      <SettingsSidePanel />
       <ContentContainer>
         <Form />
         <Motivation />

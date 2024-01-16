@@ -71,7 +71,7 @@ export const SideNavbar = () => {
     <SidePanel
       hidden={hidden}
       setHidden={setSideNavbarHidden}
-      openedPanelWidth={220}
+      openedPanelWidth={200}
       closedPanelWidth={screen > screens.tablet ? 40 : 25}
     >
       <HeadingDiv>
