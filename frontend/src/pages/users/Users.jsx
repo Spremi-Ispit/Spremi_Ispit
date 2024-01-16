@@ -42,8 +42,8 @@ export const Users = () => {
   return (
     <>
       <Navbar />
+      <SettingsSidePanel />
       <UsersDiv>
-        <SettingsSidePanel />
         <MainDiv>
           <Bounty />
           <ContentDiv>
