@@ -79,15 +79,17 @@ export function buildPostsQueryForFilters({
     .groupBy('post.id')
     .addSelect('COUNT(dislikedBy.id)', 'dislikes')
     .leftJoin('post.dislikedBy', 'dislikedBy')
+    .addSelect('likes - dislikes', 'score')
     .groupBy('post.id');
 
   const orderSql = {
     newest: 'post.date',
-    like: 'likes',
-    dislike: 'dislikes'
+    oldest: 'post.date',
+    like: 'score',
+    dislike: 'score'
   };
 
-  postsQuery = postsQuery.orderBy(orderSql[order], 'DESC');
+  postsQuery = postsQuery.orderBy(orderSql[order], order === 'dislike' || order === 'oldest' ? 'ASC' : 'DESC');
 
   return postsQuery;
 }
