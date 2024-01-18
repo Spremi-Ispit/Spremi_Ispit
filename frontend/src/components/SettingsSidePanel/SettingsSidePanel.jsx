@@ -13,6 +13,7 @@ import CommunityGithub from './components/CommunityGithub';
 import CommunityDrives from './components/CommunityDrives';
 import CommunityTools from './components/CommunityTools';
 import { useAppActions } from '../../redux/useAppActions';
+import Home from './components/Home';
 
 const ClosePanelArrow = styled(DoubleArrow)`
   && {
@@ -72,6 +73,7 @@ export const SettingsSidePanel = () => {
   const openedPanelWidth = 200;
 
   const items = [
+    <Home />,
     <Profile />,
     <Users />,
     <Wiki />,
