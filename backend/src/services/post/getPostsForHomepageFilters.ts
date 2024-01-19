@@ -30,7 +30,7 @@ export const getPostsForHomepageFilters = async (req) => {
     postsIds.push(post.post_id);
   });
 
-  const count = 5;
+  const count = 20;
   if (!postId) {
     postsIds = postsIds.splice(0, count);
   } else {
