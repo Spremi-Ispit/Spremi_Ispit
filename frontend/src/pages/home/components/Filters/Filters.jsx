@@ -9,6 +9,7 @@ import ExaminationPeriod from './components/ExaminationPeriod';
 import Order from './components/Order';
 import { screensCSS } from '../../../../utils/useScreens';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import CommentedPosts from './components/CommentedPosts';
 
 const FiltersDiv = styled.div`
   display: flex;
@@ -68,6 +69,7 @@ const Filters = () => {
           <Type />
           <ExaminationPeriod />
           <YearOfExam />
+          <CommentedPosts />
           <Order />
         </FiltersContainerDiv>
       )}

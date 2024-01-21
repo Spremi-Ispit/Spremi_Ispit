@@ -11,6 +11,7 @@ export const allowedUrlParams = {
   yearOfExam: 'yearOfExam',
   postId: 'postId',
   username: 'username',
+  commentedPosts: 'commentedPosts',
 };
 
 class UrlManager {
@@ -59,6 +60,9 @@ class UrlManager {
     const urlYearOfExam = this.#searchParams.get(allowedUrlParams.yearOfExam);
     const urlPostId = this.#searchParams.get(allowedUrlParams.postId);
     const urlUsername = this.#searchParams.get(allowedUrlParams.username);
+    const urlCommentedPosts = this.#searchParams.get(
+      allowedUrlParams.commentedPosts
+    );
 
     return {
       urlOrder,
@@ -71,6 +75,7 @@ class UrlManager {
       urlYearOfExam,
       urlPostId,
       urlUsername,
+      urlCommentedPosts,
     };
   }
 
