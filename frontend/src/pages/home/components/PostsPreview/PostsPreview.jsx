@@ -42,6 +42,7 @@ export const PostsPreview = () => {
     urlSubject,
     urlType,
     urlYearOfExam,
+    urlCommentedPosts,
   } = urlManager.getParams();
   const { loadPostsForHomepageFilters } = useApiActions();
   const { loading, response, error, setError, action } =
@@ -74,6 +75,7 @@ export const PostsPreview = () => {
         urlSubject,
         urlType,
         urlYearOfExam,
+        urlCommentedPosts,
         lastPost
       );
     }
@@ -86,6 +88,7 @@ export const PostsPreview = () => {
     urlSubject,
     urlType,
     urlYearOfExam,
+    urlCommentedPosts,
   ]);
 
   useEffect(() => {

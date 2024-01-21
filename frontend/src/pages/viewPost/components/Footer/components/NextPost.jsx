@@ -27,6 +27,7 @@ export const NextPost = () => {
     urlType,
     urlYearOfExam,
     urlYearOfStudy,
+    urlCommentedPosts,
   } = urlManager.getParams();
   const { action, error, loading, response, setError } =
     loadPostsForHomepageFilters;
@@ -48,6 +49,7 @@ export const NextPost = () => {
         urlSubject,
         urlType,
         urlYearOfExam,
+        urlCommentedPosts,
         urlPostId
       );
     }

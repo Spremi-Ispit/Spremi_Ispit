@@ -10,13 +10,13 @@ export function buildPostsQueryForFilters({
   subject,
   examinationPeriod,
   type,
-  yearOfExam
+  yearOfExam,
+  commentedPosts
 }) {
   let postsQuery = dataSource.getRepository(Post).createQueryBuilder('post');
 
   if (yearOfStudy || department || subject) {
     postsQuery.leftJoinAndSelect('post.subject', 'subject');
-    postsQuery.groupBy('post.id');
 
     if (subject) {
       postsQuery.andWhere(`subject.name  =  '${subject}'`);
@@ -25,32 +25,27 @@ export function buildPostsQueryForFilters({
     if (yearOfStudy) {
       postsQuery.leftJoinAndSelect('subject.yearsOfStudy', 'yearOfStudy');
       postsQuery.andWhere(`yearOfStudy.name =  '${yearOfStudy}'`);
-      postsQuery.groupBy('post.id');
     }
 
     if (department) {
       postsQuery.leftJoinAndSelect('subject.departments', 'department');
       postsQuery.andWhere(`department.name =  '${department}'`);
-      postsQuery.groupBy('post.id');
     }
   }
 
   if (type) {
     postsQuery.leftJoinAndSelect('post.type', 'type');
     postsQuery.andWhere(`type.name  =  '${type}'`);
-    postsQuery.groupBy('post.id');
   }
 
   if (examinationPeriod) {
     postsQuery.leftJoinAndSelect('post.examinationPeriod', 'examinationPeriod');
     postsQuery.andWhere(`examinationPeriod.name  =  '${examinationPeriod}'`);
-    postsQuery.groupBy('post.id');
   }
 
   if (yearOfExam) {
     postsQuery.leftJoinAndSelect('post.yearOfExam', 'yearOfExam');
     postsQuery.andWhere(`yearOfExam.name  =  '${yearOfExam}'`);
-    postsQuery.groupBy('post.id');
   }
 
   if (search && search.trim() !== '') {
@@ -63,23 +58,35 @@ export function buildPostsQueryForFilters({
     );
   }
 
-  //****left over from the time when post filters were defined by tags*/
-  // if (tags.length > 0) {
-  //   postsQuery.leftJoinAndSelect('post.tags', 'tag');
-  //   postsQuery.andWhere('tag.id IN (:tags)', { tags });
-  //   postsQuery.groupBy('post.id');
-  //   postsQuery.having(`COUNT(DISTINCT tag) >= ${tags.length}`);
-  // }
+  postsQuery.select('post.id');
 
-  postsQuery
-    .select('post.id')
-    .addSelect('post.date')
-    .addSelect('COUNT(likedBy.id)', 'likes')
-    .leftJoin('post.likedBy', 'likedBy')
-    .groupBy('post.id')
-    .addSelect('COUNT(dislikedBy.id)', 'dislikes')
-    .leftJoin('post.dislikedBy', 'dislikedBy')
-    .groupBy('post.id');
+  if (commentedPosts) {
+    postsQuery
+      .leftJoin('post.comments', 'comments')
+      .addSelect((subQuery) => {
+        return subQuery
+          .select('COUNT(comments.id)', 'comment_count')
+          .from('comment', 'comments')
+          .where('comments.postId = post.id');
+      }, 'comment')
+      .having('COUNT(comments.id) > 0');
+  }
+
+  postsQuery.addSelect('post.date').addSelect((subQuery) => {
+    return subQuery
+      .select('COUNT(likedBy.id)', 'like_count')
+      .from('postLikedBy', 'post_likedBy')
+      .innerJoin('user', 'likedBy', 'likedBy.id = post_likedBy.userId')
+      .where('post_likedBy.postId = post.id');
+  }, 'likes');
+
+  postsQuery.addSelect((subQuery) => {
+    return subQuery
+      .select('COUNT(dislikedBy.id)', 'dislike_count')
+      .from('postDislikedBy', 'post_dislikedBy')
+      .innerJoin('user', 'dislikedBy', 'dislikedBy.id = post_dislikedBy.userId')
+      .where('post_dislikedBy.postId = post.id');
+  }, 'dislikes');
 
   const orderSql = {
     newest: 'post.date',
@@ -87,7 +94,7 @@ export function buildPostsQueryForFilters({
     dislike: 'dislikes'
   };
 
-  postsQuery = postsQuery.orderBy(orderSql[order], 'DESC');
+  postsQuery = postsQuery.groupBy('post.id').orderBy(orderSql[order], 'DESC');
 
   return postsQuery;
 }

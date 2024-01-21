@@ -1,3 +1,4 @@
+import { commentedPosts } from '../../pages/home/components/Filters/components/CommentedPosts';
 import services from '../../utils/services';
 
 export const loadPostsForHomepageFilters = async (
@@ -9,6 +10,7 @@ export const loadPostsForHomepageFilters = async (
   urlSubject,
   urlType,
   urlYearOfExam,
+  urlCommentedPosts,
   postId
 ) => {
   let data = {
@@ -20,6 +22,7 @@ export const loadPostsForHomepageFilters = async (
     subject: urlSubject,
     type: urlType,
     yearOfExam: urlYearOfExam,
+    commentedPosts: urlCommentedPosts === commentedPosts.true,
     postId,
   };
 
