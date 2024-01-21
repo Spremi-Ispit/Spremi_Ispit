@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import colors from '../../theme/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import CommentIcon from '@mui/icons-material/Comment';
 import { Divider } from '@mui/material';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { profilePostsRoute, viewPostRoute } from '../../router/routes';
@@ -44,13 +45,6 @@ const FooterDiv = styled.div`
   background-color: ${colors.background};
 `;
 
-const LikesDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-`;
-
 const PostedByDiv = styled.div`
   :hover {
     text-decoration: underline;
@@ -68,6 +62,18 @@ const PostPreviewNavlink = styled(NavLink)`
   overflow-wrap: anywhere;
 `;
 
+const StatsDiv = styled.div`
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+`;
+
+const StatDiv = styled.div`
+  display: flex;
+  gap: 5px;
+`;
+
 const PostPreview = ({ data, className }) => {
   const {
     id,
@@ -81,6 +87,7 @@ const PostPreview = ({ data, className }) => {
     owner,
     likeStatus,
     files,
+    comments,
   } = data; //files: [{id, ext, path}]
   const navigate = useNavigate();
 
@@ -105,10 +112,16 @@ const PostPreview = ({ data, className }) => {
         <DescriptionDiv>{text}</DescriptionDiv>
         <StyledDivider />
         <FooterDiv>
-          <LikesDiv>
-            <FavoriteIcon />
-            {likes - dislikes}
-          </LikesDiv>
+          <StatsDiv>
+            <StatDiv>
+              <FavoriteIcon />
+              {likes - dislikes}
+            </StatDiv>
+            <StatDiv>
+              <CommentIcon />
+              {comments}
+            </StatDiv>
+          </StatsDiv>
 
           <PostedByDiv
             onClick={handlePostedByClick}

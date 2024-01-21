@@ -28,7 +28,7 @@ export const getCommentedPosts = async (req) => {
       where: {
         comments: [{ id: comment.id }]
       },
-      relations: ['files', 'likedBy', 'dislikedBy', 'postedBy']
+      relations: ['files', 'likedBy', 'dislikedBy', 'postedBy', 'comments']
     });
 
     const exist = commentedPosts.find((post) => post.id === commentedPost.id);

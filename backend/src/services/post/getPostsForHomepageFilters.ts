@@ -43,7 +43,7 @@ export const getPostsForHomepageFilters = async (req) => {
     where: {
       id: In(postsIds)
     },
-    relations: ['postedBy', 'files', 'likedBy', 'dislikedBy']
+    relations: ['postedBy', 'files', 'likedBy', 'dislikedBy', 'comments']
   });
 
   const status = checkIfLogged(req);
