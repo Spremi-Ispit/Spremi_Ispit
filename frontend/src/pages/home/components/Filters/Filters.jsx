@@ -66,10 +66,10 @@ const Filters = () => {
           <YearOfStudy />
           <Department />
           <Subject />
+          <CommentedPosts />
           <Type />
           <ExaminationPeriod />
           <YearOfExam />
-          <CommentedPosts />
           <Order />
         </FiltersContainerDiv>
       )}

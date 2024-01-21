@@ -5,6 +5,7 @@ import {
   allowedUrlParams,
   useUrlManager,
 } from '../../../../../utils/managers/UrlManager';
+import colors from '../../../../../theme/colors';
 
 const CommentedPostsDiv = styled.div`
   display: flex;
@@ -22,7 +23,7 @@ const CommentsDiv = styled.div`
   border: 1px solid rgb(118, 118, 118);
   :hover {
     border: 1px solid rgb(133, 133, 133);
-    cursor: pointer;
+    cursor: ${({ urlSubject }) => !!urlSubject && 'pointer'};
   }
   height: 30px;
   padding: 5px 5px;
@@ -30,7 +31,10 @@ const CommentsDiv = styled.div`
   gap: 5px;
   align-items: center;
   ${fonts(15, 600, 'normal', 'Libre Bodoni')}
+  background-color: ${({ urlSubject }) => !urlSubject && colors.footer};
 `;
+
+const CommentedPostsCheckobx = styled.input``;
 
 export const commentedPosts = {
   true: 'true',
@@ -39,22 +43,24 @@ export const commentedPosts = {
 
 const CommentedPosts = () => {
   const urlManager = useUrlManager();
-  const { urlCommentedPosts } = urlManager.getParams();
+  const { urlCommentedPosts, urlSubject } = urlManager.getParams();
 
   const handleChange = () => {
-    urlManager.updateUrlParamAndReplaceLastHistoryEntry(
-      allowedUrlParams.commentedPosts,
-      urlCommentedPosts === commentedPosts.true
-        ? commentedPosts.false
-        : commentedPosts.true
-    );
+    if (urlSubject) {
+      urlManager.updateUrlParamAndReplaceLastHistoryEntry(
+        allowedUrlParams.commentedPosts,
+        urlCommentedPosts === commentedPosts.true
+          ? commentedPosts.false
+          : commentedPosts.true
+      );
+    }
   };
 
   return (
     <CommentedPostsDiv>
       <CommentedPostsLabel>Objave </CommentedPostsLabel>
-      <CommentsDiv onClick={handleChange}>
-        <input
+      <CommentsDiv onClick={handleChange} urlSubject={urlSubject}>
+        <CommentedPostsCheckobx
           type="checkbox"
           checked={urlCommentedPosts === commentedPosts.true}
           readOnly
