@@ -47,6 +47,7 @@ export const YearOfStudy = () => {
       { key: allowedUrlParams.type, value: null },
       { key: allowedUrlParams.examinationPeriod, value: null },
       { key: allowedUrlParams.yearOfExam, value: null },
+      { key: allowedUrlParams.commentedPosts, value: null },
     ]);
   };
 
