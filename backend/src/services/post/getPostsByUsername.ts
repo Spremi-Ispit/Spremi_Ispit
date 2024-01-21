@@ -16,7 +16,8 @@ export const getPostsByUsername = async (req) => {
       'posts.files',
       'posts.likedBy',
       'posts.dislikedBy',
-      'posts.postedBy'
+      'posts.postedBy',
+      'posts.comments'
     ]
   });
 

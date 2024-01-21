@@ -13,7 +13,7 @@ export const getPostById = async (req) => {
     where: {
       id: id
     },
-    relations: ['postedBy', 'files', 'likedBy', 'dislikedBy']
+    relations: ['postedBy', 'files', 'likedBy', 'dislikedBy', 'comments']
   });
 
   if (post) {

@@ -26,7 +26,8 @@ export function mapPostToPostPreviewDTO(post, userID) {
     userId: post.postedBy.id,
     owner: userID && userID === post.postedBy.id,
     files: post.files,
-    likeStatus: likedStatus
+    likeStatus: likedStatus,
+    comments: post.comments.length
   };
 
   return postToReturn;
