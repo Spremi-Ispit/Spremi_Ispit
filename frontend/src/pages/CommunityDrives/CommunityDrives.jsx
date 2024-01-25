@@ -62,6 +62,10 @@ const CommunityDrives = () => {
 
 const Drives = [
   {
+    name: 'Upravljanje sistemima',
+    link: 'https://drive.google.com/drive/folders/1EoaZrj6vRVsui6aBR6XQDGhLJvrGrjjD',
+  },
+  {
     name: 'Google Drive sa materijalima za prvu godinu studija + 2,3,4 godinu na modulu RI',
     link: 'https://drive.google.com/drive/u/0/folders/1zZ5jtm-FiUYCrONDLx-KtOAAjmYCJBG3',
   },
