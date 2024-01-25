@@ -64,6 +64,19 @@ const githubs = [
     name: 'Github linkovi',
     subjects: [
       {
+        name: 'gospaleks',
+        links: [
+          {
+            name: 'AOR1',
+            link: 'https://github.com/gospaleks/AOR1',
+          },
+          {
+            name: 'OOP',
+            link: 'https://github.com/gospaleks/OOP-Blanketi',
+          },
+        ],
+      },
+      {
         name: 'sssteeefaaan',
         links: [
           {
