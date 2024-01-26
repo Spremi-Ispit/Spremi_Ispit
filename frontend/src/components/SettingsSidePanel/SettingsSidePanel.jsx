@@ -49,7 +49,7 @@ const ItemDiv = styled.div`
 `;
 
 const GreyItemDiv = styled(ItemDiv)`
-  background-color: #38393e;
+  background-color: ${colors.settingSidePanelBrighterItem};
 `;
 
 const StyledMenuItem = styled(MenuItem)`

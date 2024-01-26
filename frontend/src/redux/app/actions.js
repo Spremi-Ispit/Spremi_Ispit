@@ -9,6 +9,9 @@ export const actionCreator = {
   setRole: (value) => (dispatch, getState) => {
     dispatch(actions.setRole(value));
   },
+  setEmail: (value) => (dispatch, getState) => {
+    dispatch(actions.setEmail(value));
+  },
   setUsername: (value) => (dispatch, getState) => {
     dispatch(actions.setUsername(value));
   },

@@ -9,6 +9,7 @@ export const videosRoute = '/videos';
 export const communityGithubRoute = '/communityGithub';
 export const communityDrivesRoute = '/communityDrives';
 export const communityToolsRoute = '/communityTools';
+export const chatRoute = '/chat';
 
 //--------AUTHORIZED--------
 export const profileRoute = '/profile';

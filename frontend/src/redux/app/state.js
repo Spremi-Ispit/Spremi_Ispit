@@ -14,6 +14,7 @@ export const initialState = {
   token: null,
   role: userRole.visitor,
   username: null,
+  email: null,
   welcomeModalViewed: false,
   settingsSidePanelVisible: window.screen.width > screens.laptop,
 };

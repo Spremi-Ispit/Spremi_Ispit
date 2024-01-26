@@ -6,7 +6,6 @@ import NavLink from '../navbar/components/components/NavLink';
 import { profilePostsRoute } from '../../router/routes';
 import { allowedUrlParams } from '../../utils/managers/UrlManager';
 import FileViewer from '../fileViewer/FileViewer';
-import env from '../../config/env';
 import LikeDislike from './components/LikeDislike';
 import Delete from './components/Delete';
 import Report from './components/Report';
@@ -107,7 +106,8 @@ const PostView = ({
           {files.length > 0 && (
             <FileViewer
               files={files.map((file) => {
-                const src = env.VITE_BACKEND_URL + '/files/' + file.path; //'http://localhost:4000/files/1.png' or .../1.pdf
+                const src =
+                  import.meta.env.VITE_BACKEND_URL + '/files/' + file.path; //'http://localhost:4000/files/1.png' or .../1.pdf
 
                 return {
                   src,

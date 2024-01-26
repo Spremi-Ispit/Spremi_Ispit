@@ -11,6 +11,9 @@ export const appSlice = createSlice({
     setRole: (state, action) => {
       state.role = action.payload;
     },
+    setEmail: (state, action) => {
+      state.email = action.payload;
+    },
     setUsername: (state, action) => {
       state.username = action.payload;
     },
