@@ -7,26 +7,32 @@ export class AuthManager {
   #setToken;
   #setRole;
   #setUsername;
+  #setEmail;
 
   constructor(dispatch) {
     const { appActions } = useAppActions(dispatch);
-    const { setToken, setRole, setUsername } = appActions;
+    const { setToken, setRole, setUsername, setEmail } = appActions;
 
     this.#setToken = setToken;
     this.#setRole = setRole;
     this.#setUsername = setUsername;
+    this.#setEmail = setEmail;
   }
 
-  login({ token, role, username }) {
+  login(user) {
+    const { token, role, username, email } = user;
+
     this.#setToken(token);
     this.#setRole(role);
     this.#setUsername(username);
+    this.#setEmail(email);
   }
 
   logout() {
     this.#setToken(initialState.token);
     this.#setRole(initialState.role);
     this.#setUsername(initialState.username);
+    this.#setEmail(initialState.email);
   }
 
   banUser(data) {
@@ -34,6 +40,7 @@ export class AuthManager {
     this.#setToken(initialState.token);
     this.#setRole(initialState.role);
     this.#setUsername(initialState.username);
+    this.#setEmail(initialState.email);
   }
 
   updateUsernameAndToken({ token, username }) {
@@ -41,7 +48,7 @@ export class AuthManager {
     this.#setUsername(username);
   }
 
-  updateToken({ token, role, username }) {
+  updateToken({ token, role, username, email }) {
     this.#setToken(token);
   }
 }

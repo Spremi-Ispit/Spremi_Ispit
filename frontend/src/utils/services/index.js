@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { keys, localStorageManager } from '../managers/LocalStorageManager';
+import env from '../../config/env';
 
 const request = async (method, url, DTO, formData, setUploadProgress) => {
   const app = localStorageManager.getState(keys.app);
@@ -17,7 +18,7 @@ const request = async (method, url, DTO, formData, setUploadProgress) => {
     const res = await axios({
       method: method,
       responseType: 'json', // if there would be a need to download files, responseType would be a 'blob'
-      url: import.meta.env.VITE_BACKEND_URL + url,
+      url: env.BACKEND_URL + url,
       ...(DTO && { data: DTO }),
       ...(formData && { data: formData }),
       headers,

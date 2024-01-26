@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import PackageJSON from '../../package.json';
-import { localStorageManager } from '../utils/managers/LocalStorageManager';
+import { localStorageManager } from './managers/LocalStorageManager';
 
 const useCorrectAppVersion = () => {
   useEffect(() => {

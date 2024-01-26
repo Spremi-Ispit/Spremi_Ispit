@@ -1,4 +1,3 @@
-import env from '../config/env';
 import rootReducer from './rootReducer';
 import { configureStore } from '@reduxjs/toolkit';
 
@@ -14,7 +13,7 @@ function handleChange() {
 const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
-  devTools: env.NODE_ENV !== 'production',
+  devTools: import.meta.env.NODE_ENV !== 'production',
 });
 
 export const unsubscribe = store.subscribe(handleChange);

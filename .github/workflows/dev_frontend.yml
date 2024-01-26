@@ -31,7 +31,6 @@ jobs:
           echo ${{ secrets.DEV_FRONTEND_ENV }} > .env
           pwd
           ls -a
-          cat .env
 
       - name: 🔨 Build Project
         run: |

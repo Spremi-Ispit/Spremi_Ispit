@@ -1,5 +1,5 @@
 import ErrorBoundary from './components/ErrorBoundary';
-import useCorrectAppVersion from './config/useCorrectAppVersion';
+import useCorrectAppVersion from './utils/useCorrectAppVersion';
 import Router from './router/Router';
 
 function App() {

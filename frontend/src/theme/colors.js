@@ -7,4 +7,5 @@ export default {
   buttonHover: '#03045e',
   buttonTest: '#3c55dc',
   footer: '#e3e3e3',
+  settingSidePanelBrighterItem: '#38393e',
 };
