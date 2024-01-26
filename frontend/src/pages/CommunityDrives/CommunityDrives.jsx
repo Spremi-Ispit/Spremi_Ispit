@@ -66,6 +66,10 @@ const Drives = [
     link: 'https://drive.google.com/drive/folders/1EoaZrj6vRVsui6aBR6XQDGhLJvrGrjjD',
   },
   {
+    name: 'Diskretna matematika',
+    link: 'https://drive.google.com/drive/folders/1qI1Pbsec9_j0wZiaCi3poVIudKaQPAOk',
+  },
+  {
     name: 'Google Drive sa materijalima za prvu godinu studija + 2,3,4 godinu na modulu RI',
     link: 'https://drive.google.com/drive/u/0/folders/1zZ5jtm-FiUYCrONDLx-KtOAAjmYCJBG3',
   },
