@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import colors from '../theme/colors';
 import CopyrightIcon from '@mui/icons-material/Copyright';
 import { screensCSS } from '../utils/useScreens';
+import Instagram from '../assets/instagram.svg';
 
 const FooterDiv = styled.footer`
   background-color: ${colors.footer};
@@ -72,6 +73,11 @@ const HeaderDiv = styled.div`
   text-align: center;
 `;
 
+const InstagramImg = styled.img`
+  width: 20px;
+  height: 20px;
+`;
+
 export const Footer = () => {
   return (
     <FooterDiv>
@@ -123,10 +129,12 @@ export const Footer = () => {
             <li>
               <a
                 as="a"
-                href="https://docs.google.com/document/d/1ktu2u97ZVWWkA9iWx_NgcXP7n91FJ2GnkX14wuvooW0/edit?usp=sharing"
+                href="https://www.instagram.com/spremiispit/"
                 target="_blank"
+                style={{ display: 'flex', alignItems: 'center', gap: '2px' }}
               >
-                📞Kontaktiraj nas
+                <InstagramImg src={Instagram} alt="Instagram" />
+                Kontaktiraj nas
               </a>
             </li>
             <li>
