@@ -12,7 +12,7 @@ import ErrorDialog from '../../../components/dialogs/ErrorDialog';
 import Loader from '../../../components/Loader';
 import { useNavigate } from 'react-router-dom';
 import { userRole } from '../../../redux/app/state';
-import { Button } from '@mui/material';
+import { Button, Grid } from '@mui/material';
 import styled from 'styled-components';
 import { useAppActions } from '../../../redux/useAppActions';
 import {
@@ -22,9 +22,11 @@ import {
 } from '../../../redux/app/selectors';
 import { selectLoadUsersTable } from '../../../redux/users/selectors';
 import { profilePostsRoute } from '../../../router/routes';
-import { useScreens, screens } from '../../../utils/useScreens';
+// import { useScreens, screens } from '../../../utils/useScreens';
 import { useApiActions } from '../../../api/useApiActions';
 import { allowedUrlParams } from '../../../utils/managers/UrlManager';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const StyledButton = styled(Button)`
   && {
@@ -53,9 +55,11 @@ export const UsersTable = () => {
   const navigate = useNavigate();
   const { loadUsersForUsersTable } = useApiActions();
   const { response, loaded, error, setError, action } = loadUsersForUsersTable;
-  const screen = useScreens();
+  // const screen = useScreens();
   const token = useSelector(selectToken);
   const excludedUsername = 'Admin';
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   useEffect(() => {
     if (!loadUsersTable) {
@@ -113,65 +117,74 @@ export const UsersTable = () => {
   return (
     <Paper
       sx={{
-        width: screen > screens.tablet ? '70%' : '100%',
+        width: isMobile ? '70%' : '90%',
         overflow: 'hidden',
       }}
     >
-      <TableContainer sx={{ maxHeight: 400 }}>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              <TableCell>Redni broj</TableCell>
-              <TableCell>Korisnik</TableCell>
-              <TableCell>Objave</TableCell>
-              <TableCell>Komentari</TableCell>
-              <TableCell>Ukupno</TableCell>
-              {role === userRole.admin && <TableCell>Rola</TableCell>}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {users
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((user) => {
-                const {
-                  username: tableUsername,
-                  likes,
-                  posts,
-                  comments,
-                } = user;
+      <Grid container justifyContent="center">
+        <Grid item xs={10}>
+          <TableContainer sx={{ maxHeight: 400, minWidth: 340 }}>
+            <Table stickyHeader aria-label="sticky table">
+              <TableHead>
+                <TableRow>
+                  <TableCell sx={{ paddingRight: 4, paddingLeft: 5 }}>
+                    Redni broj
+                  </TableCell>
+                  <TableCell>Korisnik</TableCell>
+                  <TableCell>Objave</TableCell>
+                  <TableCell>Komentari</TableCell>
+                  <TableCell>Ukupno</TableCell>
+                  {role === userRole.admin && <TableCell>Rola</TableCell>}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {users
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((user) => {
+                    const {
+                      username: tableUsername,
+                      likes,
+                      posts,
+                      comments,
+                    } = user;
 
-                return (
-                  <TableRow
-                    hover
-                    selected={tableUsername === username}
-                    role="checkbox"
-                    key={JSON.stringify(user)}
-                  >
-                    <TableCell>
-                      {users.findIndex(
-                        (someUser) => someUser.username === tableUsername
-                      ) + 1}
-                    </TableCell>
-                    <TableCell>
-                      <StyledButton
-                        onClick={() => handleVisitUserProfile(tableUsername)}
+                    return (
+                      <TableRow
+                        hover
+                        selected={tableUsername === username}
+                        role="checkbox"
+                        key={JSON.stringify(user)}
                       >
-                        {tableUsername}
-                      </StyledButton>
-                    </TableCell>
+                        <TableCell>
+                          {users.findIndex(
+                            (someUser) => someUser.username === tableUsername
+                          ) + 1}
+                        </TableCell>
+                        <TableCell>
+                          <StyledButton
+                            onClick={() =>
+                              handleVisitUserProfile(tableUsername)
+                            }
+                          >
+                            {tableUsername}
+                          </StyledButton>
+                        </TableCell>
 
-                    <TableCell>{posts}</TableCell>
-                    <TableCell>{comments}</TableCell>
-                    <TableCell>{posts + comments}</TableCell>
-                    {role === userRole.admin && (
-                      <TableCell>{mapUserRoleToView(user.role)}</TableCell>
-                    )}
-                  </TableRow>
-                );
-              })}
-          </TableBody>
-        </Table>
-      </TableContainer>
+                        <TableCell>{posts}</TableCell>
+                        <TableCell>{comments}</TableCell>
+                        <TableCell>{posts + comments}</TableCell>
+                        {role === userRole.admin && (
+                          <TableCell>{mapUserRoleToView(user.role)}</TableCell>
+                        )}
+                      </TableRow>
+                    );
+                  })}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Grid>
+      </Grid>
+
       <TablePagination
         rowsPerPageOptions={[100]}
         component="div"
