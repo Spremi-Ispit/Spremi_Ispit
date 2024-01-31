@@ -44,6 +44,7 @@ jobs:
           strip_components: 1
           source: "backend/dist,backend/package.json"
           target: "/home/spremiis/dev.spremiispit.com/backend"
+
       - name: 🔄 Restart application
         uses: appleboy/ssh-action@v1.0.0
         with:
