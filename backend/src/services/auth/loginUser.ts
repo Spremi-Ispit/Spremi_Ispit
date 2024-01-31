@@ -24,7 +24,8 @@ export const loginUser = async (req) => {
       return response.OK({
         token: accessToken,
         role: user.role,
-        username: user.username
+        username: user.username,
+        email: user.email
       });
     } else {
       return response.NOT_FOUND(`Wrong email or password`);

@@ -11,6 +11,7 @@ import { orders } from './components/Filters/components/Order';
 import Filters from './components/Filters/Filters';
 import Footer from '../../components/Footer';
 import SettingsSidePanel from '../../components/SettingsSidePanel/SettingsSidePanel';
+import Chat from '../../components/Chat/Chat';
 
 const ContentDiv = styled.div`
   flex: 1;
@@ -60,6 +61,7 @@ export const Home = () => {
           <ContentDiv>
             <Filters />
             <PostsPreview />
+            <Chat />
           </ContentDiv>
           <Footer />
         </MainDiv>
