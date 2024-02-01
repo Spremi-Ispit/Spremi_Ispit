@@ -8,6 +8,7 @@ import env from '../../config/env';
 const firebaseConfig = {
   apiKey: env.API_KEY,
   authDomain: env.AUTH_DOMAIN,
+  databaseURL: env.DATABASE_URL,
   projectId: env.PROJECT_ID,
   storageBucket: env.STORAGE_BUCKET,
   messagingSenderId: env.MESSAGING_SENDER_ID,
