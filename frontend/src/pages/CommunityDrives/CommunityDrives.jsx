@@ -77,6 +77,10 @@ const Drives = [
     name: 'Drive kolege @nenad_dj sa korisnim materijalima za RI',
     link: 'https://elfakrs-my.sharepoint.com/:f:/g/personal/djordjevic_nenad_elfak_rs/EpAgotjh785Hv_Cowb1sjhIBhy8PBKac3_gXTtWqk1su2Q',
   },
+  {
+    name: 'Koristan materijal za 1,2,3 godinu za RII',
+    link: 'https://elfakrs-my.sharepoint.com/:f:/g/personal/pericpavle_elfak_rs/EnAzqzumg3FDv_sQh-p8K4EB-94RMmtjX7cOnN6Kt3Ibfg ',
+  },
 ];
 
 export default CommunityDrives;
