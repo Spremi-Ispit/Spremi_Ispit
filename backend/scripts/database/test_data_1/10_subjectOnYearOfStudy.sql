@@ -203,5 +203,6 @@ INSERT INTO `subjectOnYearOfStudy` (`yearOfStudyId`, `subjectId`) VALUES
 (4, 200),
 (4, 201),
 (4, 202),
-(4, 203);
+(4, 203),
+(4, 204);
 

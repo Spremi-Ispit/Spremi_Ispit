@@ -19,7 +19,7 @@ INSERT INTO `department`(`name`) VALUES
 ('Računarstvo i informatika'),
 ('Upravljanje sistemima'),
 ('Telekomunikacije'),
-('Elektronika i mikroprocesorska tehnika'),
+('Elektronika'),
 ('Elektronske komponente i mikrosistemi'),
 ('Elektroenergetika');
 
@@ -154,7 +154,7 @@ INSERT INTO `subject`(`name`) VALUES
 ('Osnovi mikrotalasne tehnike'),
 ('Osnovi telekomunikacija'),
 ('Teorija telekomunikacija'), -- 44
--- II GODINA, Elektronika i mikroprocesorska tehnika 
+-- II GODINA, Elektronika 
 ('Analogna elektronika'), -- 45
 ('Digitalna elektronika'),
 ('Digitalna obrada signala'),
@@ -239,7 +239,7 @@ INSERT INTO `subject`(`name`) VALUES
 ('Obrada signala u telekomunikacijama'),
 ('Telekomunikacione mreže'),
 ('Teorija informacija'), -- 123
--- III GODINA, Elektronika i mikroprocesorska tehnika
+-- III GODINA, Elektronika
 ('Engleski jezik I'), -- 124
 ('Engleski jezik II'), -- 125
 -- III GODINA, Elektronske komponente i mikrosistemi
@@ -308,7 +308,7 @@ INSERT INTO `subject`(`name`) VALUES
 ('Komunikaciona akustika'),
 ('Optičke mreže'),
 ('Širokopojasne telekomunikacije'), -- 185
--- IV GODINA, Elektronika i mikroprocesorska tehnika
+-- IV GODINA, Elektronika
 ('Digitalna obrada slike'), -- 186
 ('Izvori za napajanje'),
 ('Mikrokontroleri'),
