@@ -81,6 +81,10 @@ const Drives = [
     name: 'Koristan materijal za 1,2,3 godinu za RII',
     link: 'https://elfakrs-my.sharepoint.com/:f:/g/personal/pericpavle_elfak_rs/EnAzqzumg3FDv_sQh-p8K4EB-94RMmtjX7cOnN6Kt3Ibfg ',
   },
+  {
+    name: 'Linkovi od I semestra do VII semestra - RII',
+    link: 'https://docs.google.com/document/d/1oMkTDmgP9l_nLij1wagZL4nXlVmIjSzEjrwUyEPProk/edit',
+  },
 ];
 
 export default CommunityDrives;
