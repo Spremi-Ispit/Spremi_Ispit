@@ -5,6 +5,6 @@ INSERT INTO `department`(`name`) VALUES
 ('Računarstvo i informatika'),
 ('Upravljanje sistemima'),
 ('Telekomunikacije'),
-('Elektronika i mikroprocesorska tehnika'),
+('Elektronika'),
 ('Elektronske komponente i mikrosistemi'),
 ('Elektroenergetika');

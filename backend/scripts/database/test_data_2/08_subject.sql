@@ -49,7 +49,7 @@ INSERT INTO `subject`(`name`) VALUES
 ('Osnovi mikrotalasne tehnike'),
 ('Osnovi telekomunikacija'),
 ('Teorija telekomunikacija'), -- 44
--- II GODINA, Elektronika i mikroprocesorska tehnika 
+-- II GODINA, Elektronika 
 ('Analogna elektronika'), -- 45
 ('Digitalna elektronika'),
 ('Digitalna obrada signala'),
@@ -134,7 +134,7 @@ INSERT INTO `subject`(`name`) VALUES
 ('Obrada signala u telekomunikacijama'),
 ('Telekomunikacione mreže'),
 ('Teorija informacija'), -- 123
--- III GODINA, Elektronika i mikroprocesorska tehnika
+-- III GODINA, Elektronika
 ('Engleski jezik I'), -- 124
 ('Engleski jezik II'), -- 125
 -- III GODINA, Elektronske komponente i mikrosistemi
@@ -194,33 +194,106 @@ INSERT INTO `subject`(`name`) VALUES
 ('Tehnika konverzije'),
 ('Termovizija'),
 ('Uvod u robotiku'),
-('Verovatnoća i statistika'), -- 178
+('Verovatnoća i statistika'), -- 179
 -- IV GODINA, Telekomunikacije 
-('Mobilni komunikacioni sistemi'), -- 179
+('Mobilni komunikacioni sistemi'), -- 180
 ('Antene i prostiranje'),
 ('Feding i smetnje u digitalnim telekomunikacijama'),
 ('Kodovanje'),
 ('Komunikaciona akustika'),
 ('Optičke mreže'),
-('Širokopojasne telekomunikacije'), -- 185
--- IV GODINA, Elektronika i mikroprocesorska tehnika
-('Digitalna obrada slike'), -- 186
+('Širokopojasne telekomunikacije'), -- 186
+-- IV GODINA, Elektronika
+('Digitalna obrada slike'), -- 187
 ('Izvori za napajanje'),
 ('Mikrokontroleri'),
 ('Obnovljivi izvori energije'),
-('Sistemi za rad u realnom vremenu'), -- 190
+('Sistemi za rad u realnom vremenu'), -- 191
 -- IV GODINA, Elektronske komponente i mikrosistemi
-('Izvori za napajanje'), -- 191
+('Izvori za napajanje'), -- 192
 ('Komponente i kola snage'),
 ('Obnovljivi izvori energije'),
 ('Projektovanje i simulacija mikroelektronskih komponenata'),
 ('Projektovanje mikrosistema'),
-('Solarne komponente i sistemi'), -- 196
+('Solarne komponente i sistemi'), -- 197
 -- IV GODINA, Elektroenergetika
-('Distribuirana proizvodnja električne energije'), -- 197
+('Distribuirana proizvodnja električne energije'), -- 198
 ('Elektrane'),
 ('Elektroenergetski pretvarači'),
 ('Elektromotorni pogoni'),
 ('Izvori za napajanje'),
 ('Odabrana poglavlja iz elektromotornih pogona'),
-('Zaštita u elektroenergetici'); -- 203
+('Zaštita u elektroenergetici'); -- 204
+
+INSERT INTO `subject`(`name`) VALUES
+-- II GODINA, Elektronika
+  ('Objektno-orijentisano programiranje'), -- 205
+  ('Numerička matematika'),
+  ('Mikroprocesorski sistemi'),
+  ('Multimedijalni sistemi'),
+  ('Animacije 1'),
+  ('Metrologija električnih veličina'),
+  ('Elektronska kola i embeded sistemi'), -- 211
+-- III GODINA, Elektronika
+  ('Računarske mreže'), -- 212
+  ('Digitalna obrada slike'),
+  ('Animacija 2'),
+  ('Akustika'),
+  ('Tehnike prikupljanja i konverzije podataka'),
+  ('Obnovljivi izvori energije'),
+  ('Obrada audio i muzičkog signala'),
+  ('Mikrokontroleri'),
+  ('Elektronika za multimedijalne sisteme'),
+  ('Video produkcija'),
+  ('Web tehnologije 1'),
+  ('Fotografija'),
+  ('Arhitekture digitalnih sistema'),
+  ('Impulsna i digitalna elektronska kola'),
+  ('Mikroprocesorska tehnika'),
+  ('Analogna integrisana kola'),
+  ('Osnovi energetske elektronike'),
+  ('Projektovanje digitalnih integrisanih kola'),
+  ('Projektovanje digitalnih sistema'),
+  ('Virtuelni instrumenti'),
+  ('Medicinska elektronika'),
+  ('Projektovanje analognih integrisanih kola'),
+  ('Automatsko upravljanje'), -- 234
+-- IV GODINA, Elektronika
+  ('Računarske igre'), -- 235
+  ('Kamera i montaža'),
+  ('Poslovne komunikacije'),
+  ('Inženjersko obrazovanje i održivi razvoj'),
+  ('Audio produkcija'),
+  ('Autoelektronika'),
+  ('Programiranje mobilnih uređaja'),
+  ('Solarne komponente i sistemi'),
+  ('Primenjena elektromagnetika'),
+  ('Osnove mehatronike'),
+  ('Uvod u robotiku'),
+  ('Programabilni logički kontroleri'),
+  ('Web tehnologije 2'),
+  ('TV sistemi'),
+  ('Računarske igre 2'),
+  ('Virtuelna realnost'),
+  ('Grafički dizajn'),
+  ('Projektovanje računarskih mreža'),
+  ('Termovizija'),
+  ('Bežične mreže i uređaji'),
+  ('Mobilni komunikacioni sistemi'),
+  ('Kablovski i optički komunikacioni sistemi'),
+  ('Internet stvari'),
+  ('SCADA sistemi'),
+  ('Stručna praksa'),
+  ('Završni rad - istraživački rad'),
+  ('Završni rad'),
+  ('Projektovanje VLSI'),
+  ('RF elektronika'),
+  ('Sistemi za rad u realnom vremenu'),
+  ('Testiranje elektronskih kola'),
+  ('Jezici za modelovanje hardvera'),
+  ('Elektroenergetski pretvarači'),
+  ('Embeded sistemi'),
+  ('Funkcionalna verifikacija'),
+  ('Projektovanje elektronskih sistema'),
+  ('Programiranje ARM kontrolera'),
+  ('Izvori napona napajanja'); --272
