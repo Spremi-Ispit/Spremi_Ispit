@@ -8,17 +8,24 @@ import { selectToken } from '../../redux/app/selectors';
 import ChatHeaderUnauthorized from './components/ChatHeaderUnauthorized';
 import ChatHeaderAuthorized from './components/ChatHeaderAuthorized';
 import Messages from './components/Messages/Messages';
+import { screensCSS } from '../../utils/useScreens';
 
 const ChatDiv = styled.div`
   position: fixed;
   bottom: 0px;
   right: 0px;
   width: ${({ user }) => user && '300px'};
-  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+
+  @media ${screensCSS.mobileL} {
+    width: ${({ user }) => user && '100%'};
+  }
 `;
 
 const ChatHeaderDiv = styled.div`
   display: flex;
+  flex: 1;
   background-color: ${colors.filteri};
 `;
 

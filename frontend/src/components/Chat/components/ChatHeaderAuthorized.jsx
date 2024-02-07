@@ -18,7 +18,7 @@ const Select = styled.select`
   height: 2em;
   ${fonts(15, 600, 'normal', 'Libre Bodoni')}
   margin: 0px 10px 0px 5px;
-  max-width: 210px;
+  width: 100%;
 `;
 
 const StyledMinimize = styled(Minimize)`
