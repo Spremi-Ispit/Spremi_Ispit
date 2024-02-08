@@ -104,6 +104,7 @@ export const PostsPreview = () => {
         urlSubject,
         urlType,
         urlYearOfExam,
+        urlCommentedPosts,
         lastPost.id
       );
     }
