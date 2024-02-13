@@ -2,16 +2,7 @@ import React from 'react';
 import Card from '../../components/Card/Card';
 import logoSrc from './logo.jpg';
 
-const tags = [
-  'ReactJS',
-  'Java',
-  'Spring',
-  'Vue.js',
-  'Elasticsearch',
-  'Docker',
-  'Scala',
-  'SAP Hibris',
-];
+const tags = ['Java', 'Spring', 'Vue.js', 'Elasticsearch', 'Docker', 'AWS'];
 
 export const Deavensoft = () => {
   return (
