@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Deavensoft } from './Partners/Deavensoft/Deavensoft';
 import { InfinitoMedia } from './Partners/InfinitoMedia/InfinitoMedia';
-// import { Codemancy } from './Partners/Codemancy/Codemancy';
+import { Codemancy } from './Partners/Codemancy/Codemancy';
 
 const CompaniesDiv = styled.div`
   flex: 1;
@@ -22,6 +22,7 @@ const Companies = () => {
     <>
       <CompaniesHeader>Kompanije koje podržavaju projekat</CompaniesHeader>
       <CompaniesDiv>
+        <Codemancy />
         <Deavensoft />
         <InfinitoMedia />
       </CompaniesDiv>
