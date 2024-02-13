@@ -7,21 +7,20 @@ import {
   useUrlManager,
 } from '../../utils/managers/UrlManager';
 import { orders } from './components/Filters/components/Order';
-// import WelcomeModal from './components/WelcomeModal';
 import Filters from './components/Filters/Filters';
 import Footer from '../../components/Footer';
 import SettingsSidePanel from '../../components/SettingsSidePanel/SettingsSidePanel';
 import Chat from '../../components/Chat/Chat';
+import Companies from './components/Companies/Companies';
+import { screensCSS } from '../../utils/useScreens';
+import colors from '../../theme/colors';
 
 const ContentDiv = styled.div`
+  padding-top: 20px;
   flex: 1;
   display: flex;
-  flex-direction: column;
-  max-width: 800px;
-  padding-top: 20px;
-  margin: 0 auto;
-  padding: 20px;
   width: 100%;
+  flex-wrap: wrap;
 `;
 
 const MainDiv = styled.div`
@@ -34,6 +33,44 @@ const MainDiv = styled.div`
 const HomeDiv = styled.div`
   display: flex;
   flex: 1;
+`;
+
+const LeftContentDiv = styled.div`
+  display: flex;
+  flex: 1;
+  padding: 10px;
+  @media (max-width: 1110px) {
+    display: none;
+  }
+`;
+
+const MiddleContentDiv = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  max-width: 800px;
+  width: 100%;
+  padding: 0px 10px;
+  margin: auto;
+
+  @media ${screensCSS.laptop} {
+    margin: auto;
+    padding: 0px 20px;
+  }
+`;
+
+const RightContentDiv = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+
+  @media ${screensCSS.laptop} {
+    padding: 0px 20px;
+    border-top: 2px solid ${colors.footer};
+    margin-top: 20px;
+    padding-top: 10px;
+  }
 `;
 
 export const Home = () => {
@@ -59,10 +96,16 @@ export const Home = () => {
       <HomeDiv>
         <MainDiv>
           <ContentDiv>
-            <Filters />
-            <PostsPreview />
-            <Chat />
+            <LeftContentDiv></LeftContentDiv>
+            <MiddleContentDiv>
+              <Filters />
+              <PostsPreview />
+            </MiddleContentDiv>
+            <RightContentDiv>
+              <Companies />
+            </RightContentDiv>
           </ContentDiv>
+          <Chat />
           <Footer />
         </MainDiv>
       </HomeDiv>

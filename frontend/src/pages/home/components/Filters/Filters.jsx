@@ -27,6 +27,7 @@ const FiltersHeaderDiv = styled.div`
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
+  margin-bottom: 10px;
 `;
 
 const FiltersContainerDiv = styled.div`
@@ -34,10 +35,10 @@ const FiltersContainerDiv = styled.div`
   justify-content: center;
   grid-template-columns: 170px 170px 170px 170px;
   gap: 20px;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: 10px;
 
-  @media ${screensCSS.tablet} {
+  @media (max-width: 800px) {
     display: grid;
     grid-template-columns: 150px 150px 150px;
   }
@@ -57,10 +58,10 @@ const Filters = () => {
 
   return (
     <FiltersDiv>
-      <FiltersHeaderDiv onClick={() => setFiltersVisible((prev) => !prev)}>
+      {/* <FiltersHeaderDiv onClick={() => setFiltersVisible((prev) => !prev)}>
         Detaljna pretraga
         <StyledExpandMoreIcon $filtersVisible={filtersVisible} />
-      </FiltersHeaderDiv>
+      </FiltersHeaderDiv> */}
       {filtersVisible && (
         <FiltersContainerDiv>
           <YearOfStudy />
