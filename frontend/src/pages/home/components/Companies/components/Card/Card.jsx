@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import NavLink from '../../../../../../components/NavLink';
 
@@ -17,10 +17,6 @@ const HeaderDiv = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
-`;
-const TagsDiv = styled.div`
-  display: flex;
-  flex-wrap: wrap;
 `;
 
 const LogoImg = styled.img`
@@ -47,6 +43,17 @@ const StyledNavlink = styled(NavLink)`
   text-decoration: none;
 `;
 
+const TagsDiv = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+
+  /* display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis; */
+`;
+
 const TagDiv = styled.div`
   font-size: 12px;
   line-height: 12px;
@@ -56,8 +63,14 @@ const TagDiv = styled.div`
   color: black;
 `;
 
+const MoreTagsDiv = styled(TagDiv)`
+  cursor: pointer;
+  font-weight: bold;
+`;
+
 const Card = ({ tags, logo, name, link, linkName }) => {
   const { src, alt } = logo;
+  const [showAll, setShowAll] = useState(false);
 
   return (
     <CardDiv>
@@ -71,9 +84,22 @@ const Card = ({ tags, logo, name, link, linkName }) => {
         </NameDiv>
       </HeaderDiv>
       <TagsDiv>
-        {tags.map((tag) => (
-          <TagDiv>{tag}</TagDiv>
-        ))}
+        {tags.map((tag, index) => {
+          if (showAll) {
+            return <TagDiv>{tag}</TagDiv>;
+          }
+
+          if (index < 4) {
+            return <TagDiv>{tag}</TagDiv>;
+          }
+
+          return null;
+        })}
+        {tags.length > 4 && (
+          <MoreTagsDiv onClick={() => setShowAll((prev) => !prev)}>
+            {showAll ? 'smanji...' : 'još...'}
+          </MoreTagsDiv>
+        )}
       </TagsDiv>
     </CardDiv>
   );

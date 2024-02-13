@@ -38,7 +38,7 @@ const LeftContentDiv = styled.div`
   display: flex;
   flex: 1;
   padding: 10px;
-  @media ${screensCSS.laptop} {
+  @media (max-width: 1110px) {
     display: none;
   }
 `;
@@ -50,6 +50,7 @@ const MiddleContentDiv = styled.div`
   max-width: 800px;
   width: 100%;
   padding: 0px 10px;
+  margin: auto;
 
   @media ${screensCSS.laptop} {
     margin: auto;
