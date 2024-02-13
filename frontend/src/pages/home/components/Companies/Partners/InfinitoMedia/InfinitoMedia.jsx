@@ -3,10 +3,14 @@ import Card from '../../components/Card/Card';
 import logoSrc from './logo.jpg';
 
 const tags = [
-  'CMS WordPress (PHP, JavaScript, HTML, CSS)',
+  'CMS WordPress',
+  'PHP',
+  'HTML',
+  'CSS',
+  'JavaScript',
   'Grafičkim dizajn',
   'Google Ads',
-  'SMM (Social Media Marketing)',
+  'Social Media Marketing',
 ];
 
 export const InfinitoMedia = () => {
