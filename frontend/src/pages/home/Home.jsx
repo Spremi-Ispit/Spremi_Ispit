@@ -13,6 +13,7 @@ import SettingsSidePanel from '../../components/SettingsSidePanel/SettingsSidePa
 import Chat from '../../components/Chat/Chat';
 import Companies from './components/Companies/Companies';
 import { screensCSS } from '../../utils/useScreens';
+import colors from '../../theme/colors';
 
 const ContentDiv = styled.div`
   padding-top: 20px;
@@ -66,6 +67,9 @@ const RightContentDiv = styled.div`
 
   @media ${screensCSS.laptop} {
     padding: 0px 20px;
+    border-top: 2px solid ${colors.footer};
+    margin-top: 20px;
+    padding-top: 10px;
   }
 `;
 

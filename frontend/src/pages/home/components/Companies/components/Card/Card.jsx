@@ -86,11 +86,11 @@ const Card = ({ tags, logo, name, link, linkName }) => {
       <TagsDiv>
         {tags.map((tag, index) => {
           if (showAll) {
-            return <TagDiv>{tag}</TagDiv>;
+            return <TagDiv key={index}>{tag}</TagDiv>;
           }
 
           if (index < 4) {
-            return <TagDiv>{tag}</TagDiv>;
+            return <TagDiv key={index}>{tag}</TagDiv>;
           }
 
           return null;
