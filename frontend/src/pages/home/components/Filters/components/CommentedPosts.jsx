@@ -58,14 +58,14 @@ const CommentedPosts = () => {
 
   return (
     <CommentedPostsDiv>
-      <CommentedPostsLabel>Objave </CommentedPostsLabel>
+      <CommentedPostsLabel>Blanket </CommentedPostsLabel>
       <CommentsDiv onClick={handleChange} urlSubject={urlSubject}>
         <CommentedPostsCheckobx
           type="checkbox"
           checked={urlCommentedPosts === commentedPosts.true}
           readOnly
         />
-        sa komentarima
+        sa rešenjem
       </CommentsDiv>
     </CommentedPostsDiv>
   );

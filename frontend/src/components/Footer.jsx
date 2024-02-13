@@ -148,6 +148,7 @@ export const Footer = () => {
           </ul>
         </RightDiv>
       </CaregoriesDiv>
+
       <CopyRightDiv>
         <CopyrightIcon /> 2024
       </CopyRightDiv>
