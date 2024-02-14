@@ -84,15 +84,13 @@ export const Footer = () => {
       <CaregoriesDiv>
         <LeftDiv>
           <HeaderDiv>O projektu</HeaderDiv>
-          Ovo je open-source projekat koji razvijaju studenti da bi olaksali
-          pripremu/polaganje ispita. Cilj platforme je da olaksa deljenje
-          materijala, postavljanje blanketa i resenja, beleski sa racunskih
-          vezbi i predavanja kako bi svi materijali za pripremu ispita bili na
-          jednom mestu.
+          Ovo je open-source projekat koji je pokrenut sa ciljem da studentima
+          Elektronskog fakuteta pruži pristup rešenim materijalima, edukativnim
+          videima i omogući im da dele svoja iskustva i mišljenja.
         </LeftDiv>
         <MiddleDiv>
           <HeaderDiv>Najbolji materijali na jednom mestu!</HeaderDiv>
-          Umesto da trošite novac na privatne časove radi pristupa resenim
+          Umesto da trošite novac na privatne časove radi pristupa rešenim
           materijalima, naš sajt nudi jednostavno rešenje - svi najbolji
           materijali, ocenjeni prema kvalitetu, su na jednom mestu!
         </MiddleDiv>
