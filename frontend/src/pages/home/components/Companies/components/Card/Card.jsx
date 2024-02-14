@@ -46,12 +46,6 @@ const StyledNavlink = styled(NavLink)`
 const TagsDiv = styled.div`
   display: flex;
   flex-wrap: wrap;
-
-  /* display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis; */
 `;
 
 const TagDiv = styled.div`
