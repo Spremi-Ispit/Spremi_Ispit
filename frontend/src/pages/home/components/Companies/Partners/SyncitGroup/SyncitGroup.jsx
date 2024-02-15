@@ -1,8 +1,16 @@
 import React from 'react';
 import Card from '../../components/Card/Card';
-import logoSrc from './logo.jpg';
+import logoSrc from './logo.png';
 
 const tags = [
+  'Computer Vision',
+  'NLP',
+  'Transformers',
+  'PyTorch',
+  'TensorFlow',
+  'Scikit Learn',
+  'Pandas',
+  'Python',
   'Laravel',
   'WordPress',
   'Magento',

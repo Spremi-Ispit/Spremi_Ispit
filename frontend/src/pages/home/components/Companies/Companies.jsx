@@ -28,8 +28,8 @@ const companyList = () => {
     <InfinitoMedia />,
     <WebNi />,
     <SyncitGroup />,
-    // <Codemancy />,
-    // <Ingsoftware />,
+    <Codemancy />,
+    <Ingsoftware />,
   ];
   const shuffledCompanies = [];
 
