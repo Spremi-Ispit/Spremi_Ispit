@@ -28,14 +28,14 @@ const LoginRegister = () => {
   }
 
   if (location.pathname === loginRoute) {
-    return <StyleNavLink to={`${registerRoute}`}>Registracija</StyleNavLink>;
+    return <StyleNavLink to={registerRoute}>Registracija</StyleNavLink>;
   }
 
   // Register link should be visible in the navbar only on the login page,
   // on every other page there should be Login link
 
   return (
-    <StyleNavLink to={`${loginRoute}`}>
+    <StyleNavLink to={loginRoute}>
       {screen > screens.tablet && 'Prijava'} <LoginIcon />
     </StyleNavLink>
   );

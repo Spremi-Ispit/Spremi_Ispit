@@ -14,8 +14,9 @@ import Chat from '../../components/Chat/Chat';
 import Companies from './components/Companies/Companies';
 import { screensCSS } from '../../utils/useScreens';
 import colors from '../../theme/colors';
-import Instagram2ImgSrc from '../../assets/instagram2.png';
-import NavLink from '../../components/NavLink';
+
+import Instagram from './components/Ads/Instagram';
+import Internship from './components/Ads/Internship';
 
 const ContentDiv = styled.div`
   padding-top: 20px;
@@ -46,11 +47,14 @@ const LeftContentDiv = styled.div`
   flex: 1;
   padding: 10px;
   flex-direction: column;
+  flex-wrap: wrap;
+  gap: 10px;
 
   @media ${screensCSS.laptopL} {
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    gap: 0px;
   }
 `;
 
@@ -83,41 +87,6 @@ const RightContentDiv = styled.div`
   }
 `;
 
-const InstagramFollowUsDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  height: max-content;
-  white-space: nowrap;
-  font-style: italic;
-  margin-bottom: 5px;
-`;
-
-const InstagramLinkDiv = styled.div``;
-
-const StyledNavlink = styled(NavLink)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: 0;
-  line-height: 18px;
-  text-decoration: none;
-
-  font-style: italic;
-  color: #535cb5;
-  :hover {
-    color: #333da8;
-  }
-`;
-
-const InstagramFollowUsImg = styled.img`
-  width: 170px;
-`;
-
 export const Home = () => {
   const urlManager = useUrlManager();
   const { urlOrder } = urlManager.getParams();
@@ -142,21 +111,8 @@ export const Home = () => {
         <MainDiv>
           <ContentDiv>
             <LeftContentDiv>
-              <InstagramFollowUsDiv>
-                <InstagramFollowUsImg
-                  src={Instagram2ImgSrc}
-                  alt="Follow on Instagram"
-                />
-              </InstagramFollowUsDiv>
-              <InstagramLinkDiv>
-                <StyledNavlink
-                  as="a"
-                  href="https://www.instagram.com/spremiispit/"
-                  target="_blank"
-                >
-                  @SpremiIspit
-                </StyledNavlink>
-              </InstagramLinkDiv>
+              {/* <Internship /> */}
+              <Instagram />
             </LeftContentDiv>
             <MiddleContentDiv>
               <Filters />

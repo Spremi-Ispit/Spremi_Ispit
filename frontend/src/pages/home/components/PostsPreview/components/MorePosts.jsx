@@ -6,7 +6,7 @@ import colors from '../../../../../theme/colors';
 const MorePostsDiv = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin: 20px 0px;
 `;
 
 const MorePostsButton = styled(Button)`

@@ -28,7 +28,7 @@ const CreatePost = () => {
   const screen = useScreens();
 
   return (
-    <StyledNavLink to={`${createPostRoute}`}>
+    <StyledNavLink to={createPostRoute}>
       {
         <StyledButton>
           {screen > screens.tablet && 'Kreiraj objavu'} <StyledPostAddIcon />

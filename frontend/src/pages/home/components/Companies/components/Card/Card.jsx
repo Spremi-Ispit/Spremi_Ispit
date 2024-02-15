@@ -11,6 +11,7 @@ const CardDiv = styled.div`
   background-color: #fff;
   border-radius: 4px;
   gap: 10px;
+  max-width: 330px;
 `;
 
 const HeaderDiv = styled.div`

@@ -282,7 +282,7 @@ export const Form = () => {
           >
             <RedirectToLoginDiv>
               Već imaš profil?
-              <StyledNavLink to={`${loginRoute}`}>Prijavi se</StyledNavLink>
+              <StyledNavLink to={loginRoute}>Prijavi se</StyledNavLink>
             </RedirectToLoginDiv>
           </div>
         </StyledPaper>
