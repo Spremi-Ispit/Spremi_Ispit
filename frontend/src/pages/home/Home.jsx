@@ -55,6 +55,7 @@ const LeftContentDiv = styled.div`
     align-items: center;
     justify-content: center;
     gap: 0px;
+    padding: 0px 10px 10px 10px;
   }
 `;
 
@@ -111,7 +112,7 @@ export const Home = () => {
         <MainDiv>
           <ContentDiv>
             <LeftContentDiv>
-              {/* <Internship /> */}
+              <Internship />
               <Instagram />
             </LeftContentDiv>
             <MiddleContentDiv>

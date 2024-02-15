@@ -15,6 +15,8 @@ const MainDiv = styled.div`
 const InternshipsDiv = styled.div`
   display: flex;
   flex: 1;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const Internships = () => {
@@ -23,6 +25,7 @@ const Internships = () => {
       <Navbar />
       <SettingsSidePanel />
       <InternshipsDiv>
+        <h1>Studentske prakse</h1>
         <MainDiv>
           <Card />
         </MainDiv>
