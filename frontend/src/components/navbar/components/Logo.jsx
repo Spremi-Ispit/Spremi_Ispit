@@ -29,7 +29,7 @@ export const Logo = () => {
   const screen = useScreens();
   return (
     <LogoDiv>
-      <StyledNavLink to={`${homeRoute}`}>
+      <StyledNavLink to={homeRoute}>
         <StyledImg src={logo} alt="logo" />
         {screen > screens.tablet && (
           <SpremiIspitLabel>Spremi Ispit</SpremiIspitLabel>
