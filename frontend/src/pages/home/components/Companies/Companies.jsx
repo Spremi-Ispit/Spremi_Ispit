@@ -7,6 +7,8 @@ import { Nignite } from './Partners/Nignite/Nignite';
 import { SyncitGroup } from './Partners/SyncitGroup/SyncitGroup';
 import { Codemancy } from './Partners/Codemancy/Codemancy';
 import { Ingsoftware } from './Partners/Ingsoftware/Ingsoftware';
+import { ITLabs } from './Partners/ITLabs/ITLabs';
+import { AccordiaGroup } from './Partners/AccordiaGroup/AccordiaGroup';
 
 const CompaniesDiv = styled.div`
   display: flex;
@@ -28,8 +30,10 @@ const companyList = () => {
     <InfinitoMedia />,
     <WebNi />,
     <SyncitGroup />,
-    // <Codemancy />,
-    // <Ingsoftware />,
+    <Codemancy />,
+    <Ingsoftware />,
+    <ITLabs />,
+    <AccordiaGroup />,
   ];
   const shuffledCompanies = [];
 
