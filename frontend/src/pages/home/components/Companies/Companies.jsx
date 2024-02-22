@@ -32,7 +32,7 @@ const companyList = () => {
     <SyncitGroup />,
     <Codemancy />,
     <Ingsoftware />,
-    <ITLabs />,
+    // <ITLabs />,
     <AccordiaGroup />,
   ];
   const shuffledCompanies = [];
