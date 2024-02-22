@@ -32,14 +32,14 @@ const tags = [
 export const AccordiaGroup = () => {
   return (
     <Card
-      name="AccordiaGroup"
+      name="Accordia Group"
       logo={{
         src: logoSrc,
         alt: 'Logo niške IT firme Accordia Group',
       }}
       tags={tags}
       link="https://itfirmeunisu.rs/accordia-group/website"
-      linkName="Accordia Group"
+      linkName="accordia-group.com"
     />
   );
 };
