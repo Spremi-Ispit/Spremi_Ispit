@@ -39,7 +39,7 @@ export const AccordiaGroup = () => {
       }}
       tags={tags}
       link="https://itfirmeunisu.rs/accordia-group/website"
-      linkName="Accordia Group"
+      linkName="accordia-group.com"
     />
   );
 };
