@@ -44,7 +44,7 @@ export const Ingsoftware = () => {
       }}
       tags={tags}
       link="https://itfirmeunisu.rs/ingsoftware/website"
-      linkName="Ingsoftware"
+      linkName="ingsoftware.com"
     />
   );
 };

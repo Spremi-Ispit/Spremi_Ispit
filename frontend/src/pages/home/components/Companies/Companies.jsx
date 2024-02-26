@@ -9,6 +9,8 @@ import { Codemancy } from './Partners/Codemancy/Codemancy';
 import { Ingsoftware } from './Partners/Ingsoftware/Ingsoftware';
 import { ITLabs } from './Partners/ITLabs/ITLabs';
 import { AccordiaGroup } from './Partners/AccordiaGroup/AccordiaGroup';
+import { JoomBooz } from './Partners/JoomBooz/JoomBooz';
+import { Softelm } from './Partners/Softelm/Softelm';
 
 const CompaniesDiv = styled.div`
   display: flex;
@@ -34,6 +36,8 @@ const companyList = () => {
     <Ingsoftware />,
     // <ITLabs />,
     <AccordiaGroup />,
+    <JoomBooz />,
+    <Softelm />,
   ];
   const shuffledCompanies = [];
 
