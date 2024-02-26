@@ -14,7 +14,7 @@ export const Nignite = () => {
       }}
       tags={tags}
       link="https://www.nignite.com"
-      linkName="Nignite"
+      linkName="nignite.com"
     />
   );
 };
