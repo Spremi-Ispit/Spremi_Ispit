@@ -20,7 +20,7 @@ const InternshipsDiv = styled.div`
   flex-direction: column;
   align-items: center;
 
-  ::before {
+  /* ::before {
     content: '';
     background-image: url(${Logo});
     background-position: center;
@@ -33,7 +33,7 @@ const InternshipsDiv = styled.div`
     height: 100%;
     opacity: 0.2;
     z-index: 1;
-  }
+  } */
 `;
 
 const Internships = () => {
