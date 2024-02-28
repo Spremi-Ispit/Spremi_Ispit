@@ -14,7 +14,6 @@ import Chat from '../../components/Chat/Chat';
 import Companies from './components/Companies/Companies';
 import { screensCSS } from '../../utils/useScreens';
 import colors from '../../theme/colors';
-
 import Instagram from './components/Ads/Instagram';
 import Internship from './components/Ads/Internship';
 
@@ -27,6 +26,7 @@ const ContentDiv = styled.div`
 
   @media ${screensCSS.laptopL} {
     flex-direction: column;
+    align-items: center;
   }
 `;
 
@@ -66,10 +66,8 @@ const MiddleContentDiv = styled.div`
   max-width: 800px;
   width: 100%;
   padding: 0px 10px;
-  margin: auto;
 
   @media ${screensCSS.laptop} {
-    margin: auto;
     padding: 0px 20px;
   }
 `;

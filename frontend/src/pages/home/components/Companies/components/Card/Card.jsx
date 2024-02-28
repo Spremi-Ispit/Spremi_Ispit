@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import NavLink from '../../../../../../components/NavLink';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import useElementSizeOnResize from '../../../../../../utils/useElementSizeOnResize';
 
 const CardDiv = styled.div`
   display: flex;
@@ -12,11 +15,11 @@ const CardDiv = styled.div`
   border-radius: 4px;
   gap: 10px;
   max-width: 330px;
+  height: ${({ $open }) => !$open && '130px'};
 `;
 
 const HeaderDiv = styled.div`
   display: flex;
-  align-items: center;
   gap: 10px;
 `;
 
@@ -47,6 +50,7 @@ const StyledNavlink = styled(NavLink)`
 const TagsDiv = styled.div`
   display: flex;
   flex-wrap: wrap;
+  overflow: hidden;
 `;
 
 const TagDiv = styled.div`
@@ -58,17 +62,37 @@ const TagDiv = styled.div`
   color: black;
 `;
 
-const MoreTagsDiv = styled(TagDiv)`
+const HeaderArrowDiv = styled.div`
+  flex: 1;
+  display: flex;
+  justify-content: end;
+`;
+
+const StyledKeyboardArrowDownIcon = styled(KeyboardArrowDownIcon)`
   cursor: pointer;
-  font-weight: bold;
+`;
+
+const StyledKeyboardArrowUpIcon = styled(KeyboardArrowUpIcon)`
+  cursor: pointer;
 `;
 
 const Card = ({ tags, logo, name, link, linkName }) => {
   const { src, alt } = logo;
-  const [showAll, setShowAll] = useState(false);
+  const [open, setOpen] = useState(true);
+  const { height, ref } = useElementSizeOnResize();
+  const [initialized, setInitialized] = useState(false);
+  const [arrows, setArrows] = useState(false);
+
+  useEffect(() => {
+    if (!initialized && height > 130) {
+      setOpen(false);
+      setArrows(true);
+      setInitialized(true);
+    }
+  }, [height]);
 
   return (
-    <CardDiv>
+    <CardDiv $open={open} ref={ref}>
       <HeaderDiv>
         <LogoImg alt={alt} src={src} />
         <NameDiv>
@@ -77,24 +101,24 @@ const Card = ({ tags, logo, name, link, linkName }) => {
             {linkName}
           </StyledNavlink>
         </NameDiv>
+        {arrows && (
+          <HeaderArrowDiv>
+            {open ? (
+              <StyledKeyboardArrowUpIcon
+                onClick={() => setOpen((prev) => !prev)}
+              />
+            ) : (
+              <StyledKeyboardArrowDownIcon
+                onClick={() => setOpen((prev) => !prev)}
+              />
+            )}
+          </HeaderArrowDiv>
+        )}
       </HeaderDiv>
       <TagsDiv>
-        {tags.map((tag, index) => {
-          if (showAll) {
-            return <TagDiv key={index}>{tag}</TagDiv>;
-          }
-
-          if (index < 4) {
-            return <TagDiv key={index}>{tag}</TagDiv>;
-          }
-
-          return null;
-        })}
-        {tags.length > 4 && (
-          <MoreTagsDiv onClick={() => setShowAll((prev) => !prev)}>
-            {showAll ? 'smanji...' : 'još...'}
-          </MoreTagsDiv>
-        )}
+        {tags.map((tag, index) => (
+          <TagDiv key={index}>{tag}</TagDiv>
+        ))}
       </TagsDiv>
     </CardDiv>
   );

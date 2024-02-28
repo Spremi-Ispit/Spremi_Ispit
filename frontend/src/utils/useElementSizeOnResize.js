@@ -10,8 +10,10 @@ export const useElementSizeOnResize = () => {
     const observer = new ResizeObserver(() => {
       // Wrap the callback in setTimeout to defer its execution
       setTimeout(() => {
-        setWidth(ref.current.offsetWidth);
-        setHeight(ref.current.offsetHeight);
+        if (ref && ref.current) {
+          setWidth(ref.current.offsetWidth);
+          setHeight(ref.current.offsetHeight);
+        }
       }, 0);
     });
 
