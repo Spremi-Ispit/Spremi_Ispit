@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Deavensoft } from './Partners/Deavensoft/Deavensoft';
 import { InfinitoMedia } from './Partners/InfinitoMedia/InfinitoMedia';
@@ -56,10 +56,12 @@ const companyList = () => {
 };
 
 const Companies = () => {
+  const [list] = useState(companyList());
+
   return (
     <>
       <CompaniesHeader>IT kompanije</CompaniesHeader>
-      <CompaniesDiv>{companyList()}</CompaniesDiv>
+      <CompaniesDiv>{list}</CompaniesDiv>
     </>
   );
 };
