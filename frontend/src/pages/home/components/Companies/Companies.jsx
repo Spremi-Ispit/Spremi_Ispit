@@ -11,6 +11,7 @@ import { ITLabs } from './Partners/ITLabs/ITLabs';
 import { AccordiaGroup } from './Partners/AccordiaGroup/AccordiaGroup';
 import { JoomBooz } from './Partners/JoomBooz/JoomBooz';
 import { Softelm } from './Partners/Softelm/Softelm';
+import { Poslovi } from './Partners/Poslovi.rs/Poslovi';
 
 const CompaniesDiv = styled.div`
   display: flex;
@@ -34,10 +35,11 @@ const companyList = () => {
     <SyncitGroup />,
     <Codemancy />,
     <Ingsoftware />,
-    // <ITLabs />,
+    <ITLabs />,
     <AccordiaGroup />,
     <JoomBooz />,
     <Softelm />,
+    // <Poslovi />,
   ];
   const shuffledCompanies = [];
 
