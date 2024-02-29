@@ -5,9 +5,9 @@ import SettingsSidePanel from '../../components/SettingsSidePanel/SettingsSidePa
 import Footer from '../../components/Footer';
 import Card from './components/Card';
 import Logo from '../../assets/Logo.jpg';
+import PosloviRS from './PosloviRS/PosloviRS';
 
 const MainDiv = styled.div`
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
   padding: 20px;
@@ -36,6 +36,12 @@ const InternshipsDiv = styled.div`
   } */
 `;
 
+const JobAdvertisementDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 const Internships = () => {
   return (
     <>
@@ -47,6 +53,12 @@ const Internships = () => {
           <Card />
         </MainDiv>
       </InternshipsDiv>
+      <JobAdvertisementDiv>
+        <h1>Pogledaj još oglasa!</h1>
+        <MainDiv>
+          <PosloviRS />
+        </MainDiv>
+      </JobAdvertisementDiv>
       <Footer />
     </>
   );

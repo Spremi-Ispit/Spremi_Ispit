@@ -110,7 +110,7 @@ export const Home = () => {
         <MainDiv>
           <ContentDiv>
             <LeftContentDiv>
-              {/* <Internship /> */}
+              <Internship />
               <Instagram />
             </LeftContentDiv>
             <MiddleContentDiv>
