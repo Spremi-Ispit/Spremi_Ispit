@@ -73,7 +73,7 @@ const SpremiIspitHeaderDiv = styled.div`
 const SpremiIspitDescription = styled.div``;
 
 const SpremiIspit = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   return (
     <SpremiIspitDiv>

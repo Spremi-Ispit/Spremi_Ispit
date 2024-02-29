@@ -73,7 +73,7 @@ const ITLabsHeaderDiv = styled.div`
 const ITLabsDescription = styled.div``;
 
 const ITLabs = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   return (
     <ITLabsDiv>
