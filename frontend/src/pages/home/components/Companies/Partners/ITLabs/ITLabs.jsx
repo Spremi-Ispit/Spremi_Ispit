@@ -27,8 +27,8 @@ export const ITLabs = () => {
         alt: 'Logo IT firme IT Labs',
       }}
       tags={tags}
-      link="https://www.ITLabs.com"
-      linkName="IT Labs"
+      link="https://www.it-labs.com/"
+      linkName="it-labs.com"
     />
   );
 };

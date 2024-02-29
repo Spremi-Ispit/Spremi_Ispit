@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from '../../components/Card/Card';
+import Card from '../../SpremiIspit/Card/Card';
 import logoSrc from './logo.png';
 
 const tags = [

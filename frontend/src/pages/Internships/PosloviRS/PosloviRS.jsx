@@ -6,13 +6,14 @@ import logoSrc from './logo.jpg';
 const PosloviRSDiv = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
   padding: 10px;
   background-color: #fff;
   border-radius: 4px;
   gap: 10px;
-  max-width: 330px;
+  max-width: 650px;
+  align-self: center;
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
+  width: 100%;
 
   :hover {
     box-shadow: rgba(0, 0, 0, 0.75) 0px 1px 3px;
@@ -25,19 +26,20 @@ const HeaderDiv = styled.div`
 `;
 
 const LogoImg = styled.img`
-  width: 96px;
-  height: 96px;
+  width: 72px;
+  height: 72px;
   background-color: #fff;
   border: 4px solid #ebebeb;
   border-radius: 50%;
 `;
 
-const NameDiv = styled.div``;
+const NameDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 const StyledNavlink = styled(NavLink)`
-  color: #535cb5;
   :hover {
-    color: #333da8;
     text-decoration: none;
   }
 
@@ -49,8 +51,19 @@ const StyledNavlink = styled(NavLink)`
   text-decoration: none;
 `;
 
-const PosloviRSH3 = styled.h3`
-  margin-bottom: 20px;
+const PosloviRSH3 = styled.h3``;
+const LinkDiv = styled.div`
+  color: #535cb5;
+  :hover {
+    color: #333da8;
+    text-decoration: underline;
+  }
+`;
+
+const DescriptionDiv = styled.div`
+  flex: 1;
+  display: flex;
+  align-items: end;
 `;
 
 const PosloviRS = () => {
@@ -61,7 +74,10 @@ const PosloviRS = () => {
           <LogoImg alt="POSLOVI.RS" src={logoSrc} />
           <NameDiv>
             <PosloviRSH3>POSLOVI.RS</PosloviRSH3>
-            {'Tražite posao? Portal poslovi.rs je pravo mesto za Vas!'}
+            <LinkDiv>poslovi.rs</LinkDiv>
+            <DescriptionDiv>
+              Tražite posao? Portal poslovi.rs je pravo mesto za Vas!
+            </DescriptionDiv>
           </NameDiv>
         </HeaderDiv>
       </StyledNavlink>
