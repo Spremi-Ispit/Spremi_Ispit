@@ -43,12 +43,12 @@ export default function Router() {
           element={<ReportedComments />}
         />
       </Route>
-      <Route path={routes.internshipsRoute} element={<Internships />} />
     </Route>
   );
 
   const publicRoutes = (
     <>
+      <Route path={routes.internshipsRoute} element={<Internships />} />
       <Route path={routes.usersRoute} element={<Users />} exact />
       <Route path={routes.videosRoute} element={<Videos />} exact />
       <Route path={routes.viewPostRoute} element={<ViewPost />} exact />
