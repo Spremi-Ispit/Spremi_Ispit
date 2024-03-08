@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import NavLink from '../../../components/NavLink';
-import logoSrc from './logo.jpg';
+import NavLink from '../../../../../../../components/NavLink';
+import PosloviRsSrc from './PosloviRS.jpg';
 
 const PosloviRSDiv = styled.div`
   display: flex;
@@ -71,7 +71,7 @@ const PosloviRS = () => {
     <PosloviRSDiv>
       <StyledNavlink as="a" href="https://www.poslovi.rs/" target="_blank">
         <HeaderDiv>
-          <LogoImg alt="POSLOVI.RS" src={logoSrc} />
+          <LogoImg alt="POSLOVI.RS" src={PosloviRsSrc} />
           <NameDiv>
             <PosloviRSH3>POSLOVI.RS</PosloviRSH3>
             <LinkDiv>poslovi.rs</LinkDiv>

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import NavLink from '../../../../../../components/NavLink';
+import NavLink from '../../../components/NavLink';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import useElementSizeOnResize from '../../../../../../utils/useElementSizeOnResize';
+import useElementSizeOnResize from '../../../utils/useElementSizeOnResize';
+import Internship from './components/Internship';
 
 const CardDiv = styled.div`
   display: flex;
@@ -76,7 +77,7 @@ const StyledKeyboardArrowUpIcon = styled(KeyboardArrowUpIcon)`
   cursor: pointer;
 `;
 
-const Card = ({ tags, logo, name, link, linkName }) => {
+const Card = ({ tags, logo, name, link, linkName, internship }) => {
   const { src, alt } = logo;
   const [open, setOpen] = useState(true);
   const { height, ref } = useElementSizeOnResize();
@@ -120,6 +121,7 @@ const Card = ({ tags, logo, name, link, linkName }) => {
           <TagDiv key={index}>{tag}</TagDiv>
         ))}
       </TagsDiv>
+      {open && <Internship internship={internship} />}
     </CardDiv>
   );
 };

@@ -21,7 +21,6 @@ import Videos from '../pages/Videos/Videos';
 import CommunityTools from '../pages/CommunityTools/CommunityTools';
 import CommunityGithub from '../pages/CommunityGithub/CommunityGithub';
 import CommunityDrives from '../pages/CommunityDrives/CommunityDrives';
-import Internships from '../pages/Internships/Internships';
 
 export default function Router() {
   const privateRoutes = (
@@ -48,7 +47,6 @@ export default function Router() {
 
   const publicRoutes = (
     <>
-      <Route path={routes.internshipsRoute} element={<Internships />} />
       <Route path={routes.usersRoute} element={<Users />} exact />
       <Route path={routes.videosRoute} element={<Videos />} exact />
       <Route path={routes.viewPostRoute} element={<ViewPost />} exact />
