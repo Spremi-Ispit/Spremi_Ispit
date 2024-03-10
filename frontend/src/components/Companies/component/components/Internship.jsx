@@ -3,6 +3,7 @@ import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import styled from 'styled-components';
 import NavLink from '../../../../components/NavLink';
 import ApartmentIcon from '@mui/icons-material/Apartment';
+import ReactGA from 'react-ga4';
 
 const StyledNavlink = styled(NavLink)`
   display: flex;
@@ -38,10 +39,18 @@ const FollowUsDiv = styled.div`
   font-weight: bold;
 `;
 
-const Internship = ({ internship }) => {
+const Internship = ({ internship, name }) => {
   if (!internship) {
     return null;
   }
+
+  const handleClick = () => {
+    ReactGA.event({
+      action: 'internship_click',
+      category: name,
+      label: internship,
+    });
+  };
 
   return (
     <InternshipLinkDiv>
@@ -49,7 +58,12 @@ const Internship = ({ internship }) => {
         Link
         <ArrowRightAltIcon />
       </FollowUsDiv>
-      <StyledNavlink as="a" href={internship} target="_blank">
+      <StyledNavlink
+        as="a"
+        href={internship}
+        target="_blank"
+        onClick={handleClick}
+      >
         @Praksa
         <ApartmentIcon />
       </StyledNavlink>
