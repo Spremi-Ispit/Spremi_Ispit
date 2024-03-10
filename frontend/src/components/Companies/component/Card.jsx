@@ -5,6 +5,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import useElementSizeOnResize from '../../../utils/useElementSizeOnResize';
 import Internship from './components/Internship';
+import ReactGA from 'react-ga4';
 
 const CardDiv = styled.div`
   display: flex;
@@ -92,8 +93,19 @@ const Card = ({ tags, logo, name, link, linkName, internship }) => {
     }
   }, [height]);
 
+  const handleCardClick = () => {
+    ReactGA.event({
+      category: 'darjan1',
+      action: 'darjan2',
+      label: 'darjan3',
+      value: 'darjan4',
+    });
+
+    ReactGA.event('darjan5');
+  };
+
   return (
-    <CardDiv $open={open} ref={ref}>
+    <CardDiv $open={open} ref={ref} onClick={handleCardClick}>
       <HeaderDiv>
         <LogoImg alt={alt} src={src} />
         <NameDiv>
