@@ -38,10 +38,6 @@ const TutoringLinkDiv = styled.div`
   border-radius: 5px;
 `;
 
-const TutoringImg = styled.img`
-  width: 20px;
-`;
-
 const FollowUsDiv = styled.div`
   display: flex;
   justify-content: center;
@@ -64,7 +60,3 @@ const Tutoring = () => {
 };
 
 export default Tutoring;
-// CastForEducationIcon;
-// LocalLibraryIcon;
-// LibraryBooksIcon;
-// AutoStoriesIcon;

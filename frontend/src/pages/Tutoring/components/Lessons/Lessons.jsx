@@ -6,7 +6,7 @@ import Instagram from '../components/Instagram';
 
 const StyledAutocomplete = styled(Autocomplete)`
   background-color: white;
-  margin-bottom: 10px;
+  margin: 10px;
 `;
 
 const TutoringH2 = styled.h2`
@@ -26,7 +26,6 @@ const LessonsDiv = styled.div`
 const StyledLabel = styled.label`
   font-weight: bold;
   display: block;
-  margin-bottom: 2px;
 `;
 
 const Lessons = () => {
