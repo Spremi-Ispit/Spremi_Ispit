@@ -53,7 +53,7 @@ const Companies = () => {
   return (
     <CompaniesDiv>
       <CompaniesHeader>IT kompanije</CompaniesHeader>
-      <InternshipLinkDiv>
+      {/* <InternshipLinkDiv>
         <LookingForInternshipDiv>
           Tražiš praksu?
           <ArrowRightAltIcon />
@@ -64,7 +64,7 @@ const Companies = () => {
           checked={internship}
         />
         <ApartmentIcon />
-      </InternshipLinkDiv>
+      </InternshipLinkDiv> */}
       <CompaniesList companies={companiesList()} />
     </CompaniesDiv>
   );
