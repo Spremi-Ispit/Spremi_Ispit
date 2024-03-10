@@ -16,9 +16,9 @@ const MainDiv = styled.div`
   display: flex;
   flex-direction: column;
   padding: 10px;
-  z-index: 2;
   width: 100%;
   gap: 20px;
+  align-items: center;
 `;
 
 const MoreJobs = () => {

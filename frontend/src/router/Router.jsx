@@ -21,6 +21,7 @@ import Videos from '../pages/Videos/Videos';
 import CommunityTools from '../pages/CommunityTools/CommunityTools';
 import CommunityGithub from '../pages/CommunityGithub/CommunityGithub';
 import CommunityDrives from '../pages/CommunityDrives/CommunityDrives';
+import Tutoring from '../pages/Tutoring/Tutoring';
 
 export default function Router() {
   const privateRoutes = (
@@ -61,6 +62,7 @@ export default function Router() {
       <Route path={routes.communityGithubRoute} element={<CommunityGithub />} />
       <Route path={routes.communityDrivesRoute} element={<CommunityDrives />} />
       <Route path={routes.communityToolsRoute} element={<CommunityTools />} />
+      <Route path={routes.tutoringRoute} element={<Tutoring />} />
     </>
   );
 

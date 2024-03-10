@@ -83,9 +83,9 @@ const IconSpan = styled.span`
   width: 20px;
 `;
 
-export const Footer = () => {
+export const Footer = ({ className }) => {
   return (
-    <FooterDiv>
+    <FooterDiv className={className}>
       <CaregoriesDiv>
         <LeftDiv>
           <HeaderDiv>O projektu</HeaderDiv>

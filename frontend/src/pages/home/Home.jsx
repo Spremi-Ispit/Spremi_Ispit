@@ -16,6 +16,7 @@ import colors from '../../theme/colors';
 import Instagram from './components/Ads/Instagram';
 import Companies from './components/Companies/Companies';
 import MoreJobs from './components/Ads/MoreJobs/MoreJobs';
+import Tutoring from './components/Ads/Tutoring';
 
 const ContentDiv = styled.div`
   padding-top: 20px;
@@ -110,6 +111,7 @@ export const Home = () => {
         <MainDiv>
           <ContentDiv>
             <LeftContentDiv>
+              <Tutoring />
               <Instagram />
             </LeftContentDiv>
             <MiddleContentDiv>
