@@ -65,12 +65,10 @@ export default function Router() {
   );
 
   return (
-    <BrowserRouter>
-      <Routes>
-        {privateRoutes}
-        {publicRoutes}
-        <Route path={'*'} element={<Home />} />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      {privateRoutes}
+      {publicRoutes}
+      <Route path={'*'} element={<Home />} />
+    </Routes>
   );
 }

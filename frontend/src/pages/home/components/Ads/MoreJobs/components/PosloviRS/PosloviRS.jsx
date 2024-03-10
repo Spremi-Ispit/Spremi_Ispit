@@ -6,18 +6,13 @@ import PosloviRsSrc from './PosloviRS.jpg';
 const PosloviRSDiv = styled.div`
   display: flex;
   flex-direction: column;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
+  width: 100%;
   padding: 10px;
   background-color: #fff;
   border-radius: 4px;
   gap: 10px;
-  max-width: 650px;
-  align-self: center;
-  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
-  width: 100%;
-
-  :hover {
-    box-shadow: rgba(0, 0, 0, 0.75) 0px 1px 3px;
-  }
+  max-width: 330px;
 `;
 
 const HeaderDiv = styled.div`
@@ -75,6 +70,7 @@ const PosloviRS = () => {
           <NameDiv>
             <PosloviRSH3>POSLOVI.RS</PosloviRSH3>
             <LinkDiv>poslovi.rs</LinkDiv>
+            <br />
             <DescriptionDiv>
               Tražite posao? Portal poslovi.rs je pravo mesto za Vas!
             </DescriptionDiv>

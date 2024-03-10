@@ -118,7 +118,7 @@ export const Home = () => {
             </MiddleContentDiv>
             <RightContentDiv>
               <Companies />
-              {/* <MoreJobs /> */}
+              <MoreJobs />
             </RightContentDiv>
           </ContentDiv>
           <Chat />
