@@ -11,11 +11,11 @@ import Filters from './components/Filters/Filters';
 import Footer from '../../components/Footer';
 import SettingsSidePanel from '../../components/SettingsSidePanel/SettingsSidePanel';
 import Chat from '../../components/Chat/Chat';
-import Companies from './components/Companies/Companies';
 import { screensCSS } from '../../utils/useScreens';
 import colors from '../../theme/colors';
 import Instagram from './components/Ads/Instagram';
-import Internship from './components/Ads/Internship';
+import Companies from './components/Companies/Companies';
+import MoreJobs from './components/Ads/MoreJobs/MoreJobs';
 
 const ContentDiv = styled.div`
   padding-top: 20px;
@@ -110,7 +110,6 @@ export const Home = () => {
         <MainDiv>
           <ContentDiv>
             <LeftContentDiv>
-              {/* <Internship /> */}
               <Instagram />
             </LeftContentDiv>
             <MiddleContentDiv>
@@ -119,6 +118,7 @@ export const Home = () => {
             </MiddleContentDiv>
             <RightContentDiv>
               <Companies />
+              {/* <MoreJobs /> */}
             </RightContentDiv>
           </ContentDiv>
           <Chat />

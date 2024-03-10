@@ -3,7 +3,6 @@ import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import styled from 'styled-components';
 import NavLink from '../../../../components/NavLink';
 import ApartmentIcon from '@mui/icons-material/Apartment';
-import { internshipsRoute } from '../../../../router/routes';
 
 const StyledNavlink = styled(NavLink)`
   display: flex;
@@ -33,21 +32,25 @@ const InternshipLinkDiv = styled.div`
   border-radius: 5px;
 `;
 
-const LookingForInternshipDiv = styled.div`
+const FollowUsDiv = styled.div`
   display: flex;
   justify-content: center;
   font-weight: bold;
 `;
 
-const Internship = () => {
+const Internship = ({ internship }) => {
+  if (!internship) {
+    return null;
+  }
+
   return (
     <InternshipLinkDiv>
-      <LookingForInternshipDiv>
-        Tražiš praksu?
+      <FollowUsDiv>
+        Link
         <ArrowRightAltIcon />
-      </LookingForInternshipDiv>
-      <StyledNavlink to={internshipsRoute}>
-        @Prakse
+      </FollowUsDiv>
+      <StyledNavlink as="a" href={internship} target="_blank">
+        @Praksa
         <ApartmentIcon />
       </StyledNavlink>
     </InternshipLinkDiv>

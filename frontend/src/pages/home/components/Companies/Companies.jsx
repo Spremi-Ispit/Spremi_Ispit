@@ -1,68 +1,72 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Deavensoft } from './Partners/Deavensoft/Deavensoft';
-import { InfinitoMedia } from './Partners/InfinitoMedia/InfinitoMedia';
-import { WebNi } from './Partners/WebNi/WebNi';
-import { Nignite } from './Partners/Nignite/Nignite';
-import { SyncitGroup } from './Partners/SyncitGroup/SyncitGroup';
-import { Codemancy } from './Partners/Codemancy/Codemancy';
-import { Ingsoftware } from './Partners/Ingsoftware/Ingsoftware';
-import { ITLabs } from './Partners/ITLabs/ITLabs';
-import { AccordiaGroup } from './Partners/AccordiaGroup/AccordiaGroup';
-import { JoomBooz } from './Partners/JoomBooz/JoomBooz';
-import { Softelm } from './Partners/Softelm/Softelm';
-import { Poslovi } from './Partners/Poslovi.rs/Poslovi';
-
-const CompaniesDiv = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px;
-  flex-wrap: wrap;
-  justify-content: center;
-`;
+import CompaniesList from '../../../../components/Companies/Companies';
+import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import companies from '../../../../components/Companies/data';
 
 const CompaniesHeader = styled.h3`
   text-align: center;
 `;
 
-const companyList = () => {
-  const companies = [
-    <Nignite />,
-    <Deavensoft />,
-    <InfinitoMedia />,
-    <WebNi />,
-    <SyncitGroup />,
-    <Codemancy />,
-    <Ingsoftware />,
-    <ITLabs />,
-    <AccordiaGroup />,
-    <JoomBooz />,
-    <Softelm />,
-    // <Poslovi />,
-  ];
-  const shuffledCompanies = [];
+const CompaniesDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
-  const n = companies.length;
-  for (let i = 0; i < n; i++) {
-    const index = Math.floor((Math.random() * 100) % companies.length);
+const InternshipLinkDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-style: italic;
+  padding: 5px;
+  border-radius: 5px;
+`;
 
-    shuffledCompanies.push(
-      React.cloneElement(...companies.splice(index, 1), { key: i })
-    );
-  }
+const LookingForInternshipDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+`;
 
-  return shuffledCompanies;
-};
+const InternshipCheckbox = styled.input`
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+`;
 
 const Companies = () => {
-  const [list] = useState(companyList());
+  const [internship, setInternship] = useState(false);
 
+  const companiesList = () => {
+    if (internship) {
+      return companies.filter((company) =>
+        company.internship ? company : null
+      );
+    }
+    return companies;
+  };
+
+  const handleChange = (e) => {
+    setInternship(e.target.checked);
+  };
   return (
-    <>
+    <CompaniesDiv>
       <CompaniesHeader>IT kompanije</CompaniesHeader>
-      <CompaniesDiv>{list}</CompaniesDiv>
-    </>
+      {/* <InternshipLinkDiv>
+        <LookingForInternshipDiv>
+          Tražiš praksu?
+          <ArrowRightAltIcon />
+        </LookingForInternshipDiv>
+        <InternshipCheckbox
+          type="checkbox"
+          onChange={handleChange}
+          checked={internship}
+        />
+        <ApartmentIcon />
+      </InternshipLinkDiv> */}
+      <CompaniesList companies={companiesList()} />
+    </CompaniesDiv>
   );
 };
 
