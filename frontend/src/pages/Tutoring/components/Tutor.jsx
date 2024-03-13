@@ -130,10 +130,15 @@ const TutorDiv = styled.div`
   background-color: #fff;
   border-radius: 4px;
   gap: 10px;
-  width: 400px;
   max-height: ${({ $open }) => !$open && '56px'};
   height: fit-content;
   overflow: hidden;
+
+  width: 350px;
+
+  @media (max-width: 800px) {
+    width: 330px;
+  }
 `;
 
 const TutorHeaderDiv = styled.div`
