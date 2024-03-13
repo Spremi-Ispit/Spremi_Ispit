@@ -1,23 +1,23 @@
 const tutors = [
-  {
-    id: 5,
-    link: 'https://www.instagram.com/direct/t/17844869285287110/',
-    name: 'Jelena Ivković',
-    description: '',
-    subjects: [
-      'Matematika 1',
-      'Matematika 2',
-      'Matematika 3',
-      'Diskretna matematika',
-      'Teorija Grafova',
-      'Verovatnoća i statistika',
-    ],
-    price: {
-      personally: null,
-      group: 800,
-    },
-    rating: [],
-  },
+  // {
+  //   id: 5,
+  //   link: 'https://www.instagram.com/direct/t/17844869285287110/',
+  //   name: 'Jelena Ivković',
+  //   description: '',
+  //   subjects: [
+  //     'Matematika 1',
+  //     'Matematika 2',
+  //     'Matematika 3',
+  //     'Diskretna matematika',
+  //     'Teorija Grafova',
+  //     'Verovatnoća i statistika',
+  //   ],
+  //   price: {
+  //     personally: null,
+  //     group: 800,
+  //   },
+  //   rating: [],
+  // },
   {
     id: 4,
     link: 'https://www.facebook.com/messages/e2ee/t/7521900767862414',

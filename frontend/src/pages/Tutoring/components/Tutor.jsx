@@ -98,6 +98,7 @@ const TutorIdDiv = styled.div`
 const DividerDiv = styled.div`
   border: 1px solid black;
   margin: 5px;
+  height: 15px;
 `;
 
 const PricesDiv = styled.div`
