@@ -1,8 +1,8 @@
 import React from 'react';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import styled from 'styled-components';
-import InstagramImgSrc from '../../../../assets/instagram.png';
-import NavLink from '../../../../components/NavLink';
+import InstagramImgSrc from '../../../assets/instagram.png';
+import NavLink from '../../../components/NavLink';
 
 const StyledNavlink = styled(NavLink)`
   display: flex;

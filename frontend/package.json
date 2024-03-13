@@ -16,8 +16,10 @@
   "dependencies": {
     "@clack/prompts": "^0.7.0",
     "@cyntler/react-doc-viewer": "^1.14.1",
-    "@mui/icons-material": "^5.14.18",
-    "@mui/material": "^5.14.18",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.15.12",
+    "@mui/material": "^5.15.12",
     "@reduxjs/toolkit": "^1.9.7",
     "archiver": "^6.0.1",
     "axios": "^1.6.2",
