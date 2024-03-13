@@ -3,10 +3,6 @@ import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import styled from 'styled-components';
 // import TutoringImgSrc from '../../../../assets/Tutoring.png';
 import NavLink from '../../../../components/NavLink';
-import CastForEducationIcon from '@mui/icons-material/CastForEducation';
-import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
-import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
-import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import { tutoringRoute } from '../../../../router/routes';
 

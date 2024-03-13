@@ -55,7 +55,7 @@ const Companies = () => {
       <CompaniesHeader>IT kompanije</CompaniesHeader>
       <InternshipLinkDiv>
         <LookingForInternshipDiv>
-          Tražiš praksu?
+          Tražiš posao/praksu?
           <ArrowRightAltIcon />
         </LookingForInternshipDiv>
         <InternshipCheckbox

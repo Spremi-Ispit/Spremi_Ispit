@@ -49,6 +49,7 @@ const Internship = ({ internship, name }) => {
       action: 'internship_click',
       category: name,
       label: internship,
+      value: name,
     });
   };
 
@@ -64,7 +65,7 @@ const Internship = ({ internship, name }) => {
         target="_blank"
         onClick={handleClick}
       >
-        @Praksa
+        @Posao/Praksa
         <ApartmentIcon />
       </StyledNavlink>
     </InternshipLinkDiv>

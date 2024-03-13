@@ -12,8 +12,18 @@ import WebNi from '../../assets/companies/WebNi.jpg';
 import DualSoft from '../../assets/companies/DualSoft.jpg';
 import Diligent from '../../assets/companies/Diligent.jpg';
 import Cubic from '../../assets/companies/Cubic.jpg';
+import FlowNinja from '../../assets/companies/FlowNinja.jpg';
 
 const companies = [
+  {
+    name: 'Flow Ninja',
+    logo: FlowNinja,
+    tags: ['JavaScript', 'Figma', 'Sketch', 'Webflow'],
+    link: 'https://itfirmeunisu.rs/flow-ninja/website',
+    linkName: 'flow.ninja',
+    internship:
+      'https://www.linkedin.com/posts/flow-ninja_we-are-hiring-activity-7173341692513640451-EUJ0?utm_source=share&utm_medium=member_android',
+  },
   {
     name: 'Cubic - MotionDSP',
     logo: Cubic,
