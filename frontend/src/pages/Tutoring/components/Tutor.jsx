@@ -107,6 +107,7 @@ const PricesDiv = styled.div`
   border-radius: 10px;
   display: flex;
   width: fit-content;
+  align-items: center;
 `;
 
 const LikesDislikesDiv = styled.div`
