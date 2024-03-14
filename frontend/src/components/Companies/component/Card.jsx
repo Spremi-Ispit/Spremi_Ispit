@@ -6,6 +6,8 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import useElementSizeOnResize from '../../../utils/useElementSizeOnResize';
 import Internship from './components/Internship';
 
+const minCardHeight = 130;
+
 const CardDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -16,7 +18,7 @@ const CardDiv = styled.div`
   border-radius: 4px;
   gap: 10px;
   max-width: 330px;
-  height: ${({ $open }) => !$open && '130px'};
+  height: ${({ $open }) => !$open && `${minCardHeight}px`};
 `;
 
 const HeaderDiv = styled.div`
@@ -85,7 +87,7 @@ const Card = ({ tags, logo, name, link, linkName, internship }) => {
   const [arrows, setArrows] = useState(false);
 
   useEffect(() => {
-    if (!initialized && height > 130) {
+    if (!initialized && height > minCardHeight) {
       setOpen(false);
       setArrows(true);
       setInitialized(true);
