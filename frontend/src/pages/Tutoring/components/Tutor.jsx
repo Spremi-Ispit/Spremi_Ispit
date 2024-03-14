@@ -12,7 +12,7 @@ const minCardHeight = 200;
 const minSubjectsHeight = 32;
 
 const defaultDescription =
-  'Rado ću ti pomoci da se spremiš za ispit ili laboratorijsku vežbu!';
+  'Rado ću ti pomoći da se spremiš za ispit ili laboratorijsku vežbu!';
 
 const Tutor = ({ tutor }) => {
   const { id, name, description, subjects, price, rating } = tutor;
