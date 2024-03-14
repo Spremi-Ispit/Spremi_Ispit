@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
@@ -6,11 +6,30 @@ import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 import GroupsIcon from '@mui/icons-material/Groups';
 import colors from '../../../theme/colors';
 import BoyIcon from '@mui/icons-material/Boy';
+import useElementSizeOnResize from '../../../utils/useElementSizeOnResize';
+
+const minCardHeight = 200;
+const minSubjectsHeight = 32;
+
+const defaultDescription =
+  'Rado ću ti pomoci da se spremiš za ispit ili laboratorijsku vežbu!';
 
 const Tutor = ({ tutor }) => {
   const { id, name, description, subjects, price, rating } = tutor;
   const { personally, group } = price;
-  const [open, setOpen] = useState(false);
+
+  const [open, setOpen] = useState(true);
+  const { height, ref } = useElementSizeOnResize();
+  const [initialized, setInitialized] = useState(false);
+  const [arrows, setArrows] = useState(false);
+
+  useEffect(() => {
+    if (!initialized && height > minCardHeight) {
+      setOpen(false);
+      setArrows(true);
+      setInitialized(true);
+    }
+  }, [height]);
 
   const userRating = (rate) =>
     rating.reduce(
@@ -19,7 +38,7 @@ const Tutor = ({ tutor }) => {
     );
 
   return (
-    <TutorDiv $open={open}>
+    <TutorDiv $open={open} ref={ref}>
       <TutorHeaderDiv>
         <ProfileImg
           src={`https://ui-avatars.com/api/?name=${name}&background=random&color=random&bold=true`}
@@ -32,47 +51,50 @@ const Tutor = ({ tutor }) => {
           <UserRatingDiv>{userRating(-1)}</UserRatingDiv>
           <ThumbDownOffAltIcon />
         </LikesDislikesDiv>
-        <HeaderArrowDiv $open={open}>
-          <StyledKeyboardArrowDownIcon
-            onClick={() => setOpen((prev) => !prev)}
-          />
-        </HeaderArrowDiv>
+        {arrows && (
+          <HeaderArrowDiv $open={open}>
+            <StyledKeyboardArrowDownIcon
+              onClick={() => setOpen((prev) => !prev)}
+            />
+          </HeaderArrowDiv>
+        )}
       </TutorHeaderDiv>
-      {open && (
-        <TutorContentDiv>
-          <TutorDescriptionDiv>{description}</TutorDescriptionDiv>
-          <SubjectsDiv>
-            Predmeti:
-            {subjects.map((subject) => (
-              <SubjectDiv>{subject}</SubjectDiv>
-            ))}
-          </SubjectsDiv>
-          <PricesDiv>
-            Cena:
-            <BoyIcon />
-            {personally}
-            <DividerDiv />
-            <GroupsIcon />
-            {group}
-          </PricesDiv>
-        </TutorContentDiv>
-      )}
+
+      <TutorContentDiv>
+        <TutorDescriptionDiv $open={open}>
+          {description !== '' ? description : defaultDescription}
+        </TutorDescriptionDiv>
+        <SubjectsDiv $open={open}>
+          Predmeti:
+          {subjects.map((subject) => (
+            <SubjectDiv>{subject}</SubjectDiv>
+          ))}
+        </SubjectsDiv>
+        <PricesDiv>
+          <PriceDiv>Cena:</PriceDiv>
+          {group && (
+            <>
+              <StyledGroupsIcon />
+              {group}
+            </>
+          )}
+          {personally && group && <DividerDiv />}
+          {personally && (
+            <>
+              <BoyIcon />
+              {personally}
+            </>
+          )}
+        </PricesDiv>
+      </TutorContentDiv>
     </TutorDiv>
   );
 };
 
 export default Tutor;
 
-const UserRatingDiv = styled.div``;
-
-const TutorDescriptionDiv = styled.div`
-  font-style: italic;
-`;
-
-const TutorContentDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+const StyledGroupsIcon = styled(GroupsIcon)`
+  margin-right: 5px;
 `;
 
 const SubjectsDiv = styled.div`
@@ -80,6 +102,43 @@ const SubjectsDiv = styled.div`
   gap: 5px;
   flex-wrap: wrap;
   align-items: center;
+  height: ${({ $open }) => !$open && minSubjectsHeight}px;
+  overflow: ${({ $open }) => !$open && 'hidden'};
+`;
+
+const PriceDiv = styled.div`
+  margin-right: 5px;
+`;
+
+const PricesDiv = styled.div`
+  background: ${colors.background};
+  padding: 5px 10px 5px 5px;
+  border-radius: 10px;
+  display: flex;
+  width: fit-content;
+  align-items: center;
+`;
+
+const UserRatingDiv = styled.div``;
+
+const TutorDescriptionDiv = styled.div`
+  font-style: italic;
+
+  ${({ $open }) =>
+    !$open &&
+    `  
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;  
+    `}
+`;
+
+const TutorContentDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 `;
 
 const SubjectDiv = styled.div`
@@ -99,15 +158,6 @@ const DividerDiv = styled.div`
   border: 1px solid black;
   margin: 5px;
   height: 15px;
-`;
-
-const PricesDiv = styled.div`
-  background: ${colors.background};
-  padding: 5px 10px 5px 5px;
-  border-radius: 10px;
-  display: flex;
-  width: fit-content;
-  align-items: center;
 `;
 
 const LikesDislikesDiv = styled.div`
@@ -132,7 +182,7 @@ const TutorDiv = styled.div`
   background-color: #fff;
   border-radius: 4px;
   gap: 10px;
-  max-height: ${({ $open }) => !$open && '56px'};
+  height: ${({ $open }) => !$open && `${minCardHeight}px`};
   height: fit-content;
   overflow: hidden;
 
