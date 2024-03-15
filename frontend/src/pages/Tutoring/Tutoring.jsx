@@ -87,9 +87,9 @@ export default Tutoring;
 const TutorsDiv = styled.div`
   display: flex;
   gap: 20px;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
   margin-bottom: 20px;
+  align-items: center;
 `;
 
 const TutoringH2 = styled.h2`
