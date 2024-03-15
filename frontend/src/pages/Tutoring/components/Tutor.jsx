@@ -1,15 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 import GroupsIcon from '@mui/icons-material/Groups';
 import colors from '../../../theme/colors';
 import BoyIcon from '@mui/icons-material/Boy';
-import useElementSizeOnResize from '../../../utils/useElementSizeOnResize';
-
-const minCardHeight = 200;
-const minSubjectsHeight = 32;
 
 const defaultDescription =
   'Rado ću ti pomoći da se spremiš za ispit ili laboratorijsku vežbu!';
@@ -18,19 +13,6 @@ const Tutor = ({ tutor }) => {
   const { id, name, description, subjects, price, rating } = tutor;
   const { personally, group } = price;
 
-  const [open, setOpen] = useState(true);
-  const { height, ref } = useElementSizeOnResize();
-  const [initialized, setInitialized] = useState(false);
-  const [arrows, setArrows] = useState(false);
-
-  useEffect(() => {
-    if (!initialized && height > minCardHeight) {
-      setOpen(false);
-      setArrows(true);
-      setInitialized(true);
-    }
-  }, [height]);
-
   const userRating = (rate) =>
     rating.reduce(
       (accumulator, user) => (accumulator + user.rate === rate ? 1 : 0),
@@ -38,7 +20,7 @@ const Tutor = ({ tutor }) => {
     );
 
   return (
-    <TutorDiv $open={open} ref={ref}>
+    <TutorDiv>
       <TutorHeaderDiv>
         <ProfileImg
           src={`https://ui-avatars.com/api/?name=${name}&background=random&color=random&bold=true`}
@@ -51,20 +33,13 @@ const Tutor = ({ tutor }) => {
           <UserRatingDiv>{userRating(-1)}</UserRatingDiv>
           <ThumbDownOffAltIcon />
         </LikesDislikesDiv>
-        {arrows && (
-          <HeaderArrowDiv $open={open}>
-            <StyledKeyboardArrowDownIcon
-              onClick={() => setOpen((prev) => !prev)}
-            />
-          </HeaderArrowDiv>
-        )}
       </TutorHeaderDiv>
 
       <TutorContentDiv>
-        <TutorDescriptionDiv $open={open}>
+        <TutorDescriptionDiv>
           {description !== '' ? description : defaultDescription}
         </TutorDescriptionDiv>
-        <SubjectsDiv $open={open}>
+        <SubjectsDiv>
           Predmeti:
           {subjects.map((subject) => (
             <SubjectDiv>{subject}</SubjectDiv>
@@ -102,8 +77,6 @@ const SubjectsDiv = styled.div`
   gap: 5px;
   flex-wrap: wrap;
   align-items: center;
-  height: ${({ $open }) => !$open && minSubjectsHeight}px;
-  overflow: ${({ $open }) => !$open && 'hidden'};
 `;
 
 const PriceDiv = styled.div`
@@ -123,16 +96,6 @@ const UserRatingDiv = styled.div``;
 
 const TutorDescriptionDiv = styled.div`
   font-style: italic;
-
-  ${({ $open }) =>
-    !$open &&
-    `  
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      text-overflow: ellipsis;  
-    `}
 `;
 
 const TutorContentDiv = styled.div`
@@ -182,14 +145,11 @@ const TutorDiv = styled.div`
   background-color: #fff;
   border-radius: 4px;
   gap: 10px;
-  height: ${({ $open }) => !$open && `${minCardHeight}px`};
-  height: fit-content;
-  overflow: hidden;
 
-  width: 350px;
+  max-width: 750px;
+  width: 100%;
 
   @media (max-width: 800px) {
-    width: 330px;
   }
 `;
 
@@ -197,14 +157,4 @@ const TutorHeaderDiv = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
-`;
-
-const StyledKeyboardArrowDownIcon = styled(KeyboardArrowDownIcon)`
-  cursor: pointer;
-`;
-
-const HeaderArrowDiv = styled.div`
-  display: flex;
-
-  transform: ${({ $open }) => $open && 'rotate(180deg);'};
 `;
