@@ -12,6 +12,8 @@ import { YearOfStudy } from './filters/YearOfStudy';
 import { Type } from './filters/Type';
 import { YearOfExam } from './filters/YearOfExam';
 import { ExaminationPeriod } from './filters/ExaminationPeriod';
+import { TutoringRequest } from './TutoringRequest';
+import { Tutor } from './Tutor';
 import env from '../config/env';
 
 export const dataSource = new DataSource({
@@ -33,7 +35,9 @@ export const dataSource = new DataSource({
     PostFile,
     Comment,
     CommentFile,
-    Blacklist
+    Blacklist,
+    Tutor,
+    TutoringRequest
   ],
   synchronize: false
 });

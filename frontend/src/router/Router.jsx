@@ -22,6 +22,8 @@ import CommunityTools from '../pages/CommunityTools/CommunityTools';
 import CommunityGithub from '../pages/CommunityGithub/CommunityGithub';
 import CommunityDrives from '../pages/CommunityDrives/CommunityDrives';
 import Tutoring from '../pages/Tutoring/Tutoring';
+import SideNavbar from '../pages/profile/components/SideNavbar/SideNavbar';
+import PrivateClasses from '../pages/profile/components/privateClasses/PrivateClasses';
 
 export default function Router() {
   const privateRoutes = (
@@ -42,6 +44,7 @@ export default function Router() {
           path={routes.profileReportedCommentsRoute}
           element={<ReportedComments />}
         />
+        <Route path={routes.profileClasses} element={<PrivateClasses />} />
       </Route>
     </Route>
   );

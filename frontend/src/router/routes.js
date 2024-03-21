@@ -14,6 +14,7 @@ export const tutoringRoute = '/tutoring';
 //--------AUTHORIZED--------
 export const profileRoute = '/profile';
 export const profilePostsRoute = '/profile/posts';
+export const profileClasses = '/profile/classes';
 export const profileCommentedPostsRoute = '/profile/commentedPosts';
 export const profileInfoRoute = '/profile/info';
 export const profileReportedPostsRoute = '/profile/reportedPosts';

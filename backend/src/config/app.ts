@@ -19,9 +19,10 @@ app.use('/backend/auth', routes.authRoutes);
 app.use('/backend/comments', routes.commentsRoutes);
 app.use('/backend/users', routes.usersRoutes);
 app.use('/backend/filters', routes.filtersRoutes);
+app.use('/backend/tutors', routes.tutorsRoutes)
 
 app.get('/backend/ping', (req, res) => {
-  res.send("🏓 Pong!");
+  res.send('🏓 Pong!');
 });
 
 export const createApp = () => app;
