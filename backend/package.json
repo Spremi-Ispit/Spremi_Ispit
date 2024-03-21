@@ -39,7 +39,7 @@
     "start_on_hosting_example": "cross-env NODE_ENV=production node ./dist/src/src/index.js",
     "releasePort": "npm run build && node ./dist/scripts/releasePort.js",
     "dropDatabase": "node ./dist/scripts/database/drop.js",
-    "createDatabase": "node ./dist/scripts/database/create.js",
+    "createDatabase": "npm run build && node ./dist/scripts/database/create.js",
     "populateDatabase": "npx tsx ./scripts/database/populate.ts",
     "generateTestData": "node ./scripts/database/_generateTestData.js",
     "deploy": "npm run build && node ./dist/scripts/deploy.js",

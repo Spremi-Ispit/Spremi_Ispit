@@ -1,0 +1,2 @@
+
+export {getAllTutors} from './getAllTutors'

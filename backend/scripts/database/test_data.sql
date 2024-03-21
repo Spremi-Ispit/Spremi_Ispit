@@ -12,8 +12,6 @@ UPDATE user
 SET banned = true
 where username='a';
 
-
-
 INSERT INTO `department`(`name`) VALUES
 ('Opšti'),
 ('Računarstvo i informatika'),
@@ -330,7 +328,13 @@ INSERT INTO `subject`(`name`) VALUES
 ('Odabrana poglavlja iz elektromotornih pogona'),
 ('Zaštita u elektroenergetici'); -- 203
 
+-- Tuotoring
+INSERT INTO `tutor` ( `price`, `groupPrice`, `userId`) VALUES
+(1000, 800, 1);
 
+INSERT INTO `tutor_tutoring_subjects_subject` (`tutorId`, `subjectId`) VALUES
+(1, 1),
+(1, 23);
 
 INSERT INTO `subjectOnDepartment` (`departmentId`, `subjectId`) VALUES
 (1, 1),

@@ -20,6 +20,7 @@ const createDatabase = async () => {
 
   try {
     dataSource.options.synchronize = true;
+    console.log(dataSource.options);
     await dataSource.initialize();
     console.log('Database has been created!');
   } catch (err) {

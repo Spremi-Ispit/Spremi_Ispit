@@ -11,7 +11,8 @@ import {
 import { Post } from '../Post';
 import { YearOfStudy } from './YearOfStudy';
 import { Department } from './Department';
-
+import { Tutor } from '../Tutor';
+import { TutoringRequest } from '../TutoringRequest';
 @Entity()
 export class Subject extends BaseEntity {
   @PrimaryGeneratedColumn()
@@ -57,4 +58,13 @@ export class Subject extends BaseEntity {
 
   @OneToMany(() => Post, (post) => post.subject)
   posts: Post[];
+
+  @JoinTable()
+  @ManyToMany((type)=> Tutor,{
+    cascade:true
+  })
+  tutors: Tutor[];
+
+  @OneToMany(() => TutoringRequest, (tutoringRequest) => tutoringRequest.subject)
+  tutoringRequests: TutoringRequest[];
 }

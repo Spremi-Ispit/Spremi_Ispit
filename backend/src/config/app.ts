@@ -19,6 +19,7 @@ app.use('/backend/auth', routes.authRoutes);
 app.use('/backend/comments', routes.commentsRoutes);
 app.use('/backend/users', routes.usersRoutes);
 app.use('/backend/filters', routes.filtersRoutes);
+app.use('/backend/tutor', routes.tutorRoutes)
 
 app.get('/backend/ping', (req, res) => {
   res.send("🏓 Pong!");

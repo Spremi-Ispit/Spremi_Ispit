@@ -6,11 +6,13 @@ import {
   BaseEntity,
   JoinTable,
   OneToMany,
+  OneToOne,
   ManyToMany
 } from 'typeorm';
 import { Post } from './Post';
 import { Comment } from './Comment';
-
+import { Tutor } from './Tutor';
+import { TutoringRequest } from './TutoringRequest';
 @Entity()
 export class User extends BaseEntity {
   @PrimaryGeneratedColumn()
@@ -76,4 +78,10 @@ export class User extends BaseEntity {
     cascade: true
   })
   dislikedComments: Comment[];
+
+  @OneToOne(() => Tutor, (tutor) => tutor.user)
+  tutorProfile?: Tutor
+
+  @OneToMany(() => TutoringRequest, (tutoringRequest) => tutoringRequest.student)
+  tutoringRequested: TutoringRequest[];
 }
