@@ -5,14 +5,15 @@ import filtersRoutes from './filters.routes';
 import authRoutes from './auth.routes';
 import commentsRoutes from './comments.routes';
 import usersRoutes from './users.routes';
-
+import tutorsRoutes from './tutor.rutes';
 const routes = {
   postsRoutes,
   uploadRoutes,
   filtersRoutes,
   authRoutes,
   commentsRoutes,
-  usersRoutes
+  usersRoutes,
+  tutorsRoutes
 };
 
 export default routes;
