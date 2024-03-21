@@ -2,8 +2,8 @@ import express from 'express';
 
 import { getAllTutors } from '../controllers/tutor.controller';
 
-const tutorRoutes = express.Router();
+const tutorsRoutes = express.Router();
 
-tutorRoutes.route('all').get(getAllTutors);
+tutorsRoutes.route('/all').get(getAllTutors);
 
-export default tutorRoutes;
+export default tutorsRoutes;

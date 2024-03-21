@@ -5,7 +5,7 @@ import filtersRoutes from './filters.routes';
 import authRoutes from './auth.routes';
 import commentsRoutes from './comments.routes';
 import usersRoutes from './users.routes';
-import tutorRoutes from './tutor.rutes';
+import tutorsRoutes from './tutor.rutes';
 const routes = {
   postsRoutes,
   uploadRoutes,
@@ -13,7 +13,7 @@ const routes = {
   authRoutes,
   commentsRoutes,
   usersRoutes,
-  tutorRoutes,
+  tutorsRoutes,
 };
 
 export default routes;
