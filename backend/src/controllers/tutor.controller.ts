@@ -20,3 +20,13 @@ export const getTutoringRequests = async (req, res)=>{
     const response = await tutorServices.getTutoringRequests(req);
     return res.status(response.statusCode).send(response);
 }
+
+export const createTutorProfile = async (req, res)=>{
+    const response = await tutorServices.createTutorProfile(req);
+    return res.status(response.statusCode).send(response);
+}
+
+export const addSubjectToTutor = async (req, res)=>{
+    const response = await tutorServices.addSubjectToTutor(req);
+    return res.status(response.statusCode).send(response);
+}

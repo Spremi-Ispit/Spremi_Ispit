@@ -6,6 +6,9 @@ import response from '../../utils/response';
 
 export const createTutorRequest = async (req : any) =>{
     const {tutorId, subjectId, message, userID} = req.body;
+    if(!tutorId || !subjectId)
+        return response.BAD_REQUEST("No tutor or subject selected!");
+
     const user = await User.findOne({
         where: { id: userID }
     });
@@ -26,7 +29,7 @@ export const createTutorRequest = async (req : any) =>{
         return response.BAD_REQUEST("Can't request to tutor yourself!");
 
     const newTutoringRequest = TutoringRequest.create({
-        message: message,
+        message: message ? message : "",
         student: user,
         subject: subject,
         tutor: tutor
