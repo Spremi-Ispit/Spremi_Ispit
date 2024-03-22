@@ -10,8 +10,9 @@ export const getTutorsBySubject = async (req) => {
     });
 
     data = data.map((d)=> 
-        ( {
-            id: d.id, 
+        ({
+            id: d.id,
+            message: d.message,
             price: d.price, 
             groupPrice: d.groupPrice, 
             userId : d.user.id, 
