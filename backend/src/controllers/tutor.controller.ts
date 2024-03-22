@@ -20,6 +20,10 @@ export const getTutoringRequests = async (req, res)=>{
     const response = await tutorServices.getTutoringRequests(req);
     return res.status(response.statusCode).send(response);
 }
+export const getTutoringRequestsStudent = async (req, res)=>{
+    const response = await tutorServices.getTutoringRequestsStudent(req);
+    return res.status(response.statusCode).send(response);
+}
 
 export const createTutorProfile = async (req, res)=>{
     const response = await tutorServices.createTutorProfile(req);
