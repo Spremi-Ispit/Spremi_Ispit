@@ -329,8 +329,8 @@ INSERT INTO `subject`(`name`) VALUES
 ('Zaštita u elektroenergetici'); -- 203
 
 -- Tuotoring
-INSERT INTO `tutor` ( `price`, `groupPrice`, `userId`) VALUES
-(1000, 800, 1);
+INSERT INTO `tutor` ( `price`, `groupPrice`, `message`, `userId`) VALUES
+(1000, 800, 'Casovi za 1000 din', 1);
 
 INSERT INTO `tutor_tutoring_subjects_subject` (`tutorId`, `subjectId`) VALUES
 (1, 1),

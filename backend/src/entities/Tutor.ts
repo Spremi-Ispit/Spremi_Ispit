@@ -32,10 +32,17 @@ export class Tutor extends BaseEntity{
     })
     groupPrice : number;
 
+    @Column({
+      length: 200,
+      nullable: false,
+      default : ""
+    })
+    message : string;
+
     @JoinColumn({ name: 'userId' })
     @ManyToOne(() => User, (user) => user.tutor)
     user: User;
-
+    
     @JoinTable()
     @ManyToMany((type)=> Subject,{
       cascade: true

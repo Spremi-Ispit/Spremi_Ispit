@@ -3,5 +3,19 @@ import { Tutor } from "../../entities/Tutor";
 import response from '../../utils/response';
 
 export const getTutorsBySubject = async (req) => {
-    return response.OK("");
+    const { id } = req.params;
+    let data = await Tutor.find({
+        relations: ["tutoringSubjects", "user"],
+        where: { tutoringSubjects: { id: id } }
+    });
+
+    data = data.map((d)=> 
+        ( {
+            id: d.id, 
+            price: d.price, 
+            groupPrice: d.groupPrice, 
+            userId : d.user.id, 
+            username : d.user.username
+        }));
+    return response.OK(data);
 }
