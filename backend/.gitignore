@@ -25,4 +25,4 @@ backend.zip
 
 # env
 .env
-.env.host.production
+.env.production

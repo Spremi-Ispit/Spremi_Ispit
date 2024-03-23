@@ -299,38 +299,109 @@ INSERT INTO `subject`(`name`) VALUES
 ('Tehnika konverzije'),
 ('Termovizija'),
 ('Uvod u robotiku'),
-('Verovatnoća i statistika'), -- 178
+('Verovatnoća i statistika'), -- 179
 -- IV GODINA, Telekomunikacije 
-('Mobilni komunikacioni sistemi'), -- 179
+('Mobilni komunikacioni sistemi'), -- 180
 ('Antene i prostiranje'),
 ('Feding i smetnje u digitalnim telekomunikacijama'),
 ('Kodovanje'),
 ('Komunikaciona akustika'),
 ('Optičke mreže'),
-('Širokopojasne telekomunikacije'), -- 185
+('Širokopojasne telekomunikacije'), -- 186
 -- IV GODINA, Elektronika
-('Digitalna obrada slike'), -- 186
+('Digitalna obrada slike'), -- 187
 ('Izvori za napajanje'),
 ('Mikrokontroleri'),
 ('Obnovljivi izvori energije'),
-('Sistemi za rad u realnom vremenu'), -- 190
+('Sistemi za rad u realnom vremenu'), -- 191
 -- IV GODINA, Elektronske komponente i mikrosistemi
-('Izvori za napajanje'), -- 191
+('Izvori za napajanje'), -- 192
 ('Komponente i kola snage'),
 ('Obnovljivi izvori energije'),
 ('Projektovanje i simulacija mikroelektronskih komponenata'),
 ('Projektovanje mikrosistema'),
-('Solarne komponente i sistemi'), -- 196
+('Solarne komponente i sistemi'), -- 197
 -- IV GODINA, Elektroenergetika
-('Distribuirana proizvodnja električne energije'), -- 197
+('Distribuirana proizvodnja električne energije'), -- 198
 ('Elektrane'),
 ('Elektroenergetski pretvarači'),
 ('Elektromotorni pogoni'),
 ('Izvori za napajanje'),
 ('Odabrana poglavlja iz elektromotornih pogona'),
-('Zaštita u elektroenergetici'); -- 203
+('Zaštita u elektroenergetici'); -- 204
 
-
+INSERT INTO `subject`(`name`) VALUES
+-- II GODINA, Elektronika
+  ('Objektno-orijentisano programiranje'), -- 205
+  ('Numerička matematika'),
+  ('Mikroprocesorski sistemi'),
+  ('Multimedijalni sistemi'),
+  ('Animacije 1'),
+  ('Metrologija električnih veličina'),
+  ('Elektronska kola i embeded sistemi'), -- 211
+-- III GODINA, Elektronika
+  ('Računarske mreže'), -- 212
+  ('Digitalna obrada slike'),
+  ('Animacija 2'),
+  ('Akustika'),
+  ('Tehnike prikupljanja i konverzije podataka'),
+  ('Obnovljivi izvori energije'),
+  ('Obrada audio i muzičkog signala'),
+  ('Mikrokontroleri'),
+  ('Elektronika za multimedijalne sisteme'),
+  ('Video produkcija'),
+  ('Web tehnologije 1'),
+  ('Fotografija'),
+  ('Arhitekture digitalnih sistema'),
+  ('Impulsna i digitalna elektronska kola'),
+  ('Mikroprocesorska tehnika'),
+  ('Analogna integrisana kola'),
+  ('Osnovi energetske elektronike'),
+  ('Projektovanje digitalnih integrisanih kola'),
+  ('Projektovanje digitalnih sistema'),
+  ('Virtuelni instrumenti'),
+  ('Medicinska elektronika'),
+  ('Projektovanje analognih integrisanih kola'),
+  ('Automatsko upravljanje'), -- 234
+-- IV GODINA, Elektronika
+  ('Računarske igre'), -- 235
+  ('Kamera i montaža'),
+  ('Poslovne komunikacije'),
+  ('Inženjersko obrazovanje i održivi razvoj'),
+  ('Audio produkcija'),
+  ('Autoelektronika'),
+  ('Programiranje mobilnih uređaja'),
+  ('Solarne komponente i sistemi'),
+  ('Primenjena elektromagnetika'),
+  ('Osnove mehatronike'),
+  ('Uvod u robotiku'),
+  ('Programabilni logički kontroleri'),
+  ('Web tehnologije 2'),
+  ('TV sistemi'),
+  ('Računarske igre 2'),
+  ('Virtuelna realnost'),
+  ('Grafički dizajn'),
+  ('Projektovanje računarskih mreža'),
+  ('Termovizija'),
+  ('Bežične mreže i uređaji'),
+  ('Mobilni komunikacioni sistemi'),
+  ('Kablovski i optički komunikacioni sistemi'),
+  ('Internet stvari'),
+  ('SCADA sistemi'),
+  ('Stručna praksa'),
+  ('Završni rad - istraživački rad'),
+  ('Završni rad'),
+  ('Projektovanje VLSI'),
+  ('RF elektronika'),
+  ('Sistemi za rad u realnom vremenu'),
+  ('Testiranje elektronskih kola'),
+  ('Jezici za modelovanje hardvera'),
+  ('Elektroenergetski pretvarači'),
+  ('Embeded sistemi'),
+  ('Funkcionalna verifikacija'),
+  ('Projektovanje elektronskih sistema'),
+  ('Programiranje ARM kontrolera'),
+  ('Izvori napona napajanja'); -- 272
 
 INSERT INTO `subjectOnDepartment` (`departmentId`, `subjectId`) VALUES
 (1, 1),
@@ -511,33 +582,103 @@ INSERT INTO `subjectOnDepartment` (`departmentId`, `subjectId`) VALUES
 (3, 176),
 (3, 177),
 (3, 178),
-(4, 179),
+(3, 179),
 (4, 180),
 (4, 181),
 (4, 182),
 (4, 183),
 (4, 184),
 (4, 185),
-(5, 186),
+(4, 186),
 (5, 187),
 (5, 188),
 (5, 189),
 (5, 190),
-(6, 191),
+(5, 191),
 (6, 192),
 (6, 193),
 (6, 194),
 (6, 195),
 (6, 196),
-(7, 197),
+(6, 197),
 (7, 198),
 (7, 199),
 (7, 200),
 (7, 201),
 (7, 202),
-(7, 203);
+(7, 203),
+(7, 204);
 
-
+-- Elektronika
+INSERT INTO `subjectOnDepartment` (`departmentId`, `subjectId`) VALUES
+(5, 205),
+(5, 206),
+(5, 207),
+(5, 208),
+(5, 209),
+(5, 210),
+(5, 211),
+(5, 212),
+(5, 213),
+(5, 214),
+(5, 215),
+(5, 216),
+(5, 217),
+(5, 218),
+(5, 219),
+(5, 220),
+(5, 221),
+(5, 222),
+(5, 223),
+(5, 224),
+(5, 225),
+(5, 226),
+(5, 227),
+(5, 228),
+(5, 229),
+(5, 230),
+(5, 231),
+(5, 232),
+(5, 233),
+(5, 234),
+(5, 235),
+(5, 236),
+(5, 237),
+(5, 238),
+(5, 239),
+(5, 240),
+(5, 241),
+(5, 242),
+(5, 243),
+(5, 244),
+(5, 245),
+(5, 246),
+(5, 247),
+(5, 248),
+(5, 249),
+(5, 250),
+(5, 251),
+(5, 252),
+(5, 253),
+(5, 254),
+(5, 255),
+(5, 256),
+(5, 257),
+(5, 258),
+(5, 259),
+(5, 260),
+(5, 261),
+(5, 262),
+(5, 263),
+(5, 264),
+(5, 265),
+(5, 266),
+(5, 267),
+(5, 268),
+(5, 269),
+(5, 270),
+(5, 271),
+(5, 272);
 
 
 INSERT INTO `subjectOnYearOfStudy` (`yearOfStudyId`, `subjectId`) VALUES
@@ -743,9 +884,79 @@ INSERT INTO `subjectOnYearOfStudy` (`yearOfStudyId`, `subjectId`) VALUES
 (4, 200),
 (4, 201),
 (4, 202),
-(4, 203);
+(4, 203),
+(4, 204);
 
-
+-- Elektronika
+INSERT INTO `subjectOnYearOfStudy` (`yearOfStudyId`, `subjectId`) VALUES
+(2, 205),
+(2, 206),
+(2, 207),
+(2, 208),
+(2, 209),
+(2, 210),
+(2, 211),
+(3, 212),
+(3, 213),
+(3, 214),
+(3, 215),
+(3, 216),
+(3, 217),
+(3, 218),
+(3, 219),
+(3, 220),
+(3, 221),
+(3, 222),
+(3, 223),
+(3, 224),
+(3, 225),
+(3, 226),
+(3, 227),
+(3, 228),
+(3, 229),
+(3, 230),
+(3, 231),
+(3, 232),
+(3, 233),
+(3, 234),
+(4, 235),
+(4, 236),
+(4, 237),
+(4, 238),
+(4, 239),
+(4, 240),
+(4, 241),
+(4, 242),
+(4, 243),
+(4, 244),
+(4, 245),
+(4, 246),
+(4, 247),
+(4, 248),
+(4, 249),
+(4, 250),
+(4, 251),
+(4, 252),
+(4, 253),
+(4, 254),
+(4, 255),
+(4, 256),
+(4, 257),
+(4, 258),
+(4, 259),
+(4, 260),
+(4, 261),
+(4, 262),
+(4, 263),
+(4, 264),
+(4, 265),
+(4, 266),
+(4, 267),
+(4, 268),
+(4, 269),
+(4, 270),
+(4, 271),
+(4, 272);
    
 
 INSERT INTO `post` (`title`,`text`,`date`, `userId`, `subjectId`, `typeId`, `yearOfExamId`, `examinationPeriodId`) VALUES
@@ -758,7 +969,8 @@ INSERT INTO `post` (`title`,`text`,`date`, `userId`, `subjectId`, `typeId`, `yea
 ( '', '', '2022-12-03 23:59:59', 1, 15, 1, 3, null),
 ( '', '', '2022-12-03 23:59:59', 1, 15, 2, 3, null),
 ( '', '', '2022-12-03 23:59:59', 1, 15, 1, 3, null),
-( '', '', '2022-12-03 23:59:59', 1, 15, 2, 3, null);
+( '', '', '2022-12-03 23:59:59', 1, 15, 2, 3, null),
+( '', '', '2022-12-03 23:59:59', 1, null, null, null, null);
 
 UPDATE `post` SET title = 'Paralelni sistemi' WHERE id = 1;
 UPDATE `post` SET title = 'Naslov2' WHERE id = 2;
@@ -781,6 +993,7 @@ UPDATE `post` SET text = 'ut aspernatur corporis harum nihil quis provident sequ
 UPDATE `post` SET text = 'dolore placeat quibusdam ea quo vitae\nmagni quis enim qui quis quo nemo aut saepe\nquidem repellat excepturi ut quia\nsunt ut sequi eos ea sed quas' WHERE id = 8;
 UPDATE `post` SET text = 'dignissimos aperiam dolorem qui eum\nfacilis quibusdam animi sint suscipit qui sint possimus cum\nquaerat magni maiores excepturi\nipsam ut commodi dolor voluptatum modi aut vitae' WHERE id = 9;
 UPDATE `post` SET text = 'consectetur animi nesciunt iure dolore\nenim quia ad\nveniam autem ut quam aut nobis\net est aut quod aut provident voluptas autem voluptas' WHERE id = 10;
+
 
 INSERT INTO `post_file` (`path`, `ext`, `postId`) VALUES
 ('posts/1/1.docx', '.docx', '1'),
