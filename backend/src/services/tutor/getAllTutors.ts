@@ -5,7 +5,7 @@ import { User } from '../../entities/User';
 import { dataSource } from '../../entities/DataSource';
 export const getAllTutors = async (req) => {
     const tutorsRaw = await Tutor.find({
-        relations: ['user', 'tutoringSubjects']
+        relations: ['user', 'tutoringSubjects'],
     });
     let tutors = tutorsRaw.map((tutor)=>{
         tutor.userId = tutor.user.id

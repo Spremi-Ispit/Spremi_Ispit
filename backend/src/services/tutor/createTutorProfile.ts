@@ -13,9 +13,11 @@ export const createTutorProfile = async (req : any) =>{
     const user = await User.findOne({
         where: {id : userID},
         relations: ["tutorProfile"]
-    })
+    });
+
     if(!user)
         return response.BAD_REQUEST("User not found!");
+    
     if(user.tutorProfile)
         return response.BAD_REQUEST("Tutor profile already exists");
 
