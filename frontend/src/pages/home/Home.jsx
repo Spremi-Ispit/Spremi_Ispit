@@ -10,7 +10,6 @@ import { orders } from './components/Filters/components/Order';
 import Filters from './components/Filters/Filters';
 import Footer from '../../components/Footer';
 import SettingsSidePanel from '../../components/SettingsSidePanel/SettingsSidePanel';
-import Chat from '../../components/Chat/Chat';
 import { screensCSS } from '../../utils/useScreens';
 import colors from '../../theme/colors';
 import Instagram from './components/Ads/Instagram';
@@ -123,7 +122,6 @@ export const Home = () => {
               <MoreJobs />
             </RightContentDiv>
           </ContentDiv>
-          <Chat />
           <Footer />
         </MainDiv>
       </HomeDiv>
