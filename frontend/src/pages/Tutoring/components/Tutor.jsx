@@ -10,54 +10,47 @@ const defaultDescription =
   'Rado ću ti pomoći da se spremiš za ispit ili laboratorijsku vežbu!';
 
 const Tutor = ({ tutor }) => {
-  const { id, name, description, subjects, price, rating } = tutor;
-  const { personally, group } = price;
-
-  const userRating = (rate) =>
-    rating.reduce(
-      (accumulator, user) => (accumulator + user.rate === rate ? 1 : 0),
-      0
-    );
+  const { id, username, message, tutoringSubjects, price, groupPrice, rating } = tutor;
 
   return (
     <TutorDiv>
       <TutorHeaderDiv>
         <ProfileImg
-          src={`https://ui-avatars.com/api/?name=${name}&background=random&color=random&bold=true`}
+          src={`https://ui-avatars.com/api/?name=${username}&background=random&color=random&bold=true`}
         />
         <TutorIdDiv>Id predavača: {id}</TutorIdDiv>
         <LikesDislikesDiv>
           <ThumbUpOffAltIcon />
-          <UserRatingDiv>{userRating(1)}</UserRatingDiv>
+          <UserRatingDiv>{rating}</UserRatingDiv>
           <DividerDiv />
-          <UserRatingDiv>{userRating(-1)}</UserRatingDiv>
+          <UserRatingDiv>{rating}</UserRatingDiv>
           <ThumbDownOffAltIcon />
         </LikesDislikesDiv>
       </TutorHeaderDiv>
 
       <TutorContentDiv>
         <TutorDescriptionDiv>
-          {description !== '' ? description : defaultDescription}
+          {message !== '' ? message : defaultDescription}
         </TutorDescriptionDiv>
         <SubjectsDiv>
           Predmeti:
-          {subjects.map((subject) => (
-            <SubjectDiv>{subject}</SubjectDiv>
+          {tutoringSubjects.map((subject) => (
+            <SubjectDiv>{subject.name}</SubjectDiv>
           ))}
         </SubjectsDiv>
         <PricesDiv>
           <PriceDiv>Cena:</PriceDiv>
-          {group && (
+          {groupPrice && (
             <>
               <StyledGroupsIcon />
-              {group}
+              {groupPrice}
             </>
           )}
-          {personally && group && <DividerDiv />}
-          {personally && (
+          {price && groupPrice && <DividerDiv />}
+          {price && (
             <>
               <BoyIcon />
-              {personally}
+              {price}
             </>
           )}
         </PricesDiv>
