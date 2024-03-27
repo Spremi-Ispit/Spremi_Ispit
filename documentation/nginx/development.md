@@ -34,19 +34,19 @@ server {
     listen 80;
     server_name dev.spremiispit.com;
 
-    location / {
-        root /home/repos/Spremi_Ispit/Development/Spremi_Ispit/frontend/dist;
-        index index.html;
-        try_files $uri $uri/ =404;
-    }
-
     location /backend/ {
-        proxy_pass http://localhost:5000/backend/;
+        proxy_pass https://localhost:5000/backend/;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
         proxy_set_header Host $host;
         proxy_cache_bypass $http_upgrade;
+    }
+
+    location / {
+        root /home/repos/Spremi_Ispit/Development/Spremi_Ispit/frontend/dist;
+        index index.html;
+        try_files $uri $uri/ =404;
     }
 }
 

@@ -10,6 +10,7 @@ pm2 ls
 pm2 restart 0 //0 is the ID of application
 pm2 log 0 //0 is the ID of application
 pm2 monit
+pm2 log 2
 
 ```
 pm2 start npm --name "my-app" -- run start
@@ -21,7 +22,9 @@ pm2 start npm --name "my-app" -- run start
 
 # backendDevelopment
 
+```
 pm2 start npm --name "backendDevelopment" -- run start --watch
+```
 
 # frontendProduction
 
