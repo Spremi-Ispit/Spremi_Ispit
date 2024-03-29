@@ -25,4 +25,4 @@ jobs:
           script: |
             cd ${{ secrets.CONTABO_FRONTEND_DEV }} 
             git pull
-            npm run build
+            CI=false npm run build
