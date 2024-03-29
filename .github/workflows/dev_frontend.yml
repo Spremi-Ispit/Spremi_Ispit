@@ -25,6 +25,4 @@ jobs:
           script: |
             cd ${{ secrets.CONTABO_FRONTEND_DEV }} 
             git pull
-            export NVM_DIR=~/.nvm
-            source ~/.nvm/nvm.sh
             npm run build
