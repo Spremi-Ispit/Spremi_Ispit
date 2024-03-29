@@ -1,15 +1,15 @@
-name: 🚀 Deploy frontend on development push
+name: 🚀 Deploy backend on main push
 
 on:
   push:
     branches:
       - dev
     paths:
-      - "frontend/**/*"
+      - "backend/**/*"
 
 jobs:
-  web-deploy:
-    name: 🚀 Deploy frontend on development push
+  build_and_deploy:
+    name: 🚀 Deploy backend on main push
     runs-on: ubuntu-latest
 
     steps:
@@ -23,6 +23,6 @@ jobs:
           username: ${{ secrets.CONTABO_USER }}
           password: ${{ secrets.CONTABO_PASSWORD }}
           script: |
-            cd ${{ secrets.CONTABO_FRONTEND_DEV }} 
+            cd ${{ secrets.CONTABO_BACKEND_PROD }} 
             git pull
-            npm run build
+            pm2 restart backendProduction

@@ -1,4 +1,4 @@
-name: 🚀 Deploy frontend on development push
+name: 🚀 Deploy frontend on main push
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
 
 jobs:
   web-deploy:
-    name: 🚀 Deploy frontend on development push
+    name: 🚀 Deploy frontend on main push
     runs-on: ubuntu-latest
 
     steps:
@@ -23,6 +23,6 @@ jobs:
           username: ${{ secrets.CONTABO_USER }}
           password: ${{ secrets.CONTABO_PASSWORD }}
           script: |
-            cd ${{ secrets.CONTABO_FRONTEND_DEV }} 
+            cd ${{ secrets.CONTABO_FRONTEND_PROD }} 
             git pull
             npm run build

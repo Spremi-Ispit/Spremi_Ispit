@@ -1,4 +1,4 @@
-name: 🚀 Deploy backend on push dev
+name: 🚀 Deploy backend on development push
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
 
 jobs:
   build_and_deploy:
-    name: Build and Deploy
+    name: 🚀 Deploy backend on development push
     runs-on: ubuntu-latest
 
     steps:
