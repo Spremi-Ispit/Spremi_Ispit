@@ -296,4 +296,4 @@ INSERT INTO `subject`(`name`) VALUES
   ('Funkcionalna verifikacija'),
   ('Projektovanje elektronskih sistema'),
   ('Programiranje ARM kontrolera'),
-  ('Izvori napona napajanja'); --272
+  ('Izvori napona napajanja'); -- 272

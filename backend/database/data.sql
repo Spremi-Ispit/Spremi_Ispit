@@ -1,4 +1,3 @@
-USE spremiis_dev; 
 
 
 INSERT INTO `user` (`username`, `email`, `password`, `role`) VALUES
@@ -995,15 +994,6 @@ UPDATE `post` SET text = 'dignissimos aperiam dolorem qui eum\nfacilis quibusdam
 UPDATE `post` SET text = 'consectetur animi nesciunt iure dolore\nenim quia ad\nveniam autem ut quam aut nobis\net est aut quod aut provident voluptas autem voluptas' WHERE id = 10;
 
 
-INSERT INTO `post_file` (`path`, `ext`, `postId`) VALUES
-('posts/1/1.docx', '.docx', '1'),
-('posts/1/1.pdf', '.pdf', '1'),
-('posts/1/2.png', '.png', '1'),
-('posts/1/3.jpg', '.jpg', '1'),
-('posts/1/1.png', '.png', '1'),
-('posts/1/1.mp4', '.mp4', '1'),
-('posts/1/1.txt', '.txt', '1');
-
 
 INSERT INTO `postLikedBy` (`postId`, `userId`) VALUES
 (1, 1),
@@ -1039,11 +1029,4 @@ INSERT INTO `commentLikedBy` (`commentId`, `userId`) VALUES
 
 INSERT INTO `commentDislikedBy` (`commentId`, `userId`) VALUES
 (1, 2);
-
-
-
-INSERT INTO `comment_file` (`path`, `ext`, `commentId`) VALUES
-('comments/1/2.docx', '.docx', '1'),
-('comments/1/2.pdf', '.pdf', '1'),
-('comments/1/4.png', '.png', '1');
 
