@@ -25,8 +25,3 @@ pm2 start npm --name "my-app" -- run start
 ```
 pm2 start npm --name "backendDevelopment" -- run start --watch
 ```
-
-# frontendProduction
-
-pm2 start npm --name "frontendProduction" -- run build --watch
-pm2 start npm --name "frontendDevelopment" -- run build --watch
