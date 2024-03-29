@@ -1,0 +1,47 @@
+name: 🚀 Deploy frontend on push main
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "frontend/**/*"
+
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@master
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Put to .env
+        run: |
+          cd frontend
+          echo ${{ secrets.MAIN_FRONTEND_ENV }} > .env
+          pwd
+          ls -a
+
+      - name: 🔨 Build Project
+        run: |
+          cd frontend
+          npm install
+          npm run build
+
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@4.3.3
+        with:
+          server: ${{ secrets.SERVER }}
+          username: ${{ secrets.MAIN_FRONTEND_USERNAME }}
+          password: ${{ secrets.MAIN_FRONTEND_PASSWORD }}
+          local-dir: frontend/dist/

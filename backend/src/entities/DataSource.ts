@@ -35,15 +35,5 @@ export const dataSource = new DataSource({
     CommentFile,
     Blacklist
   ],
-  synchronize: false
+  synchronize: true
 });
-
-export const initializeDatasource = async () => {
-  try {
-    await dataSource.initialize();
-    console.log('');
-    console.log('Data Source has been initialized!');
-  } catch (err) {
-    console.error('Error during Data Source initialization', err);
-  }
-};

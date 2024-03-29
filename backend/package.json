@@ -32,19 +32,12 @@
     "yup": "^1.3.2"
   },
   "scripts": {
-    "build": "rimraf dist && npx tsc && node ./scripts/database/_copyTestDataToDist.js",
+    "build": "rimraf dist && npx tsc",
     "setupEnv": "npm run build && node ./dist/scripts/setupEnv.js",
     "start": "npm run build && node ./dist/scripts/start.js",
     "dev": "nodemon -e ts --exec \"npm run start\"",
-    "start_on_hosting_example": "cross-env NODE_ENV=production node ./dist/src/src/index.js",
     "releasePort": "npm run build && node ./dist/scripts/releasePort.js",
-    "dropDatabase": "node ./dist/scripts/database/drop.js",
-    "createDatabase": "node ./dist/scripts/database/create.js",
-    "populateDatabase": "npx tsx ./scripts/database/populate.ts",
-    "generateTestData": "node ./scripts/database/_generateTestData.js",
-    "deploy": "npm run build && node ./dist/scripts/deploy.js",
-    "zip": "npm run build && node ./dist/scripts/zip.js",
-    "gitCommitCaseSensitive": "npm run build && node ./dist/scripts/gitCommitCaseSensitive.js"
+    "zip": "npm run build && node ./dist/scripts/zip.js"
   },
   "author": "",
   "license": "ISC"

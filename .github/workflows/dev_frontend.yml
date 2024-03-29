@@ -1,4 +1,4 @@
-name: 🚀 Deploy frontend on push dev
+name: 🚀 Deploy frontend on development push
 
 on:
   push:
@@ -9,39 +9,20 @@ on:
 
 jobs:
   web-deploy:
-    name: 🎉 Deploy
+    name: 🚀 Deploy frontend on development push
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [16.x]
-
     steps:
-      - name: 🚚 Get latest code
+      - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@master
+      - name: Push to server
+        uses: appleboy/ssh-action@master
         with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Put to .env
-        run: |
-          cd frontend
-          echo ${{ secrets.DEV_FRONTEND_ENV }} > .env
-          pwd
-          ls -a
-
-      - name: 🔨 Build Project
-        run: |
-          cd frontend
-          npm install
-          npm run build
-
-      - name: 📂 Sync files
-        uses: SamKirkland/FTP-Deploy-Action@4.3.3
-        with:
-          server: ${{ secrets.SERVER }}
-          username: ${{ secrets.DEV_FRONTEND_USERNAME }}
-          password: ${{ secrets.DEV_FRONTEND_PASSWORD }}
-          local-dir: frontend/dist/
+          host: ${{ secrets.CONTABO_SERVER_IP }}
+          username: ${{ secrets.CONTABO_USER }}
+          password: ${{ secrets.CONTABO_PASSWORD }}
+          script: |
+            cd ${{ secrets.CONTABO_FRONTEND_DEV }} 
+            git pull
+            npm run build

@@ -1,0 +1,58 @@
+name: 🚀 Deploy backend on push dev
+
+on:
+  push:
+    branches:
+      - dev
+    paths:
+      - "backend/**/*"
+
+jobs:
+  build_and_deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@master
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Put to .env
+        run: |
+          cd backend
+          echo ${{ secrets.DEV_BACKEND_ENV }} > .env
+          pwd
+          ls -a
+
+      - name: 🔨 Build Project
+        run: |
+          cd backend
+          npm install
+          npm run build
+
+      - name: 📂 Upload
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.SERVER }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: ${{ secrets.SSH_PORT }}
+          overwrite: true
+          strip_components: 1
+          source: "backend/dist,backend/package.json"
+          target: "/home/spremiis/dev.spremiispit.com/backend"
+
+      - name: 🔄 Restart application
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SERVER }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cloudlinux-selector stop --json --interpreter nodejs --user spremiis --app-root /home/spremiis/dev.spremiispit.com/backend
+            cloudlinux-selector install-modules --interpreter nodejs --user spremiis --app-root /home/spremiis/dev.spremiispit.com/backend
+            cloudlinux-selector start --json --interpreter nodejs --user spremiis --app-root /home/spremiis/dev.spremiispit.com/backend
