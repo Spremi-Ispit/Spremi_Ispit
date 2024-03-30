@@ -25,3 +25,7 @@ pm2 start npm --name "my-app" -- run start
 ```
 pm2 start npm --name "backendDevelopment" -- run start
 ```
+
+```
+pm2 start npm --name "backendProduction" -- run start
+```

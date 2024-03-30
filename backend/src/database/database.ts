@@ -26,7 +26,7 @@ export const database = async () => {
   const connection = await createConnection();
 
   await createDatabase(connection, log);
-  await populateDatabase(connection, log);
+  // await populateDatabase(connection, log);
   // await dropDatabase(connection, log);
 
   await connection.end();

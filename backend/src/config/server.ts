@@ -2,8 +2,8 @@
 import https from 'https';
 import http from 'http';
 import fs from 'fs';
+import env from './env';
 
-const httpsServer = true;
 const createHttpsServer = (app) => {
   const crtPath = 'src/config/spremiispit.crt';
   const keyPath = 'src/config/spremiispit.key';
@@ -21,7 +21,9 @@ const createHttpServer = (app) => {
 };
 
 export const createServer = (app) => {
-  if (httpsServer) {
+  const isHttps = JSON.parse(env.SERVER_HTTPS);
+
+  if (isHttps) {
     return createHttpsServer(app);
   }
 
