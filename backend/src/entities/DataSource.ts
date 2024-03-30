@@ -35,5 +35,5 @@ export const dataSource = new DataSource({
     CommentFile,
     Blacklist
   ],
-  synchronize: true
+  synchronize: false
 });

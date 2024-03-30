@@ -15,6 +15,7 @@ export default {
   DB_USER: env.DB_USER,
   DB_PASSWORD: env.DB_PASSWORD,
   DB_NAME: env.DB_NAME,
+  SERVER_HTTPS: env.SERVER_HTTPS,
   SERVER_PORT: env.SERVER_PORT,
   SERVER_STORAGE: path.join(__dirname, '../../../', `${env.SERVER_STORAGE}`),
   SERVER_ADDRESS: env.SERVER_ADDRESS,

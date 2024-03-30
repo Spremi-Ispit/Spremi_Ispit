@@ -3,7 +3,7 @@ name: 🚀 Deploy backend on main push
 on:
   push:
     branches:
-      - dev
+      - main
     paths:
       - "backend/**/*"
 
