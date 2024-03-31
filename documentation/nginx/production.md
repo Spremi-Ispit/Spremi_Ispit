@@ -46,7 +46,7 @@ server {
     location / {
         root /home/repos/Spremi_Ispit/Production/Spremi_Ispit/frontend/dist;
         index index.html;
-        try_files $uri $uri/ =404;
+        try_files $uri $uri/ /index.html;
     }
 }
 
