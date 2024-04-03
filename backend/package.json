@@ -37,7 +37,13 @@
     "start": "npm run build && node ./dist/scripts/start.js",
     "dev": "nodemon -e ts --exec \"npm run start\"",
     "releasePort": "npm run build && node ./dist/scripts/releasePort.js",
-    "zip": "npm run build && node ./dist/scripts/zip.js"
+    "dropDatabase": "node ./dist/scripts/database/drop.js",
+    "createDatabase": "npm run build && node ./dist/scripts/database/create.js",
+    "populateDatabase": "npx tsx ./scripts/database/populate.ts",
+    "generateTestData": "node ./scripts/database/_generateTestData.js",
+    "deploy": "npm run build && node ./dist/scripts/deploy.js",
+    "zip": "npm run build && node ./dist/scripts/zip.js",
+    "gitCommitCaseSensitive": "npm run build && node ./dist/scripts/gitCommitCaseSensitive.js"
   },
   "author": "",
   "license": "ISC"
