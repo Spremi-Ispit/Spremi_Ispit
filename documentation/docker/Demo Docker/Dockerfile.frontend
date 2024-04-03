@@ -1,0 +1,8 @@
+FROM node:16
+WORKDIR /app
+COPY ./frontend ./
+RUN npm install && npm install cross-env vite --global
+
+EXPOSE 3006
+
+CMD [ "sh", "-c", "cross-env VITE_API_URL=$API_URL --host=0.0.0.0 vite" ]
