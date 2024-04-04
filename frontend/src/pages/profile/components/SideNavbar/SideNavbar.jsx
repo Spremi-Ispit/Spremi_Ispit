@@ -13,6 +13,7 @@ import { selectSideNavbarHidden } from '../../../../redux/profile/selectors';
 import { screens, useScreens } from '../../../../utils/useScreens';
 import NavLink from './components/NavLink';
 import {
+  profileClasses,
   profileCommentedPostsRoute,
   profileInfoRoute,
   profilePostsRoute,
@@ -83,6 +84,7 @@ export const SideNavbar = () => {
       <NavLink to={navigateTo(profileCommentedPostsRoute)}>
         Komentarisane objave
       </NavLink>
+      <NavLink to={navigateTo(profileClasses)}>Privatni časovi</NavLink>
       {(username === urlUsername || role === userRole.admin) && (
         <NavLink to={navigateTo(profileInfoRoute)}>Informacije</NavLink>
       )}

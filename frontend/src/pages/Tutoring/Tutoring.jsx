@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -9,6 +9,7 @@ import colors from '../../theme/colors';
 import Instagram from './components/Instagram';
 import tutors from './data';
 import Tutor from './components/Tutor';
+import { useApiActions } from '../../api/useApiActions';
 
 const lessons = new Set();
 tutors.forEach((tutor) =>
@@ -18,6 +19,8 @@ const availableLessons = Array.from(lessons);
 
 const Tutoring = () => {
   const [availableTutors, setAvailableTutors] = useState(tutors);
+  const { getTutors } = useApiActions();
+  const { loading, response, error, setError, action } = getTutors;
 
   const handleChange = (event, value, reason) => {
     if (!value) {
@@ -26,8 +29,26 @@ const Tutoring = () => {
       setAvailableTutors(
         tutors.filter((tutor) => tutor.subjects.includes(value))
       );
+
+      //--------------ANDRIJA-----------
+      // setAvailableTutors(
+      //   availableTutors.filter((tutor) =>
+      //     tutor.tutoringSubjects.map((s) => s.name).includes(value)
+      //   )
+      // );
     }
   };
+
+  useEffect(() => {
+    if (response) {
+      // console.log(response);
+      // setAvailableTutors(response);
+    }
+  }, [response]);
+
+  useEffect(() => {
+    action();
+  }, []);
 
   return (
     <>
@@ -45,7 +66,6 @@ const Tutoring = () => {
               options={availableLessons}
               sx={{ maxWidth: '500px', width: '100%' }}
               onChange={handleChange}
-              on
               renderInput={(params) => (
                 <TextField {...params} placeholder="Predmet" />
               )}

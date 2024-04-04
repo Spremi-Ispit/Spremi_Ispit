@@ -41,8 +41,8 @@ const Tutor = ({ tutor }) => {
         </TutorDescriptionDiv>
         <SubjectsDiv>
           Predmeti:
-          {subjects.map((subject) => (
-            <SubjectDiv>{subject}</SubjectDiv>
+          {subjects.map((subject, index) => (
+            <SubjectDiv key={index}>{subject}</SubjectDiv>
           ))}
         </SubjectsDiv>
         <PricesDiv>
@@ -65,6 +65,58 @@ const Tutor = ({ tutor }) => {
     </TutorDiv>
   );
 };
+
+// -------------------------ANDRIJA-----------------
+// const Tutor = ({ tutor }) => {
+//   const { id, username, message, tutoringSubjects, price, groupPrice, rating } =
+//     tutor;
+
+//   return (
+//     <TutorDiv>
+//       <TutorHeaderDiv>
+//         <ProfileImg
+//           src={`https://ui-avatars.com/api/?name=${username}&background=random&color=random&bold=true`}
+//         />
+//         <TutorIdDiv>Id predavača: {id}</TutorIdDiv>
+//         <LikesDislikesDiv>
+//           <ThumbUpOffAltIcon />
+//           <UserRatingDiv>{rating}</UserRatingDiv>
+//           <DividerDiv />
+//           <UserRatingDiv>{rating}</UserRatingDiv>
+//           <ThumbDownOffAltIcon />
+//         </LikesDislikesDiv>
+//       </TutorHeaderDiv>
+
+//       <TutorContentDiv>
+//         <TutorDescriptionDiv>
+//           {message !== '' ? message : defaultDescription}
+//         </TutorDescriptionDiv>
+//         <SubjectsDiv>
+//           Predmeti:
+//           {tutoringSubjects.map((subject) => (
+//             <SubjectDiv>{subject.name}</SubjectDiv>
+//           ))}
+//         </SubjectsDiv>
+//         <PricesDiv>
+//           <PriceDiv>Cena:</PriceDiv>
+//           {groupPrice && (
+//             <>
+//               <StyledGroupsIcon />
+//               {groupPrice}
+//             </>
+//           )}
+//           {price && groupPrice && <DividerDiv />}
+//           {price && (
+//             <>
+//               <BoyIcon />
+//               {price}
+//             </>
+//           )}
+//         </PricesDiv>
+//       </TutorContentDiv>
+//     </TutorDiv>
+//   );
+// };
 
 export default Tutor;
 

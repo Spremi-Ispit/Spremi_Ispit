@@ -1,0 +1,8 @@
+FROM node:16
+WORKDIR /app
+COPY ./backend ./
+RUN npm install && npm install cross-env --global
+
+EXPOSE 3006
+
+CMD [ "sh", "-c", "cross-env host=$HOST port=$PORT user=$USER password=$PASSWORD db_name=$DB_NAME node index.js" ]
