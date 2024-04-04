@@ -5,8 +5,13 @@ dotenv.config({ path: `.env` });
 
 const env = process.env;
 
+export const NODE_ENV = {
+  development: 'development',
+  production: 'production'
+};
+
 export default {
-  NODE_ENV: env.NODE_ENV, //development || production
+  NODE_ENV: env.NODE_ENV,
   ACCESS_TOKEN_SECRET: env.ACCESS_TOKEN_SECRET,
   MYSQL_USER: env.MYSQL_USER,
   MYSQL_PASSWORD: env.MYSQL_PASSWORD,
