@@ -1,4 +1,4 @@
-import React, { useDebugValue, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -18,26 +18,31 @@ tutors.forEach((tutor) =>
 const availableLessons = Array.from(lessons);
 
 const Tutoring = () => {
-  const [availableTutors, setAvailableTutors] = useState([]);
-  let tutors = [];
+  const [availableTutors, setAvailableTutors] = useState(tutors);
   const { getTutors } = useApiActions();
   const { loading, response, error, setError, action } = getTutors;
 
   const handleChange = (event, value, reason) => {
     if (!value) {
-      setAvailableTutors(availableTutors);
+      setAvailableTutors(tutors);
     } else {
       setAvailableTutors(
-        availableTutors.filter((tutor) => tutor.tutoringSubjects.map((s) => s.name).includes(value))
+        tutors.filter((tutor) => tutor.subjects.includes(value))
       );
+
+      //--------------ANDRIJA-----------
+      // setAvailableTutors(
+      //   availableTutors.filter((tutor) =>
+      //     tutor.tutoringSubjects.map((s) => s.name).includes(value)
+      //   )
+      // );
     }
   };
 
   useEffect(() => {
     if (response) {
-      tutors = availableTutors;
-      console.log(response);
-      setAvailableTutors(response);
+      // console.log(response);
+      // setAvailableTutors(response);
     }
   }, [response]);
 

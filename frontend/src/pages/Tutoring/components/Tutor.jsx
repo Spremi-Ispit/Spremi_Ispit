@@ -10,47 +10,54 @@ const defaultDescription =
   'Rado ću ti pomoći da se spremiš za ispit ili laboratorijsku vežbu!';
 
 const Tutor = ({ tutor }) => {
-  const { id, username, message, tutoringSubjects, price, groupPrice, rating } = tutor;
+  const { id, name, description, subjects, price, rating } = tutor;
+  const { personally, group } = price;
+
+  const userRating = (rate) =>
+    rating.reduce(
+      (accumulator, user) => (accumulator + user.rate === rate ? 1 : 0),
+      0
+    );
 
   return (
     <TutorDiv>
       <TutorHeaderDiv>
         <ProfileImg
-          src={`https://ui-avatars.com/api/?name=${username}&background=random&color=random&bold=true`}
+          src={`https://ui-avatars.com/api/?name=${name}&background=random&color=random&bold=true`}
         />
         <TutorIdDiv>Id predavača: {id}</TutorIdDiv>
         <LikesDislikesDiv>
           <ThumbUpOffAltIcon />
-          <UserRatingDiv>{rating}</UserRatingDiv>
+          <UserRatingDiv>{userRating(1)}</UserRatingDiv>
           <DividerDiv />
-          <UserRatingDiv>{rating}</UserRatingDiv>
+          <UserRatingDiv>{userRating(-1)}</UserRatingDiv>
           <ThumbDownOffAltIcon />
         </LikesDislikesDiv>
       </TutorHeaderDiv>
 
       <TutorContentDiv>
         <TutorDescriptionDiv>
-          {message !== '' ? message : defaultDescription}
+          {description !== '' ? description : defaultDescription}
         </TutorDescriptionDiv>
         <SubjectsDiv>
           Predmeti:
-          {tutoringSubjects.map((subject) => (
-            <SubjectDiv>{subject.name}</SubjectDiv>
+          {subjects.map((subject, index) => (
+            <SubjectDiv key={index}>{subject}</SubjectDiv>
           ))}
         </SubjectsDiv>
         <PricesDiv>
           <PriceDiv>Cena:</PriceDiv>
-          {groupPrice && (
+          {group && (
             <>
               <StyledGroupsIcon />
-              {groupPrice}
+              {group}
             </>
           )}
-          {price && groupPrice && <DividerDiv />}
-          {price && (
+          {personally && group && <DividerDiv />}
+          {personally && (
             <>
               <BoyIcon />
-              {price}
+              {personally}
             </>
           )}
         </PricesDiv>
@@ -58,6 +65,58 @@ const Tutor = ({ tutor }) => {
     </TutorDiv>
   );
 };
+
+// -------------------------ANDRIJA-----------------
+// const Tutor = ({ tutor }) => {
+//   const { id, username, message, tutoringSubjects, price, groupPrice, rating } =
+//     tutor;
+
+//   return (
+//     <TutorDiv>
+//       <TutorHeaderDiv>
+//         <ProfileImg
+//           src={`https://ui-avatars.com/api/?name=${username}&background=random&color=random&bold=true`}
+//         />
+//         <TutorIdDiv>Id predavača: {id}</TutorIdDiv>
+//         <LikesDislikesDiv>
+//           <ThumbUpOffAltIcon />
+//           <UserRatingDiv>{rating}</UserRatingDiv>
+//           <DividerDiv />
+//           <UserRatingDiv>{rating}</UserRatingDiv>
+//           <ThumbDownOffAltIcon />
+//         </LikesDislikesDiv>
+//       </TutorHeaderDiv>
+
+//       <TutorContentDiv>
+//         <TutorDescriptionDiv>
+//           {message !== '' ? message : defaultDescription}
+//         </TutorDescriptionDiv>
+//         <SubjectsDiv>
+//           Predmeti:
+//           {tutoringSubjects.map((subject) => (
+//             <SubjectDiv>{subject.name}</SubjectDiv>
+//           ))}
+//         </SubjectsDiv>
+//         <PricesDiv>
+//           <PriceDiv>Cena:</PriceDiv>
+//           {groupPrice && (
+//             <>
+//               <StyledGroupsIcon />
+//               {groupPrice}
+//             </>
+//           )}
+//           {price && groupPrice && <DividerDiv />}
+//           {price && (
+//             <>
+//               <BoyIcon />
+//               {price}
+//             </>
+//           )}
+//         </PricesDiv>
+//       </TutorContentDiv>
+//     </TutorDiv>
+//   );
+// };
 
 export default Tutor;
 
