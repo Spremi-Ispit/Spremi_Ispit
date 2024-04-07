@@ -21,8 +21,7 @@ const companies = [
     tags: ['JavaScript', 'Figma', 'Sketch', 'Webflow'],
     link: 'https://itfirmeunisu.rs/flow-ninja/website',
     linkName: 'flow.ninja',
-    internship:
-      'https://www.linkedin.com/posts/flow-ninja_we-are-hiring-activity-7173341692513640451-EUJ0?utm_source=share&utm_medium=member_android',
+    internship: '',
   },
   {
     name: 'Cubic - MotionDSP',
@@ -40,7 +39,7 @@ const companies = [
     ],
     link: 'https://itfirmeunisu.rs/cubic-motiondsp/website',
     linkName: 'motiondsp.com',
-    internship: 'https://www.instagram.com/p/C4FlBTKM_7e/',
+    internship: '',
   },
   {
     name: 'Ingsoftware',
@@ -73,7 +72,7 @@ const companies = [
     ],
     link: 'https://itfirmeunisu.rs/ingsoftware/website',
     linkName: 'ingsoftware.com',
-    internship: 'https://careers.ingsoftware.com/p/internships',
+    internship: '',
   },
   {
     name: 'Diligent',
@@ -81,7 +80,7 @@ const companies = [
     tags: ['.NET', 'NodeJS', 'ReactJS', 'Angular', 'ReactNative', 'Next.js'],
     link: 'https://itfirmeunisu.rs/diligent/website',
     linkName: 'dilig.net',
-    internship: 'https://www.instagram.com/p/C379sKDMYaQ/?img_index=1',
+    internship: '',
   },
   {
     name: 'Dual Soft',

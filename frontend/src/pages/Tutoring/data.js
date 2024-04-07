@@ -29,9 +29,55 @@ const subjects = {
   ImpulsnaIDigitalnaElektronskaKola: 'Impulsna i digitalna elektronska kola',
   ArhitektureDigitalnihSistema: 'Arhitekture digitalnih sistema',
   NumeričkaMatematika: 'Numerička matematika',
+  ParalelniSistemi: 'Paralelni sistemi',
 };
 
 const tutors = [
+  {
+    id: 11,
+    link: '',
+    name: 'Jasmina',
+    description: 'Časovi iz Paralelnih sistema, zadaci i teorija!',
+    subjects: [subjects.ParalelniSistemi],
+    price: {
+      personally: 1000,
+      group: null,
+    },
+    rating: [],
+  },
+  {
+    id: 10,
+    link: 'https://www.instagram.com/direct/t/116366959757524/',
+    name: 'Mina',
+    description:
+      'Diplomirani matematičar sa 10 godina iskustva u nastavi drži časove matematike, individualno ili u malim grupama - do 4 studenta. Sa fokusom na vaše potrebe i ciljeve, uz individualan pristup i prilagodjen tempo, naš zajednički rad će biti usmeren ka tome da ispit pripremite sa lakoćom.',
+    subjects: [
+      subjects.Matematika1,
+      subjects.Matematika2,
+      subjects.Matematika3,
+      subjects.DiskretnaMatematika,
+      subjects.TeorijaGrafova,
+      subjects.VerovatnoćaIStatistika,
+    ],
+    price: {
+      personally: 2000,
+      group: 1000,
+    },
+    rating: [],
+  },
+  {
+    id: 9,
+    link: 'https://www.instagram.com/direct/t/111252743606139/',
+    name: 'Andrija',
+    description:
+      'Kompletna priprema. I teorija i zadaci. Sve ono što novi profesor traži. Polaganje zagarantovano!',
+    subjects: [subjects.DiskretnaMatematika],
+    price: {
+      personally: 800,
+      group: 600,
+    },
+    rating: [],
+  },
   {
     id: 8,
     link: 'https://www.instagram.com/direct/t/108508627206967/',
@@ -120,19 +166,6 @@ const tutors = [
     price: {
       personally: 1500,
       group: 1200,
-    },
-    rating: [],
-  },
-  {
-    id: 3,
-    link: 'https://www.instagram.com/direct/t/17851676354629512/',
-    name: 'Đorđe',
-    description:
-      'Takmičio sam se iz programiranja, tako da jako dobro stojim sa Algoritmima i programiranjem!',
-    subjects: [subjects.AlgoritmiIProgramiranje],
-    price: {
-      personally: null,
-      group: null,
     },
     rating: [],
   },
