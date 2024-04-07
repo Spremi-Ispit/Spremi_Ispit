@@ -33,18 +33,18 @@ const subjects = {
 };
 
 const tutors = [
-  {
-    id: 11,
-    link: '',
-    name: 'Jasmina',
-    description: 'Časovi iz Paralelnih sistema, zadaci i teorija!',
-    subjects: [subjects.ParalelniSistemi],
-    price: {
-      personally: 1000,
-      group: null,
-    },
-    rating: [],
-  },
+  // {
+  //   id: 11,
+  //   link: '',
+  //   name: 'Jasmina',
+  //   description: 'Časovi iz Paralelnih sistema, zadaci i teorija!',
+  //   subjects: [subjects.ParalelniSistemi],
+  //   price: {
+  //     personally: 1000,
+  //     group: null,
+  //   },
+  //   rating: [],
+  // },
   {
     id: 10,
     link: 'https://www.instagram.com/direct/t/116366959757524/',
