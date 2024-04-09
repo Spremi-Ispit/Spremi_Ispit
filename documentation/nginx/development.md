@@ -34,6 +34,8 @@ server {
     listen 80;
     server_name dev.spremiispit.com;
 
+    client_max_body_size 1000M;
+
     location /backend/ {
         proxy_pass https://localhost:5000/backend/;
         proxy_http_version 1.1;
