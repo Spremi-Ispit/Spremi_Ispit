@@ -32,7 +32,9 @@ sudo nano /etc/nginx/sites-available/production
 ```
 server {
     listen 80;
-    server_name prod.spremiispit.com;
+    server_name spremiispit.com;
+
+    client_max_body_size 1000M;
 
     location /backend/ {
         proxy_pass https://localhost:5001/backend/;
