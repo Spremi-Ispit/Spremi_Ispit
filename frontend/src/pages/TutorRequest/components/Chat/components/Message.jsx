@@ -6,38 +6,40 @@ import { selectUsername } from '../../../../../redux/app/selectors';
 
 const MessageDiv = styled.div`
   display: flex;
-  border-bottom: 1px solid black;
   padding: 10px;
-  flex-direction: column;
-  background: ${({ sent }) =>
-    sent ? colors.filteri : colors.settingSidePanelBrighterItem};
+  box-shadow: rgba(0, 0, 0, 0.75) 0px 1px 3px;
+  color: black;
 `;
 
-const ProfileImg = styled.img`
-  width: 24px;
-  height: 24px;
+const UserImg = styled.img`
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   margin-right: 10px;
 `;
 
-const MessageHeaderDiv = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const MessageHeaderInfoDiv = styled.div`
+const MessageContentDiv = styled.div`
   display: flex;
   flex-direction: column;
-  color: ${colors.background};
+`;
+
+const UserInfoDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
 `;
 
 const MessageTextP = styled.p`
-  color: ${colors.footer};
   margin-top: 10px;
 `;
 
 const DateDiv = styled.div`
   font-size: small;
+  color: ${colors.buttonHover};
+`;
+
+const MessageInfoDiv = styled.div`
+  padding-top: 2px;
 `;
 
 const DateOptions = {
@@ -49,9 +51,10 @@ const DateOptions = {
   second: 'numeric',
 };
 
-const Message = ({ message }) => {
-  const { text, createdAt, displayName } = message;
+const Message = ({ text, createdAt, displayName }) => {
   const username = useSelector(selectUsername);
+
+  console.log(new Date(createdAt));
 
   const formatDate = (date) => {
     return date.toLocaleString('sr-RS', DateOptions);
@@ -59,19 +62,16 @@ const Message = ({ message }) => {
 
   return (
     <MessageDiv sent={displayName === username}>
-      <MessageHeaderDiv>
-        <ProfileImg
-          src={`https://ui-avatars.com/api/?name=${displayName}&background=random&color=random`}
-        />
-        <MessageHeaderInfoDiv>
-          {displayName}
-          <br />
-          <DateDiv>
-            {formatDate(createdAt ? createdAt.toDate() : new Date())}
-          </DateDiv>
-        </MessageHeaderInfoDiv>
-      </MessageHeaderDiv>
-      <MessageTextP>{text}</MessageTextP>
+      <UserImg
+        src={`https://ui-avatars.com/api/?name=${displayName}&background=random`}
+      />
+      <MessageContentDiv>
+        <MessageInfoDiv>
+          <UserInfoDiv>{displayName}</UserInfoDiv>
+          <DateDiv>{formatDate(createdAt)}</DateDiv>
+        </MessageInfoDiv>
+        <MessageTextP>{text}</MessageTextP>
+      </MessageContentDiv>
     </MessageDiv>
   );
 };
