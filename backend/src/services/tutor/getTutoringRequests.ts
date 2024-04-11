@@ -1,29 +1,24 @@
 import { TutoringRequest } from '../../entities/TutoringRequest';
 import { User } from '../../entities/User';
 import response from '../../utils/response';
+import { mapTutoringRequestDTO } from './utils/mapTutoringRequestDTO';
 import { mapUserToUserDTO } from './utils/mapUserToUserDTO';
 
-export const getTutoringRequests = async (req : any) =>{
-    const {userID} = req.body;
-    
+// Get the tutoring requests as the tutor
+
+export const getTutoringRequests = async (req: any) => {
+    const { userID } = req.body;
+
     const user = await User.findOne({
-        where: {id : userID},
-        relations: ["tutorProfile"]
+        where: { id: userID },
+        relations: ["tutorProfile", "tutorProfile.tutoringOffered", "tutorProfile.tutoringOffered.students", "tutorProfile.tutoringOffered.subject"]
     });
-    if(!user)
+    if (!user)
         return response.BAD_REQUEST("User was not found!");
-    if(!user.tutorProfile)
+    if (!user.tutorProfile)
         return response.BAD_REQUEST("User is not a tutor!");
 
-    let tutoringRequests = await TutoringRequest.find({
-        relations: ['tutor', 'student', 'subject'],
-        where: {tutor: [{id: user.tutorProfile.id}]}
-    })
+    let tutoringRequests = user.tutorProfile.tutoringOffered.map((tutoringRequest) => mapTutoringRequestDTO(tutoringRequest));
 
-    let transformed = tutoringRequests.map((tr)=>{
-        let userDto = mapUserToUserDTO(tr.student);
-        return {...tr, student : userDto};
-    })
-
-    return response.OK(transformed);
+    return response.OK(tutoringRequests);
 }

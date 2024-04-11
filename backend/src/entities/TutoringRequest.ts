@@ -1,53 +1,56 @@
-// @ts-nocheck
 import {
-    Entity,
-    ManyToMany,
-    JoinTable,
-    OneToMany,
-    BaseEntity,
-    PrimaryGeneratedColumn,
-    Column,
-    ManyToOne
-  } from 'typeorm';
+  Entity,
+  ManyToMany,
+  JoinTable,
+  OneToMany,
+  BaseEntity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  CreateDateColumn,
+} from 'typeorm';
 import { Subject } from './filters/Subject';
 import { User } from './User';
 import { Tutor } from './Tutor';
+import { TutorRequestMessage } from './TutorRequestMessage';
 
-  @Entity()
-  export class TutoringRequest extends BaseEntity{
-    @PrimaryGeneratedColumn()
-    id:number;
+@Entity()
+export class TutoringRequest extends BaseEntity {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column({
-        lenght: 200,
-        nullable: false
-    })
-    message: string;
+  @Column({
+    default: false,
+    nullable: false
+  })
+  isFinished: boolean;
 
-    @Column({
-        default: false,
-        nullable: false
-      })
-    isFinished: boolean;
+  @Column({
+    default: false,
+    nullable: false
+  })
+  isCanceled: boolean;
 
-    @Column({
-        default: false,
-        nullable: false
-      })
-    isCanceled: boolean;
+  @Column({
+    default: 0,
+    nullable: false
+  })
+  rating: number;
 
-    @Column({
-        default: 0,
-        nullable: false
-    })
-    rating : number;
-    
-    @ManyToOne(() => Tutor, (tutor) => tutor.tutoringOffered)
-    tutor: Tutor;
-  
-    @ManyToOne(() => User, (user) => user.tutoringRequested)
-    student: User;
-  
-    @ManyToOne(() => Subject)
-    subject: Subject;
-  }
+  @CreateDateColumn()
+  date: Date;
+
+  @ManyToOne(() => Tutor, (tutor) => tutor.tutoringOffered)
+  tutor: Tutor;
+
+  @JoinTable()
+  @ManyToMany(() => User, (user) => user.tutoringRequested)
+  students: User[];
+
+  @ManyToOne(() => Subject)
+  subject: Subject;
+
+  @OneToMany(() => TutorRequestMessage, (tutorRequestMessage) => tutorRequestMessage.tutoringRequest)
+  tutorRequestMessages: TutorRequestMessage[];
+
+}

@@ -1,15 +1,14 @@
-// @ts-nocheck
 import response from '../../utils/response';
 import { Tutor } from '../../entities/Tutor';
-export const getTutors = async (req) => {
+import { mapUserToUserDTO } from './utils/mapUserToUserDTO';
+export const getTutors = async (req: any) => {
     const tutorsRaw = await Tutor.find({
-        relations: ['user', 'tutoringSubjects'],
+        relations: ['user', 'tutorSubjects', 'tutorSubjects.subject'],
     });
+
     let tutors = tutorsRaw.map((tutor) => {
-        tutor.userId = tutor.user.id;
-        tutor.username = tutor.user.username;
-        tutor.user = undefined;
-        return tutor;
-    })
+        let user = mapUserToUserDTO(tutor.user)
+        return { ...tutor, user: user };
+    });
     return response.OK(tutors);
 }

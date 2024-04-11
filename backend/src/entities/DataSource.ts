@@ -15,6 +15,8 @@ import { ExaminationPeriod } from './filters/ExaminationPeriod';
 import { TutoringRequest } from './TutoringRequest';
 import { Tutor } from './Tutor';
 import env from '../config/env';
+import { TutorRequestMessage } from './TutorRequestMessage';
+import { TutorSubject } from './TutorSubject';
 
 export const dataSource = new DataSource({
   type: 'mysql',
@@ -37,7 +39,9 @@ export const dataSource = new DataSource({
     CommentFile,
     Blacklist,
     Tutor,
-    TutoringRequest
+    TutoringRequest,
+    TutorRequestMessage,
+    TutorSubject
   ],
   synchronize: false
 });

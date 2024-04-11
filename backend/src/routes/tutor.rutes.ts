@@ -9,7 +9,9 @@ import {
   getTutoringRequestsStudent,
   deleteTutorProfile,
   deleteSubjectFromTutor,
-  getTutors
+  getTutors,
+  updateTutorProfile,
+  createTutorRequestMessage
 } from '../controllers/tutor.controller';
 const tutorsRoutes = express.Router();
 
@@ -19,6 +21,8 @@ tutorsRoutes.route('/createTutorRequest').post(authorizeUserOnApiRequest, create
 tutorsRoutes.route('/getTutoringRequests').get(authorizeUserOnApiRequest, getTutoringRequests);
 tutorsRoutes.route('/getTutoringRequestsStudent').get(authorizeUserOnApiRequest, getTutoringRequestsStudent);
 tutorsRoutes.route('/createTutorProfile').post(authorizeUserOnApiRequest, createTutorProfile);
+tutorsRoutes.route('/createTutorRequestMessage').post(authorizeUserOnApiRequest, createTutorRequestMessage);
+tutorsRoutes.route('/updateTutorProfile').put(authorizeUserOnApiRequest, updateTutorProfile);
 tutorsRoutes.route('/deleteTutorProfile').delete(authorizeUserOnApiRequest, deleteTutorProfile);
 tutorsRoutes.route('/addSubjectToTutor').post(authorizeUserOnApiRequest, addSubjectToTutor);
 tutorsRoutes.route('/deleteSubjectFromTutor').delete(authorizeUserOnApiRequest, deleteSubjectFromTutor);

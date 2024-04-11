@@ -7,12 +7,13 @@ import {
   JoinTable,
   OneToMany,
   OneToOne,
-  ManyToMany
+  ManyToMany,
 } from 'typeorm';
 import { Post } from './Post';
 import { Comment } from './Comment';
 import { Tutor } from './Tutor';
 import { TutoringRequest } from './TutoringRequest';
+import { TutorRequestMessage } from './TutorRequestMessage';
 @Entity()
 export class User extends BaseEntity {
   @PrimaryGeneratedColumn()
@@ -82,6 +83,10 @@ export class User extends BaseEntity {
   @OneToOne(() => Tutor, (tutor) => tutor.user)
   tutorProfile?: Tutor
 
-  @OneToMany(() => TutoringRequest, (tutoringRequest) => tutoringRequest.student)
+  @ManyToMany(() => TutoringRequest, (tutoringRequest) => tutoringRequest.students)
   tutoringRequested: TutoringRequest[];
+
+  @OneToMany(() => TutorRequestMessage, (tutorRequestMessage) => tutorRequestMessage.author)
+  tutorRequestMessages: TutorRequestMessage[];
+
 }

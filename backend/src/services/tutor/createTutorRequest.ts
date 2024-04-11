@@ -5,7 +5,7 @@ import { Subject } from '../../entities/filters/Subject';
 import response from '../../utils/response';
 
 export const createTutorRequest = async (req: any) => {
-  const { tutorId, subjectId, message, userID } = req.body;
+  const { tutorId, subjectId, userID } = req.body;
 
   if (!tutorId || !subjectId)
     return response.BAD_REQUEST('No tutor or subject selected!');
@@ -33,8 +33,7 @@ export const createTutorRequest = async (req: any) => {
     return response.BAD_REQUEST("Can't request to tutor yourself!");
 
   const newTutoringRequest = TutoringRequest.create({
-    message: message ? message : '',
-    student: user,
+    students: [user,],
     subject: subject,
     tutor: tutor
   });

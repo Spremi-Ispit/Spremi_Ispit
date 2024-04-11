@@ -7,9 +7,6 @@ import response from "../../utils/response";
 export const createTutorProfile = async (req: any) => {
   const { userID, message, price, groupPrice } = req.body;
 
-  if (!message || !price || !groupPrice)
-    return response.BAD_REQUEST("Creating tutor profile should contain : message, price and groupPrice");
-
   const user = await User.findOne({
     where: { id: userID },
     relations: ["tutorProfile"]
@@ -18,8 +15,13 @@ export const createTutorProfile = async (req: any) => {
   if (!user)
     return response.BAD_REQUEST("User not found!");
 
-  if (user.tutorProfile)
-    return response.BAD_REQUEST("Tutor profile already exists");
+  if (user.tutorProfile) {
+    user.tutorProfile.isEnabled = true;
+    await user.tutorProfile.save();
+    return response.OK("Tutor profile has been activated!");
+  }
+  if (!message || !price || !groupPrice)
+    return response.BAD_REQUEST("Creating tutor profile should contain : message, price and groupPrice");
 
   let tutorProfile = Tutor.create({
     price: price,

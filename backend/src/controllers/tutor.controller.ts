@@ -44,3 +44,13 @@ export const deleteSubjectFromTutor = async (req, res) => {
   const response = await tutorServices.deleteSubjectFromTutor(req);
   return res.status(response.statusCode).send(response);
 };
+
+export const updateTutorProfile = async (req, res) => {
+  const response = await tutorServices.updateTutorProfile(req);
+  return res.status(response.statusCode).send(response);
+}
+
+export const createTutorRequestMessage = async (req, res) => {
+  const response = await tutorServices.createTutorRequestMessage(req);
+  return res.status(response.statusCode).send(response);
+}

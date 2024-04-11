@@ -11,18 +11,19 @@ export const createDatabase = async () => {
 
     if (!databaseExists) {
       await connection.query(`CREATE DATABASE IF NOT EXISTS ${env.DB_NAME}`);
-      log('Database has been created!');
 
       dataSource.options.synchronize = true;
       await dataSource.initialize();
 
+      log('Database has been created!');
       // "synchronize = true" should work all the time, but some tables in their names have the upper case (see entities):
       // https://stackoverflow.com/questions/62434734/typeorm-throws-queryfailederror-table-already-exists-on-mysql-when-synchronize-i
+      await connection.end();
     }
 
-    await connection.end();
   } catch (err) {
     log('Error during Database creation: ' + err);
+  } finally {
     process.exit();
   }
 };

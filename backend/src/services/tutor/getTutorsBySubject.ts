@@ -1,22 +1,18 @@
-// @ts-nocheck
 import { Tutor } from "../../entities/Tutor";
+import { TutorSubject } from "../../entities/TutorSubject";
+import { Subject } from "../../entities/filters/Subject";
 import response from '../../utils/response';
 
-export const getTutorsBySubject = async (req) => {
+export const getTutorsBySubject = async (req: any) => {
   const { id } = req.params;
-  let data = await Tutor.find({
-    relations: ["tutoringSubjects", "user"],
-    where: { tutoringSubjects: { id: id } }
+
+  let subject = await Subject.findOne({
+    relations: ['tutorSubjects', 'tutorSubjects.tutor', 'tutorSubjects.tutor.tutorSubjects', 'tutorSubjects.tutor.tutorSubjects.subject'],
+    where: { id: id }
   });
 
-  data = data.map((d) =>
-  ({
-    id: d.id,
-    message: d.message,
-    price: d.price,
-    groupPrice: d.groupPrice,
-    userId: d.user.id,
-    username: d.user.username
-  }));
-  return response.OK(data);
+  if (!subject)
+    return response.BAD_REQUEST("No subject found!");
+
+  return response.OK(subject.tutorSubjects.map((tutorSubject) => tutorSubject.tutor));
 }

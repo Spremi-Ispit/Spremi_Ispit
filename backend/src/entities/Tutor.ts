@@ -14,6 +14,7 @@ import {
 import { Subject } from './filters/Subject';
 import { User } from './User';
 import { TutoringRequest } from './TutoringRequest';
+import { TutorSubject } from './TutorSubject';
 
 @Entity()
 export class Tutor extends BaseEntity {
@@ -33,6 +34,11 @@ export class Tutor extends BaseEntity {
   groupPrice: number;
 
   @Column({
+    default: true
+  })
+  isEnabled: boolean;
+
+  @Column({
     length: 200,
     nullable: false,
     default: ""
@@ -50,11 +56,8 @@ export class Tutor extends BaseEntity {
   @ManyToOne(() => User, (user) => user.tutor)
   user: User;
 
-  @JoinTable()
-  @ManyToMany((type) => Subject, {
-    cascade: true
-  })
-  tutoringSubjects: Subject[];
+  @OneToMany(() => TutorSubject, (TutorSubject) => TutorSubject.tutor)
+  tutorSubjects: TutorSubject[];
 
   @OneToMany(() => TutoringRequest, (tutoringRequest) => tutoringRequest.tutor)
   tutoringOffered: TutoringRequest[];

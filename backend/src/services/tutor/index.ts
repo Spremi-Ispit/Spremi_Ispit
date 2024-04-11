@@ -7,3 +7,5 @@ export { addSubjectToTutor } from './addSubjectToTutor';
 export { getTutoringRequestsStudent } from './getTutoringRequestsStudent';
 export { deleteTutorProfile } from './deleteTutorProfile';
 export { deleteSubjectFromTutor } from './deleteSubjectFromTutor';
+export { updateTutorProfile } from './updateTutorProfile';
+export { createTutorRequestMessage } from "./createTutorRequestMessage"
