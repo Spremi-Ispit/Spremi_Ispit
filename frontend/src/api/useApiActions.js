@@ -65,8 +65,11 @@ export const useApiActions = () => {
 
     //------------------TUTOR----------------
     getTutors: useAPIAction(tutorActions.getTutors),
-    getTutoringRequestsStudent: useAPIAction(tutorActions.getTutoringRequestsStudent),
+    getTutoringRequestsStudent: useAPIAction(
+      tutorActions.getTutoringRequestsStudent
+    ),
     getTutoringRequests: useAPIAction(tutorActions.getTutoringRequests),
+    createTutorRequest: useAPIAction(tutorActions.createTutorRequest),
   };
 };
 

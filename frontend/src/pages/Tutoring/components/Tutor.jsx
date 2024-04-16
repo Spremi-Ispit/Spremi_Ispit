@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 import GroupsIcon from '@mui/icons-material/Groups';
 import colors from '../../../theme/colors';
 import BoyIcon from '@mui/icons-material/Boy';
+import Button from '../../../components/buttons/Button';
+import { useApiActions } from '../../../api/useApiActions';
+import Loader from '../../../components/Loader';
+import ErrorDialog from '../../../components/dialogs/ErrorDialog';
+import { tutorRequestRoute } from '../../../router/routes';
 
 const defaultDescription =
   'Rado ću ti pomoći da se spremiš za ispit ili laboratorijsku vežbu!';
@@ -12,12 +18,33 @@ const defaultDescription =
 const Tutor = ({ tutor }) => {
   const { id, name, description, subjects, price, rating } = tutor;
   const { personally, group } = price;
+  const { createTutorRequest } = useApiActions();
+  const { action, error, setError, response, loading } = createTutorRequest;
+  const navigate = useNavigate();
 
   const userRating = (rate) =>
     rating.reduce(
       (accumulator, user) => (accumulator + user.rate === rate ? 1 : 0),
       0
     );
+
+  useEffect(() => {
+    if (response) {
+      navigate(tutorRequestRoute);
+    }
+  }, [response]);
+
+  const handleLessonScheduleDiv = () => {
+    action('data...');
+  };
+
+  if (loading) {
+    return <Loader />;
+  }
+
+  if (error) {
+    return <ErrorDialog error={error} setError={setError} />;
+  }
 
   return (
     <TutorDiv>
@@ -45,22 +72,27 @@ const Tutor = ({ tutor }) => {
             <SubjectDiv key={index}>{subject}</SubjectDiv>
           ))}
         </SubjectsDiv>
-        <PricesDiv>
-          <PriceDiv>Cena:</PriceDiv>
-          {group && (
-            <>
-              <StyledGroupsIcon />
-              {group}
-            </>
-          )}
-          {personally && group && <DividerDiv />}
-          {personally && (
-            <>
-              <BoyIcon />
-              {personally}
-            </>
-          )}
-        </PricesDiv>
+        <TutorFooterDiv>
+          <PricesDiv>
+            <PriceDiv>Cena:</PriceDiv>
+            {group && (
+              <>
+                <StyledGroupsIcon />
+                {group}
+              </>
+            )}
+            {personally && group && <DividerDiv />}
+            {personally && (
+              <>
+                <BoyIcon />
+                {personally}
+              </>
+            )}
+          </PricesDiv>
+          <LessonScheduleDiv>
+            <Button onClick={handleLessonScheduleDiv}>Zakaži čas</Button>
+          </LessonScheduleDiv>
+        </TutorFooterDiv>
       </TutorContentDiv>
     </TutorDiv>
   );
@@ -119,6 +151,13 @@ const Tutor = ({ tutor }) => {
 // };
 
 export default Tutor;
+
+const LessonScheduleDiv = styled.div``;
+
+const TutorFooterDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
 const StyledGroupsIcon = styled(GroupsIcon)`
   margin-right: 5px;
