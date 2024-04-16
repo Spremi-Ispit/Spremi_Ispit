@@ -23,7 +23,7 @@
     "nodemailer": "^6.9.6",
     "nodemon": "^2.0.20",
     "rimraf": "^5.0.5",
-    "socket.io": "^4.6.1",
+    "socket.io": "^4.7.5",
     "tsx": "^4.6.2",
     "typeorm": "^0.3.11",
     "typeorm-extension": "^2.4.2",
