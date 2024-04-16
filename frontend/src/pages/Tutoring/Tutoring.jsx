@@ -7,42 +7,43 @@ import SettingsSidePanel from '../../components/SettingsSidePanel/SettingsSidePa
 import Footer from '../../components/Footer';
 import colors from '../../theme/colors';
 import Instagram from './components/Instagram';
-import tutors from './data';
 import Tutor from './components/Tutor';
 import { useApiActions } from '../../api/useApiActions';
 
-const lessons = new Set();
-tutors.forEach((tutor) =>
-  tutor.subjects.forEach((subject) => lessons.add(subject))
-);
-const availableLessons = Array.from(lessons);
 
 const Tutoring = () => {
-  const [availableTutors, setAvailableTutors] = useState(tutors);
+  const [availableTutors, setAvailableTutors] = useState([]);
   const { getTutors } = useApiActions();
   const { loading, response, error, setError, action } = getTutors;
+  const [lessons, setLessons] = useState([]);
 
   const handleChange = (event, value, reason) => {
     if (!value) {
-      setAvailableTutors(tutors);
+      if (response) {
+        setAvailableTutors(response);
+      }
     } else {
       setAvailableTutors(
-        tutors.filter((tutor) => tutor.subjects.includes(value))
+        response.filter((tutor) => tutor.subjects.map((subject) => subject.id).includes(value.id))
       );
-
-      //--------------ANDRIJA-----------
-      // setAvailableTutors(
-      //   availableTutors.filter((tutor) =>
-      //     tutor.tutoringSubjects.map((s) => s.name).includes(value)
-      //   )
-      // );
     }
   };
 
   useEffect(() => {
     if (response) {
-      // console.log(response);
-      // setAvailableTutors(response);
+      let originalArray = [];
+      response.forEach((tutor) => {
+        tutor.subjects.forEach((subject) => {
+          originalArray.push({ id: subject.id, label: subject.name });
+        })
+      });
+      const uniqueObjects = originalArray.filter((obj, index) => {
+        return originalArray.findIndex(prevObj =>
+          JSON.stringify(prevObj) === JSON.stringify(obj)
+        ) === index;
+      });
+      setLessons(uniqueObjects);
+      setAvailableTutors(response);
     }
   }, [response]);
 
@@ -63,7 +64,7 @@ const Tutoring = () => {
             </StyledLabel>
             <StyledAutocomplete
               disablePortal
-              options={availableLessons}
+              options={lessons}
               sx={{ maxWidth: '500px', width: '100%' }}
               onChange={handleChange}
               renderInput={(params) => (
