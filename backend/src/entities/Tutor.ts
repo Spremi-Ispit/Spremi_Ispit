@@ -52,6 +52,13 @@ export class Tutor extends BaseEntity {
   })
   message: string;
 
+  @Column({
+    lenght: 200,
+    nullable: false,
+    default: ""
+  })
+  chatLink: string;
+
   @JoinColumn({ name: 'userId' })
   @ManyToOne(() => User, (user) => user.tutor)
   user: User;
