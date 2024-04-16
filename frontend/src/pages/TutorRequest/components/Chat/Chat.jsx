@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import colors from '../../../../theme/colors';
-import SendIcon from '@mui/icons-material/Send';
 import CreateMessage from './components/CreateMessage';
 import Message from './components/Message';
 
@@ -50,7 +49,7 @@ function Chat({ socket, username, room }) {
 
   return (
     <ChatDiv>
-      <ChatHeaderDiv className="chat-header">
+      <ChatHeaderDiv>
         <h2>TutorRequest</h2>
       </ChatHeaderDiv>
       <ChatBodyDiv>

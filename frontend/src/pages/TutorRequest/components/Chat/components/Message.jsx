@@ -54,8 +54,6 @@ const DateOptions = {
 const Message = ({ text, createdAt, displayName }) => {
   const username = useSelector(selectUsername);
 
-  console.log(new Date(createdAt));
-
   const formatDate = (date) => {
     return date.toLocaleString('sr-RS', DateOptions);
   };
