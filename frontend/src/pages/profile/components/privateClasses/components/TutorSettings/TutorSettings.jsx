@@ -29,7 +29,7 @@ const TutorSettings = () => {
         <h2>Želiš da držiš časove?</h2>
         <ArrowRightAltIcon />
         <Button onClick={openTutorSettings}>Postani predavač</Button>
-        <TutorDialog open={open} closeTutorSettings={closeTutorSettings} />
+        <TutorDialog open={open} onClose={closeTutorSettings} />
       </WannaBeTutorDiv>
     </TutorSettingsDiv>
   );

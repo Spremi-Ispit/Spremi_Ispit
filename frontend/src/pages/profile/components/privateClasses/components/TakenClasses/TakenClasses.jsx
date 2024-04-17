@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import { useApiActions } from '../../../../../../api/useApiActions';
-import Table from '../components/Table';
+import Table from '../../../../../../components/Table';
 import ErrorDialog from '../../../../../../components/dialogs/ErrorDialog';
 import Loader from '../../../../../../components/Loader';
-import { useTableColumns } from '../components/TableColumns';
+import { useTableColumns } from '../hooks/useTableColumns';
 import NavLink from '../../../../../../components/NavLink';
 import { tutoringRoute } from '../../../../../../router/routes';
 

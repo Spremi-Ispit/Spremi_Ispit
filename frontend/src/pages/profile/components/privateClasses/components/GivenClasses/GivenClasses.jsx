@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useApiActions } from '../../../../../../api/useApiActions';
-import Table from '../components/Table';
+import Table from '../../../../../../components/Table';
 import ErrorDialog from '../../../../../../components/dialogs/ErrorDialog';
 import Loader from '../../../../../../components/Loader';
-import { useTableColumns } from '../components/TableColumns';
+import { useTableColumns } from '../hooks/useTableColumns';
 
 const GivenClassesDiv = styled.div`
   display: flex;
