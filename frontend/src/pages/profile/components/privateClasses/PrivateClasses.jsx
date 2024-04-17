@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import StudentClasses from './components/StudentClasses/StudentClasses';
-import TutorClasses from './components/TutorClasses/TutorClasses';
+import TakenClasses from './components/TakenClasses/TakenClasses';
+import GivenClasses from './components/GivenClasses/GivenClasses';
 
 const PrivateClassesDiv = styled.div`
   display: flex;
@@ -12,8 +12,8 @@ const PrivateClassesDiv = styled.div`
 const PrivateClasses = () => {
   return (
     <PrivateClassesDiv>
-      <StudentClasses />
-      <TutorClasses />
+      <TakenClasses />
+      <GivenClasses />
     </PrivateClassesDiv>
   );
 };

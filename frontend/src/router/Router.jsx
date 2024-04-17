@@ -46,7 +46,10 @@ export default function Router() {
         />
         <Route path={routes.profileClasses} element={<PrivateClasses />} />
       </Route>
-      <Route path={routes.tutorRequestRoute} element={<TutorRequest />} />
+      <Route
+        path={`${routes.tutorRequestRoute(':id')}`}
+        element={<TutorRequest />}
+      />
     </Route>
   );
 

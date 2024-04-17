@@ -5,37 +5,46 @@ import dayjsPluginUTC from 'dayjs/esm/plugin/utc';
 dayjs.extend(dayjsPluginUTC);
 
 export const useTimeFormat = () => {
-  function dateShortFormat(t) {
-    const time = dayjs(t).utc();
-    return time.format('HH:mm:ss');
-  }
+  const timeFormat = {
+    ss: 'ss',
+    mm_ss: 'mm:ss',
+    HH_mm_ss: 'HH:mm:ss',
+    HH_mm_ss_SS: 'HH:mm:ss:SSS',
+    HH_mm: 'HH:mm',
+    YYYY_MMMM_DD: 'YYYY MMMM DD',
+    DD_MM: 'DD/MM',
+    YYYY_MM_DD_HH_mm_ss: 'YYYY-MM-DD | HH:mm:ss',
+  };
 
-  function getReadableTimeInFullFormat(value) {
-    const time = Number(value);
-    return new Date(time);
-  }
-
-  function getTodaysDate() {
-    const todaysDate = new Date();
-    return this.formatDate(todaysDate);
-  }
-
-  function formatDate(date) {
+  function formatDate(date, format) {
     const time = dayjs(date).utc();
-    return time.format('YYYY MMMM DD');
-  }
-
-  function roundSecconds(time) {
-    return new Date(time).setSeconds(time.getSeconds() < 30 ? 0 : 30);
+    return time.format(format);
   }
 
   return {
-    dateShortFormat,
-    getReadableTimeInFullFormat,
-    getTodaysDate,
     formatDate,
-    roundSecconds,
+    timeFormat,
   };
 };
 
 export default useTimeFormat;
+
+export const timeLogger = (time) =>
+  new Date(time).toLocaleString('sr-RS', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+  });
+
+export const timeLogger2 = (time) => {
+  const date = new Date(time);
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  const seconds = date.getSeconds();
+  const milliseconds = date.getMilliseconds();
+
+  return `${hours}:${minutes}:${seconds}:${milliseconds}`;
+};

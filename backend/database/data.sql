@@ -1,1030 +1,1847 @@
-INSERT INTO `user` (`username`, `email`, `password`, `role`) VALUES
-('Admin', 'admin@spremiispit.com','$2b$10$m6h31jtlXT6L3M/uwory8OjhE9gDMpIuTjYMo2P84jltANjBZsPDC', 'admin'), -- password = P@ssw0rd1234
-('a','a@elfak.rs','$2b$10$m6h31jtlXT6L3M/uwory8OjhE9gDMpIuTjYMo2P84jltANjBZsPDC','visitor'),
-('b','b@elfak.rs','$2b$10$m6h31jtlXT6L3M/uwory8OjhE9gDMpIuTjYMo2P84jltANjBZsPDC','visitor'),
-('c','c@elfak.rs','$2b$10$m6h31jtlXT6L3M/uwory8OjhE9gDMpIuTjYMo2P84jltANjBZsPDC','visitor'),
-('d','d@elfak.rs','$2b$10$m6h31jtlXT6L3M/uwory8OjhE9gDMpIuTjYMo2P84jltANjBZsPDC','visitor');
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: spremiis_dev
+-- ------------------------------------------------------
+-- Server version	8.0.36
 
-UPDATE user
-SET banned = true
-where username='a';
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+--
+-- Table structure for table `blacklist`
+--
 
+DROP TABLE IF EXISTS `blacklist`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `blacklist` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `email` varchar(128) NOT NULL,
+  `date` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `IDX_da3713eb36ad72d1815adbc256` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-INSERT INTO `department`(`name`) VALUES
-('Opšti'),
-('Računarstvo i informatika'),
-('Upravljanje sistemima'),
-('Telekomunikacije'),
-('Elektronika'),
-('Elektronske komponente i mikrosistemi'),
-('Elektroenergetika');
+--
+-- Dumping data for table `blacklist`
+--
 
+LOCK TABLES `blacklist` WRITE;
+/*!40000 ALTER TABLE `blacklist` DISABLE KEYS */;
+/*!40000 ALTER TABLE `blacklist` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-INSERT INTO `year_of_study`(`name`) VALUES
-('I'),
-('II'),
-('III'),
-('IV'),
-('V');
+-- Dump completed on 2024-04-17 17:23:58
 
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: spremiis_dev
+-- ------------------------------------------------------
+-- Server version	8.0.36
 
-INSERT INTO `yearOfStudyOnDepartment` (`departmentId`, `yearOfStudyId`) VALUES
-(1, 1),
-(2, 2),
-(3, 2),
-(4, 2),
-(5, 2),
-(6, 2),
-(7, 2),
-(2, 3),
-(3, 3),
-(4, 3),
-(5, 3),
-(6, 3),
-(7, 3),
-(2, 4),
-(3, 4),
-(4, 4),
-(5, 4),
-(6, 4),
-(7, 4);
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+--
+-- Table structure for table `comment`
+--
 
-INSERT INTO `examination_period`(`name`) VALUES
-('Januar'),
-('Mart'),
-('April'),
-('Jun'),
-('Jun2'),
-('Septembar'),
-('Oktobar'),
-('Oktobar2'),
-('Decembar');
+DROP TABLE IF EXISTS `comment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `comment` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `text` varchar(1000) NOT NULL,
+  `date` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+  `userId` int DEFAULT NULL,
+  `postId` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_c0354a9a009d3bb45a08655ce3b` (`userId`),
+  KEY `FK_94a85bb16d24033a2afdd5df060` (`postId`),
+  FULLTEXT KEY `IDX_84eaa1e0d08e574fb78fd3c9b3` (`text`),
+  CONSTRAINT `FK_94a85bb16d24033a2afdd5df060` FOREIGN KEY (`postId`) REFERENCES `post` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_c0354a9a009d3bb45a08655ce3b` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `comment`
+--
 
+LOCK TABLES `comment` WRITE;
+/*!40000 ALTER TABLE `comment` DISABLE KEYS */;
+INSERT INTO `comment` VALUES (1,'Ovo je prvi komentar ','2022-12-03 23:59:59.000000',1,1),(2,'Ovo je drugi komentar ','2022-12-04 23:59:59.000000',2,1),(3,'Ovo je treci komentar ','2022-12-05 23:59:59.000000',3,1),(4,'Ovo je cetvrti komentar ','2022-12-06 23:59:59.000000',1,1);
+/*!40000 ALTER TABLE `comment` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
-INSERT INTO `year_of_exam`(`name`) VALUES
-('2001'),
-('2002'),
-('2003'),
-('2004'),
-('2005'),
-('2006'),
-('2007'),
-('2008'),
-('2009'),
-('2010'),
-('2011'),
-('2012'),
-('2013'),
-('2014'),
-('2015'),
-('2016'),
-('2017'),
-('2018'),
-('2019'),
-('2020'),
-('2021'),
-('2022'),
-('2023'),
-('2024');
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+-- Dump completed on 2024-04-17 17:23:47
 
-INSERT INTO `type`(`name`) VALUES
-('Blanket'),
-('Skripta'),
-('Lab'),
-('Kolokvijum I'),
-('Kolokvijum II'),
-('Predavanja'),
-('Racunske');
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: spremiis_dev
+-- ------------------------------------------------------
+-- Server version	8.0.36
 
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-INSERT INTO `subject`(`name`) VALUES
--- I GODINA
-('Algoritmi i programiranje'), -- 1
-('Elektronske komponente'),
-('Fizika'),
-('Laboratorijski praktikum - Fizika'),
-('Matematika I'),
-('Matematika II'),
-('Osnovi elektrotehnike I'),
-('Osnovi elektrotehnike II'),
-('Uvod u elektroniku'),
-('Uvod u inženjerstvo'),
-('Uvod u računarstvo'), -- 11
--- II GODINA, Računarstvo i informatika
-('Arhitektura i organizacija računara'), -- 12
-('Arhitektura i organizacija računara 1'),
-('Arhitektura i organizacija računara 2'),
-('Baze podataka'),
-('Digitalna elektronika'),
-('Diskretna matematika'),
-('Logičko projektovanje'),
-('Matematički metodi u računarstvu'),
-('Objektno orijentisano programiranje'),
-('Programski jezici'),
-('Računarski sistemi'),
-('Strukture podataka'),
-('Teorija grafova'),
-('Verovatnoća i statistika'), -- 25
--- II GODINA, Upravljanje sistemima
-('Digitalna elektronika'), -- 26
-('Električna kola'),
-('Linearni sistemi automatskog upravljanja'),
-('Matematika III'),
-('Metrologija električnih veličina'),
-('Mikrokontroleri i programiranje'),
-('Modeliranje i simulacija dinamičkih sistema'),
-('Operaciona istraživanja'),
-('Osnovi elektronike'),
-('Računarski sistemi'), -- 35
--- II GODINA, Telekomunikacije 
-('Digitalna elektronika'), -- 36
-('Električna kola i signali'),
-('Elektromagnetika-odabrana poglavlja'),
-('Matematika 4'),
-('Matematika III'),
-('Osnovi elektronike'),
-('Osnovi mikrotalasne tehnike'),
-('Osnovi telekomunikacija'),
-('Teorija telekomunikacija'), -- 44
--- II GODINA, Elektronika 
-('Analogna elektronika'), -- 45
-('Digitalna elektronika'),
-('Digitalna obrada signala'),
-('Električna i elektronska merenja'),
-('Matematika III'),
-('Objektno orijentisane tehnike projektovanja sistema'),
-('Osnovi elektronike'),
-('Signali i sistemi'),
-('Telekomunikacije'), -- 53
--- II GODINA, Elektronske komponente i mikrosistemi
-('Matematika III'), -- 54
-('Materijali za elektroniku'),
-('Metrologija električnih veličina'),
-('Osnovi elektronike'),
-('Osnovi optike'),
-('Poluprovodničke komponente'),
-('Projektovanje materijala za elektroniku'),
-('Signali i sistemi'),
-('Telekomunikacije'), -- 62
--- II GODINA, Elektroenergetika 
-('Distributivne i industrijske mreže'), -- 63
-('Električna kola'),
-('Električne instalacije'),
-('Elektromehaničko pretvaranje energije'),
-('Elektrotehnički materijali'),
-('Matematika III'),
-('Merenja u elektroenergetici'),
-('Metrologija električnih veličina'),
-('Modeliranje i simulacija dinamičkih sistema'),
-('Osnovi elektronike'),
-('Prenos električne energije'),
-('Tehnička mehanika'),
-('Transformatori i mašine jednosmerne struje'), -- 75
--- III GODINA, Računarstvo i informatika
-('Automatsko upravljanje'), -- 76
-('Distribuirani sistemi'),
-('Elektronska merenja'),
-('Engleski jezik I'),
-('Engleski jezik II'),
-('Informacioni sistemi'),
-('Interakcija čovek-računar'),
-('Mikroračunarski sistemi'),
-('Objektno orijentisano projektovanje'),
-('Operativni sistemi'),
-('Osnovi analize signala i sistema'),
-('Projektovanje i analiza algoritama'),
-('Računarske mreže'),
-('Sistemi baza podataka'),
-('Softversko inženjerstvo'),
-('Telekomunikacije'),
-('Uvod u teoriju igara'),
-('Web programiranje'), -- 93
--- III GODINA, Upravljanje sistemima
-('Baze podataka'), -- 94
-('Bežični komunikacioni sistemi'),
-('Digitalna obrada signala'),
-('Digitalni sistemi automatskog upravljanja'),
-('Elektromehanicko pretvaranje energije'),
-('Elektronska merenja'),
-('Informacioni sistemi'),
-('Kablovski i optički komunikacioni sistemi'),
-('Komercijalni softver za simulaciju dinamičkih sistema'),
-('Mehatronika'),
-('Merenje neelektričnih veličina'),
-('Mikroračunarski sistemi'),
-('Modulacione tehnike'),
-('Nelinearni SAU'),
-('Objektno-orijentisano programiranje'),
-('Optimalno upravljanje'),
-('Osnovi energetske elektronike'),
-('Programabilni logički kontroleri'),
-('Senzori i pretvarači u vozilima'),
-('Senzori i pretvarači u automatici i robotici'),
-('Sistemi automatskog upravljanja'),
-('Solarne komponente i sistemi'),
-('Telekomunikacije'),
-('Upravljanje procesima'), -- 117
--- III GODINA, Telekomunikacije
-('Digitalne telekomunikacije I'), -- 118
-('Elektroakustika'),
-('Mikrotalasna tehnika'),
-('Obrada signala u telekomunikacijama'),
-('Telekomunikacione mreže'),
-('Teorija informacija'), -- 123
--- III GODINA, Elektronika
-('Engleski jezik I'), -- 124
-('Engleski jezik II'), -- 125
--- III GODINA, Elektronske komponente i mikrosistemi
-('Analogna mikroelektronika'), -- 126
-('Engleski jezik I'),
-('Engleski jezik II'),
-('Novi materijali i tehnologije'),
-('Optoelektronika'),
-('Projektovanje štampanih ploča'),
-('Tehnologije mikrosistema'), -- 132
--- III GODINA, Elektroenergetika 
-('Automatsko upravljanje'), -- 133
-('Dijagnostika i monitoring električnih veličina'),
-('Elektroenergetske komponente'),
-('Elektromagnetika'),
-('Elektronska merenja'),
-('Energetska elektronika'),
-('Kvalitet električne energije'),
-('Mašine naizmenične struje'),
-('Upravljanje procesima'), -- 141
--- IV GODINA, Računarstvo i informatika
-('Arhitektura i projektovanje softvera'), -- 142
-('Inteligentni informacioni sistemi'),
-('Metodi i sistemi za obradu signala'),
-('Mobilni sistemi i servisi'),
-('Multimedijalni računarski sistemi'),
-('Napredne baze podataka'),
-('Paralelni sistemi'),
-('Prepoznavanje uzoraka'),
-('Pretraživanje informacija'),
-('Programski prevodioci'),
-('Projektovanje računarskih mreža'),
-('Projektovanje računarskog hardvera'),
-('Računarska grafika'),
-('Socijalni i pravni aspekti informatike'),
-('Veštačka inteligencija'),
-('Zaštita informacija'), -- 157
--- IV GODINA, Upravljanje sistemima
-('Dinamika mehanizama i mašina'), -- 158
-('Diskretna matematika'),
-('Elektroenergetski pretvarači'),
-('Elektromotorni pogoni'),
-('Elektronika u medicini'),
-('Elektronska merna instrumentacija'),
-('Engleski jezik I'),
-('Engleski jezik II'),
-('Identifikacija sistema'),
-('Inženjerska etika'),
-('Izvori za napajanje'),
-('Merenja u ekologiji'),
-('Merenja u medicini'),
-('Projektovanje sistema automatskog upravljanja'),
-('Računarski merno-informacioni sistemi u industriji'),
-('SCADA sistemi'),
-('Sistemi za akviziciju podataka'),
-('Softversko inženjerstvo'),
-('Tehnika konverzije'),
-('Termovizija'),
-('Uvod u robotiku'),
-('Verovatnoća i statistika'), -- 179
--- IV GODINA, Telekomunikacije 
-('Mobilni komunikacioni sistemi'), -- 180
-('Antene i prostiranje'),
-('Feding i smetnje u digitalnim telekomunikacijama'),
-('Kodovanje'),
-('Komunikaciona akustika'),
-('Optičke mreže'),
-('Širokopojasne telekomunikacije'), -- 186
--- IV GODINA, Elektronika
-('Digitalna obrada slike'), -- 187
-('Izvori za napajanje'),
-('Mikrokontroleri'),
-('Obnovljivi izvori energije'),
-('Sistemi za rad u realnom vremenu'), -- 191
--- IV GODINA, Elektronske komponente i mikrosistemi
-('Izvori za napajanje'), -- 192
-('Komponente i kola snage'),
-('Obnovljivi izvori energije'),
-('Projektovanje i simulacija mikroelektronskih komponenata'),
-('Projektovanje mikrosistema'),
-('Solarne komponente i sistemi'), -- 197
--- IV GODINA, Elektroenergetika
-('Distribuirana proizvodnja električne energije'), -- 198
-('Elektrane'),
-('Elektroenergetski pretvarači'),
-('Elektromotorni pogoni'),
-('Izvori za napajanje'),
-('Odabrana poglavlja iz elektromotornih pogona'),
-('Zaštita u elektroenergetici'); -- 204
+--
+-- Table structure for table `commentdislikedby`
+--
 
-INSERT INTO `subject`(`name`) VALUES
--- II GODINA, Elektronika
-  ('Objektno-orijentisano programiranje'), -- 205
-  ('Numerička matematika'),
-  ('Mikroprocesorski sistemi'),
-  ('Multimedijalni sistemi'),
-  ('Animacije 1'),
-  ('Metrologija električnih veličina'),
-  ('Elektronska kola i embeded sistemi'), -- 211
--- III GODINA, Elektronika
-  ('Računarske mreže'), -- 212
-  ('Digitalna obrada slike'),
-  ('Animacija 2'),
-  ('Akustika'),
-  ('Tehnike prikupljanja i konverzije podataka'),
-  ('Obnovljivi izvori energije'),
-  ('Obrada audio i muzičkog signala'),
-  ('Mikrokontroleri'),
-  ('Elektronika za multimedijalne sisteme'),
-  ('Video produkcija'),
-  ('Web tehnologije 1'),
-  ('Fotografija'),
-  ('Arhitekture digitalnih sistema'),
-  ('Impulsna i digitalna elektronska kola'),
-  ('Mikroprocesorska tehnika'),
-  ('Analogna integrisana kola'),
-  ('Osnovi energetske elektronike'),
-  ('Projektovanje digitalnih integrisanih kola'),
-  ('Projektovanje digitalnih sistema'),
-  ('Virtuelni instrumenti'),
-  ('Medicinska elektronika'),
-  ('Projektovanje analognih integrisanih kola'),
-  ('Automatsko upravljanje'), -- 234
--- IV GODINA, Elektronika
-  ('Računarske igre'), -- 235
-  ('Kamera i montaža'),
-  ('Poslovne komunikacije'),
-  ('Inženjersko obrazovanje i održivi razvoj'),
-  ('Audio produkcija'),
-  ('Autoelektronika'),
-  ('Programiranje mobilnih uređaja'),
-  ('Solarne komponente i sistemi'),
-  ('Primenjena elektromagnetika'),
-  ('Osnove mehatronike'),
-  ('Uvod u robotiku'),
-  ('Programabilni logički kontroleri'),
-  ('Web tehnologije 2'),
-  ('TV sistemi'),
-  ('Računarske igre 2'),
-  ('Virtuelna realnost'),
-  ('Grafički dizajn'),
-  ('Projektovanje računarskih mreža'),
-  ('Termovizija'),
-  ('Bežične mreže i uređaji'),
-  ('Mobilni komunikacioni sistemi'),
-  ('Kablovski i optički komunikacioni sistemi'),
-  ('Internet stvari'),
-  ('SCADA sistemi'),
-  ('Stručna praksa'),
-  ('Završni rad - istraživački rad'),
-  ('Završni rad'),
-  ('Projektovanje VLSI'),
-  ('RF elektronika'),
-  ('Sistemi za rad u realnom vremenu'),
-  ('Testiranje elektronskih kola'),
-  ('Jezici za modelovanje hardvera'),
-  ('Elektroenergetski pretvarači'),
-  ('Embeded sistemi'),
-  ('Funkcionalna verifikacija'),
-  ('Projektovanje elektronskih sistema'),
-  ('Programiranje ARM kontrolera'),
-  ('Izvori napona napajanja'); -- 272
+DROP TABLE IF EXISTS `commentdislikedby`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `commentdislikedby` (
+  `commentId` int NOT NULL,
+  `userId` int NOT NULL,
+  PRIMARY KEY (`commentId`,`userId`),
+  KEY `IDX_1a7326d0c476eb8c6dea4342e9` (`commentId`),
+  KEY `IDX_f6c7493c4c56d424cdeae97905` (`userId`),
+  CONSTRAINT `FK_1a7326d0c476eb8c6dea4342e94` FOREIGN KEY (`commentId`) REFERENCES `comment` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_f6c7493c4c56d424cdeae979051` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-INSERT INTO `subjectOnDepartment` (`departmentId`, `subjectId`) VALUES
-(1, 1),
-(1, 2),
-(1, 3),
-(1, 4),
-(1, 5),
-(1, 6),
-(1, 7),
-(1, 8),
-(1, 9),
-(1, 10),
-(1, 11),
-(2, 12),
-(2, 13),
-(2, 14),
-(2, 15),
-(2, 16),
-(2, 17),
-(2, 18),
-(2, 19),
-(2, 20),
-(2, 21),
-(2, 22),
-(2, 23),
-(2, 24),
-(2, 25),
-(3, 26),
-(3, 27),
-(3, 28),
-(3, 29),
-(3, 30),
-(3, 31),
-(3, 32),
-(3, 33),
-(3, 34),
-(3, 35),
-(4, 36),
-(4, 37),
-(4, 38),
-(4, 39),
-(4, 40),
-(4, 41),
-(4, 42),
-(4, 43),
-(4, 44),
-(5, 45),
-(5, 46),
-(5, 47),
-(5, 48),
-(5, 49),
-(5, 50),
-(5, 51),
-(5, 52),
-(5, 53),
-(6, 54),
-(6, 55),
-(6, 56),
-(6, 57),
-(6, 58),
-(6, 59),
-(6, 60),
-(6, 61),
-(6, 62),
-(7, 63),
-(7, 64),
-(7, 65),
-(7, 66),
-(7, 67),
-(7, 68),
-(7, 69),
-(7, 70),
-(7, 71),
-(7, 72),
-(7, 73),
-(7, 74),
-(7, 75),
-(2, 76),
-(2, 77),
-(2, 78),
-(2, 79),
-(2, 80),
-(2, 81),
-(2, 82),
-(2, 83),
-(2, 84),
-(2, 85),
-(2, 86),
-(2, 87),
-(2, 88),
-(2, 89),
-(2, 90),
-(2, 91),
-(2, 92),
-(2, 93),
-(3, 94),
-(3, 95),
-(3, 96),
-(3, 97),
-(3, 98),
-(3, 99),
-(3, 100),
-(3, 101),
-(3, 102),
-(3, 103),
-(3, 104),
-(3, 105),
-(3, 106),
-(3, 107),
-(3, 108),
-(3, 109),
-(3, 110),
-(3, 111),
-(3, 112),
-(3, 113),
-(3, 114),
-(3, 115),
-(3, 116),
-(3, 117),
-(4, 118),
-(4, 119),
-(4, 120),
-(4, 121),
-(4, 122),
-(4, 123),
-(5, 124),
-(5, 125),
-(6, 126),
-(6, 127),
-(6, 128),
-(6, 129),
-(6, 130),
-(6, 131),
-(6, 132),
-(7, 133),
-(7, 134),
-(7, 135),
-(7, 136),
-(7, 137),
-(7, 138),
-(7, 139),
-(7, 140),
-(7, 141),
-(2, 142),
-(2, 143),
-(2, 144),
-(2, 145),
-(2, 146),
-(2, 147),
-(2, 148),
-(2, 149),
-(2, 150),
-(2, 151),
-(2, 152),
-(2, 153),
-(2, 154),
-(2, 155),
-(2, 156),
-(2, 157),
-(3, 158),
-(3, 159),
-(3, 160),
-(3, 161),
-(3, 162),
-(3, 163),
-(3, 164),
-(3, 165),
-(3, 166),
-(3, 167),
-(3, 168),
-(3, 169),
-(3, 170),
-(3, 171),
-(3, 172),
-(3, 173),
-(3, 174),
-(3, 175),
-(3, 176),
-(3, 177),
-(3, 178),
-(3, 179),
-(4, 180),
-(4, 181),
-(4, 182),
-(4, 183),
-(4, 184),
-(4, 185),
-(4, 186),
-(5, 187),
-(5, 188),
-(5, 189),
-(5, 190),
-(5, 191),
-(6, 192),
-(6, 193),
-(6, 194),
-(6, 195),
-(6, 196),
-(6, 197),
-(7, 198),
-(7, 199),
-(7, 200),
-(7, 201),
-(7, 202),
-(7, 203),
-(7, 204);
+--
+-- Dumping data for table `commentdislikedby`
+--
 
--- Elektronika
-INSERT INTO `subjectOnDepartment` (`departmentId`, `subjectId`) VALUES
-(5, 205),
-(5, 206),
-(5, 207),
-(5, 208),
-(5, 209),
-(5, 210),
-(5, 211),
-(5, 212),
-(5, 213),
-(5, 214),
-(5, 215),
-(5, 216),
-(5, 217),
-(5, 218),
-(5, 219),
-(5, 220),
-(5, 221),
-(5, 222),
-(5, 223),
-(5, 224),
-(5, 225),
-(5, 226),
-(5, 227),
-(5, 228),
-(5, 229),
-(5, 230),
-(5, 231),
-(5, 232),
-(5, 233),
-(5, 234),
-(5, 235),
-(5, 236),
-(5, 237),
-(5, 238),
-(5, 239),
-(5, 240),
-(5, 241),
-(5, 242),
-(5, 243),
-(5, 244),
-(5, 245),
-(5, 246),
-(5, 247),
-(5, 248),
-(5, 249),
-(5, 250),
-(5, 251),
-(5, 252),
-(5, 253),
-(5, 254),
-(5, 255),
-(5, 256),
-(5, 257),
-(5, 258),
-(5, 259),
-(5, 260),
-(5, 261),
-(5, 262),
-(5, 263),
-(5, 264),
-(5, 265),
-(5, 266),
-(5, 267),
-(5, 268),
-(5, 269),
-(5, 270),
-(5, 271),
-(5, 272);
+LOCK TABLES `commentdislikedby` WRITE;
+/*!40000 ALTER TABLE `commentdislikedby` DISABLE KEYS */;
+INSERT INTO `commentdislikedby` VALUES (1,2);
+/*!40000 ALTER TABLE `commentdislikedby` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-INSERT INTO `subjectOnYearOfStudy` (`yearOfStudyId`, `subjectId`) VALUES
-(1, 1),
-(1, 2),
-(1, 3),
-(1, 4),
-(1, 5),
-(1, 6),
-(1, 7),
-(1, 8),
-(1, 9),
-(1, 10),
-(1, 11),
-(2, 12),
-(2, 13),
-(2, 14),
-(2, 15),
-(2, 16),
-(2, 17),
-(2, 18),
-(2, 19),
-(2, 20),
-(2, 21),
-(2, 22),
-(2, 23),
-(2, 24),
-(2, 25),
-(2, 26),
-(2, 27),
-(2, 28),
-(2, 29),
-(2, 30),
-(2, 31),
-(2, 32),
-(2, 33),
-(2, 34),
-(2, 35),
-(2, 36),
-(2, 37),
-(2, 38),
-(2, 39),
-(2, 40),
-(2, 41),
-(2, 42),
-(2, 43),
-(2, 44),
-(2, 45),
-(2, 46),
-(2, 47),
-(2, 48),
-(2, 49),
-(2, 50),
-(2, 51),
-(2, 52),
-(2, 53),
-(2, 54),
-(2, 55),
-(2, 56),
-(2, 57),
-(2, 58),
-(2, 59),
-(2, 60),
-(2, 61),
-(2, 62),
-(2, 63),
-(2, 64),
-(2, 65),
-(2, 66),
-(2, 67),
-(2, 68),
-(2, 69),
-(2, 70),
-(2, 71),
-(2, 72),
-(2, 73),
-(2, 74),
-(2, 75),
-(3, 76),
-(3, 77),
-(3, 78),
-(3, 79),
-(3, 80),
-(3, 81),
-(3, 82),
-(3, 83),
-(3, 84),
-(3, 85),
-(3, 86),
-(3, 87),
-(3, 88),
-(3, 89),
-(3, 90),
-(3, 91),
-(3, 92),
-(3, 93),
-(3, 94),
-(3, 95),
-(3, 96),
-(3, 97),
-(3, 98),
-(3, 99),
-(3, 100),
-(3, 101),
-(3, 102),
-(3, 103),
-(3, 104),
-(3, 105),
-(3, 106),
-(3, 107),
-(3, 108),
-(3, 109),
-(3, 110),
-(3, 111),
-(3, 112),
-(3, 113),
-(3, 114),
-(3, 115),
-(3, 116),
-(3, 117),
-(3, 118),
-(3, 119),
-(3, 120),
-(3, 121),
-(3, 122),
-(3, 123),
-(3, 124),
-(3, 125),
-(3, 126),
-(3, 127),
-(3, 128),
-(3, 129),
-(3, 130),
-(3, 131),
-(3, 132),
-(3, 133),
-(3, 134),
-(3, 135),
-(3, 136),
-(3, 137),
-(3, 138),
-(3, 139),
-(3, 140),
-(3, 141),
-(4, 142),
-(4, 143),
-(4, 144),
-(4, 145),
-(4, 146),
-(4, 147),
-(4, 148),
-(4, 149),
-(4, 150),
-(4, 151),
-(4, 152),
-(4, 153),
-(4, 154),
-(4, 155),
-(4, 156),
-(4, 157),
-(4, 158),
-(4, 159),
-(4, 160),
-(4, 161),
-(4, 162),
-(4, 163),
-(4, 164),
-(4, 165),
-(4, 166),
-(4, 167),
-(4, 168),
-(4, 169),
-(4, 170),
-(4, 171),
-(4, 172),
-(4, 173),
-(4, 174),
-(4, 175),
-(4, 176),
-(4, 177),
-(4, 178),
-(4, 179),
-(4, 180),
-(4, 181),
-(4, 182),
-(4, 183),
-(4, 184),
-(4, 185),
-(4, 186),
-(4, 187),
-(4, 188),
-(4, 189),
-(4, 190),
-(4, 191),
-(4, 192),
-(4, 193),
-(4, 194),
-(4, 195),
-(4, 196),
-(4, 197),
-(4, 198),
-(4, 199),
-(4, 200),
-(4, 201),
-(4, 202),
-(4, 203),
-(4, 204);
+-- Dump completed on 2024-04-17 17:23:57
 
--- Elektronika
-INSERT INTO `subjectOnYearOfStudy` (`yearOfStudyId`, `subjectId`) VALUES
-(2, 205),
-(2, 206),
-(2, 207),
-(2, 208),
-(2, 209),
-(2, 210),
-(2, 211),
-(3, 212),
-(3, 213),
-(3, 214),
-(3, 215),
-(3, 216),
-(3, 217),
-(3, 218),
-(3, 219),
-(3, 220),
-(3, 221),
-(3, 222),
-(3, 223),
-(3, 224),
-(3, 225),
-(3, 226),
-(3, 227),
-(3, 228),
-(3, 229),
-(3, 230),
-(3, 231),
-(3, 232),
-(3, 233),
-(3, 234),
-(4, 235),
-(4, 236),
-(4, 237),
-(4, 238),
-(4, 239),
-(4, 240),
-(4, 241),
-(4, 242),
-(4, 243),
-(4, 244),
-(4, 245),
-(4, 246),
-(4, 247),
-(4, 248),
-(4, 249),
-(4, 250),
-(4, 251),
-(4, 252),
-(4, 253),
-(4, 254),
-(4, 255),
-(4, 256),
-(4, 257),
-(4, 258),
-(4, 259),
-(4, 260),
-(4, 261),
-(4, 262),
-(4, 263),
-(4, 264),
-(4, 265),
-(4, 266),
-(4, 267),
-(4, 268),
-(4, 269),
-(4, 270),
-(4, 271),
-(4, 272);
-   
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: spremiis_dev
+-- ------------------------------------------------------
+-- Server version	8.0.36
 
-INSERT INTO `post` (`title`,`text`,`date`, `userId`, `subjectId`, `typeId`, `yearOfExamId`, `examinationPeriodId`) VALUES
-( '', '', '2022-12-03 23:59:59', 1, 15, 1, 3, 1),
-( '', '', '2022-12-03 23:59:59', 1, 15, 2, 3, null),
-( '', '', '2022-12-03 23:59:59', 1, 15, 1, 3, null),
-( '', '', '2022-12-03 23:59:59', 2, 15, 2, 3, null),
-( '', '', '2022-12-03 23:59:59', 3, 15, 1, 3, null),
-( '', '', '2022-12-03 23:59:59', 1, 15, 2, 3, null),
-( '', '', '2022-12-03 23:59:59', 1, 15, 1, 3, null),
-( '', '', '2022-12-03 23:59:59', 1, 15, 2, 3, null),
-( '', '', '2022-12-03 23:59:59', 1, 15, 1, 3, null),
-( '', '', '2022-12-03 23:59:59', 1, 15, 2, 3, null),
-( '', '', '2022-12-03 23:59:59', 1, null, null, null, null);
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-UPDATE `post` SET title = 'Paralelni sistemi' WHERE id = 1;
-UPDATE `post` SET title = 'Naslov2' WHERE id = 2;
-UPDATE `post` SET title = 'Naslov3' WHERE id = 3;
-UPDATE `post` SET title = 'Naslov4' WHERE id = 4;
-UPDATE `post` SET title = 'Naslov5' WHERE id = 5;
-UPDATE `post` SET title = 'Naslov6' WHERE id = 6;
-UPDATE `post` SET title = 'Naslov7' WHERE id = 7;
-UPDATE `post` SET title = 'Naslov8' WHERE id = 8;
-UPDATE `post` SET title = 'Naslov9' WHERE id = 9;
-UPDATE `post` SET title = 'Naslov10' WHERE id = 10;
+--
+-- Table structure for table `commentlikedby`
+--
 
-UPDATE `post` SET text = 'Danasnji blanket' WHERE id = 1;
-UPDATE `post` SET text = 'quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto' WHERE id = 2;
-UPDATE `post` SET text = 'est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla' WHERE id = 3;
-UPDATE `post` SET text = 'et iusto sed quo iure\nvoluptatem occaecati omnis eligendi aut ad\nvoluptatem doloribus vel accusantium quis pariatur\nmolestiae porro eius odio et labore et velit aut' WHERE id = 4;
-UPDATE `post` SET text = 'ullam et saepe reiciendis voluptatem adipisci\nsit amet autem assumenda provident rerum culpa\nquis hic commodi nesciunt rem tenetur doloremque ipsam iure\nquis sunt voluptatem rerum illo velit' WHERE id = 5;
-UPDATE `post` SET text = 'repudiandae veniam quaerat sunt sed\nalias aut fugiat sit autem sed est\nvoluptatem omnis possimus esse voluptatibus quis\nest aut tenetur dolor neque' WHERE id = 6;
-UPDATE `post` SET text = 'ut aspernatur corporis harum nihil quis provident sequi\nmollitia nobis aliquid molestiae\nperspiciatis et ea nemo ab reprehenderit accusantium quas\nvoluptate dolores velit et doloremque molestiae' WHERE id = 7;
-UPDATE `post` SET text = 'dolore placeat quibusdam ea quo vitae\nmagni quis enim qui quis quo nemo aut saepe\nquidem repellat excepturi ut quia\nsunt ut sequi eos ea sed quas' WHERE id = 8;
-UPDATE `post` SET text = 'dignissimos aperiam dolorem qui eum\nfacilis quibusdam animi sint suscipit qui sint possimus cum\nquaerat magni maiores excepturi\nipsam ut commodi dolor voluptatum modi aut vitae' WHERE id = 9;
-UPDATE `post` SET text = 'consectetur animi nesciunt iure dolore\nenim quia ad\nveniam autem ut quam aut nobis\net est aut quod aut provident voluptas autem voluptas' WHERE id = 10;
+DROP TABLE IF EXISTS `commentlikedby`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `commentlikedby` (
+  `commentId` int NOT NULL,
+  `userId` int NOT NULL,
+  PRIMARY KEY (`commentId`,`userId`),
+  KEY `IDX_4ac0f8444ca446e68c9961cf6a` (`commentId`),
+  KEY `IDX_db39f1f69436aa2a9186cd2d97` (`userId`),
+  CONSTRAINT `FK_4ac0f8444ca446e68c9961cf6a8` FOREIGN KEY (`commentId`) REFERENCES `comment` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_db39f1f69436aa2a9186cd2d971` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `commentlikedby`
+--
 
+LOCK TABLES `commentlikedby` WRITE;
+/*!40000 ALTER TABLE `commentlikedby` DISABLE KEYS */;
+INSERT INTO `commentlikedby` VALUES (1,1),(1,3),(2,1),(3,1),(3,2),(4,1);
+/*!40000 ALTER TABLE `commentlikedby` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
-INSERT INTO `postLikedBy` (`postId`, `userId`) VALUES
-(1, 1),
-(1, 2),
-(1, 3),
-(2, 1),
-(3, 1),
-(3, 2),
-(4, 1);
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+-- Dump completed on 2024-04-17 17:23:44
 
-INSERT INTO `postDislikedBy` (`postId`, `userId`) VALUES
-(2, 3),
-(3, 3),
-(4, 3);
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: spremiis_dev
+-- ------------------------------------------------------
+-- Server version	8.0.36
 
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-INSERT INTO `comment` (`text`, `date`, `userId`, `postId`) VALUES
-( 'Ovo je prvi komentar ', '2022-12-03 23:59:59', 1, 1),
-( 'Ovo je drugi komentar ', '2022-12-04 23:59:59', 2, 1),
-( 'Ovo je treci komentar ', '2022-12-05 23:59:59', 3, 1),
-( 'Ovo je cetvrti komentar ', '2022-12-06 23:59:59', 1, 1);
+--
+-- Table structure for table `commentreportedby`
+--
 
+DROP TABLE IF EXISTS `commentreportedby`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `commentreportedby` (
+  `commentId` int NOT NULL,
+  `userId` int NOT NULL,
+  PRIMARY KEY (`commentId`,`userId`),
+  KEY `IDX_c9e6547ad3911dced6e3c894b6` (`commentId`),
+  KEY `IDX_763d0df509638976b6e134d6ba` (`userId`),
+  CONSTRAINT `FK_763d0df509638976b6e134d6ba8` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_c9e6547ad3911dced6e3c894b6a` FOREIGN KEY (`commentId`) REFERENCES `comment` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-INSERT INTO `commentLikedBy` (`commentId`, `userId`) VALUES
-(1, 1),
-(1, 3),
-(2, 1),
-(3, 1),
-(3, 2),
-(4, 1);
+--
+-- Dumping data for table `commentreportedby`
+--
 
+LOCK TABLES `commentreportedby` WRITE;
+/*!40000 ALTER TABLE `commentreportedby` DISABLE KEYS */;
+/*!40000 ALTER TABLE `commentreportedby` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
-INSERT INTO `commentDislikedBy` (`commentId`, `userId`) VALUES
-(1, 2);
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+-- Dump completed on 2024-04-17 17:23:59
+
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: spremiis_dev
+-- ------------------------------------------------------
+-- Server version	8.0.36
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `comment_file`
+--
+
+DROP TABLE IF EXISTS `comment_file`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `comment_file` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `ext` varchar(256) NOT NULL,
+  `path` varchar(256) NOT NULL,
+  `commentId` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_cc8be13ff4e856f0baa0917c556` (`commentId`),
+  CONSTRAINT `FK_cc8be13ff4e856f0baa0917c556` FOREIGN KEY (`commentId`) REFERENCES `comment` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `comment_file`
+--
+
+LOCK TABLES `comment_file` WRITE;
+/*!40000 ALTER TABLE `comment_file` DISABLE KEYS */;
+/*!40000 ALTER TABLE `comment_file` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-04-17 17:23:52
+
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: spremiis_dev
+-- ------------------------------------------------------
+-- Server version	8.0.36
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `department`
+--
+
+DROP TABLE IF EXISTS `department`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `department` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `IDX_471da4b90e96c1ebe0af221e07` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `department`
+--
+
+LOCK TABLES `department` WRITE;
+/*!40000 ALTER TABLE `department` DISABLE KEYS */;
+INSERT INTO `department` VALUES (7,'Elektroenergetika'),(5,'Elektronika'),(6,'Elektronske komponente i mikrosistemi'),(1,'Opšti'),(2,'Računarstvo i informatika'),(4,'Telekomunikacije'),(3,'Upravljanje sistemima');
+/*!40000 ALTER TABLE `department` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-04-17 17:23:50
+
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: spremiis_dev
+-- ------------------------------------------------------
+-- Server version	8.0.36
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `department_subjects_subject`
+--
+
+DROP TABLE IF EXISTS `department_subjects_subject`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `department_subjects_subject` (
+  `departmentId` int NOT NULL,
+  `subjectId` int NOT NULL,
+  PRIMARY KEY (`departmentId`,`subjectId`),
+  KEY `IDX_91a85c8bc25238fab439e85ff9` (`departmentId`),
+  KEY `IDX_ababb65b4144d62ab4c84d8b35` (`subjectId`),
+  CONSTRAINT `FK_91a85c8bc25238fab439e85ff9a` FOREIGN KEY (`departmentId`) REFERENCES `department` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_ababb65b4144d62ab4c84d8b355` FOREIGN KEY (`subjectId`) REFERENCES `subject` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `department_subjects_subject`
+--
+
+LOCK TABLES `department_subjects_subject` WRITE;
+/*!40000 ALTER TABLE `department_subjects_subject` DISABLE KEYS */;
+/*!40000 ALTER TABLE `department_subjects_subject` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-04-17 17:23:46
+
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: spremiis_dev
+-- ------------------------------------------------------
+-- Server version	8.0.36
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `examination_period`
+--
+
+DROP TABLE IF EXISTS `examination_period`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `examination_period` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `IDX_04312cf675d27088b9409e7756` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `examination_period`
+--
+
+LOCK TABLES `examination_period` WRITE;
+/*!40000 ALTER TABLE `examination_period` DISABLE KEYS */;
+INSERT INTO `examination_period` VALUES (3,'April'),(9,'Decembar'),(1,'Januar'),(4,'Jun'),(5,'Jun2'),(2,'Mart'),(7,'Oktobar'),(8,'Oktobar2'),(6,'Septembar');
+/*!40000 ALTER TABLE `examination_period` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-04-17 17:23:48
+
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: spremiis_dev
+-- ------------------------------------------------------
+-- Server version	8.0.36
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `post`
+--
+
+DROP TABLE IF EXISTS `post`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `post` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `text` varchar(1000) NOT NULL,
+  `date` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+  `title` varchar(100) NOT NULL,
+  `userId` int DEFAULT NULL,
+  `subjectId` int DEFAULT NULL,
+  `typeId` int DEFAULT NULL,
+  `yearOfExamId` int DEFAULT NULL,
+  `examinationPeriodId` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_5c1cf55c308037b5aca1038a131` (`userId`),
+  KEY `FK_e1b114a8be985356d01aa1095ce` (`subjectId`),
+  KEY `FK_593707a0d30fe8797406a244637` (`typeId`),
+  KEY `FK_cae3c77918fd0f799287c56ddc5` (`yearOfExamId`),
+  KEY `FK_c5d21127de060d3be2e046d2c21` (`examinationPeriodId`),
+  FULLTEXT KEY `IDX_d604d2a0b35bdf7f3f827a47e8` (`text`),
+  FULLTEXT KEY `IDX_e28aa0c4114146bfb1567bfa9a` (`title`),
+  CONSTRAINT `FK_593707a0d30fe8797406a244637` FOREIGN KEY (`typeId`) REFERENCES `type` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_5c1cf55c308037b5aca1038a131` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_c5d21127de060d3be2e046d2c21` FOREIGN KEY (`examinationPeriodId`) REFERENCES `examination_period` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_cae3c77918fd0f799287c56ddc5` FOREIGN KEY (`yearOfExamId`) REFERENCES `year_of_exam` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_e1b114a8be985356d01aa1095ce` FOREIGN KEY (`subjectId`) REFERENCES `subject` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `post`
+--
+
+LOCK TABLES `post` WRITE;
+/*!40000 ALTER TABLE `post` DISABLE KEYS */;
+INSERT INTO `post` VALUES (1,'Danasnji blanket','2022-12-03 23:59:59.000000','Paralelni sistemi',1,15,1,3,1),(2,'quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto','2022-12-03 23:59:59.000000','Naslov2',1,15,2,3,NULL),(3,'est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla','2022-12-03 23:59:59.000000','Naslov3',1,15,1,3,NULL),(4,'et iusto sed quo iure\nvoluptatem occaecati omnis eligendi aut ad\nvoluptatem doloribus vel accusantium quis pariatur\nmolestiae porro eius odio et labore et velit aut','2022-12-03 23:59:59.000000','Naslov4',2,15,2,3,NULL),(5,'ullam et saepe reiciendis voluptatem adipisci\nsit amet autem assumenda provident rerum culpa\nquis hic commodi nesciunt rem tenetur doloremque ipsam iure\nquis sunt voluptatem rerum illo velit','2022-12-03 23:59:59.000000','Naslov5',3,15,1,3,NULL),(6,'repudiandae veniam quaerat sunt sed\nalias aut fugiat sit autem sed est\nvoluptatem omnis possimus esse voluptatibus quis\nest aut tenetur dolor neque','2022-12-03 23:59:59.000000','Naslov6',1,15,2,3,NULL),(7,'ut aspernatur corporis harum nihil quis provident sequi\nmollitia nobis aliquid molestiae\nperspiciatis et ea nemo ab reprehenderit accusantium quas\nvoluptate dolores velit et doloremque molestiae','2022-12-03 23:59:59.000000','Naslov7',1,15,1,3,NULL),(8,'dolore placeat quibusdam ea quo vitae\nmagni quis enim qui quis quo nemo aut saepe\nquidem repellat excepturi ut quia\nsunt ut sequi eos ea sed quas','2022-12-03 23:59:59.000000','Naslov8',1,15,2,3,NULL),(9,'dignissimos aperiam dolorem qui eum\nfacilis quibusdam animi sint suscipit qui sint possimus cum\nquaerat magni maiores excepturi\nipsam ut commodi dolor voluptatum modi aut vitae','2022-12-03 23:59:59.000000','Naslov9',1,15,1,3,NULL),(10,'consectetur animi nesciunt iure dolore\nenim quia ad\nveniam autem ut quam aut nobis\net est aut quod aut provident voluptas autem voluptas','2022-12-03 23:59:59.000000','Naslov10',1,15,2,3,NULL),(11,'','2022-12-03 23:59:59.000000','',1,NULL,NULL,NULL,NULL);
+/*!40000 ALTER TABLE `post` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-04-17 17:23:48
+
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: spremiis_dev
+-- ------------------------------------------------------
+-- Server version	8.0.36
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `postdislikedby`
+--
+
+DROP TABLE IF EXISTS `postdislikedby`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `postdislikedby` (
+  `postId` int NOT NULL,
+  `userId` int NOT NULL,
+  PRIMARY KEY (`postId`,`userId`),
+  KEY `IDX_b94fda9787916409afce3e5fd2` (`postId`),
+  KEY `IDX_b8ae0321f88061b96173603810` (`userId`),
+  CONSTRAINT `FK_b8ae0321f88061b961736038106` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_b94fda9787916409afce3e5fd22` FOREIGN KEY (`postId`) REFERENCES `post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `postdislikedby`
+--
+
+LOCK TABLES `postdislikedby` WRITE;
+/*!40000 ALTER TABLE `postdislikedby` DISABLE KEYS */;
+INSERT INTO `postdislikedby` VALUES (2,3),(3,3),(4,3);
+/*!40000 ALTER TABLE `postdislikedby` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-04-17 17:23:49
+
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: spremiis_dev
+-- ------------------------------------------------------
+-- Server version	8.0.36
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `postlikedby`
+--
+
+DROP TABLE IF EXISTS `postlikedby`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `postlikedby` (
+  `postId` int NOT NULL,
+  `userId` int NOT NULL,
+  PRIMARY KEY (`postId`,`userId`),
+  KEY `IDX_33ea3c4e1b9bb4332d23c07544` (`postId`),
+  KEY `IDX_3dd7c47b53bfe0dd2f168f8211` (`userId`),
+  CONSTRAINT `FK_33ea3c4e1b9bb4332d23c07544d` FOREIGN KEY (`postId`) REFERENCES `post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_3dd7c47b53bfe0dd2f168f82114` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `postlikedby`
+--
+
+LOCK TABLES `postlikedby` WRITE;
+/*!40000 ALTER TABLE `postlikedby` DISABLE KEYS */;
+INSERT INTO `postlikedby` VALUES (1,1),(1,2),(1,3),(2,1),(3,1),(3,2),(4,1);
+/*!40000 ALTER TABLE `postlikedby` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-04-17 17:23:54
+
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: spremiis_dev
+-- ------------------------------------------------------
+-- Server version	8.0.36
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `postreportedby`
+--
+
+DROP TABLE IF EXISTS `postreportedby`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `postreportedby` (
+  `postId` int NOT NULL,
+  `userId` int NOT NULL,
+  PRIMARY KEY (`postId`,`userId`),
+  KEY `IDX_fe0999fd64ef4c9e881ea8ec57` (`postId`),
+  KEY `IDX_c6dc7dce3b06939eb4db213795` (`userId`),
+  CONSTRAINT `FK_c6dc7dce3b06939eb4db2137952` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_fe0999fd64ef4c9e881ea8ec575` FOREIGN KEY (`postId`) REFERENCES `post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `postreportedby`
+--
+
+LOCK TABLES `postreportedby` WRITE;
+/*!40000 ALTER TABLE `postreportedby` DISABLE KEYS */;
+/*!40000 ALTER TABLE `postreportedby` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-04-17 17:23:58
+
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: spremiis_dev
+-- ------------------------------------------------------
+-- Server version	8.0.36
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `post_file`
+--
+
+DROP TABLE IF EXISTS `post_file`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `post_file` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `ext` varchar(256) NOT NULL,
+  `path` varchar(256) NOT NULL,
+  `postId` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_e64c8840cd4cf48791f0642a8c3` (`postId`),
+  CONSTRAINT `FK_e64c8840cd4cf48791f0642a8c3` FOREIGN KEY (`postId`) REFERENCES `post` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `post_file`
+--
+
+LOCK TABLES `post_file` WRITE;
+/*!40000 ALTER TABLE `post_file` DISABLE KEYS */;
+/*!40000 ALTER TABLE `post_file` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-04-17 17:23:45
+
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: spremiis_dev
+-- ------------------------------------------------------
+-- Server version	8.0.36
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `subject`
+--
+
+DROP TABLE IF EXISTS `subject`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `subject` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=273 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `subject`
+--
+
+LOCK TABLES `subject` WRITE;
+/*!40000 ALTER TABLE `subject` DISABLE KEYS */;
+INSERT INTO `subject` VALUES (1,'Algoritmi i programiranje'),(2,'Elektronske komponente'),(3,'Fizika'),(4,'Laboratorijski praktikum - Fizika'),(5,'Matematika I'),(6,'Matematika II'),(7,'Osnovi elektrotehnike I'),(8,'Osnovi elektrotehnike II'),(9,'Uvod u elektroniku'),(10,'Uvod u inženjerstvo'),(11,'Uvod u računarstvo'),(12,'Arhitektura i organizacija računara'),(13,'Arhitektura i organizacija računara 1'),(14,'Arhitektura i organizacija računara 2'),(15,'Baze podataka'),(16,'Digitalna elektronika'),(17,'Diskretna matematika'),(18,'Logičko projektovanje'),(19,'Matematički metodi u računarstvu'),(20,'Objektno orijentisano programiranje'),(21,'Programski jezici'),(22,'Računarski sistemi'),(23,'Strukture podataka'),(24,'Teorija grafova'),(25,'Verovatnoća i statistika'),(26,'Digitalna elektronika'),(27,'Električna kola'),(28,'Linearni sistemi automatskog upravljanja'),(29,'Matematika III'),(30,'Metrologija električnih veličina'),(31,'Mikrokontroleri i programiranje'),(32,'Modeliranje i simulacija dinamičkih sistema'),(33,'Operaciona istraživanja'),(34,'Osnovi elektronike'),(35,'Računarski sistemi'),(36,'Digitalna elektronika'),(37,'Električna kola i signali'),(38,'Elektromagnetika-odabrana poglavlja'),(39,'Matematika 4'),(40,'Matematika III'),(41,'Osnovi elektronike'),(42,'Osnovi mikrotalasne tehnike'),(43,'Osnovi telekomunikacija'),(44,'Teorija telekomunikacija'),(45,'Analogna elektronika'),(46,'Digitalna elektronika'),(47,'Digitalna obrada signala'),(48,'Električna i elektronska merenja'),(49,'Matematika III'),(50,'Objektno orijentisane tehnike projektovanja sistema'),(51,'Osnovi elektronike'),(52,'Signali i sistemi'),(53,'Telekomunikacije'),(54,'Matematika III'),(55,'Materijali za elektroniku'),(56,'Metrologija električnih veličina'),(57,'Osnovi elektronike'),(58,'Osnovi optike'),(59,'Poluprovodničke komponente'),(60,'Projektovanje materijala za elektroniku'),(61,'Signali i sistemi'),(62,'Telekomunikacije'),(63,'Distributivne i industrijske mreže'),(64,'Električna kola'),(65,'Električne instalacije'),(66,'Elektromehaničko pretvaranje energije'),(67,'Elektrotehnički materijali'),(68,'Matematika III'),(69,'Merenja u elektroenergetici'),(70,'Metrologija električnih veličina'),(71,'Modeliranje i simulacija dinamičkih sistema'),(72,'Osnovi elektronike'),(73,'Prenos električne energije'),(74,'Tehnička mehanika'),(75,'Transformatori i mašine jednosmerne struje'),(76,'Automatsko upravljanje'),(77,'Distribuirani sistemi'),(78,'Elektronska merenja'),(79,'Engleski jezik I'),(80,'Engleski jezik II'),(81,'Informacioni sistemi'),(82,'Interakcija čovek-računar'),(83,'Mikroračunarski sistemi'),(84,'Objektno orijentisano projektovanje'),(85,'Operativni sistemi'),(86,'Osnovi analize signala i sistema'),(87,'Projektovanje i analiza algoritama'),(88,'Računarske mreže'),(89,'Sistemi baza podataka'),(90,'Softversko inženjerstvo'),(91,'Telekomunikacije'),(92,'Uvod u teoriju igara'),(93,'Web programiranje'),(94,'Baze podataka'),(95,'Bežični komunikacioni sistemi'),(96,'Digitalna obrada signala'),(97,'Digitalni sistemi automatskog upravljanja'),(98,'Elektromehanicko pretvaranje energije'),(99,'Elektronska merenja'),(100,'Informacioni sistemi'),(101,'Kablovski i optički komunikacioni sistemi'),(102,'Komercijalni softver za simulaciju dinamičkih sistema'),(103,'Mehatronika'),(104,'Merenje neelektričnih veličina'),(105,'Mikroračunarski sistemi'),(106,'Modulacione tehnike'),(107,'Nelinearni SAU'),(108,'Objektno-orijentisano programiranje'),(109,'Optimalno upravljanje'),(110,'Osnovi energetske elektronike'),(111,'Programabilni logički kontroleri'),(112,'Senzori i pretvarači u vozilima'),(113,'Senzori i pretvarači u automatici i robotici'),(114,'Sistemi automatskog upravljanja'),(115,'Solarne komponente i sistemi'),(116,'Telekomunikacije'),(117,'Upravljanje procesima'),(118,'Digitalne telekomunikacije I'),(119,'Elektroakustika'),(120,'Mikrotalasna tehnika'),(121,'Obrada signala u telekomunikacijama'),(122,'Telekomunikacione mreže'),(123,'Teorija informacija'),(124,'Engleski jezik I'),(125,'Engleski jezik II'),(126,'Analogna mikroelektronika'),(127,'Engleski jezik I'),(128,'Engleski jezik II'),(129,'Novi materijali i tehnologije'),(130,'Optoelektronika'),(131,'Projektovanje štampanih ploča'),(132,'Tehnologije mikrosistema'),(133,'Automatsko upravljanje'),(134,'Dijagnostika i monitoring električnih veličina'),(135,'Elektroenergetske komponente'),(136,'Elektromagnetika'),(137,'Elektronska merenja'),(138,'Energetska elektronika'),(139,'Kvalitet električne energije'),(140,'Mašine naizmenične struje'),(141,'Upravljanje procesima'),(142,'Arhitektura i projektovanje softvera'),(143,'Inteligentni informacioni sistemi'),(144,'Metodi i sistemi za obradu signala'),(145,'Mobilni sistemi i servisi'),(146,'Multimedijalni računarski sistemi'),(147,'Napredne baze podataka'),(148,'Paralelni sistemi'),(149,'Prepoznavanje uzoraka'),(150,'Pretraživanje informacija'),(151,'Programski prevodioci'),(152,'Projektovanje računarskih mreža'),(153,'Projektovanje računarskog hardvera'),(154,'Računarska grafika'),(155,'Socijalni i pravni aspekti informatike'),(156,'Veštačka inteligencija'),(157,'Zaštita informacija'),(158,'Dinamika mehanizama i mašina'),(159,'Diskretna matematika'),(160,'Elektroenergetski pretvarači'),(161,'Elektromotorni pogoni'),(162,'Elektronika u medicini'),(163,'Elektronska merna instrumentacija'),(164,'Engleski jezik I'),(165,'Engleski jezik II'),(166,'Identifikacija sistema'),(167,'Inženjerska etika'),(168,'Izvori za napajanje'),(169,'Merenja u ekologiji'),(170,'Merenja u medicini'),(171,'Projektovanje sistema automatskog upravljanja'),(172,'Računarski merno-informacioni sistemi u industriji'),(173,'SCADA sistemi'),(174,'Sistemi za akviziciju podataka'),(175,'Softversko inženjerstvo'),(176,'Tehnika konverzije'),(177,'Termovizija'),(178,'Uvod u robotiku'),(179,'Verovatnoća i statistika'),(180,'Mobilni komunikacioni sistemi'),(181,'Antene i prostiranje'),(182,'Feding i smetnje u digitalnim telekomunikacijama'),(183,'Kodovanje'),(184,'Komunikaciona akustika'),(185,'Optičke mreže'),(186,'Širokopojasne telekomunikacije'),(187,'Digitalna obrada slike'),(188,'Izvori za napajanje'),(189,'Mikrokontroleri'),(190,'Obnovljivi izvori energije'),(191,'Sistemi za rad u realnom vremenu'),(192,'Izvori za napajanje'),(193,'Komponente i kola snage'),(194,'Obnovljivi izvori energije'),(195,'Projektovanje i simulacija mikroelektronskih komponenata'),(196,'Projektovanje mikrosistema'),(197,'Solarne komponente i sistemi'),(198,'Distribuirana proizvodnja električne energije'),(199,'Elektrane'),(200,'Elektroenergetski pretvarači'),(201,'Elektromotorni pogoni'),(202,'Izvori za napajanje'),(203,'Odabrana poglavlja iz elektromotornih pogona'),(204,'Zaštita u elektroenergetici'),(205,'Objektno-orijentisano programiranje'),(206,'Numerička matematika'),(207,'Mikroprocesorski sistemi'),(208,'Multimedijalni sistemi'),(209,'Animacije 1'),(210,'Metrologija električnih veličina'),(211,'Elektronska kola i embeded sistemi'),(212,'Računarske mreže'),(213,'Digitalna obrada slike'),(214,'Animacija 2'),(215,'Akustika'),(216,'Tehnike prikupljanja i konverzije podataka'),(217,'Obnovljivi izvori energije'),(218,'Obrada audio i muzičkog signala'),(219,'Mikrokontroleri'),(220,'Elektronika za multimedijalne sisteme'),(221,'Video produkcija'),(222,'Web tehnologije 1'),(223,'Fotografija'),(224,'Arhitekture digitalnih sistema'),(225,'Impulsna i digitalna elektronska kola'),(226,'Mikroprocesorska tehnika'),(227,'Analogna integrisana kola'),(228,'Osnovi energetske elektronike'),(229,'Projektovanje digitalnih integrisanih kola'),(230,'Projektovanje digitalnih sistema'),(231,'Virtuelni instrumenti'),(232,'Medicinska elektronika'),(233,'Projektovanje analognih integrisanih kola'),(234,'Automatsko upravljanje'),(235,'Računarske igre'),(236,'Kamera i montaža'),(237,'Poslovne komunikacije'),(238,'Inženjersko obrazovanje i održivi razvoj'),(239,'Audio produkcija'),(240,'Autoelektronika'),(241,'Programiranje mobilnih uređaja'),(242,'Solarne komponente i sistemi'),(243,'Primenjena elektromagnetika'),(244,'Osnove mehatronike'),(245,'Uvod u robotiku'),(246,'Programabilni logički kontroleri'),(247,'Web tehnologije 2'),(248,'TV sistemi'),(249,'Računarske igre 2'),(250,'Virtuelna realnost'),(251,'Grafički dizajn'),(252,'Projektovanje računarskih mreža'),(253,'Termovizija'),(254,'Bežične mreže i uređaji'),(255,'Mobilni komunikacioni sistemi'),(256,'Kablovski i optički komunikacioni sistemi'),(257,'Internet stvari'),(258,'SCADA sistemi'),(259,'Stručna praksa'),(260,'Završni rad - istraživački rad'),(261,'Završni rad'),(262,'Projektovanje VLSI'),(263,'RF elektronika'),(264,'Sistemi za rad u realnom vremenu'),(265,'Testiranje elektronskih kola'),(266,'Jezici za modelovanje hardvera'),(267,'Elektroenergetski pretvarači'),(268,'Embeded sistemi'),(269,'Funkcionalna verifikacija'),(270,'Projektovanje elektronskih sistema'),(271,'Programiranje ARM kontrolera'),(272,'Izvori napona napajanja');
+/*!40000 ALTER TABLE `subject` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-04-17 17:23:51
+
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: spremiis_dev
+-- ------------------------------------------------------
+-- Server version	8.0.36
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `subjectondepartment`
+--
+
+DROP TABLE IF EXISTS `subjectondepartment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `subjectondepartment` (
+  `subjectId` int NOT NULL,
+  `departmentId` int NOT NULL,
+  PRIMARY KEY (`subjectId`,`departmentId`),
+  KEY `IDX_f031fcfd63f827df5666909f80` (`subjectId`),
+  KEY `IDX_3928ff3ae2b51bf356c7846719` (`departmentId`),
+  CONSTRAINT `FK_3928ff3ae2b51bf356c78467198` FOREIGN KEY (`departmentId`) REFERENCES `department` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_f031fcfd63f827df5666909f80a` FOREIGN KEY (`subjectId`) REFERENCES `subject` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `subjectondepartment`
+--
+
+LOCK TABLES `subjectondepartment` WRITE;
+/*!40000 ALTER TABLE `subjectondepartment` DISABLE KEYS */;
+INSERT INTO `subjectondepartment` VALUES (1,1),(2,1),(3,1),(4,1),(5,1),(6,1),(7,1),(8,1),(9,1),(10,1),(11,1),(12,2),(13,2),(14,2),(15,2),(16,2),(17,2),(18,2),(19,2),(20,2),(21,2),(22,2),(23,2),(24,2),(25,2),(26,3),(27,3),(28,3),(29,3),(30,3),(31,3),(32,3),(33,3),(34,3),(35,3),(36,4),(37,4),(38,4),(39,4),(40,4),(41,4),(42,4),(43,4),(44,4),(45,5),(46,5),(47,5),(48,5),(49,5),(50,5),(51,5),(52,5),(53,5),(54,6),(55,6),(56,6),(57,6),(58,6),(59,6),(60,6),(61,6),(62,6),(63,7),(64,7),(65,7),(66,7),(67,7),(68,7),(69,7),(70,7),(71,7),(72,7),(73,7),(74,7),(75,7),(76,2),(77,2),(78,2),(79,2),(80,2),(81,2),(82,2),(83,2),(84,2),(85,2),(86,2),(87,2),(88,2),(89,2),(90,2),(91,2),(92,2),(93,2),(94,3),(95,3),(96,3),(97,3),(98,3),(99,3),(100,3),(101,3),(102,3),(103,3),(104,3),(105,3),(106,3),(107,3),(108,3),(109,3),(110,3),(111,3),(112,3),(113,3),(114,3),(115,3),(116,3),(117,3),(118,4),(119,4),(120,4),(121,4),(122,4),(123,4),(124,5),(125,5),(126,6),(127,6),(128,6),(129,6),(130,6),(131,6),(132,6),(133,7),(134,7),(135,7),(136,7),(137,7),(138,7),(139,7),(140,7),(141,7),(142,2),(143,2),(144,2),(145,2),(146,2),(147,2),(148,2),(149,2),(150,2),(151,2),(152,2),(153,2),(154,2),(155,2),(156,2),(157,2),(158,3),(159,3),(160,3),(161,3),(162,3),(163,3),(164,3),(165,3),(166,3),(167,3),(168,3),(169,3),(170,3),(171,3),(172,3),(173,3),(174,3),(175,3),(176,3),(177,3),(178,3),(179,3),(180,4),(181,4),(182,4),(183,4),(184,4),(185,4),(186,4),(187,5),(188,5),(189,5),(190,5),(191,5),(192,6),(193,6),(194,6),(195,6),(196,6),(197,6),(198,7),(199,7),(200,7),(201,7),(202,7),(203,7),(204,7),(205,5),(206,5),(207,5),(208,5),(209,5),(210,5),(211,5),(212,5),(213,5),(214,5),(215,5),(216,5),(217,5),(218,5),(219,5),(220,5),(221,5),(222,5),(223,5),(224,5),(225,5),(226,5),(227,5),(228,5),(229,5),(230,5),(231,5),(232,5),(233,5),(234,5),(235,5),(236,5),(237,5),(238,5),(239,5),(240,5),(241,5),(242,5),(243,5),(244,5),(245,5),(246,5),(247,5),(248,5),(249,5),(250,5),(251,5),(252,5),(253,5),(254,5),(255,5),(256,5),(257,5),(258,5),(259,5),(260,5),(261,5),(262,5),(263,5),(264,5),(265,5),(266,5),(267,5),(268,5),(269,5),(270,5),(271,5),(272,5);
+/*!40000 ALTER TABLE `subjectondepartment` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-04-17 17:24:00
+
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: spremiis_dev
+-- ------------------------------------------------------
+-- Server version	8.0.36
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `subjectonyearofstudy`
+--
+
+DROP TABLE IF EXISTS `subjectonyearofstudy`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `subjectonyearofstudy` (
+  `subjectId` int NOT NULL,
+  `yearOfStudyId` int NOT NULL,
+  PRIMARY KEY (`subjectId`,`yearOfStudyId`),
+  KEY `IDX_056a8b738084af63308f74f8fe` (`subjectId`),
+  KEY `IDX_61ddbdadebc437d96adb0a0d21` (`yearOfStudyId`),
+  CONSTRAINT `FK_056a8b738084af63308f74f8fe2` FOREIGN KEY (`subjectId`) REFERENCES `subject` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_61ddbdadebc437d96adb0a0d216` FOREIGN KEY (`yearOfStudyId`) REFERENCES `year_of_study` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `subjectonyearofstudy`
+--
+
+LOCK TABLES `subjectonyearofstudy` WRITE;
+/*!40000 ALTER TABLE `subjectonyearofstudy` DISABLE KEYS */;
+INSERT INTO `subjectonyearofstudy` VALUES (1,1),(2,1),(3,1),(4,1),(5,1),(6,1),(7,1),(8,1),(9,1),(10,1),(11,1),(12,2),(13,2),(14,2),(15,2),(16,2),(17,2),(18,2),(19,2),(20,2),(21,2),(22,2),(23,2),(24,2),(25,2),(26,2),(27,2),(28,2),(29,2),(30,2),(31,2),(32,2),(33,2),(34,2),(35,2),(36,2),(37,2),(38,2),(39,2),(40,2),(41,2),(42,2),(43,2),(44,2),(45,2),(46,2),(47,2),(48,2),(49,2),(50,2),(51,2),(52,2),(53,2),(54,2),(55,2),(56,2),(57,2),(58,2),(59,2),(60,2),(61,2),(62,2),(63,2),(64,2),(65,2),(66,2),(67,2),(68,2),(69,2),(70,2),(71,2),(72,2),(73,2),(74,2),(75,2),(76,3),(77,3),(78,3),(79,3),(80,3),(81,3),(82,3),(83,3),(84,3),(85,3),(86,3),(87,3),(88,3),(89,3),(90,3),(91,3),(92,3),(93,3),(94,3),(95,3),(96,3),(97,3),(98,3),(99,3),(100,3),(101,3),(102,3),(103,3),(104,3),(105,3),(106,3),(107,3),(108,3),(109,3),(110,3),(111,3),(112,3),(113,3),(114,3),(115,3),(116,3),(117,3),(118,3),(119,3),(120,3),(121,3),(122,3),(123,3),(124,3),(125,3),(126,3),(127,3),(128,3),(129,3),(130,3),(131,3),(132,3),(133,3),(134,3),(135,3),(136,3),(137,3),(138,3),(139,3),(140,3),(141,3),(142,4),(143,4),(144,4),(145,4),(146,4),(147,4),(148,4),(149,4),(150,4),(151,4),(152,4),(153,4),(154,4),(155,4),(156,4),(157,4),(158,4),(159,4),(160,4),(161,4),(162,4),(163,4),(164,4),(165,4),(166,4),(167,4),(168,4),(169,4),(170,4),(171,4),(172,4),(173,4),(174,4),(175,4),(176,4),(177,4),(178,4),(179,4),(180,4),(181,4),(182,4),(183,4),(184,4),(185,4),(186,4),(187,4),(188,4),(189,4),(190,4),(191,4),(192,4),(193,4),(194,4),(195,4),(196,4),(197,4),(198,4),(199,4),(200,4),(201,4),(202,4),(203,4),(204,4),(205,2),(206,2),(207,2),(208,2),(209,2),(210,2),(211,2),(212,3),(213,3),(214,3),(215,3),(216,3),(217,3),(218,3),(219,3),(220,3),(221,3),(222,3),(223,3),(224,3),(225,3),(226,3),(227,3),(228,3),(229,3),(230,3),(231,3),(232,3),(233,3),(234,3),(235,4),(236,4),(237,4),(238,4),(239,4),(240,4),(241,4),(242,4),(243,4),(244,4),(245,4),(246,4),(247,4),(248,4),(249,4),(250,4),(251,4),(252,4),(253,4),(254,4),(255,4),(256,4),(257,4),(258,4),(259,4),(260,4),(261,4),(262,4),(263,4),(264,4),(265,4),(266,4),(267,4),(268,4),(269,4),(270,4),(271,4),(272,4);
+/*!40000 ALTER TABLE `subjectonyearofstudy` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-04-17 17:24:00
+
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: spremiis_dev
+-- ------------------------------------------------------
+-- Server version	8.0.36
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `tutor`
+--
+
+DROP TABLE IF EXISTS `tutor`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tutor` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `price` int unsigned NOT NULL,
+  `groupPrice` int unsigned NOT NULL,
+  `isEnabled` tinyint NOT NULL DEFAULT '1',
+  `message` varchar(200) NOT NULL DEFAULT '',
+  `userId` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_6a8a2d8e7d39c22e48b1c63de90` (`userId`),
+  CONSTRAINT `FK_6a8a2d8e7d39c22e48b1c63de90` FOREIGN KEY (`userId`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tutor`
+--
+
+LOCK TABLES `tutor` WRITE;
+/*!40000 ALTER TABLE `tutor` DISABLE KEYS */;
+INSERT INTO `tutor` VALUES (1,1500,700,1,'SVE ZNAM dodji na cas',1),(2,1200,800,1,'Nastava za predmete',2);
+/*!40000 ALTER TABLE `tutor` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-04-17 17:23:53
+
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: spremiis_dev
+-- ------------------------------------------------------
+-- Server version	8.0.36
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `tutoring_request`
+--
+
+DROP TABLE IF EXISTS `tutoring_request`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tutoring_request` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `isFinished` tinyint NOT NULL DEFAULT '0',
+  `isCanceled` tinyint NOT NULL DEFAULT '0',
+  `rating` int NOT NULL DEFAULT '0',
+  `date` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+  `tutorId` int DEFAULT NULL,
+  `subjectId` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_dcc0eee8bdd9912908c61845876` (`tutorId`),
+  KEY `FK_04be76855537f91a4aacf8bc2e1` (`subjectId`),
+  CONSTRAINT `FK_04be76855537f91a4aacf8bc2e1` FOREIGN KEY (`subjectId`) REFERENCES `subject` (`id`),
+  CONSTRAINT `FK_dcc0eee8bdd9912908c61845876` FOREIGN KEY (`tutorId`) REFERENCES `tutor` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tutoring_request`
+--
+
+LOCK TABLES `tutoring_request` WRITE;
+/*!40000 ALTER TABLE `tutoring_request` DISABLE KEYS */;
+INSERT INTO `tutoring_request` VALUES (1,0,0,0,'2024-04-11 23:14:28.488174',2,12),(2,0,0,0,'2024-04-11 23:30:22.029052',1,12);
+/*!40000 ALTER TABLE `tutoring_request` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-04-17 17:23:51
+
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: spremiis_dev
+-- ------------------------------------------------------
+-- Server version	8.0.36
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `tutoring_request_students_user`
+--
+
+DROP TABLE IF EXISTS `tutoring_request_students_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tutoring_request_students_user` (
+  `tutoringRequestId` int NOT NULL,
+  `userId` int NOT NULL,
+  PRIMARY KEY (`tutoringRequestId`,`userId`),
+  KEY `IDX_04c6cae8358dece4f7e5d94efd` (`tutoringRequestId`),
+  KEY `IDX_7f47a93cd8cdf19a975298042e` (`userId`),
+  CONSTRAINT `FK_04c6cae8358dece4f7e5d94efdf` FOREIGN KEY (`tutoringRequestId`) REFERENCES `tutoring_request` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_7f47a93cd8cdf19a975298042ed` FOREIGN KEY (`userId`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tutoring_request_students_user`
+--
+
+LOCK TABLES `tutoring_request_students_user` WRITE;
+/*!40000 ALTER TABLE `tutoring_request_students_user` DISABLE KEYS */;
+INSERT INTO `tutoring_request_students_user` VALUES (1,1),(2,2);
+/*!40000 ALTER TABLE `tutoring_request_students_user` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-04-17 17:23:57
+
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: spremiis_dev
+-- ------------------------------------------------------
+-- Server version	8.0.36
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `tutor_request_message`
+--
+
+DROP TABLE IF EXISTS `tutor_request_message`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tutor_request_message` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `text` varchar(255) NOT NULL,
+  `date` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+  `tutoringRequestId` int DEFAULT NULL,
+  `authorId` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_bb72d285ce153974265d7a12a45` (`tutoringRequestId`),
+  KEY `FK_b95a8a0b4d7f9cf79e3fd12fccd` (`authorId`),
+  CONSTRAINT `FK_b95a8a0b4d7f9cf79e3fd12fccd` FOREIGN KEY (`authorId`) REFERENCES `user` (`id`),
+  CONSTRAINT `FK_bb72d285ce153974265d7a12a45` FOREIGN KEY (`tutoringRequestId`) REFERENCES `tutoring_request` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tutor_request_message`
+--
+
+LOCK TABLES `tutor_request_message` WRITE;
+/*!40000 ALTER TABLE `tutor_request_message` DISABLE KEYS */;
+INSERT INTO `tutor_request_message` VALUES (1,'prva porukica','2024-04-12 00:58:09.834610',1,1);
+/*!40000 ALTER TABLE `tutor_request_message` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-04-17 17:23:45
+
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: spremiis_dev
+-- ------------------------------------------------------
+-- Server version	8.0.36
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `tutor_subject`
+--
+
+DROP TABLE IF EXISTS `tutor_subject`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tutor_subject` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `isEnabled` tinyint NOT NULL DEFAULT '1',
+  `tutorId` int DEFAULT NULL,
+  `subjectId` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_2f3a26cf045d0ab42de39247f24` (`tutorId`),
+  KEY `FK_fb0853d9629eb82347718d89d61` (`subjectId`),
+  CONSTRAINT `FK_2f3a26cf045d0ab42de39247f24` FOREIGN KEY (`tutorId`) REFERENCES `tutor` (`id`),
+  CONSTRAINT `FK_fb0853d9629eb82347718d89d61` FOREIGN KEY (`subjectId`) REFERENCES `subject` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tutor_subject`
+--
+
+LOCK TABLES `tutor_subject` WRITE;
+/*!40000 ALTER TABLE `tutor_subject` DISABLE KEYS */;
+INSERT INTO `tutor_subject` VALUES (1,1,1,26),(2,1,2,13),(3,1,2,12),(4,1,2,14),(5,1,2,15),(6,1,1,16),(7,0,1,27),(8,1,1,13);
+/*!40000 ALTER TABLE `tutor_subject` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-04-17 17:23:55
+
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: spremiis_dev
+-- ------------------------------------------------------
+-- Server version	8.0.36
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `type`
+--
+
+DROP TABLE IF EXISTS `type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `type` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `IDX_e23bfe7255ada131861292923f` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `type`
+--
+
+LOCK TABLES `type` WRITE;
+/*!40000 ALTER TABLE `type` DISABLE KEYS */;
+INSERT INTO `type` VALUES (1,'Blanket'),(4,'Kolokvijum I'),(5,'Kolokvijum II'),(3,'Lab'),(6,'Predavanja'),(7,'Racunske'),(2,'Skripta');
+/*!40000 ALTER TABLE `type` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-04-17 17:23:59
+
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: spremiis_dev
+-- ------------------------------------------------------
+-- Server version	8.0.36
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(128) NOT NULL,
+  `email` varchar(128) NOT NULL,
+  `password` varchar(128) NOT NULL,
+  `role` varchar(255) NOT NULL,
+  `banned` tinyint NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `IDX_78a916df40e02a9deb1c4b75ed` (`username`),
+  UNIQUE KEY `IDX_e12875dfb3b1d92d7d7c5377e2` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'Admin','admin@spremiispit.com','$2b$10$m6h31jtlXT6L3M/uwory8OjhE9gDMpIuTjYMo2P84jltANjBZsPDC','admin',0),(2,'a','a@spremiispit.com','$2b$10$m6h31jtlXT6L3M/uwory8OjhE9gDMpIuTjYMo2P84jltANjBZsPDC','visitor',0),(3,'b','b@spremiispit.com','$2b$10$m6h31jtlXT6L3M/uwory8OjhE9gDMpIuTjYMo2P84jltANjBZsPDC','visitor',0),(4,'c','c@spremiispit.com','$2b$10$m6h31jtlXT6L3M/uwory8OjhE9gDMpIuTjYMo2P84jltANjBZsPDC','visitor',0),(5,'d','d@spremiispit.com','$2b$10$m6h31jtlXT6L3M/uwory8OjhE9gDMpIuTjYMo2P84jltANjBZsPDC','visitor',0);
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-04-17 17:23:44
+
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: spremiis_dev
+-- ------------------------------------------------------
+-- Server version	8.0.36
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `user_disliked_comments_comment`
+--
+
+DROP TABLE IF EXISTS `user_disliked_comments_comment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user_disliked_comments_comment` (
+  `userId` int NOT NULL,
+  `commentId` int NOT NULL,
+  PRIMARY KEY (`userId`,`commentId`),
+  KEY `IDX_b4e1b809d2d7cf361d1cf0548c` (`userId`),
+  KEY `IDX_d627aa85bb60c0591fd1ccdd29` (`commentId`),
+  CONSTRAINT `FK_b4e1b809d2d7cf361d1cf0548cc` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_d627aa85bb60c0591fd1ccdd29b` FOREIGN KEY (`commentId`) REFERENCES `comment` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_disliked_comments_comment`
+--
+
+LOCK TABLES `user_disliked_comments_comment` WRITE;
+/*!40000 ALTER TABLE `user_disliked_comments_comment` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user_disliked_comments_comment` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-04-17 17:23:49
+
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: spremiis_dev
+-- ------------------------------------------------------
+-- Server version	8.0.36
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `user_disliked_posts_post`
+--
+
+DROP TABLE IF EXISTS `user_disliked_posts_post`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user_disliked_posts_post` (
+  `userId` int NOT NULL,
+  `postId` int NOT NULL,
+  PRIMARY KEY (`userId`,`postId`),
+  KEY `IDX_7c477ee7fedf24de41c072c11d` (`userId`),
+  KEY `IDX_77a31f8f6d0b2e4458ff0f383f` (`postId`),
+  CONSTRAINT `FK_77a31f8f6d0b2e4458ff0f383fe` FOREIGN KEY (`postId`) REFERENCES `post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_7c477ee7fedf24de41c072c11d4` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_disliked_posts_post`
+--
+
+LOCK TABLES `user_disliked_posts_post` WRITE;
+/*!40000 ALTER TABLE `user_disliked_posts_post` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user_disliked_posts_post` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-04-17 17:23:54
+
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: spremiis_dev
+-- ------------------------------------------------------
+-- Server version	8.0.36
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `user_liked_comments_comment`
+--
+
+DROP TABLE IF EXISTS `user_liked_comments_comment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user_liked_comments_comment` (
+  `userId` int NOT NULL,
+  `commentId` int NOT NULL,
+  PRIMARY KEY (`userId`,`commentId`),
+  KEY `IDX_28480f4a947f116688cfbb3d1f` (`userId`),
+  KEY `IDX_6c7cf46975e37202be520a6475` (`commentId`),
+  CONSTRAINT `FK_28480f4a947f116688cfbb3d1fe` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_6c7cf46975e37202be520a6475a` FOREIGN KEY (`commentId`) REFERENCES `comment` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_liked_comments_comment`
+--
+
+LOCK TABLES `user_liked_comments_comment` WRITE;
+/*!40000 ALTER TABLE `user_liked_comments_comment` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user_liked_comments_comment` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-04-17 17:23:56
+
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: spremiis_dev
+-- ------------------------------------------------------
+-- Server version	8.0.36
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `user_liked_posts_post`
+--
+
+DROP TABLE IF EXISTS `user_liked_posts_post`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user_liked_posts_post` (
+  `userId` int NOT NULL,
+  `postId` int NOT NULL,
+  PRIMARY KEY (`userId`,`postId`),
+  KEY `IDX_6199124c646dd9a89215eaa80d` (`userId`),
+  KEY `IDX_2fa174d02cadc279ba767cf199` (`postId`),
+  CONSTRAINT `FK_2fa174d02cadc279ba767cf199e` FOREIGN KEY (`postId`) REFERENCES `post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_6199124c646dd9a89215eaa80d4` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_liked_posts_post`
+--
+
+LOCK TABLES `user_liked_posts_post` WRITE;
+/*!40000 ALTER TABLE `user_liked_posts_post` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user_liked_posts_post` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-04-17 17:23:46
+
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: spremiis_dev
+-- ------------------------------------------------------
+-- Server version	8.0.36
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `yearofstudyondepartment`
+--
+
+DROP TABLE IF EXISTS `yearofstudyondepartment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `yearofstudyondepartment` (
+  `departmentId` int NOT NULL,
+  `yearOfStudyId` int NOT NULL,
+  PRIMARY KEY (`departmentId`,`yearOfStudyId`),
+  KEY `IDX_75f4dd058b16c5b3f49af6f8bd` (`departmentId`),
+  KEY `IDX_df825e4ca06656fbd8fd10ac7f` (`yearOfStudyId`),
+  CONSTRAINT `FK_75f4dd058b16c5b3f49af6f8bdc` FOREIGN KEY (`departmentId`) REFERENCES `department` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_df825e4ca06656fbd8fd10ac7fc` FOREIGN KEY (`yearOfStudyId`) REFERENCES `year_of_study` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `yearofstudyondepartment`
+--
+
+LOCK TABLES `yearofstudyondepartment` WRITE;
+/*!40000 ALTER TABLE `yearofstudyondepartment` DISABLE KEYS */;
+INSERT INTO `yearofstudyondepartment` VALUES (1,1),(2,2),(2,3),(2,4),(3,2),(3,3),(3,4),(4,2),(4,3),(4,4),(5,2),(5,3),(5,4),(6,2),(6,3),(6,4),(7,2),(7,3),(7,4);
+/*!40000 ALTER TABLE `yearofstudyondepartment` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-04-17 17:23:43
+
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: spremiis_dev
+-- ------------------------------------------------------
+-- Server version	8.0.36
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `year_of_exam`
+--
+
+DROP TABLE IF EXISTS `year_of_exam`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `year_of_exam` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `IDX_1bfd3de552f4a940ce468830f3` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `year_of_exam`
+--
+
+LOCK TABLES `year_of_exam` WRITE;
+/*!40000 ALTER TABLE `year_of_exam` DISABLE KEYS */;
+INSERT INTO `year_of_exam` VALUES (1,'2001'),(2,'2002'),(3,'2003'),(4,'2004'),(5,'2005'),(6,'2006'),(7,'2007'),(8,'2008'),(9,'2009'),(10,'2010'),(11,'2011'),(12,'2012'),(13,'2013'),(14,'2014'),(15,'2015'),(16,'2016'),(17,'2017'),(18,'2018'),(19,'2019'),(20,'2020'),(21,'2021'),(22,'2022'),(23,'2023'),(24,'2024');
+/*!40000 ALTER TABLE `year_of_exam` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-04-17 17:23:55
+
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: spremiis_dev
+-- ------------------------------------------------------
+-- Server version	8.0.36
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `year_of_study`
+--
+
+DROP TABLE IF EXISTS `year_of_study`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `year_of_study` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `IDX_7177752830859d86c931be6508` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `year_of_study`
+--
+
+LOCK TABLES `year_of_study` WRITE;
+/*!40000 ALTER TABLE `year_of_study` DISABLE KEYS */;
+INSERT INTO `year_of_study` VALUES (1,'I'),(2,'II'),(3,'III'),(4,'IV'),(5,'V');
+/*!40000 ALTER TABLE `year_of_study` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-04-17 17:23:53
+
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: spremiis_dev
+-- ------------------------------------------------------
+-- Server version	8.0.36
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `year_of_study_departments_department`
+--
+
+DROP TABLE IF EXISTS `year_of_study_departments_department`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `year_of_study_departments_department` (
+  `yearOfStudyId` int NOT NULL,
+  `departmentId` int NOT NULL,
+  PRIMARY KEY (`yearOfStudyId`,`departmentId`),
+  KEY `IDX_db6b569ab0094204016074b0bb` (`yearOfStudyId`),
+  KEY `IDX_4cbc2ef384b2a2d4058586cdfe` (`departmentId`),
+  CONSTRAINT `FK_4cbc2ef384b2a2d4058586cdfe2` FOREIGN KEY (`departmentId`) REFERENCES `department` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_db6b569ab0094204016074b0bb6` FOREIGN KEY (`yearOfStudyId`) REFERENCES `year_of_study` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `year_of_study_departments_department`
+--
+
+LOCK TABLES `year_of_study_departments_department` WRITE;
+/*!40000 ALTER TABLE `year_of_study_departments_department` DISABLE KEYS */;
+/*!40000 ALTER TABLE `year_of_study_departments_department` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-04-17 17:23:43
+
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: spremiis_dev
+-- ------------------------------------------------------
+-- Server version	8.0.36
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `year_of_study_subjects_subject`
+--
+
+DROP TABLE IF EXISTS `year_of_study_subjects_subject`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `year_of_study_subjects_subject` (
+  `yearOfStudyId` int NOT NULL,
+  `subjectId` int NOT NULL,
+  PRIMARY KEY (`yearOfStudyId`,`subjectId`),
+  KEY `IDX_906c1e240bee241f4d728970a9` (`yearOfStudyId`),
+  KEY `IDX_d2144a58ed525c39637bfb0fc3` (`subjectId`),
+  CONSTRAINT `FK_906c1e240bee241f4d728970a99` FOREIGN KEY (`yearOfStudyId`) REFERENCES `year_of_study` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_d2144a58ed525c39637bfb0fc34` FOREIGN KEY (`subjectId`) REFERENCES `subject` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `year_of_study_subjects_subject`
+--
+
+LOCK TABLES `year_of_study_subjects_subject` WRITE;
+/*!40000 ALTER TABLE `year_of_study_subjects_subject` DISABLE KEYS */;
+/*!40000 ALTER TABLE `year_of_study_subjects_subject` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-04-17 17:23:50

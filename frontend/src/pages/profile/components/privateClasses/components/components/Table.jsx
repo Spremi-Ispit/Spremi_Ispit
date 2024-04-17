@@ -28,43 +28,38 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
-
-export default function Table() {
+export default function Table({ columns, payload }) {
   return (
     <TableContainer component={Paper}>
       <MUITable sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
-          <TableRow>
-            <StyledTableCell>Dessert (100g serving)</StyledTableCell>
-            <StyledTableCell align="right">Calories</StyledTableCell>
-            <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell>
-          </TableRow>
+          <StyledTableRow>
+            {columns.map((column) => {
+              const { name, width } = column;
+              return (
+                <StyledTableCell align="left" width={width} key={name}>
+                  {name}
+                </StyledTableCell>
+              );
+            })}
+          </StyledTableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell component="th" scope="row">
-                {row.name}
-              </StyledTableCell>
-              <StyledTableCell align="right">{row.calories}</StyledTableCell>
-              <StyledTableCell align="right">{row.fat}</StyledTableCell>
-              <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-              <StyledTableCell align="right">{row.protein}</StyledTableCell>
-            </StyledTableRow>
-          ))}
+          {payload.map((rowData, index) => {
+            return (
+              <StyledTableRow key={index}>
+                {columns.map((column) => {
+                  const { accessor, name } = column;
+
+                  return (
+                    <StyledTableCell key={name} align="left">
+                      {accessor(rowData)}
+                    </StyledTableCell>
+                  );
+                })}
+              </StyledTableRow>
+            );
+          })}
         </TableBody>
       </MUITable>
     </TableContainer>
