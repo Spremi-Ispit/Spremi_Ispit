@@ -52,7 +52,6 @@ const TakenClasses = () => {
   useEffect(() => {
     if (response) {
       setTakenClasses(response);
-      // setTakenClasses([]);
     }
   }, [response]);
 

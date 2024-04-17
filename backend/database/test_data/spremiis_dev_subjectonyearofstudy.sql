@@ -16,24 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `subjectonyearofstudy`
---
-
-DROP TABLE IF EXISTS `subjectonyearofstudy`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `subjectonyearofstudy` (
-  `subjectId` int NOT NULL,
-  `yearOfStudyId` int NOT NULL,
-  PRIMARY KEY (`subjectId`,`yearOfStudyId`),
-  KEY `IDX_056a8b738084af63308f74f8fe` (`subjectId`),
-  KEY `IDX_61ddbdadebc437d96adb0a0d21` (`yearOfStudyId`),
-  CONSTRAINT `FK_056a8b738084af63308f74f8fe2` FOREIGN KEY (`subjectId`) REFERENCES `subject` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_61ddbdadebc437d96adb0a0d216` FOREIGN KEY (`yearOfStudyId`) REFERENCES `year_of_study` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `subjectonyearofstudy`
 --
 
@@ -52,4 +34,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:24:00
+-- Dump completed on 2024-04-18  0:06:36

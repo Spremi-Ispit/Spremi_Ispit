@@ -16,24 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `commentreportedby`
---
-
-DROP TABLE IF EXISTS `commentreportedby`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `commentreportedby` (
-  `commentId` int NOT NULL,
-  `userId` int NOT NULL,
-  PRIMARY KEY (`commentId`,`userId`),
-  KEY `IDX_c9e6547ad3911dced6e3c894b6` (`commentId`),
-  KEY `IDX_763d0df509638976b6e134d6ba` (`userId`),
-  CONSTRAINT `FK_763d0df509638976b6e134d6ba8` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_c9e6547ad3911dced6e3c894b6a` FOREIGN KEY (`commentId`) REFERENCES `comment` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `commentreportedby`
 --
 
@@ -51,4 +33,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:23:59
+-- Dump completed on 2024-04-18  0:06:36

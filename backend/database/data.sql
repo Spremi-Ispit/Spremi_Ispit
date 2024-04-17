@@ -16,22 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `blacklist`
---
-
-DROP TABLE IF EXISTS `blacklist`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `blacklist` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `email` varchar(128) NOT NULL,
-  `date` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `IDX_da3713eb36ad72d1815adbc256` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `blacklist`
 --
 
@@ -49,7 +33,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:23:58
+-- Dump completed on 2024-04-18  0:06:34
 
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
@@ -67,28 +51,6 @@ UNLOCK TABLES;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `comment`
---
-
-DROP TABLE IF EXISTS `comment`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `comment` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `text` varchar(1000) NOT NULL,
-  `date` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-  `userId` int DEFAULT NULL,
-  `postId` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_c0354a9a009d3bb45a08655ce3b` (`userId`),
-  KEY `FK_94a85bb16d24033a2afdd5df060` (`postId`),
-  FULLTEXT KEY `IDX_84eaa1e0d08e574fb78fd3c9b3` (`text`),
-  CONSTRAINT `FK_94a85bb16d24033a2afdd5df060` FOREIGN KEY (`postId`) REFERENCES `post` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_c0354a9a009d3bb45a08655ce3b` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `comment`
@@ -109,7 +71,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:23:47
+-- Dump completed on 2024-04-18  0:06:23
 
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
@@ -127,24 +89,6 @@ UNLOCK TABLES;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `commentdislikedby`
---
-
-DROP TABLE IF EXISTS `commentdislikedby`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `commentdislikedby` (
-  `commentId` int NOT NULL,
-  `userId` int NOT NULL,
-  PRIMARY KEY (`commentId`,`userId`),
-  KEY `IDX_1a7326d0c476eb8c6dea4342e9` (`commentId`),
-  KEY `IDX_f6c7493c4c56d424cdeae97905` (`userId`),
-  CONSTRAINT `FK_1a7326d0c476eb8c6dea4342e94` FOREIGN KEY (`commentId`) REFERENCES `comment` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_f6c7493c4c56d424cdeae979051` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `commentdislikedby`
@@ -165,7 +109,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:23:57
+-- Dump completed on 2024-04-18  0:06:33
 
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
@@ -183,24 +127,6 @@ UNLOCK TABLES;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `commentlikedby`
---
-
-DROP TABLE IF EXISTS `commentlikedby`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `commentlikedby` (
-  `commentId` int NOT NULL,
-  `userId` int NOT NULL,
-  PRIMARY KEY (`commentId`,`userId`),
-  KEY `IDX_4ac0f8444ca446e68c9961cf6a` (`commentId`),
-  KEY `IDX_db39f1f69436aa2a9186cd2d97` (`userId`),
-  CONSTRAINT `FK_4ac0f8444ca446e68c9961cf6a8` FOREIGN KEY (`commentId`) REFERENCES `comment` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_db39f1f69436aa2a9186cd2d971` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `commentlikedby`
@@ -221,7 +147,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:23:44
+-- Dump completed on 2024-04-18  0:06:21
 
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
@@ -239,24 +165,6 @@ UNLOCK TABLES;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `commentreportedby`
---
-
-DROP TABLE IF EXISTS `commentreportedby`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `commentreportedby` (
-  `commentId` int NOT NULL,
-  `userId` int NOT NULL,
-  PRIMARY KEY (`commentId`,`userId`),
-  KEY `IDX_c9e6547ad3911dced6e3c894b6` (`commentId`),
-  KEY `IDX_763d0df509638976b6e134d6ba` (`userId`),
-  CONSTRAINT `FK_763d0df509638976b6e134d6ba8` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_c9e6547ad3911dced6e3c894b6a` FOREIGN KEY (`commentId`) REFERENCES `comment` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `commentreportedby`
@@ -276,7 +184,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:23:59
+-- Dump completed on 2024-04-18  0:06:36
 
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
@@ -294,24 +202,6 @@ UNLOCK TABLES;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `comment_file`
---
-
-DROP TABLE IF EXISTS `comment_file`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `comment_file` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `ext` varchar(256) NOT NULL,
-  `path` varchar(256) NOT NULL,
-  `commentId` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_cc8be13ff4e856f0baa0917c556` (`commentId`),
-  CONSTRAINT `FK_cc8be13ff4e856f0baa0917c556` FOREIGN KEY (`commentId`) REFERENCES `comment` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `comment_file`
@@ -331,7 +221,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:23:52
+-- Dump completed on 2024-04-18  0:06:28
 
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
@@ -349,21 +239,6 @@ UNLOCK TABLES;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `department`
---
-
-DROP TABLE IF EXISTS `department`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `department` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `IDX_471da4b90e96c1ebe0af221e07` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `department`
@@ -384,7 +259,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:23:50
+-- Dump completed on 2024-04-18  0:06:26
 
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
@@ -402,24 +277,6 @@ UNLOCK TABLES;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `department_subjects_subject`
---
-
-DROP TABLE IF EXISTS `department_subjects_subject`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `department_subjects_subject` (
-  `departmentId` int NOT NULL,
-  `subjectId` int NOT NULL,
-  PRIMARY KEY (`departmentId`,`subjectId`),
-  KEY `IDX_91a85c8bc25238fab439e85ff9` (`departmentId`),
-  KEY `IDX_ababb65b4144d62ab4c84d8b35` (`subjectId`),
-  CONSTRAINT `FK_91a85c8bc25238fab439e85ff9a` FOREIGN KEY (`departmentId`) REFERENCES `department` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_ababb65b4144d62ab4c84d8b355` FOREIGN KEY (`subjectId`) REFERENCES `subject` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `department_subjects_subject`
@@ -439,7 +296,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:23:46
+-- Dump completed on 2024-04-18  0:06:23
 
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
@@ -457,21 +314,6 @@ UNLOCK TABLES;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `examination_period`
---
-
-DROP TABLE IF EXISTS `examination_period`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `examination_period` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `IDX_04312cf675d27088b9409e7756` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `examination_period`
@@ -492,7 +334,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:23:48
+-- Dump completed on 2024-04-18  0:06:25
 
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
@@ -510,39 +352,6 @@ UNLOCK TABLES;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `post`
---
-
-DROP TABLE IF EXISTS `post`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `post` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `text` varchar(1000) NOT NULL,
-  `date` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-  `title` varchar(100) NOT NULL,
-  `userId` int DEFAULT NULL,
-  `subjectId` int DEFAULT NULL,
-  `typeId` int DEFAULT NULL,
-  `yearOfExamId` int DEFAULT NULL,
-  `examinationPeriodId` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_5c1cf55c308037b5aca1038a131` (`userId`),
-  KEY `FK_e1b114a8be985356d01aa1095ce` (`subjectId`),
-  KEY `FK_593707a0d30fe8797406a244637` (`typeId`),
-  KEY `FK_cae3c77918fd0f799287c56ddc5` (`yearOfExamId`),
-  KEY `FK_c5d21127de060d3be2e046d2c21` (`examinationPeriodId`),
-  FULLTEXT KEY `IDX_d604d2a0b35bdf7f3f827a47e8` (`text`),
-  FULLTEXT KEY `IDX_e28aa0c4114146bfb1567bfa9a` (`title`),
-  CONSTRAINT `FK_593707a0d30fe8797406a244637` FOREIGN KEY (`typeId`) REFERENCES `type` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_5c1cf55c308037b5aca1038a131` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_c5d21127de060d3be2e046d2c21` FOREIGN KEY (`examinationPeriodId`) REFERENCES `examination_period` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_cae3c77918fd0f799287c56ddc5` FOREIGN KEY (`yearOfExamId`) REFERENCES `year_of_exam` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_e1b114a8be985356d01aa1095ce` FOREIGN KEY (`subjectId`) REFERENCES `subject` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `post`
@@ -563,7 +372,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:23:48
+-- Dump completed on 2024-04-18  0:06:24
 
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
@@ -581,24 +390,6 @@ UNLOCK TABLES;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `postdislikedby`
---
-
-DROP TABLE IF EXISTS `postdislikedby`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `postdislikedby` (
-  `postId` int NOT NULL,
-  `userId` int NOT NULL,
-  PRIMARY KEY (`postId`,`userId`),
-  KEY `IDX_b94fda9787916409afce3e5fd2` (`postId`),
-  KEY `IDX_b8ae0321f88061b96173603810` (`userId`),
-  CONSTRAINT `FK_b8ae0321f88061b961736038106` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_b94fda9787916409afce3e5fd22` FOREIGN KEY (`postId`) REFERENCES `post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `postdislikedby`
@@ -619,7 +410,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:23:49
+-- Dump completed on 2024-04-18  0:06:25
 
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
@@ -637,24 +428,6 @@ UNLOCK TABLES;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `postlikedby`
---
-
-DROP TABLE IF EXISTS `postlikedby`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `postlikedby` (
-  `postId` int NOT NULL,
-  `userId` int NOT NULL,
-  PRIMARY KEY (`postId`,`userId`),
-  KEY `IDX_33ea3c4e1b9bb4332d23c07544` (`postId`),
-  KEY `IDX_3dd7c47b53bfe0dd2f168f8211` (`userId`),
-  CONSTRAINT `FK_33ea3c4e1b9bb4332d23c07544d` FOREIGN KEY (`postId`) REFERENCES `post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_3dd7c47b53bfe0dd2f168f82114` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `postlikedby`
@@ -675,7 +448,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:23:54
+-- Dump completed on 2024-04-18  0:06:30
 
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
@@ -693,24 +466,6 @@ UNLOCK TABLES;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `postreportedby`
---
-
-DROP TABLE IF EXISTS `postreportedby`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `postreportedby` (
-  `postId` int NOT NULL,
-  `userId` int NOT NULL,
-  PRIMARY KEY (`postId`,`userId`),
-  KEY `IDX_fe0999fd64ef4c9e881ea8ec57` (`postId`),
-  KEY `IDX_c6dc7dce3b06939eb4db213795` (`userId`),
-  CONSTRAINT `FK_c6dc7dce3b06939eb4db2137952` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_fe0999fd64ef4c9e881ea8ec575` FOREIGN KEY (`postId`) REFERENCES `post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `postreportedby`
@@ -730,7 +485,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:23:58
+-- Dump completed on 2024-04-18  0:06:35
 
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
@@ -748,24 +503,6 @@ UNLOCK TABLES;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `post_file`
---
-
-DROP TABLE IF EXISTS `post_file`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `post_file` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `ext` varchar(256) NOT NULL,
-  `path` varchar(256) NOT NULL,
-  `postId` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_e64c8840cd4cf48791f0642a8c3` (`postId`),
-  CONSTRAINT `FK_e64c8840cd4cf48791f0642a8c3` FOREIGN KEY (`postId`) REFERENCES `post` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `post_file`
@@ -785,7 +522,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:23:45
+-- Dump completed on 2024-04-18  0:06:21
 
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
@@ -803,20 +540,6 @@ UNLOCK TABLES;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `subject`
---
-
-DROP TABLE IF EXISTS `subject`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `subject` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=273 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `subject`
@@ -837,7 +560,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:23:51
+-- Dump completed on 2024-04-18  0:06:27
 
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
@@ -855,24 +578,6 @@ UNLOCK TABLES;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `subjectondepartment`
---
-
-DROP TABLE IF EXISTS `subjectondepartment`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `subjectondepartment` (
-  `subjectId` int NOT NULL,
-  `departmentId` int NOT NULL,
-  PRIMARY KEY (`subjectId`,`departmentId`),
-  KEY `IDX_f031fcfd63f827df5666909f80` (`subjectId`),
-  KEY `IDX_3928ff3ae2b51bf356c7846719` (`departmentId`),
-  CONSTRAINT `FK_3928ff3ae2b51bf356c78467198` FOREIGN KEY (`departmentId`) REFERENCES `department` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_f031fcfd63f827df5666909f80a` FOREIGN KEY (`subjectId`) REFERENCES `subject` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `subjectondepartment`
@@ -893,7 +598,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:24:00
+-- Dump completed on 2024-04-18  0:06:37
 
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
@@ -911,24 +616,6 @@ UNLOCK TABLES;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `subjectonyearofstudy`
---
-
-DROP TABLE IF EXISTS `subjectonyearofstudy`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `subjectonyearofstudy` (
-  `subjectId` int NOT NULL,
-  `yearOfStudyId` int NOT NULL,
-  PRIMARY KEY (`subjectId`,`yearOfStudyId`),
-  KEY `IDX_056a8b738084af63308f74f8fe` (`subjectId`),
-  KEY `IDX_61ddbdadebc437d96adb0a0d21` (`yearOfStudyId`),
-  CONSTRAINT `FK_056a8b738084af63308f74f8fe2` FOREIGN KEY (`subjectId`) REFERENCES `subject` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_61ddbdadebc437d96adb0a0d216` FOREIGN KEY (`yearOfStudyId`) REFERENCES `year_of_study` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `subjectonyearofstudy`
@@ -949,7 +636,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:24:00
+-- Dump completed on 2024-04-18  0:06:36
 
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
@@ -969,32 +656,12 @@ UNLOCK TABLES;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `tutor`
---
-
-DROP TABLE IF EXISTS `tutor`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tutor` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `price` int unsigned NOT NULL,
-  `groupPrice` int unsigned NOT NULL,
-  `isEnabled` tinyint NOT NULL DEFAULT '1',
-  `message` varchar(200) NOT NULL DEFAULT '',
-  `userId` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_6a8a2d8e7d39c22e48b1c63de90` (`userId`),
-  CONSTRAINT `FK_6a8a2d8e7d39c22e48b1c63de90` FOREIGN KEY (`userId`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `tutor`
 --
 
 LOCK TABLES `tutor` WRITE;
 /*!40000 ALTER TABLE `tutor` DISABLE KEYS */;
-INSERT INTO `tutor` VALUES (1,1500,700,1,'SVE ZNAM dodji na cas',1),(2,1200,800,1,'Nastava za predmete',2);
+INSERT INTO `tutor` VALUES (1,1500,700,1,'SVE ZNAM dodji na cas','',1),(2,1200,800,1,'Nastava za predmete','',2);
 /*!40000 ALTER TABLE `tutor` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -1007,7 +674,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:23:53
+-- Dump completed on 2024-04-18  0:06:30
 
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
@@ -1025,29 +692,6 @@ UNLOCK TABLES;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `tutoring_request`
---
-
-DROP TABLE IF EXISTS `tutoring_request`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tutoring_request` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `isFinished` tinyint NOT NULL DEFAULT '0',
-  `isCanceled` tinyint NOT NULL DEFAULT '0',
-  `rating` int NOT NULL DEFAULT '0',
-  `date` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-  `tutorId` int DEFAULT NULL,
-  `subjectId` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_dcc0eee8bdd9912908c61845876` (`tutorId`),
-  KEY `FK_04be76855537f91a4aacf8bc2e1` (`subjectId`),
-  CONSTRAINT `FK_04be76855537f91a4aacf8bc2e1` FOREIGN KEY (`subjectId`) REFERENCES `subject` (`id`),
-  CONSTRAINT `FK_dcc0eee8bdd9912908c61845876` FOREIGN KEY (`tutorId`) REFERENCES `tutor` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tutoring_request`
@@ -1068,7 +712,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:23:51
+-- Dump completed on 2024-04-18  0:06:28
 
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
@@ -1086,24 +730,6 @@ UNLOCK TABLES;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `tutoring_request_students_user`
---
-
-DROP TABLE IF EXISTS `tutoring_request_students_user`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tutoring_request_students_user` (
-  `tutoringRequestId` int NOT NULL,
-  `userId` int NOT NULL,
-  PRIMARY KEY (`tutoringRequestId`,`userId`),
-  KEY `IDX_04c6cae8358dece4f7e5d94efd` (`tutoringRequestId`),
-  KEY `IDX_7f47a93cd8cdf19a975298042e` (`userId`),
-  CONSTRAINT `FK_04c6cae8358dece4f7e5d94efdf` FOREIGN KEY (`tutoringRequestId`) REFERENCES `tutoring_request` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_7f47a93cd8cdf19a975298042ed` FOREIGN KEY (`userId`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tutoring_request_students_user`
@@ -1124,7 +750,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:23:57
+-- Dump completed on 2024-04-18  0:06:34
 
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
@@ -1142,27 +768,6 @@ UNLOCK TABLES;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `tutor_request_message`
---
-
-DROP TABLE IF EXISTS `tutor_request_message`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tutor_request_message` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `text` varchar(255) NOT NULL,
-  `date` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-  `tutoringRequestId` int DEFAULT NULL,
-  `authorId` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_bb72d285ce153974265d7a12a45` (`tutoringRequestId`),
-  KEY `FK_b95a8a0b4d7f9cf79e3fd12fccd` (`authorId`),
-  CONSTRAINT `FK_b95a8a0b4d7f9cf79e3fd12fccd` FOREIGN KEY (`authorId`) REFERENCES `user` (`id`),
-  CONSTRAINT `FK_bb72d285ce153974265d7a12a45` FOREIGN KEY (`tutoringRequestId`) REFERENCES `tutoring_request` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tutor_request_message`
@@ -1183,7 +788,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:23:45
+-- Dump completed on 2024-04-18  0:06:22
 
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
@@ -1201,26 +806,6 @@ UNLOCK TABLES;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `tutor_subject`
---
-
-DROP TABLE IF EXISTS `tutor_subject`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tutor_subject` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `isEnabled` tinyint NOT NULL DEFAULT '1',
-  `tutorId` int DEFAULT NULL,
-  `subjectId` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_2f3a26cf045d0ab42de39247f24` (`tutorId`),
-  KEY `FK_fb0853d9629eb82347718d89d61` (`subjectId`),
-  CONSTRAINT `FK_2f3a26cf045d0ab42de39247f24` FOREIGN KEY (`tutorId`) REFERENCES `tutor` (`id`),
-  CONSTRAINT `FK_fb0853d9629eb82347718d89d61` FOREIGN KEY (`subjectId`) REFERENCES `subject` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tutor_subject`
@@ -1241,7 +826,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:23:55
+-- Dump completed on 2024-04-18  0:06:31
 
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
@@ -1259,21 +844,6 @@ UNLOCK TABLES;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `type`
---
-
-DROP TABLE IF EXISTS `type`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `type` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `IDX_e23bfe7255ada131861292923f` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `type`
@@ -1294,7 +864,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:23:59
+-- Dump completed on 2024-04-18  0:06:35
 
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
@@ -1312,26 +882,6 @@ UNLOCK TABLES;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `user`
---
-
-DROP TABLE IF EXISTS `user`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `user` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `username` varchar(128) NOT NULL,
-  `email` varchar(128) NOT NULL,
-  `password` varchar(128) NOT NULL,
-  `role` varchar(255) NOT NULL,
-  `banned` tinyint NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `IDX_78a916df40e02a9deb1c4b75ed` (`username`),
-  UNIQUE KEY `IDX_e12875dfb3b1d92d7d7c5377e2` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `user`
@@ -1352,7 +902,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:23:44
+-- Dump completed on 2024-04-18  0:06:20
 
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
@@ -1370,24 +920,6 @@ UNLOCK TABLES;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `user_disliked_comments_comment`
---
-
-DROP TABLE IF EXISTS `user_disliked_comments_comment`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `user_disliked_comments_comment` (
-  `userId` int NOT NULL,
-  `commentId` int NOT NULL,
-  PRIMARY KEY (`userId`,`commentId`),
-  KEY `IDX_b4e1b809d2d7cf361d1cf0548c` (`userId`),
-  KEY `IDX_d627aa85bb60c0591fd1ccdd29` (`commentId`),
-  CONSTRAINT `FK_b4e1b809d2d7cf361d1cf0548cc` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_d627aa85bb60c0591fd1ccdd29b` FOREIGN KEY (`commentId`) REFERENCES `comment` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `user_disliked_comments_comment`
@@ -1407,7 +939,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:23:49
+-- Dump completed on 2024-04-18  0:06:26
 
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
@@ -1425,24 +957,6 @@ UNLOCK TABLES;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `user_disliked_posts_post`
---
-
-DROP TABLE IF EXISTS `user_disliked_posts_post`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `user_disliked_posts_post` (
-  `userId` int NOT NULL,
-  `postId` int NOT NULL,
-  PRIMARY KEY (`userId`,`postId`),
-  KEY `IDX_7c477ee7fedf24de41c072c11d` (`userId`),
-  KEY `IDX_77a31f8f6d0b2e4458ff0f383f` (`postId`),
-  CONSTRAINT `FK_77a31f8f6d0b2e4458ff0f383fe` FOREIGN KEY (`postId`) REFERENCES `post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_7c477ee7fedf24de41c072c11d4` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `user_disliked_posts_post`
@@ -1462,7 +976,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:23:54
+-- Dump completed on 2024-04-18  0:06:31
 
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
@@ -1480,24 +994,6 @@ UNLOCK TABLES;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `user_liked_comments_comment`
---
-
-DROP TABLE IF EXISTS `user_liked_comments_comment`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `user_liked_comments_comment` (
-  `userId` int NOT NULL,
-  `commentId` int NOT NULL,
-  PRIMARY KEY (`userId`,`commentId`),
-  KEY `IDX_28480f4a947f116688cfbb3d1f` (`userId`),
-  KEY `IDX_6c7cf46975e37202be520a6475` (`commentId`),
-  CONSTRAINT `FK_28480f4a947f116688cfbb3d1fe` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_6c7cf46975e37202be520a6475a` FOREIGN KEY (`commentId`) REFERENCES `comment` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `user_liked_comments_comment`
@@ -1517,7 +1013,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:23:56
+-- Dump completed on 2024-04-18  0:06:32
 
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
@@ -1535,24 +1031,6 @@ UNLOCK TABLES;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `user_liked_posts_post`
---
-
-DROP TABLE IF EXISTS `user_liked_posts_post`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `user_liked_posts_post` (
-  `userId` int NOT NULL,
-  `postId` int NOT NULL,
-  PRIMARY KEY (`userId`,`postId`),
-  KEY `IDX_6199124c646dd9a89215eaa80d` (`userId`),
-  KEY `IDX_2fa174d02cadc279ba767cf199` (`postId`),
-  CONSTRAINT `FK_2fa174d02cadc279ba767cf199e` FOREIGN KEY (`postId`) REFERENCES `post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_6199124c646dd9a89215eaa80d4` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `user_liked_posts_post`
@@ -1572,7 +1050,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:23:46
+-- Dump completed on 2024-04-18  0:06:22
 
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
@@ -1590,24 +1068,6 @@ UNLOCK TABLES;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `yearofstudyondepartment`
---
-
-DROP TABLE IF EXISTS `yearofstudyondepartment`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `yearofstudyondepartment` (
-  `departmentId` int NOT NULL,
-  `yearOfStudyId` int NOT NULL,
-  PRIMARY KEY (`departmentId`,`yearOfStudyId`),
-  KEY `IDX_75f4dd058b16c5b3f49af6f8bd` (`departmentId`),
-  KEY `IDX_df825e4ca06656fbd8fd10ac7f` (`yearOfStudyId`),
-  CONSTRAINT `FK_75f4dd058b16c5b3f49af6f8bdc` FOREIGN KEY (`departmentId`) REFERENCES `department` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_df825e4ca06656fbd8fd10ac7fc` FOREIGN KEY (`yearOfStudyId`) REFERENCES `year_of_study` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `yearofstudyondepartment`
@@ -1628,7 +1088,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:23:43
+-- Dump completed on 2024-04-18  0:06:19
 
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
@@ -1646,21 +1106,6 @@ UNLOCK TABLES;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `year_of_exam`
---
-
-DROP TABLE IF EXISTS `year_of_exam`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `year_of_exam` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `IDX_1bfd3de552f4a940ce468830f3` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `year_of_exam`
@@ -1681,7 +1126,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:23:55
+-- Dump completed on 2024-04-18  0:06:32
 
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
@@ -1699,21 +1144,6 @@ UNLOCK TABLES;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `year_of_study`
---
-
-DROP TABLE IF EXISTS `year_of_study`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `year_of_study` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `IDX_7177752830859d86c931be6508` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `year_of_study`
@@ -1734,7 +1164,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:23:53
+-- Dump completed on 2024-04-18  0:06:29
 
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
@@ -1752,24 +1182,6 @@ UNLOCK TABLES;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `year_of_study_departments_department`
---
-
-DROP TABLE IF EXISTS `year_of_study_departments_department`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `year_of_study_departments_department` (
-  `yearOfStudyId` int NOT NULL,
-  `departmentId` int NOT NULL,
-  PRIMARY KEY (`yearOfStudyId`,`departmentId`),
-  KEY `IDX_db6b569ab0094204016074b0bb` (`yearOfStudyId`),
-  KEY `IDX_4cbc2ef384b2a2d4058586cdfe` (`departmentId`),
-  CONSTRAINT `FK_4cbc2ef384b2a2d4058586cdfe2` FOREIGN KEY (`departmentId`) REFERENCES `department` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_db6b569ab0094204016074b0bb6` FOREIGN KEY (`yearOfStudyId`) REFERENCES `year_of_study` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `year_of_study_departments_department`
@@ -1789,7 +1201,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:23:43
+-- Dump completed on 2024-04-18  0:06:19
 
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
@@ -1809,24 +1221,6 @@ UNLOCK TABLES;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `year_of_study_subjects_subject`
---
-
-DROP TABLE IF EXISTS `year_of_study_subjects_subject`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `year_of_study_subjects_subject` (
-  `yearOfStudyId` int NOT NULL,
-  `subjectId` int NOT NULL,
-  PRIMARY KEY (`yearOfStudyId`,`subjectId`),
-  KEY `IDX_906c1e240bee241f4d728970a9` (`yearOfStudyId`),
-  KEY `IDX_d2144a58ed525c39637bfb0fc3` (`subjectId`),
-  CONSTRAINT `FK_906c1e240bee241f4d728970a99` FOREIGN KEY (`yearOfStudyId`) REFERENCES `year_of_study` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_d2144a58ed525c39637bfb0fc34` FOREIGN KEY (`subjectId`) REFERENCES `subject` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `year_of_study_subjects_subject`
 --
 
@@ -1844,4 +1238,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:23:50
+-- Dump completed on 2024-04-18  0:06:27

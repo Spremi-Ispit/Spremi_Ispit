@@ -16,24 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `postlikedby`
---
-
-DROP TABLE IF EXISTS `postlikedby`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `postlikedby` (
-  `postId` int NOT NULL,
-  `userId` int NOT NULL,
-  PRIMARY KEY (`postId`,`userId`),
-  KEY `IDX_33ea3c4e1b9bb4332d23c07544` (`postId`),
-  KEY `IDX_3dd7c47b53bfe0dd2f168f8211` (`userId`),
-  CONSTRAINT `FK_33ea3c4e1b9bb4332d23c07544d` FOREIGN KEY (`postId`) REFERENCES `post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_3dd7c47b53bfe0dd2f168f82114` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `postlikedby`
 --
 
@@ -52,4 +34,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:23:54
+-- Dump completed on 2024-04-18  0:06:30

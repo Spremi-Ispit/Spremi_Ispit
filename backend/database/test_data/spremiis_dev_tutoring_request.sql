@@ -16,29 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `tutoring_request`
---
-
-DROP TABLE IF EXISTS `tutoring_request`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tutoring_request` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `isFinished` tinyint NOT NULL DEFAULT '0',
-  `isCanceled` tinyint NOT NULL DEFAULT '0',
-  `rating` int NOT NULL DEFAULT '0',
-  `date` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-  `tutorId` int DEFAULT NULL,
-  `subjectId` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_dcc0eee8bdd9912908c61845876` (`tutorId`),
-  KEY `FK_04be76855537f91a4aacf8bc2e1` (`subjectId`),
-  CONSTRAINT `FK_04be76855537f91a4aacf8bc2e1` FOREIGN KEY (`subjectId`) REFERENCES `subject` (`id`),
-  CONSTRAINT `FK_dcc0eee8bdd9912908c61845876` FOREIGN KEY (`tutorId`) REFERENCES `tutor` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `tutoring_request`
 --
 
@@ -57,4 +34,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:23:51
+-- Dump completed on 2024-04-18  0:06:28

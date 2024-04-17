@@ -16,24 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `tutoring_request_students_user`
---
-
-DROP TABLE IF EXISTS `tutoring_request_students_user`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tutoring_request_students_user` (
-  `tutoringRequestId` int NOT NULL,
-  `userId` int NOT NULL,
-  PRIMARY KEY (`tutoringRequestId`,`userId`),
-  KEY `IDX_04c6cae8358dece4f7e5d94efd` (`tutoringRequestId`),
-  KEY `IDX_7f47a93cd8cdf19a975298042e` (`userId`),
-  CONSTRAINT `FK_04c6cae8358dece4f7e5d94efdf` FOREIGN KEY (`tutoringRequestId`) REFERENCES `tutoring_request` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_7f47a93cd8cdf19a975298042ed` FOREIGN KEY (`userId`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `tutoring_request_students_user`
 --
 
@@ -52,4 +34,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:23:57
+-- Dump completed on 2024-04-18  0:06:34
