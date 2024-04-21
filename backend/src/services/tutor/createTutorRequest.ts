@@ -1,11 +1,12 @@
 import { Tutor } from '../../entities/Tutor';
+import { TutorRequestMessage } from '../../entities/TutorRequestMessage';
 import { TutoringRequest } from '../../entities/TutoringRequest';
 import { User } from '../../entities/User';
 import { Subject } from '../../entities/filters/Subject';
 import response from '../../utils/response';
 
 export const createTutorRequest = async (req: any) => {
-  const { tutorId, subjectId, userID } = req.body;
+  const { tutorId, subjectId, message, userID } = req.body;
 
   if (!tutorId || !subjectId)
     return response.BAD_REQUEST('No tutor or subject selected!');
@@ -39,6 +40,14 @@ export const createTutorRequest = async (req: any) => {
   });
 
   await newTutoringRequest.save();
+
+  const newTutorRequestMessage = TutorRequestMessage.create({
+    author: user,
+    tutoringRequest: newTutoringRequest,
+    text: message
+  });
+
+  await newTutorRequestMessage.save();
 
   return response.OK(newTutoringRequest.id);
 };

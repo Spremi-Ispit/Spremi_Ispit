@@ -12,33 +12,31 @@ import { useApiActions } from '../../../api/useApiActions';
 import Loader from '../../../components/Loader';
 import ErrorDialog from '../../../components/dialogs/ErrorDialog';
 import { tutorRequestRoute } from '../../../router/routes';
-import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@mui/material';
-import Slide from '@mui/material/Slide';
+import SendRequestDialog from './components/SendRequestDialog';
 
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
-
-const defaultDescription =
-  'Rado ću ti pomoći da se spremiš za ispit ili laboratorijsku vežbu!';
 
 const Tutor = ({ tutor }) => {
   const { id, name, description, subjects, price, rating, userId } = tutor;
   const { personally, group } = price;
   const navigate = useNavigate();
   const userRating = [0, 0]; // TODO: request user rating
+  const [open, setOpen] = useState(false);
 
-  const submitRequest = (event) => {
-    console.log("zabaa");
-    handleDialogClose();
+  const closeSendRequestDialog = () => {
+    setOpen(false);
+  };
+
+  const openSendRequestDialog = () => {
+    setOpen(true);
+  };
+
+  const onSuccess = (id) => {
+    closeSendRequestDialog();
+    navigate(tutorRequestRoute(id))
   }
-
-  if (loading) {
-    return <Loader />;
-  }
-
-  if (error) {
-    return <ErrorDialog error={error} setError={setError} />;
+  const onError = (error) => {
+    closeSendRequestDialog();
+    console.log(error);
   }
 
   return (
@@ -85,7 +83,8 @@ const Tutor = ({ tutor }) => {
             )}
           </PricesDiv>
           <LessonScheduleDiv>
-            <Button onClick={handleDialogOpen}>Zahtevaj čas</Button>
+            <Button onClick={openSendRequestDialog}>Zahtevaj čas</Button>
+            <SendRequestDialog open={open} onClose={closeSendRequestDialog} subjects={subjects} tutorId={id} onError={onError} onSuccess={onSuccess} />
           </LessonScheduleDiv>
         </TutorFooterDiv>
 
