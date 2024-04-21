@@ -5,7 +5,8 @@ import * as authServices from './auth';
 import * as filtersServices from './filters';
 import * as fileServices from './file';
 import * as userServices from './user';
-import * as tutorServices from './tutor'
+import * as tutorServices from './tutor';
+
 const services = {
   postServices,
   commentServices,

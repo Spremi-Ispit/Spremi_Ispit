@@ -8,4 +8,6 @@ export { getTutoringRequestsStudent } from './getTutoringRequestsStudent';
 export { deleteTutorProfile } from './deleteTutorProfile';
 export { deleteSubjectFromTutor } from './deleteSubjectFromTutor';
 export { updateTutorProfile } from './updateTutorProfile';
-export { createTutorRequestMessage } from "./createTutorRequestMessage"
+export { createTutorRequestMessage } from './createTutorRequestMessage';
+export { getTutorSubjects } from './getTutorSbujects';
+export { getTutorByUserId } from './getTutorByUserId';
