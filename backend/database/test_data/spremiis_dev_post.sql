@@ -16,39 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `post`
---
-
-DROP TABLE IF EXISTS `post`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `post` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `text` varchar(1000) NOT NULL,
-  `date` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-  `title` varchar(100) NOT NULL,
-  `userId` int DEFAULT NULL,
-  `subjectId` int DEFAULT NULL,
-  `typeId` int DEFAULT NULL,
-  `yearOfExamId` int DEFAULT NULL,
-  `examinationPeriodId` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_5c1cf55c308037b5aca1038a131` (`userId`),
-  KEY `FK_e1b114a8be985356d01aa1095ce` (`subjectId`),
-  KEY `FK_593707a0d30fe8797406a244637` (`typeId`),
-  KEY `FK_cae3c77918fd0f799287c56ddc5` (`yearOfExamId`),
-  KEY `FK_c5d21127de060d3be2e046d2c21` (`examinationPeriodId`),
-  FULLTEXT KEY `IDX_d604d2a0b35bdf7f3f827a47e8` (`text`),
-  FULLTEXT KEY `IDX_e28aa0c4114146bfb1567bfa9a` (`title`),
-  CONSTRAINT `FK_593707a0d30fe8797406a244637` FOREIGN KEY (`typeId`) REFERENCES `type` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_5c1cf55c308037b5aca1038a131` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_c5d21127de060d3be2e046d2c21` FOREIGN KEY (`examinationPeriodId`) REFERENCES `examination_period` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_cae3c77918fd0f799287c56ddc5` FOREIGN KEY (`yearOfExamId`) REFERENCES `year_of_exam` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_e1b114a8be985356d01aa1095ce` FOREIGN KEY (`subjectId`) REFERENCES `subject` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `post`
 --
 
@@ -67,4 +34,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:23:48
+-- Dump completed on 2024-04-18  0:06:24

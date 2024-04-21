@@ -16,32 +16,12 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `tutor`
---
-
-DROP TABLE IF EXISTS `tutor`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tutor` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `price` int unsigned NOT NULL,
-  `groupPrice` int unsigned NOT NULL,
-  `isEnabled` tinyint NOT NULL DEFAULT '1',
-  `message` varchar(200) NOT NULL DEFAULT '',
-  `userId` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_6a8a2d8e7d39c22e48b1c63de90` (`userId`),
-  CONSTRAINT `FK_6a8a2d8e7d39c22e48b1c63de90` FOREIGN KEY (`userId`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `tutor`
 --
 
 LOCK TABLES `tutor` WRITE;
 /*!40000 ALTER TABLE `tutor` DISABLE KEYS */;
-INSERT INTO `tutor` VALUES (1,1500,700,1,'SVE ZNAM dodji na cas',1),(2,1200,800,1,'Nastava za predmete',2);
+INSERT INTO `tutor` VALUES (1,1500,700,1,'SVE ZNAM dodji na cas','',1),(2,1200,800,1,'Nastava za predmete','',2);
 /*!40000 ALTER TABLE `tutor` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +34,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 17:23:53
+-- Dump completed on 2024-04-18  0:06:30
