@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
@@ -11,32 +12,26 @@ import { useApiActions } from '../../../api/useApiActions';
 import Loader from '../../../components/Loader';
 import ErrorDialog from '../../../components/dialogs/ErrorDialog';
 import { tutorRequestRoute } from '../../../router/routes';
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@mui/material';
+import Slide from '@mui/material/Slide';
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 const defaultDescription =
   'Rado ću ti pomoći da se spremiš za ispit ili laboratorijsku vežbu!';
 
 const Tutor = ({ tutor }) => {
-  const { id, name, description, subjects, price, rating } = tutor;
+  const { id, name, description, subjects, price, rating, userId } = tutor;
   const { personally, group } = price;
-  const { createTutorRequest } = useApiActions();
-  const { action, error, setError, response, loading } = createTutorRequest;
   const navigate = useNavigate();
+  const userRating = [0, 0]; // TODO: request user rating
 
-  const userRating = (rate) =>
-    rating.reduce(
-      (accumulator, user) => (accumulator + user.rate === rate ? 1 : 0),
-      0
-    );
-
-  useEffect(() => {
-    if (response) {
-      navigate(tutorRequestRoute);
-    }
-  }, [response]);
-
-  const handleLessonScheduleDiv = () => {
-    action('data...');
-  };
+  const submitRequest = (event) => {
+    console.log("zabaa");
+    handleDialogClose();
+  }
 
   if (loading) {
     return <Loader />;
@@ -55,9 +50,9 @@ const Tutor = ({ tutor }) => {
         <TutorIdDiv>{name}</TutorIdDiv>
         <LikesDislikesDiv>
           <ThumbUpOffAltIcon />
-          <UserRatingDiv>{userRating(1)}</UserRatingDiv>
+          <UserRatingDiv>{userRating[0]}</UserRatingDiv>
           <DividerDiv />
-          <UserRatingDiv>{userRating(-1)}</UserRatingDiv>
+          <UserRatingDiv>{userRating[1]}</UserRatingDiv>
           <ThumbDownOffAltIcon />
         </LikesDislikesDiv>
       </TutorHeaderDiv>
@@ -90,9 +85,10 @@ const Tutor = ({ tutor }) => {
             )}
           </PricesDiv>
           <LessonScheduleDiv>
-            <Button onClick={handleLessonScheduleDiv}>Zakaži čas</Button>
+            <Button onClick={handleDialogOpen}>Zahtevaj čas</Button>
           </LessonScheduleDiv>
         </TutorFooterDiv>
+
       </TutorContentDiv>
     </TutorDiv>
   );
