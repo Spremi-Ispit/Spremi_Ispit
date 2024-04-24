@@ -9,6 +9,8 @@ import colors from '../../theme/colors';
 import Instagram from './components/Instagram';
 import Tutor from './components/Tutor';
 import { useApiActions } from '../../api/useApiActions';
+import Loader from '../../components/Loader';
+import ErrorDialog from '../../components/dialogs/ErrorDialog';
 
 
 const Tutoring = () => {
@@ -39,7 +41,7 @@ const Tutoring = () => {
       });
       const uniqueObjects = originalArray.filter((obj, index) => {
         return originalArray.findIndex(prevObj =>
-          JSON.stringify(prevObj) === JSON.stringify(obj)
+          prevObj.id === obj.id
         ) === index;
       });
       setLessons(uniqueObjects);
@@ -50,6 +52,15 @@ const Tutoring = () => {
   useEffect(() => {
     action();
   }, []);
+
+
+  if (loading) {
+    return <Loader />;
+  }
+
+  if (error) {
+    return <ErrorDialog error={error} setError={setError} />;
+  }
 
   return (
     <>

@@ -5,20 +5,19 @@ const mapTutorDTO = (tutor) => {
     id: tutor.id,
     link: tutor.chatLink,
     name: tutor.user.username,
+    userId: tutor.user.id,
     description: tutor.message,
     price: {
       personally: tutor.price,
-      group: tutor.group,
+      group: tutor.groupPrice
     },
     rating: [],
-    user: tutor.user,
-    subjects: tutor.tutorSubjects
-      .filter((subject) => subject.isEnabled)
-      .map((subject) => subject.subject),
+    subjects: tutor.tutorSubjects.filter((subject) => subject.isEnabled).map((subject) => subject.subject),
   };
+  console.log(tutor);
   console.log(newTutor);
   return newTutor;
-};
+}
 
 export const getTutors = async () => {
   return services.get('/tutors/getTutors').then((tutors) => {
