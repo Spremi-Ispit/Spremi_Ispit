@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import YearOfStudy from './components/YearOfStudy';
 import Department from './components/Department';
@@ -28,21 +28,16 @@ const AddSubject = ({ setReloadSubjects }) => {
   const urlManager = useUrlManager();
   const { urlYearOfStudy, urlDepartment, urlSubject } = urlManager.getParams();
   const { addSubjectToTutor } = useApiActions();
-  const { action, loading, response, error, setError } = addSubjectToTutor;
+  const { action, loading, error, setError } = addSubjectToTutor;
   const [subject, setSubject] = useState(null);
 
-  const addSubject = () => {
+  const addSubject = async () => {
     if (urlYearOfStudy && urlDepartment && urlSubject) {
       const { id } = subject;
-      action(id);
-    }
-  };
-
-  useEffect(() => {
-    if (response) {
+      await action(id);
       setReloadSubjects(true);
     }
-  }, [response]);
+  };
 
   if (loading) {
     return <Loader />;

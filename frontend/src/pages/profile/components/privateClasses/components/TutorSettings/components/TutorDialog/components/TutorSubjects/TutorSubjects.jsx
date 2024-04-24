@@ -6,8 +6,14 @@ import { useApiActions } from '../../../../../../../../../../api/useApiActions';
 import { useTableColumns } from './useTableColumns';
 
 const TutorSubjects = ({ reloadSubjects, setReloadSubjects }) => {
-  const { getTutorSubjects } = useApiActions();
+  const { getTutorSubjects, deleteTutorSubject } = useApiActions();
   const { loading, error, setError, action, response } = getTutorSubjects;
+  const {
+    loading: loadingDeleteTutorSubject,
+    error: errorDeleteTutorSubject,
+    setError: setErrorDeleteTutorSubject,
+    action: actionDeleteTutorSubject,
+  } = deleteTutorSubject;
   const [tutorSubjects, setTutorSubjects] = useState([]);
   const columns = useTableColumns();
 
@@ -28,15 +34,25 @@ const TutorSubjects = ({ reloadSubjects, setReloadSubjects }) => {
     action();
   }, []);
 
-  const removeSubject = (subjectId) => {
-    console.log(subjectId);
+  const removeSubject = async (subjectId) => {
+    await actionDeleteTutorSubject(subjectId);
+    setReloadSubjects(true);
   };
+
+  if (errorDeleteTutorSubject) {
+    return (
+      <ErrorDialog
+        error={errorDeleteTutorSubject}
+        setError={setErrorDeleteTutorSubject}
+      />
+    );
+  }
 
   if (error) {
     return <ErrorDialog error={error} setError={setError} />;
   }
 
-  if (loading) {
+  if (loading || loadingDeleteTutorSubject) {
     return <Loader />;
   }
 

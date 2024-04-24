@@ -1,4 +1,3 @@
-import { getAllJSDocTags } from 'typescript';
 import response from '../../utils/response';
 import { User } from '../../entities/User';
 
@@ -9,18 +8,22 @@ export const deleteSubjectFromTutor = async (req: any) => {
 
   const user = await User.findOne({
     where: { id: userID },
-    relations: ["tutorProfile", "tutorProfile.tutorSubjects", "tutorProfile.tutorSubjects.subject"]
-  })
+    relations: [
+      'tutorProfile',
+      'tutorProfile.tutorSubjects',
+      'tutorProfile.tutorSubjects.subject'
+    ]
+  });
 
-  if (!user)
-    return response.BAD_REQUEST("User not found!");
+  if (!user) return response.BAD_REQUEST('User not found!');
 
-  if (!user.tutorProfile)
-    return response.BAD_REQUEST("User is not a tutor!");
+  if (!user.tutorProfile) return response.BAD_REQUEST('User is not a tutor!');
 
   let tutor = user.tutorProfile;
 
-  let tutorSubject = tutor.tutorSubjects.find((ts) => ts.subject.id == subjectId);
+  let tutorSubject = tutor.tutorSubjects.find(
+    (ts) => ts.subject.id == subjectId
+  );
 
   if (!tutorSubject)
     return response.BAD_REQUEST("Tutor doesn't tutor that subject!");
