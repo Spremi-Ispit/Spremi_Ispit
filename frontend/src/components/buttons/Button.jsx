@@ -15,8 +15,8 @@ export const Button = styled.button`
   align-items: center;
 
   :hover {
-    color: black;
-    background-color: ${colors.button};
+    color: ${({ $disabled }) => !$disabled && 'black'};
+    background-color: ${({ $disabled }) => !$disabled && colors.button};
   }
 
   background-color: ${({ $disabled }) => $disabled && colors.buttonDisabled};

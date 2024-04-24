@@ -5,7 +5,7 @@ import ErrorDialog from '../../../../../../../../../../components/dialogs/ErrorD
 import { useApiActions } from '../../../../../../../../../../api/useApiActions';
 import { useTableColumns } from './useTableColumns';
 
-const TutorSubjects = () => {
+const TutorSubjects = ({ reloadSubjects, setReloadSubjects }) => {
   const { getTutorSubjects } = useApiActions();
   const { loading, error, setError, action, response } = getTutorSubjects;
   const [tutorSubjects, setTutorSubjects] = useState([]);
@@ -16,6 +16,13 @@ const TutorSubjects = () => {
       setTutorSubjects(response);
     }
   }, [response]);
+
+  useEffect(() => {
+    if (reloadSubjects) {
+      action();
+      setReloadSubjects(false);
+    }
+  }, [reloadSubjects]);
 
   useEffect(() => {
     action();

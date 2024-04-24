@@ -22,7 +22,7 @@ const Select = styled.select`
   height: 2em;
   ${fonts(15, 600, 'normal', 'Libre Bodoni')}
 `;
-export const Subject = () => {
+export const Subject = ({ onSubjectChange }) => {
   const urlManager = useUrlManager();
   const { urlYearOfStudy, urlDepartment, urlSubject } = urlManager.getParams();
   const [subjects, setSubjects] = useState([]);
@@ -41,7 +41,20 @@ export const Subject = () => {
     }
   }, [response]);
 
+  useEffect(() => {
+    urlManager.updateUrlParams([
+      { key: allowedUrlParams.yearOfStudy, value: null },
+      { key: allowedUrlParams.department, value: null },
+      { key: allowedUrlParams.subject, value: null },
+    ]);
+    onSubjectChange(null);
+  }, []);
+
   const handleChange = (event) => {
+    onSubjectChange(
+      subjects.find((subject) => subject.name === event.target.value)
+    );
+
     urlManager.updateUrlParams([
       { key: allowedUrlParams.subject, value: event.target.value },
       { key: allowedUrlParams.type, value: null },

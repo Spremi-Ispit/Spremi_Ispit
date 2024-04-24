@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Dialog from '@mui/material/Dialog';
 import Slide from '@mui/material/Slide';
 import styled from 'styled-components';
@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
-import Filters from './components/Filters/Filters';
+import AddSubject from './components/AddSubject/AddSubject';
 import TutorSubjects from './components/TutorSubjects/TutorSubjects';
 import TutorInfo from './components/TutorInfo';
 import EnableTutor from './components/EnableTutor';
@@ -29,6 +29,8 @@ const DialogBodyDiv = styled.div`
 `;
 
 const TutorDialog = ({ onClose, open }) => {
+  const [reloadSubjects, setReloadSubjects] = useState(false);
+
   return (
     <Dialog
       fullScreen
@@ -55,8 +57,11 @@ const TutorDialog = ({ onClose, open }) => {
         </StyledToolbar>
       </AppBar>
       <DialogBodyDiv>
-        <Filters />
-        <TutorSubjects />
+        <AddSubject setReloadSubjects={setReloadSubjects} />
+        <TutorSubjects
+          reloadSubjects={reloadSubjects}
+          setReloadSubjects={setReloadSubjects}
+        />
         <TutorInfo />
         <EnableTutor />
       </DialogBodyDiv>

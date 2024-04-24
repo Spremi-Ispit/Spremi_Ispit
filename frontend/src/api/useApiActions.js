@@ -71,6 +71,7 @@ export const useApiActions = () => {
     getTutoringRequests: useAPIAction(tutorActions.getTutoringRequests),
     createTutorRequest: useAPIAction(tutorActions.createTutorRequest),
     getTutorSubjects: useAPIAction(tutorActions.getTutorSubjects),
+    addSubjectToTutor: useAPIAction(tutorActions.addSubjectToTutor),
   };
 };
 
