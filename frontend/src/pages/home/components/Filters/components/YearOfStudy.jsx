@@ -11,6 +11,7 @@ const YearOfStudyDiv = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
+  max-width: 100px;
 `;
 
 const Label = styled.div`
@@ -63,7 +64,7 @@ export const YearOfStudy = () => {
     <YearOfStudyDiv>
       <Label>Godina studija </Label>
       <Select value={urlYearOfStudy ?? ''} onChange={handleChange}>
-        <option value="">Sve</option>
+        <option value=""> Sve</option>
         {yearsOfStudy.map((urlYearOfStudy) => (
           <option key={urlYearOfStudy.name} value={urlYearOfStudy.name}>
             {urlYearOfStudy.name}

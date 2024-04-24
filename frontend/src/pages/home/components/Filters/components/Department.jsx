@@ -11,6 +11,7 @@ const DepartmentDiv = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
+  width: 100px;
 `;
 
 const Label = styled.div`
@@ -64,10 +65,10 @@ export const Department = () => {
         {!loaded || departments.length === 0 || !urlYearOfStudy
           ? null
           : departments.map((department) => (
-              <option key={department.name} value={department.name}>
-                {department.name}
-              </option>
-            ))}
+            <option key={department.name} value={department.name}>
+              {department.name}
+            </option>
+          ))}
       </Select>
     </DepartmentDiv>
   );
