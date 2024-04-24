@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Dialog from '@mui/material/Dialog';
 import Slide from '@mui/material/Slide';
 import styled from 'styled-components';
@@ -40,14 +40,17 @@ const SendRequestDialog = ({ onClose, open, subjects, tutorId, onSuccess, onErro
             "subjectId": subjectId,
             "message": text
         };
-        action(data).then((res) => {
-            if (response) {
-                onSuccess(response);
-            } else if (error) {
-                onError(error);
-            }
-        });
+        action(data);
     }
+
+    useEffect(() => {
+        if (response) {
+            onSuccess(response);
+        }
+        if (error) {
+            onError(response);
+        }
+    }, [response, error]);
 
     return (
         <Dialog
