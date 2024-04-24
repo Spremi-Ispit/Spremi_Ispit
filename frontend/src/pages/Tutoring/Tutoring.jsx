@@ -11,6 +11,12 @@ import Tutor from './components/Tutor';
 import { useApiActions } from '../../api/useApiActions';
 import Loader from '../../components/Loader';
 import ErrorDialog from '../../components/dialogs/ErrorDialog';
+import { Card, Stack } from '@mui/material';
+import YearOfStudy from '../home/components/Filters/components/YearOfStudy';
+import Department from '../home/components/Filters/components/Department';
+import { useUrlManager } from '../../utils/managers/UrlManager';
+import Button from '../../components/buttons/Button';
+import Subject from '../profile/components/privateClasses/components/TutorSettings/components/TutorDialog/components/AddSubject/components/Subject';
 
 
 const Tutoring = () => {
@@ -18,36 +24,31 @@ const Tutoring = () => {
   const { getTutors } = useApiActions();
   const { loading, response, error, setError, action } = getTutors;
   const [lessons, setLessons] = useState([]);
+  const urlManager = useUrlManager();
+  const { urlYearOfStudy, urlDepartment, urlSubject } = urlManager.getParams();
+  const [subject, setSubject] = useState(null);
 
-  const handleChange = (event, value, reason) => {
-    if (!value) {
-      if (response) {
-        setAvailableTutors(response);
-      }
-    } else {
-      setAvailableTutors(
-        response.filter((tutor) => tutor.subjects.map((subject) => subject.id).includes(value.id))
-      );
+  const addSubject = () => {
+    if (urlYearOfStudy && urlDepartment && urlSubject && subject) {
+      const { id } = subject;
+      setAvailableTutors(response.filter((tutor) => tutor.subjects.map((subject) => subject.id).includes(id)))
+      return true;
     }
   };
 
   useEffect(() => {
     if (response) {
-      let originalArray = [];
-      response.forEach((tutor) => {
-        tutor.subjects.forEach((subject) => {
-          originalArray.push({ id: subject.id, label: subject.name });
-        })
-      });
-      const uniqueObjects = originalArray.filter((obj, index) => {
-        return originalArray.findIndex(prevObj =>
-          prevObj.id === obj.id
-        ) === index;
-      });
-      setLessons(uniqueObjects);
-      setAvailableTutors(response);
+      if (!addSubject()) {
+        setAvailableTutors(response);
+      }
     }
   }, [response]);
+
+  useEffect(() => {
+    if (urlYearOfStudy === null) {
+      setAvailableTutors(response);
+    }
+  }, [urlYearOfStudy]);
 
   useEffect(() => {
     action();
@@ -71,19 +72,21 @@ const Tutoring = () => {
           <LessonsDiv>
             <TutoringH2>Potrebni su ti privatni časovi?</TutoringH2>
             <StyledLabel>
-              Unesi naziv predmeta da bi pronašao predavača
+              Unesi predmet da bi pronašao predavača
             </StyledLabel>
-            <StyledAutocomplete
-              disablePortal
-              options={lessons}
-              sx={{ maxWidth: '500px', width: '100%' }}
-              onChange={handleChange}
-              renderInput={(params) => (
-                <TextField {...params} placeholder="Predmet" />
-              )}
-            />
+            <SubjectSelectDiv >
+              <YearOfStudy />
+              <Department />
+              <Subject onSubjectChange={setSubject} />
+              <StyledButton
+                onClick={addSubject}
+                $disabled={!(urlYearOfStudy && urlDepartment && urlSubject)}
+              >
+                Pretraži
+              </StyledButton>
+            </SubjectSelectDiv>
             <TutorsDiv>
-              {availableTutors.map((tutor, index) => (
+              {availableTutors && availableTutors.map((tutor, index) => (
                 <Tutor key={index} tutor={tutor} />
               ))}
             </TutorsDiv>
@@ -108,7 +111,7 @@ const Tutoring = () => {
             na to. Ukoliko su ti potrebne dodatne informacije kontaktiraj nas!
           </Disclaimer>
         </MainDiv>
-      </TutoringDiv>
+      </TutoringDiv >
       <StyledFooter />
     </>
   );
@@ -180,9 +183,30 @@ const LessonsDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  max-width: 80%;
 `;
 
 const StyledLabel = styled.label`
   font-weight: bold;
   display: block;
+`;
+
+const SubjectSelectDiv = styled.div`
+  display: flex;
+  white-space: nowrap;
+  box-shadow: rgb(185, 185, 185) -1px 2px 9px 1px;
+  box-shadow: rgba(0, 0, 0, 0.75) 0px 1px 3px;
+  padding: 10px;
+  margin: 10px 0px 10px 0px;
+  gap: 10px;
+  overflow: overlay;
+  background-color: white;
+  max-width: 100%;
+  width: 100%;
+  min-width: 100%;
+`;
+
+const StyledButton = styled(Button)`
+  max-height: 30px;
+  align-self: end;
 `;
