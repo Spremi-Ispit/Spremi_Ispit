@@ -7,18 +7,28 @@ import { mapUserToUserDTO } from './utils/mapUserToUserDTO';
 // Get the tutoring requests as the tutor
 
 export const getTutoringRequests = async (req: any) => {
-    const { userID } = req.body;
+  const { userID } = req.body;
 
-    const user = await User.findOne({
-        where: { id: userID },
-        relations: ["tutorProfile", "tutorProfile.tutoringOffered", "tutorProfile.tutoringOffered.students", "tutorProfile.tutoringOffered.subject"]
-    });
-    if (!user)
-        return response.BAD_REQUEST("User was not found!");
-    if (!user.tutorProfile)
-        return response.BAD_REQUEST("User is not a tutor!");
+  const user = await User.findOne({
+    where: { id: userID },
+    relations: [
+      'tutorProfile',
+      'tutorProfile.tutoringOffered',
+      'tutorProfile.tutoringOffered.students',
+      'tutorProfile.tutoringOffered.subject'
+    ]
+  });
 
-    let tutoringRequests = user.tutorProfile.tutoringOffered.map((tutoringRequest) => mapTutoringRequestDTO(tutoringRequest));
+  if (!user) return response.BAD_REQUEST('User was not found!');
 
-    return response.OK(tutoringRequests);
-}
+  if (!user.tutorProfile) {
+    // return response.BAD_REQUEST("User is not a tutor!");
+    return response.OK([]);
+  }
+
+  let tutoringRequests = user.tutorProfile.tutoringOffered.map(
+    (tutoringRequest) => mapTutoringRequestDTO(tutoringRequest)
+  );
+
+  return response.OK(tutoringRequests);
+};

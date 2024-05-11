@@ -1,5 +1,5 @@
 import services from '../../utils/services';
 
 export const getTutoringRequestsStudent = async () => {
-    return services.get('/tutors/getTutoringRequestsStudent/')
-}
+  return await services.get('/tutors/getTutoringRequestsStudent/');
+};

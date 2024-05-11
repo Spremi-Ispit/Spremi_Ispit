@@ -14,7 +14,10 @@ export const getTutorSubjects = async (req: any) => {
 
   if (!user) return response.BAD_REQUEST('User not found!');
 
-  if (!user.tutorProfile) return response.BAD_REQUEST('User is not a tutor!');
+  if (!user.tutorProfile) {
+    // return response.BAD_REQUEST('User is not a tutor!');
+    return response.OK([]);
+  }
 
   const tutor = await Tutor.findOne({
     where: { id: user.tutorProfile.id },

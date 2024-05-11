@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Dialog from '@mui/material/Dialog';
 import Slide from '@mui/material/Slide';
 import styled from 'styled-components';
@@ -10,8 +10,11 @@ import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 import AddSubject from './components/AddSubject/AddSubject';
 import TutorSubjects from './components/TutorSubjects/TutorSubjects';
-import TutorInfo from './components/TutorInfo';
 import EnableTutor from './components/EnableTutor';
+import TutorDescription from './components/TutorDescription';
+import TutorPrice from './components/TutorPrice';
+import { useFetchOnLoad } from '../../../../../../../../api/useFetch';
+import { getTutor } from '../../../../../../../../api/tutor/getTutor';
 
 const StyledToolbar = styled(Toolbar)`
   background-color: black;
@@ -30,6 +33,19 @@ const DialogBodyDiv = styled.div`
 
 const TutorDialog = ({ onClose, open }) => {
   const [reloadSubjects, setReloadSubjects] = useState(false);
+  const [price, setPrice] = useState(0);
+  const [groupPrice, setGroupPrice] = useState(0);
+  const [message, setMessage] = useState('');
+  const { data, error, isLoading, refetch } = useFetchOnLoad(getTutor);
+
+  useEffect(() => {
+    if (data) {
+      const { price, groupPrice, message } = data;
+      setPrice(price);
+      setGroupPrice(groupPrice);
+      setMessage(message);
+    }
+  }, [data]);
 
   return (
     <Dialog
@@ -62,7 +78,8 @@ const TutorDialog = ({ onClose, open }) => {
           reloadSubjects={reloadSubjects}
           setReloadSubjects={setReloadSubjects}
         />
-        <TutorInfo />
+        <TutorDescription description={message} />
+        <TutorPrice price={price} groupPrice={groupPrice} />
         <EnableTutor />
       </DialogBodyDiv>
     </Dialog>
