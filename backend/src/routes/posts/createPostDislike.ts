@@ -1,0 +1,8 @@
+// @ts-nocheck
+import services from '../../services/index';
+const { postServices } = services;
+
+export const createPostDislike = async (req, res) => {
+  const response = await postServices.createPostDislike(req);
+  return res.status(response.statusCode).send(response);
+};

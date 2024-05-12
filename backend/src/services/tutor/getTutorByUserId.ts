@@ -4,6 +4,7 @@ import response from '../../utils/response';
 
 export const getTutorByUserId = async (req: any) => {
   const { userID } = req.body;
+  console.log('darjan');
 
   const user = await User.findOne({
     where: { id: userID },

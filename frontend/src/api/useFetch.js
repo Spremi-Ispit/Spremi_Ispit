@@ -13,22 +13,24 @@ export const useFetchOnLoad = (fn) => {
 
 export const useFetch = (fn) => {
   const [data, setData] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(null);
 
   const fetch = async () => {
-    setIsLoading(true);
+    setLoading(true);
+    setLoaded(false);
 
     try {
       const response = await fn();
       setData(response);
-      setIsLoading(false);
     } catch (error) {
       setError(error);
     } finally {
-      setIsLoading(false);
+      setLoading(false);
+      setLoaded(true);
     }
   };
 
-  return { data, isLoading, error, fetch };
+  return { data, loading, loaded, error, fetch };
 };
