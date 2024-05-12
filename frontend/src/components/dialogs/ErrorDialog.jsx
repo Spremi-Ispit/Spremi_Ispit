@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { useDispatch } from 'react-redux';
 
 function isJsonString(str) {
   try {
@@ -16,21 +15,19 @@ function isJsonString(str) {
   return true;
 }
 
-export const ErrorDialog = ({ error, setError }) => {
-  const dispatch = useDispatch();
+export const ErrorDialog = ({ error }) => {
+  const [open, setOpen] = useState(false);
 
   const handleClose = () => {
-    setError(null);
+    setOpen(false);
   };
 
   useEffect(() => {
-    return () => {
-      setError(null);
-    };
-  }, [dispatch, setError]);
+    setOpen(true);
+  }, [error]);
 
   return (
-    <Dialog open={true} onClose={handleClose}>
+    <Dialog open={open} onClose={handleClose}>
       <DialogTitle>Error</DialogTitle>
       <DialogContent>
         <DialogContentText style={{ whiteSpace: 'break-spaces' }}>

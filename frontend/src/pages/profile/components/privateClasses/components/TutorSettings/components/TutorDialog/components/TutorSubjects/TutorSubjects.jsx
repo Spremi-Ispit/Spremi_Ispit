@@ -7,11 +7,10 @@ import { useTableColumns } from './useTableColumns';
 
 const TutorSubjects = ({ reloadSubjects, setReloadSubjects }) => {
   const { getTutorSubjects, deleteTutorSubject } = useApiActions();
-  const { loading, error, setError, action, response } = getTutorSubjects;
+  const { loading, error, action, response } = getTutorSubjects;
   const {
     loading: loadingDeleteTutorSubject,
     error: errorDeleteTutorSubject,
-    setError: setErrorDeleteTutorSubject,
     action: actionDeleteTutorSubject,
   } = deleteTutorSubject;
   const [tutorSubjects, setTutorSubjects] = useState([]);
@@ -40,16 +39,11 @@ const TutorSubjects = ({ reloadSubjects, setReloadSubjects }) => {
   };
 
   if (errorDeleteTutorSubject) {
-    return (
-      <ErrorDialog
-        error={errorDeleteTutorSubject}
-        setError={setErrorDeleteTutorSubject}
-      />
-    );
+    return <ErrorDialog error={errorDeleteTutorSubject} />;
   }
 
   if (error) {
-    return <ErrorDialog error={error} setError={setError} />;
+    return <ErrorDialog error={error} />;
   }
 
   if (loading || loadingDeleteTutorSubject) {

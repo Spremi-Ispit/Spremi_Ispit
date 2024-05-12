@@ -54,7 +54,7 @@ export const Posts = () => {
   const urlManager = useUrlManager();
   const { urlUsername } = urlManager.getParams();
   const { loadUserPosts } = useApiActions();
-  const { loading, error, setError, action, loaded, response } = loadUserPosts;
+  const { loading, error, action, loaded, response } = loadUserPosts;
 
   useEffect(() => {
     if (urlUsername) {
@@ -69,7 +69,7 @@ export const Posts = () => {
   }, [loaded]);
 
   if (error) {
-    return <ErrorDialog error={error} setError={setError} />;
+    return <ErrorDialog error={error} />;
   }
 
   if (loading) {

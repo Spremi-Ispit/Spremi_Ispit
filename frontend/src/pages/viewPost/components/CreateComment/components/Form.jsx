@@ -67,7 +67,7 @@ export const Form = () => {
   const urlManager = useUrlManager();
   const { urlPostId } = urlManager.getParams();
   const { addComment } = useApiActions();
-  const { loading, error, setError, action, response } = addComment;
+  const { loading, error, action, response } = addComment;
   const { viewPostActions } = useAppActions();
   const { setCommentsLoading } = viewPostActions;
   const [activeFileIndex, setActiveFileIndex] = useState(0);
@@ -130,7 +130,7 @@ export const Form = () => {
 
   const errorDialog = () => {
     if (error) {
-      return <ErrorDialog error={error} setError={setError} />;
+      return <ErrorDialog error={error} />;
     }
 
     return null;

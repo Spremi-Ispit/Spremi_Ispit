@@ -43,7 +43,7 @@ const RegistrationConfirm = () => {
   const navigate = useNavigate();
   const [activactionCode, setActivactionCode] = useState('');
   const { registrationConfirm } = useApiActions();
-  const { loading, error, setError, response, action } = registrationConfirm;
+  const { loading, error, response, action } = registrationConfirm;
   const authManager = useAuthManager();
   const location = useLocation();
 
@@ -79,7 +79,7 @@ const RegistrationConfirm = () => {
   }
 
   if (error) {
-    return <ErrorDialog error={error} setError={setError} />;
+    return <ErrorDialog error={error} />;
   }
 
   return (

@@ -11,7 +11,6 @@ const YearOfStudyDiv = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-  max-width: 100px;
 `;
 
 const Label = styled.div`

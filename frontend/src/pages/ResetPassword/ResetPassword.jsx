@@ -43,7 +43,7 @@ const ResetPassword = () => {
   const [newPass, setNewPass] = useState('');
   const navigate = useNavigate();
   const { resetPasswordConfirm } = useApiActions();
-  const { loading, response, error, setError, action } = resetPasswordConfirm;
+  const { loading, response, error, action } = resetPasswordConfirm;
 
   useEffect(() => {
     if (response) {
@@ -71,7 +71,7 @@ const ResetPassword = () => {
   };
 
   if (error) {
-    return <ErrorDialog error={error} setError={setError} />;
+    return <ErrorDialog error={error} />;
   }
 
   if (loading) {

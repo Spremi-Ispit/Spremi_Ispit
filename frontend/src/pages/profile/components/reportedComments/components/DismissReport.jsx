@@ -6,7 +6,7 @@ import { useApiActions } from '../../../../../api/useApiActions';
 
 export const DismissReport = ({ commentId, setLoadComments }) => {
   const { dismissCommentReport } = useApiActions();
-  const { action, loading, error, setError, loaded } = dismissCommentReport;
+  const { action, loading, error, loaded } = dismissCommentReport;
 
   useEffect(() => {
     if (loaded) {
@@ -23,7 +23,7 @@ export const DismissReport = ({ commentId, setLoadComments }) => {
   }
 
   if (error) {
-    <ErrorDialog error={error} setError={setError} />;
+    <ErrorDialog error={error} />;
   }
 
   return (

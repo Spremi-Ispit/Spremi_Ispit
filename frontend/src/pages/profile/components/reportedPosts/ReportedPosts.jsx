@@ -59,7 +59,7 @@ export const ReportedPosts = () => {
   const [posts, setPosts] = useState([]);
 
   const { loadReportedPosts } = useApiActions();
-  const { error, setError, loaded, response, action } = loadReportedPosts;
+  const { error, loaded, response, action } = loadReportedPosts;
 
   useEffect(() => {
     action();
@@ -72,7 +72,7 @@ export const ReportedPosts = () => {
   }, [response]);
 
   if (error) {
-    return <ErrorDialog error={error} setError={setError} />;
+    return <ErrorDialog error={error} />;
   }
 
   if (!loaded) {

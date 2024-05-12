@@ -28,7 +28,7 @@ export const Comments = () => {
   const { viewPostActions } = useAppActions();
   const { setCommentsLoading } = viewPostActions;
   const { loadComments } = useApiActions();
-  const { loaded, error, setError, response, action } = loadComments;
+  const { loaded, error, response, action } = loadComments;
   const {
     addCommentLike,
     removeCommentLike,
@@ -58,7 +58,7 @@ export const Comments = () => {
   }, [commentsLoading]);
 
   if (error) {
-    return <ErrorDialog error={error} setError={setError} />;
+    return <ErrorDialog error={error} />;
   }
 
   if (!loaded) {

@@ -83,7 +83,7 @@ function Modal({ setOpenModal }) {
   const [mail, setMail] = useState('');
   const [mailValid, setMailValid] = useState(false);
   const { resetPassword } = useApiActions();
-  const { action, error, setError, response, loading } = resetPassword;
+  const { action, error, response, loading } = resetPassword;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -118,7 +118,7 @@ function Modal({ setOpenModal }) {
   }
 
   if (error) {
-    return <ErrorDialog error={error} setError={setError} />;
+    return <ErrorDialog error={error} />;
   }
 
   const handleEnter = (e) => {

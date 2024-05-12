@@ -29,8 +29,7 @@ export const NextPost = () => {
     urlYearOfStudy,
     urlCommentedPosts,
   } = urlManager.getParams();
-  const { action, error, loading, response, setError } =
-    loadPostsForHomepageFilters;
+  const { action, error, loading, response } = loadPostsForHomepageFilters;
 
   useEffect(() => {
     if (response) {
@@ -69,7 +68,7 @@ export const NextPost = () => {
   }
 
   if (error) {
-    return <ErrorDialog error={error} setError={setError} />;
+    return <ErrorDialog error={error} />;
   }
 
   if (loading) {

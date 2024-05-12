@@ -21,7 +21,7 @@
 
 LOCK TABLES `tutor` WRITE;
 /*!40000 ALTER TABLE `tutor` DISABLE KEYS */;
-INSERT INTO `tutor` VALUES (1,1500,700,1,'SVE ZNAM dodji na cas','',1),(2,1200,800,1,'Nastava za predmete','',2);
+INSERT INTO `tutor` VALUES (1,1500,700,1,'SVE ZNAM dodji na cas','123'),(2,1200,800,1,'Nastava za predmete','456');
 /*!40000 ALTER TABLE `tutor` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

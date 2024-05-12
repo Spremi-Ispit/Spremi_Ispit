@@ -69,8 +69,7 @@ const CommentsPreviewDiv = styled.div`
 export const ReportedComments = () => {
   const [comments, setComments] = useState([]);
   const { loadReportedComments } = useApiActions();
-  const { loading, error, setError, loaded, response, action } =
-    loadReportedComments;
+  const { loading, error, loaded, response, action } = loadReportedComments;
 
   useEffect(() => {
     if (loaded) {
@@ -83,7 +82,7 @@ export const ReportedComments = () => {
   }, []);
 
   if (error) {
-    return <ErrorDialog error={error} setError={setError} />;
+    return <ErrorDialog error={error} />;
   }
   if (loading) {
     return <Loader />;

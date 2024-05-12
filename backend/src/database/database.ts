@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import { dataSource } from '../entities/DataSource.js';
+import { dataSource } from '../entities/index.js';
 
 export const database = async () => {
   try {

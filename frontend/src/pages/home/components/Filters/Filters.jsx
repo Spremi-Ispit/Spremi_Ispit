@@ -7,7 +7,6 @@ import Type from './components/Type';
 import YearOfExam from './components/YearOfExam';
 import ExaminationPeriod from './components/ExaminationPeriod';
 import Order from './components/Order';
-import { screensCSS } from '../../../../utils/useScreens';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CommentedPosts from './components/CommentedPosts';
 

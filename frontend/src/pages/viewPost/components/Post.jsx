@@ -24,7 +24,7 @@ export const Post = () => {
   const navigate = useNavigate();
   const { urlPostId } = urlManager.getParams();
   const { loadPost } = useApiActions();
-  const { error, setError, response, action } = loadPost;
+  const { error, response, action } = loadPost;
   const {
     addPostLike,
     removePostLike,
@@ -50,7 +50,7 @@ export const Post = () => {
   }, [urlPostId]);
 
   if (error) {
-    return <ErrorDialog error={error} setError={setError} />;
+    return <ErrorDialog error={error} />;
   }
 
   if (postLoading) {

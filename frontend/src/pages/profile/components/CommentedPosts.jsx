@@ -55,8 +55,7 @@ export const CommentedPosts = () => {
   const urlManager = useUrlManager();
   const { urlUsername } = urlManager.getParams();
   const { loadCommentedPosts } = useApiActions();
-  const { loading, loaded, response, error, setError, action } =
-    loadCommentedPosts;
+  const { loading, loaded, response, error, action } = loadCommentedPosts;
 
   useEffect(() => {
     if (loaded) {
@@ -71,7 +70,7 @@ export const CommentedPosts = () => {
   }, [urlUsername]);
 
   if (error) {
-    return <ErrorDialog error={error} setError={setError} />;
+    return <ErrorDialog error={error} />;
   }
   if (loading) {
     return <Loader />;

@@ -1,43 +1,38 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 import GroupsIcon from '@mui/icons-material/Groups';
 import colors from '../../../theme/colors';
 import BoyIcon from '@mui/icons-material/Boy';
 import Button from '../../../components/buttons/Button';
-import { useApiActions } from '../../../api/useApiActions';
-import Loader from '../../../components/Loader';
-import ErrorDialog from '../../../components/dialogs/ErrorDialog';
-import { tutorRequestRoute } from '../../../router/routes';
 import SendRequestDialog from './components/SendRequestDialog';
+import { images } from '../../../constants';
+import { useUrlManager } from '../../../utils/managers/UrlManager';
 
+const defaultDescription =
+  'Rado ću ti pomoći da se spremiš za ispit ili laboratorijsku vežbu!';
 
 const Tutor = ({ tutor }) => {
   const { id, name, description, subjects, price, rating, userId } = tutor;
   const { personally, group } = price;
-  const navigate = useNavigate();
   const userRating = [0, 0]; // TODO: request user rating
   const [open, setOpen] = useState(false);
+  const urlManager = useUrlManager();
+  const { urlSubject } = urlManager.getParams();
 
-  const closeSendRequestDialog = () => {
+  const closeSendMessageDialog = () => {
     setOpen(false);
   };
 
-  const openSendRequestDialog = () => {
+  const openSendMessageDialog = () => {
+    if (!urlSubject) {
+      return alert('Odaberite predmet prvo');
+    }
+
     setOpen(true);
   };
-
-  const onSuccess = (id) => {
-    closeSendRequestDialog();
-    navigate(tutorRequestRoute(id))
-  }
-  const onError = (error) => {
-    closeSendRequestDialog();
-    console.log(error);
-  }
 
   return (
     <TutorDiv>
@@ -83,17 +78,43 @@ const Tutor = ({ tutor }) => {
             )}
           </PricesDiv>
           <LessonScheduleDiv>
-            <Button onClick={openSendRequestDialog}>Zahtevaj čas</Button>
-            <SendRequestDialog open={open} onClose={closeSendRequestDialog} subjects={subjects} tutorId={id} onError={onError} onSuccess={onSuccess} />
+            <TutorButton onClick={openSendMessageDialog}>
+              <WhatsAppImg src={images.WhatsApp1} />
+              <h4>Zakaži čas</h4>
+            </TutorButton>
+            <SendRequestDialog
+              open={open}
+              onClose={closeSendMessageDialog}
+              subjects={subjects}
+              tutorId={id}
+            />
           </LessonScheduleDiv>
         </TutorFooterDiv>
-
       </TutorContentDiv>
     </TutorDiv>
   );
 };
 
 export default Tutor;
+
+const TutorButton = styled(Button)`
+  background-color: #32d851;
+  color: white;
+  gap: 5px;
+
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 0px 2px;
+
+  :hover {
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 2px 2px;
+    color: white;
+    background-color: #32d851;
+  }
+`;
+
+const WhatsAppImg = styled.img`
+  width: 24px;
+  height: 24px;
+`;
 
 const LessonScheduleDiv = styled.div``;
 

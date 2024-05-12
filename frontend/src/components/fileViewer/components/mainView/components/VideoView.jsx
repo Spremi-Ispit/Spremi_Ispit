@@ -44,7 +44,7 @@ export const VideoView = ({ file }) => {
   }, [file]);
 
   if (error) {
-    return <ErrorDialog error={error} setError={setError} />;
+    return <ErrorDialog error={error} />;
   }
   if (loading) {
     return Loader;

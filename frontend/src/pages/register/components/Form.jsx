@@ -116,7 +116,7 @@ export const Form = () => {
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [dialogMessage, setDialogMessage] = useState('');
   const { register } = useApiActions();
-  const { loading, error, setError, response, action } = register;
+  const { loading, error, response, action } = register;
   const token = useSelector(selectToken);
   const navigate = useNavigate();
   const [recaptcha, setReacaptcha] = useState(false);
@@ -165,7 +165,7 @@ export const Form = () => {
   }, [response]);
 
   if (error) {
-    return <ErrorDialog error={error} setError={setError} />;
+    return <ErrorDialog error={error} />;
   }
 
   const onChangeRecaptcha = () => {

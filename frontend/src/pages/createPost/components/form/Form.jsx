@@ -36,7 +36,7 @@ export const Form = () => {
   const navigate = useNavigate();
   const [uploadProgress, setUploadProgress] = useState(0);
   const { createPost } = useApiActions();
-  const { error, setError, action, response, loading } = createPost;
+  const { error, action, response, loading } = createPost;
   const urlManager = useUrlManager();
   const [activeFileIndex, setActiveFileIndex] = useState(0);
 
@@ -96,7 +96,7 @@ export const Form = () => {
   };
 
   if (error) {
-    return <ErrorDialog error={error} setError={setError} />;
+    return <ErrorDialog error={error} />;
   }
 
   const uploadProgessComponent = () => {

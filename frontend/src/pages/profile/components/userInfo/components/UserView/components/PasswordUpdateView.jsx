@@ -41,8 +41,7 @@ const PasswordUpdateView = ({ user, setPasswordUpdate }) => {
   const [confirmedPassword, setConfirmedPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const { changeAccountPassword } = useApiActions();
-  const { error, loading, setError, loaded, action, response } =
-    changeAccountPassword;
+  const { error, loading, loaded, action, response } = changeAccountPassword;
   const [showPassword, setShowPassword] = useState(false);
   const authManager = useAuthManager();
   const [message, setMessage] = useState('');
@@ -71,7 +70,7 @@ const PasswordUpdateView = ({ user, setPasswordUpdate }) => {
   };
 
   if (error) {
-    return <ErrorDialog error={error} setError={setError} />;
+    return <ErrorDialog error={error} />;
   }
 
   if (loading) {

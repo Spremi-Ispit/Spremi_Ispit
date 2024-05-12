@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { dataSource } from '../../../entities/DataSource';
+import { dataSource } from '../../../entities';
 import { Post } from '../../../entities/Post';
 
 export function buildPostsQueryForFilters({

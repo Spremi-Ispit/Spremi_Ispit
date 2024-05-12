@@ -34,7 +34,6 @@ export const AdminControlls = ({ user, reloadUserInfo }) => {
     loading: loadingBanUserAccount,
     loaded: loadedBanUserAccount,
     error: errorBanUserAccount,
-    setError: setErrorBanUserAccount,
     action: actionBanUserAccount,
   } = banUserAccount;
 
@@ -42,7 +41,6 @@ export const AdminControlls = ({ user, reloadUserInfo }) => {
     loading: loadingUnbanUserAccount,
     loaded: loadedUnbanUserAccount,
     error: errorUnbanUserAccount,
-    setError: setErrorUnbanUserAccount,
     action: actionUnbanUserAccount,
   } = unbanUserAccount;
 
@@ -50,7 +48,6 @@ export const AdminControlls = ({ user, reloadUserInfo }) => {
     loading: loadingBlacklistUser,
     loaded: loadedBlacklistUser,
     error: errorBlacklistUser,
-    setError: setErrorBlacklistUser,
     action: actionBlacklistUser,
   } = blacklistUser;
 
@@ -86,30 +83,15 @@ export const AdminControlls = ({ user, reloadUserInfo }) => {
 
   const errorDialog = () => {
     if (errorBanUserAccount) {
-      return (
-        <ErrorDialog
-          error={errorBanUserAccount}
-          setError={setErrorBanUserAccount}
-        />
-      );
+      return <ErrorDialog error={errorBanUserAccount} />;
     }
 
     if (errorUnbanUserAccount) {
-      return (
-        <ErrorDialog
-          error={errorUnbanUserAccount}
-          setError={setErrorUnbanUserAccount}
-        />
-      );
+      return <ErrorDialog error={errorUnbanUserAccount} />;
     }
 
     if (errorBlacklistUser) {
-      return (
-        <ErrorDialog
-          error={errorBlacklistUser}
-          setError={setErrorBlacklistUser}
-        />
-      );
+      return <ErrorDialog error={errorBlacklistUser} />;
     }
 
     return null;

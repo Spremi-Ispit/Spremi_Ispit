@@ -1,67 +1,57 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
 import Navbar from '../../components/navbar/Navbar';
 import SettingsSidePanel from '../../components/SettingsSidePanel/SettingsSidePanel';
 import Footer from '../../components/Footer';
 import colors from '../../theme/colors';
 import Instagram from './components/Instagram';
 import Tutor from './components/Tutor';
-import { useApiActions } from '../../api/useApiActions';
 import Loader from '../../components/Loader';
 import ErrorDialog from '../../components/dialogs/ErrorDialog';
-import { Card, Stack } from '@mui/material';
-import YearOfStudy from '../home/components/Filters/components/YearOfStudy';
-import Department from '../home/components/Filters/components/Department';
 import { useUrlManager } from '../../utils/managers/UrlManager';
-import Button from '../../components/buttons/Button';
-import Subject from '../profile/components/privateClasses/components/TutorSettings/components/TutorDialog/components/AddSubject/components/Subject';
-
+import { useFetchOnLoad } from '../../api/useFetch';
+import { getTutors } from '../../api/tutor/getTutors';
+import YearOfStudy from './components/YearOfStudy';
+import Department from './components/Department';
+import Subject from './components/Subject';
 
 const Tutoring = () => {
   const [availableTutors, setAvailableTutors] = useState([]);
-  const { getTutors } = useApiActions();
-  const { loading, response, error, setError, action } = getTutors;
-  const [lessons, setLessons] = useState([]);
+  const { data, error, loading } = useFetchOnLoad(getTutors);
   const urlManager = useUrlManager();
-  const { urlYearOfStudy, urlDepartment, urlSubject } = urlManager.getParams();
-  const [subject, setSubject] = useState(null);
-
-  const addSubject = () => {
-    if (urlYearOfStudy && urlDepartment && urlSubject && subject) {
-      const { id } = subject;
-      setAvailableTutors(response.filter((tutor) => tutor.subjects.map((subject) => subject.id).includes(id)))
-      return true;
-    }
-  };
+  const { urlSubject } = urlManager.getParams();
 
   useEffect(() => {
-    if (response) {
-      if (!addSubject()) {
-        setAvailableTutors(response);
-      }
+    if (data) {
+      setAvailableTutors(data);
     }
-  }, [response]);
+  }, [data]);
 
   useEffect(() => {
-    if (urlYearOfStudy === null) {
-      setAvailableTutors(response);
+    if (urlSubject === null && data) {
+      setAvailableTutors(data);
     }
-  }, [urlYearOfStudy]);
-
-  useEffect(() => {
-    action();
-  }, []);
-
+  }, [urlSubject]);
 
   if (loading) {
     return <Loader />;
   }
 
   if (error) {
-    return <ErrorDialog error={error} setError={setError} />;
+    return <ErrorDialog error={error} />;
   }
+
+  const handleSubjectChange = (subject) => {
+    if (!subject) return;
+
+    if (data) {
+      setAvailableTutors(
+        data.filter((tutor) =>
+          tutor.subjects.map((subject) => subject.id).includes(subject.id)
+        )
+      );
+    }
+  };
 
   return (
     <>
@@ -71,22 +61,14 @@ const Tutoring = () => {
         <MainDiv>
           <LessonsDiv>
             <TutoringH2>Potrebni su ti privatni časovi?</TutoringH2>
-            <StyledLabel>
-              Unesi predmet da bi pronašao predavača
-            </StyledLabel>
-            <SubjectSelectDiv >
+            <StyledLabel>Unesi predmet da bi pronašao predavača</StyledLabel>
+            <FiltersContainerDiv>
               <YearOfStudy />
               <Department />
-              <Subject onSubjectChange={setSubject} />
-              <StyledButton
-                onClick={addSubject}
-                $disabled={!(urlYearOfStudy && urlDepartment && urlSubject)}
-              >
-                Pretraži
-              </StyledButton>
-            </SubjectSelectDiv>
+              <Subject onSubjectChange={handleSubjectChange} />
+            </FiltersContainerDiv>
             <TutorsDiv>
-              {availableTutors && availableTutors.map((tutor, index) => (
+              {availableTutors.map((tutor, index) => (
                 <Tutor key={index} tutor={tutor} />
               ))}
             </TutorsDiv>
@@ -111,7 +93,7 @@ const Tutoring = () => {
             na to. Ukoliko su ti potrebne dodatne informacije kontaktiraj nas!
           </Disclaimer>
         </MainDiv>
-      </TutoringDiv >
+      </TutoringDiv>
       <StyledFooter />
     </>
   );
@@ -119,12 +101,36 @@ const Tutoring = () => {
 
 export default Tutoring;
 
+const FiltersContainerDiv = styled.div`
+  display: grid;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.75) 0px 1px 3px;
+  padding: 10px;
+
+  display: grid;
+  grid-template-columns: 200px 200px 200px;
+
+  @media (max-width: 700px) {
+    display: grid;
+    grid-template-columns: 150px 150px 150px;
+  }
+
+  @media (max-width: 560px) {
+    display: grid;
+    grid-template-columns: 150px 150px;
+  }
+`;
+
 const TutorsDiv = styled.div`
   display: flex;
   gap: 20px;
   flex-direction: column;
   margin-bottom: 20px;
-  align-items: center;
+  width: 100%;
 `;
 
 const TutoringH2 = styled.h2`
@@ -171,42 +177,17 @@ const StyledFooter = styled(Footer)`
   margin-top: 0px;
 `;
 
-const StyledAutocomplete = styled(Autocomplete)`
-  background-color: white;
-  margin: 10px;
-`;
-
 const LessonsDiv = styled.div`
   align-self: center;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  max-width: 80%;
+  max-width: 750px;
+  width: 100%;
 `;
 
 const StyledLabel = styled.label`
   font-weight: bold;
   display: block;
-`;
-
-const SubjectSelectDiv = styled.div`
-  display: flex;
-  white-space: nowrap;
-  box-shadow: rgb(185, 185, 185) -1px 2px 9px 1px;
-  box-shadow: rgba(0, 0, 0, 0.75) 0px 1px 3px;
-  padding: 10px;
-  margin: 10px 0px 10px 0px;
-  gap: 10px;
-  overflow: overlay;
-  background-color: white;
-  max-width: 100%;
-  width: 100%;
-  min-width: 100%;
-`;
-
-const StyledButton = styled(Button)`
-  max-height: 30px;
-  align-self: end;
 `;

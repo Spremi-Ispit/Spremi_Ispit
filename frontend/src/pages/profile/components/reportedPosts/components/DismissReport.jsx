@@ -15,7 +15,7 @@ const StyledButton = styled(Button)`
 
 export const DismissReport = ({ postId, setLoadPosts }) => {
   const { dismissPostReport } = useApiActions();
-  const { loading, error, setError, loaded, action } = dismissPostReport;
+  const { loading, error, loaded, action } = dismissPostReport;
 
   useEffect(() => {
     if (loaded) {
@@ -32,7 +32,7 @@ export const DismissReport = ({ postId, setLoadPosts }) => {
   }
 
   if (error) {
-    return <ErrorDialog error={error} setError={setError} />;
+    return <ErrorDialog error={error} />;
   }
 
   return (

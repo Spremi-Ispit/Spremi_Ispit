@@ -7,13 +7,13 @@ import { getSubject } from './getSubject';
 import { getYearOfExam } from './getYearOfExam';
 import { getExaminationPeriod } from './getExaminationPeriod';
 
-const filtersRoutes = express.Router();
+const router = express.Router();
 
-filtersRoutes.route('/yearsOfStudy').get(getYearsOfStudy);
-filtersRoutes.route('/department').get(getDepartment);
-filtersRoutes.route('/type').get(getType);
-filtersRoutes.route('/subject').get(getSubject);
-filtersRoutes.route('/yearsOfExam').get(getYearOfExam);
-filtersRoutes.route('/examinationPeriod').get(getExaminationPeriod);
+getYearsOfStudy(router);
+getDepartment(router);
+getType(router);
+getSubject(router);
+getYearOfExam(router);
+getExaminationPeriod(router);
 
-export default filtersRoutes;
+export default router;

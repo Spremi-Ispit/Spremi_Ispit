@@ -128,7 +128,7 @@ const Form = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { login } = useApiActions();
-  const { loading, error, setError, response, action } = login;
+  const { loading, error, response, action } = login;
   const authManager = useAuthManager();
   const [modalOpen, setModalOpen] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -181,7 +181,7 @@ const Form = () => {
   };
 
   if (error) {
-    return <ErrorDialog error={error} setError={setError} />;
+    return <ErrorDialog error={error} />;
   }
 
   return (

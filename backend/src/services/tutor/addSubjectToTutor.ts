@@ -1,26 +1,16 @@
 // @ts-nocheck
 import { Tutor } from '../../entities/Tutor';
 import { TutorSubject } from '../../entities/TutorSubject';
-import { User } from '../../entities/User';
 import { Subject } from '../../entities/filters/Subject';
 import response from '../../utils/response';
 
 export const addSubjectToTutor = async (req: any) => {
-  const { userID, subjectId } = req.body;
+  const { tutorId, subjectId } = req.body;
 
   if (!subjectId) return response.BAD_REQUEST('No subject provided!');
 
-  const user = await User.findOne({
-    where: { id: userID },
-    relations: ['tutorProfile']
-  });
-
-  if (!user) return response.BAD_REQUEST('User not found!');
-
-  if (!user.tutorProfile) return response.BAD_REQUEST('User is not a tutor!');
-
   const tutor = await Tutor.findOne({
-    where: { id: user.tutorProfile.id },
+    where: { id: tutorId },
     relations: ['tutorSubjects', 'tutorSubjects.subject']
   });
 

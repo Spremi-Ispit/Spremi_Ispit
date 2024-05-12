@@ -5,12 +5,11 @@ import {
   OneToMany,
   BaseEntity,
   PrimaryGeneratedColumn,
-  Column,
+  Column
 } from 'typeorm';
 import { Post } from '../Post';
 import { YearOfStudy } from './YearOfStudy';
 import { Department } from './Department';
-import { TutoringRequest } from '../TutoringRequest';
 import { TutorSubject } from '../TutorSubject';
 @Entity()
 export class Subject extends BaseEntity {
@@ -57,9 +56,6 @@ export class Subject extends BaseEntity {
 
   @OneToMany(() => Post, (post) => post.subject)
   posts: Post[];
-
-  @OneToMany(() => TutoringRequest, (tutoringRequest) => tutoringRequest.subject)
-  tutoringRequests: TutoringRequest[];
 
   @OneToMany(() => TutorSubject, (tutorSubject) => tutorSubject.subject)
   tutorSubjects: TutorSubject[];

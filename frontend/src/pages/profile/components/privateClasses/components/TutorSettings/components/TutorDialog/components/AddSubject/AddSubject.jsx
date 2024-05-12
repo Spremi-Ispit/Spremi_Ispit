@@ -28,7 +28,7 @@ const AddSubject = ({ setReloadSubjects }) => {
   const urlManager = useUrlManager();
   const { urlYearOfStudy, urlDepartment, urlSubject } = urlManager.getParams();
   const { addSubjectToTutor } = useApiActions();
-  const { action, loading, error, setError } = addSubjectToTutor;
+  const { action, loading, error } = addSubjectToTutor;
   const [subject, setSubject] = useState(null);
 
   const addSubject = async () => {
@@ -44,7 +44,7 @@ const AddSubject = ({ setReloadSubjects }) => {
   }
 
   if (error) {
-    return <ErrorDialog error={error} setError={setError} />;
+    return <ErrorDialog error={error} />;
   }
 
   return (

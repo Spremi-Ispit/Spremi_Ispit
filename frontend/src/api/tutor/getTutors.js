@@ -3,10 +3,9 @@ import services from '../../utils/services';
 const mapTutorDTO = (tutor) => {
   let newTutor = {
     id: tutor.id,
-    link: tutor.chatLink,
-    name: tutor.user.username,
-    userId: tutor.user.id,
+    phone: tutor.phone,
     description: tutor.message,
+    enabled: tutor.isEnabled,
     price: {
       personally: tutor.price,
       group: tutor.groupPrice,

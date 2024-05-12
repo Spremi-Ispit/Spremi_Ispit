@@ -1,19 +1,11 @@
 // @ts-nocheck
 import {
   Entity,
-  ManyToMany,
-  JoinTable,
   OneToMany,
   BaseEntity,
   PrimaryGeneratedColumn,
-  Column,
-  ManyToOne,
-  OneToOne,
-  JoinColumn
+  Column
 } from 'typeorm';
-import { Subject } from './filters/Subject';
-import { User } from './User';
-import { TutoringRequest } from './TutoringRequest';
 import { TutorSubject } from './TutorSubject';
 
 @Entity()
@@ -41,32 +33,24 @@ export class Tutor extends BaseEntity {
   @Column({
     length: 200,
     nullable: false,
-    default: ""
+    default: ''
   })
   message: string;
 
   @Column({
     length: 200,
     nullable: false,
-    default: ""
+    default: ''
   })
   message: string;
 
   @Column({
     lenght: 200,
     nullable: false,
-    default: ""
+    default: ''
   })
-  chatLink: string;
-
-  @JoinColumn({ name: 'userId' })
-  @ManyToOne(() => User, (user) => user.tutor)
-  user: User;
+  phone: string;
 
   @OneToMany(() => TutorSubject, (TutorSubject) => TutorSubject.tutor)
   tutorSubjects: TutorSubject[];
-
-  @OneToMany(() => TutoringRequest, (tutoringRequest) => tutoringRequest.tutor)
-  tutoringOffered: TutoringRequest[];
-
 }

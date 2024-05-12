@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import TakenClasses from './components/TakenClasses/TakenClasses';
-import GivenClasses from './components/GivenClasses/GivenClasses';
+import Tutors from './components/Tutors/Tutors';
 import TutorSettings from './components/TutorSettings/TutorSettings';
 
 const PrivateClassesDiv = styled.div`
@@ -13,8 +12,7 @@ const PrivateClassesDiv = styled.div`
 const PrivateClasses = () => {
   return (
     <PrivateClassesDiv>
-      <TakenClasses />
-      <GivenClasses />
+      <Tutors />
       <TutorSettings />
     </PrivateClassesDiv>
   );

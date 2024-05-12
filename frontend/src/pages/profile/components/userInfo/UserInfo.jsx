@@ -19,7 +19,7 @@ export const UserInfo = () => {
   const [user, setUser] = useState(null);
 
   const { loadUserInfo } = useApiActions();
-  const { response, loaded, error, action, setError } = loadUserInfo;
+  const { response, loaded, error, action } = loadUserInfo;
 
   useEffect(() => {
     if (response) {
@@ -34,7 +34,7 @@ export const UserInfo = () => {
   }, [urlUsername]);
 
   if (error) {
-    return <ErrorDialog error={error} setError={setError} />;
+    return <ErrorDialog error={error} />;
   }
 
   if (!loaded) {

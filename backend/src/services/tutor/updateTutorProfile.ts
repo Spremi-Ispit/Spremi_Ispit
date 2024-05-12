@@ -1,30 +1,29 @@
-
-import { User } from "../../entities/User";
-import response from "../../utils/response";
+import { Tutor } from '../../entities/Tutor';
+import response from '../../utils/response';
 
 export const updateTutorProfile = async (req: any) => {
-    const { userID, message, price, groupPrice } = req.body;
+  const { tutorId, message, price, groupPrice } = req.body;
 
-    const user = await User.findOne({
-        where: { id: userID },
-        relations: ["tutorProfile"]
-    });
+  const tutor = await Tutor.findOne({
+    where: { id: tutorId },
+    relations: ['tutorSubjects', 'tutorSubjects.subject']
+  });
 
-    if (!user)
-        return response.BAD_REQUEST("User not found!");
+  if (!tutor) return response.BAD_REQUEST('Tutor not found!');
 
-    if (!user.tutorProfile) {
-        return response.BAD_REQUEST("This user is not a tutor!");
-    }
+  if (message) {
+    tutor.message = message;
+  }
 
-    if (message)
-        user.tutorProfile.message = message;
-    if (price)
-        user.tutorProfile.price = price;
-    if (groupPrice)
-        user.tutorProfile.groupPrice = groupPrice;
+  if (price) {
+    tutor.price = price;
+  }
 
-    await user.tutorProfile.save();
+  if (groupPrice) {
+    tutor.groupPrice = groupPrice;
+  }
 
-    return response.OK("Successfully updated!");
-}
+  await tutor.save();
+
+  return response.OK('Successfully updated!');
+};

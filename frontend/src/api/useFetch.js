@@ -17,12 +17,12 @@ export const useFetch = (fn) => {
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetch = async () => {
+  const fetch = async (...params) => {
     setLoading(true);
     setLoaded(false);
 
     try {
-      const response = await fn();
+      const response = await fn(...params);
       setData(response);
     } catch (error) {
       setError(error);

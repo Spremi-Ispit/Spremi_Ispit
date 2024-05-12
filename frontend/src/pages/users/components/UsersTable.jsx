@@ -54,7 +54,7 @@ export const UsersTable = () => {
   const { setLoadUsersTable } = usersActions;
   const navigate = useNavigate();
   const { loadUsersForUsersTable } = useApiActions();
-  const { response, loaded, error, setError, action } = loadUsersForUsersTable;
+  const { response, loaded, error, action } = loadUsersForUsersTable;
   // const screen = useScreens();
   const token = useSelector(selectToken);
   const excludedUsername = 'Admin';
@@ -107,7 +107,7 @@ export const UsersTable = () => {
   };
 
   if (error) {
-    return <ErrorDialog error={error} setError={setError} />;
+    return <ErrorDialog error={error} />;
   }
 
   if (!loaded) {

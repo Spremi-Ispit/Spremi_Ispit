@@ -4,7 +4,6 @@ import * as userActions from './user/actions';
 import * as postsActions from './posts/actions';
 import * as commentsActions from './comments/actions';
 import * as authActions from './auth/actions';
-import * as tutorActions from './tutor/actions';
 
 export const useApiActions = () => {
   return {
@@ -62,17 +61,6 @@ export const useApiActions = () => {
     login: useAPIAction(authActions.login),
     register: useAPIAction(authActions.register),
     registrationConfirm: useAPIAction(authActions.registrationConfirm),
-
-    //------------------TUTOR----------------
-    getTutors: useAPIAction(tutorActions.getTutors),
-    getTutoringRequestsStudent: useAPIAction(
-      tutorActions.getTutoringRequestsStudent
-    ),
-    getTutoringRequests: useAPIAction(tutorActions.getTutoringRequests),
-    createTutorRequest: useAPIAction(tutorActions.createTutorRequest),
-    getTutorSubjects: useAPIAction(tutorActions.getTutorSubjects),
-    addSubjectToTutor: useAPIAction(tutorActions.addSubjectToTutor),
-    deleteTutorSubject: useAPIAction(tutorActions.deleteTutorSubject),
   };
 };
 

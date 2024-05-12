@@ -1,6 +1,6 @@
 // @ts-nocheck
 import env from '../../src/config/env.js';
-import { dataSource } from '../../src/entities/DataSource.js';
+import { dataSource } from '../../src/entities/index.js';
 import createConnection from './helpers/createConnection.js';
 import log from './helpers/log.js';
 

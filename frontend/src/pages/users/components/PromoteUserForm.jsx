@@ -45,7 +45,6 @@ export const PromoteUserForm = () => {
   const { updateUserRole, loadUsernamesWithRoles } = useApiActions();
   const {
     error: errorUpdateUserRole,
-    setError: setErrorUpdateUserRole,
     loading: loadingUpdateUserRole,
     loaded: loadedUpdateUserRole,
     action: actionUpdateUserRole,
@@ -53,7 +52,6 @@ export const PromoteUserForm = () => {
 
   const {
     error: errorUsernamesWithRoles,
-    setError: setErrorUsernamesWithRoles,
     loaded: loadedUsernamesWithRoles,
     action: actionLoadUsernamesWithRoles,
     response: responseUsernamesWithRoles,
@@ -111,21 +109,11 @@ export const PromoteUserForm = () => {
   };
 
   if (errorUpdateUserRole) {
-    return (
-      <ErrorDialog
-        error={errorUpdateUserRole}
-        setError={setErrorUpdateUserRole}
-      />
-    );
+    return <ErrorDialog error={errorUpdateUserRole} />;
   }
 
   if (errorUsernamesWithRoles) {
-    return (
-      <ErrorDialog
-        error={errorUsernamesWithRoles}
-        setError={setErrorUsernamesWithRoles}
-      />
-    );
+    return <ErrorDialog error={errorUsernamesWithRoles} />;
   }
 
   if (!loadedUsernamesWithRoles || loadingUpdateUserRole) {
