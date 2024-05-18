@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Input } from '@mui/material';
 import close from '../../../../assets/close.png';
 import { useApiActions } from '../../../../api/useApiActions';
-import ErrorDialog from '../../../../components/dialogs/ErrorDialog';
+import Error from '../../../../components/dialogs/Error';
 import styled from 'styled-components';
 import { validateEmail } from '../../../../utils/validation';
 import Loader from '../../../../components/Loader';
@@ -83,7 +83,7 @@ function Modal({ setOpenModal }) {
   const [mail, setMail] = useState('');
   const [mailValid, setMailValid] = useState(false);
   const { resetPassword } = useApiActions();
-  const { action, error, setError, response, loading } = resetPassword;
+  const { action, error, response, loading } = resetPassword;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -118,7 +118,7 @@ function Modal({ setOpenModal }) {
   }
 
   if (error) {
-    return <ErrorDialog error={error} setError={setError} />;
+    return <Error error={error} />;
   }
 
   const handleEnter = (e) => {

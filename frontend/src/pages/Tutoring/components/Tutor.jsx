@@ -1,124 +1,151 @@
 import React from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 import GroupsIcon from '@mui/icons-material/Groups';
 import colors from '../../../theme/colors';
 import BoyIcon from '@mui/icons-material/Boy';
+import Button from '../../../components/buttons/Button';
+import SendRequestDialog from './components/SendRequestDialog';
+import { images } from '../../../constants';
+import { useUrlManager } from '../../../utils/managers/UrlManager';
 
 const defaultDescription =
   'Rado ću ti pomoći da se spremiš za ispit ili laboratorijsku vežbu!';
 
 const Tutor = ({ tutor }) => {
-  const { id, name, description, subjects, price, rating } = tutor;
-  const { personally, group } = price;
+  const {
+    id,
+    name,
+    message,
+    tutorSubjects,
+    price,
+    groupPrice,
+    isEnabled,
+    phone,
+    likes,
+    dislikes,
+    link,
+  } = tutor;
 
-  const userRating = (rate) =>
-    rating.reduce(
-      (accumulator, user) => (accumulator + user.rate === rate ? 1 : 0),
-      0
-    );
+  const { personally, group } = price;
+  const [open, setOpen] = useState(false);
+  const urlManager = useUrlManager();
+  const { urlSubject } = urlManager.getParams();
+
+  const closeSendMessageDialog = () => {
+    setOpen(false);
+  };
+
+  const openSendMessageDialog = () => {
+    if (!urlSubject) {
+      return alert('Odaberite predmet prvo');
+    }
+
+    setOpen(true);
+  };
+
+  if (!isEnabled) {
+    return null;
+  }
 
   return (
     <TutorDiv>
       <TutorHeaderDiv>
-        <ProfileImg
-          src={`https://ui-avatars.com/api/?name=${name}&background=random&color=random&bold=true`}
-        />
-        <TutorIdDiv>Id predavača: {id}</TutorIdDiv>
-        <LikesDislikesDiv>
-          <ThumbUpOffAltIcon />
-          <UserRatingDiv>{userRating(1)}</UserRatingDiv>
-          <DividerDiv />
-          <UserRatingDiv>{userRating(-1)}</UserRatingDiv>
-          <ThumbDownOffAltIcon />
-        </LikesDislikesDiv>
+        <InfoDiv>
+          <ProfileImg
+            src={`https://ui-avatars.com/api/?name=${name}&background=random&color=random&bold=true`}
+          />
+          <LikesDislikesDiv>
+            <ThumbUpOffAltIcon />
+            <UserRatingDiv>{likes}</UserRatingDiv>
+            <DividerDiv />
+            <UserRatingDiv>{dislikes}</UserRatingDiv>
+            <ThumbDownOffAltIcon />
+          </LikesDislikesDiv>
+        </InfoDiv>
+        <TutorIdDiv>ID: {id}</TutorIdDiv>
       </TutorHeaderDiv>
 
       <TutorContentDiv>
         <TutorDescriptionDiv>
-          {description !== '' ? description : defaultDescription}
+          {message !== '' ? message : defaultDescription}
         </TutorDescriptionDiv>
         <SubjectsDiv>
           Predmeti:
-          {subjects.map((subject, index) => (
-            <SubjectDiv key={index}>{subject}</SubjectDiv>
+          {tutorSubjects.map((subject, index) => (
+            <SubjectDiv key={index}>{subject.subject.name}</SubjectDiv>
           ))}
         </SubjectsDiv>
-        <PricesDiv>
-          <PriceDiv>Cena:</PriceDiv>
-          {group && (
-            <>
-              <StyledGroupsIcon />
-              {group}
-            </>
-          )}
-          {personally && group && <DividerDiv />}
-          {personally && (
-            <>
-              <BoyIcon />
-              {personally}
-            </>
-          )}
-        </PricesDiv>
+        <TutorFooterDiv>
+          <PricesDiv>
+            <PriceDiv>Cena:</PriceDiv>
+            {!!groupPrice && (
+              <>
+                <StyledGroupsIcon />
+                {groupPrice}
+              </>
+            )}
+            {!!price && !!groupPrice && <DividerDiv />}
+            {!!price && (
+              <>
+                <BoyIcon />
+                {price}
+              </>
+            )}
+          </PricesDiv>
+          <LessonScheduleDiv>
+            <TutorButton onClick={openSendMessageDialog}>
+              <WhatsAppImg src={images.WhatsApp1} />
+              <h4>Zakaži čas</h4>
+            </TutorButton>
+            <SendRequestDialog
+              open={open}
+              onClose={closeSendMessageDialog}
+              tutorSubjects={tutorSubjects}
+              tutorId={id}
+            />
+          </LessonScheduleDiv>
+        </TutorFooterDiv>
       </TutorContentDiv>
     </TutorDiv>
   );
 };
 
-// -------------------------ANDRIJA-----------------
-// const Tutor = ({ tutor }) => {
-//   const { id, username, message, tutoringSubjects, price, groupPrice, rating } =
-//     tutor;
-
-//   return (
-//     <TutorDiv>
-//       <TutorHeaderDiv>
-//         <ProfileImg
-//           src={`https://ui-avatars.com/api/?name=${username}&background=random&color=random&bold=true`}
-//         />
-//         <TutorIdDiv>Id predavača: {id}</TutorIdDiv>
-//         <LikesDislikesDiv>
-//           <ThumbUpOffAltIcon />
-//           <UserRatingDiv>{rating}</UserRatingDiv>
-//           <DividerDiv />
-//           <UserRatingDiv>{rating}</UserRatingDiv>
-//           <ThumbDownOffAltIcon />
-//         </LikesDislikesDiv>
-//       </TutorHeaderDiv>
-
-//       <TutorContentDiv>
-//         <TutorDescriptionDiv>
-//           {message !== '' ? message : defaultDescription}
-//         </TutorDescriptionDiv>
-//         <SubjectsDiv>
-//           Predmeti:
-//           {tutoringSubjects.map((subject) => (
-//             <SubjectDiv>{subject.name}</SubjectDiv>
-//           ))}
-//         </SubjectsDiv>
-//         <PricesDiv>
-//           <PriceDiv>Cena:</PriceDiv>
-//           {groupPrice && (
-//             <>
-//               <StyledGroupsIcon />
-//               {groupPrice}
-//             </>
-//           )}
-//           {price && groupPrice && <DividerDiv />}
-//           {price && (
-//             <>
-//               <BoyIcon />
-//               {price}
-//             </>
-//           )}
-//         </PricesDiv>
-//       </TutorContentDiv>
-//     </TutorDiv>
-//   );
-// };
-
 export default Tutor;
+
+const InfoDiv = styled.div`
+  display: flex;
+  width: 150px;
+  gap: 5px;
+`;
+
+const TutorButton = styled(Button)`
+  background-color: #32d851;
+  color: white;
+  gap: 5px;
+
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 0px 2px;
+
+  :hover {
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 2px 2px;
+    color: white;
+    background-color: #32d851;
+  }
+`;
+
+const WhatsAppImg = styled.img`
+  width: 24px;
+  height: 24px;
+`;
+
+const LessonScheduleDiv = styled.div``;
+
+const TutorFooterDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
 const StyledGroupsIcon = styled(GroupsIcon)`
   margin-right: 5px;
@@ -167,6 +194,7 @@ const TutorIdDiv = styled.div`
   justify-content: center;
   text-align: center;
   font-weight: bold;
+  margin-right: 150px;
 `;
 
 const DividerDiv = styled.div`
@@ -207,6 +235,5 @@ const TutorDiv = styled.div`
 
 const TutorHeaderDiv = styled.div`
   display: flex;
-  align-items: center;
   gap: 10px;
 `;

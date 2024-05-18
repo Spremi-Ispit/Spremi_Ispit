@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import { FormHelperText, FormLabel } from '@mui/material';
 import Loader from '../../../components/Loader';
-import ErrorDialog from '../../../components/dialogs/ErrorDialog';
+import Error from '../../../components/dialogs/Error';
 import { useAuthManager } from '../../../utils/managers/AuthManager';
 import { screensCSS } from '../../../utils/useScreens';
 import Button from '../../../components/buttons/Button';
@@ -128,7 +128,7 @@ const Form = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { login } = useApiActions();
-  const { loading, error, setError, response, action } = login;
+  const { loading, error, response, action } = login;
   const authManager = useAuthManager();
   const [modalOpen, setModalOpen] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -181,7 +181,7 @@ const Form = () => {
   };
 
   if (error) {
-    return <ErrorDialog error={error} setError={setError} />;
+    return <Error error={error} />;
   }
 
   return (

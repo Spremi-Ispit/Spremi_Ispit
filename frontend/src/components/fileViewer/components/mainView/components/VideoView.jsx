@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import Loader from '../../../../Loader';
 import services from '../../../../../utils/services';
-import ErrorDialog from '../../../../dialogs/ErrorDialog';
+import Error from '../../../../dialogs/Error';
 
 const VideoContainer = styled.div`
   border-radius: 10px;
@@ -44,7 +44,7 @@ export const VideoView = ({ file }) => {
   }, [file]);
 
   if (error) {
-    return <ErrorDialog error={error} setError={setError} />;
+    return <Error error={error} />;
   }
   if (loading) {
     return Loader;

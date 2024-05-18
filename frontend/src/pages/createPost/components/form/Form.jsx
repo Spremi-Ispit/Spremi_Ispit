@@ -3,7 +3,7 @@ import Dialog from '../../../..//components/dialogs/Dialog';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 import Paper from '@mui/material/Paper';
-import ErrorDialog from '../../../../components/dialogs/ErrorDialog';
+import Error from '../../../../components/dialogs/Error';
 import { homeRoute } from '../../../../router/routes';
 import UploadProgress from '../../../../components/UploadProgress';
 import Actions from './components/Actions';
@@ -36,7 +36,7 @@ export const Form = () => {
   const navigate = useNavigate();
   const [uploadProgress, setUploadProgress] = useState(0);
   const { createPost } = useApiActions();
-  const { error, setError, action, response, loading } = createPost;
+  const { error, action, response, loading } = createPost;
   const urlManager = useUrlManager();
   const [activeFileIndex, setActiveFileIndex] = useState(0);
 
@@ -96,7 +96,7 @@ export const Form = () => {
   };
 
   if (error) {
-    return <ErrorDialog error={error} setError={setError} />;
+    return <Error error={error} />;
   }
 
   const uploadProgessComponent = () => {

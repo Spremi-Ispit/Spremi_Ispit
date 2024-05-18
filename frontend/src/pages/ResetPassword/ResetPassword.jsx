@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { homeRoute } from '../../router/routes';
 import { useApiActions } from '../../api/useApiActions';
 import Loader from '../../components/Loader';
-import ErrorDialog from '../../components/dialogs/ErrorDialog';
+import Error from '../../components/dialogs/Error';
 
 const ResetPasswordDiv = styled.div`
   width: 100%;
@@ -43,7 +43,7 @@ const ResetPassword = () => {
   const [newPass, setNewPass] = useState('');
   const navigate = useNavigate();
   const { resetPasswordConfirm } = useApiActions();
-  const { loading, response, error, setError, action } = resetPasswordConfirm;
+  const { loading, response, error, action } = resetPasswordConfirm;
 
   useEffect(() => {
     if (response) {
@@ -71,7 +71,7 @@ const ResetPassword = () => {
   };
 
   if (error) {
-    return <ErrorDialog error={error} setError={setError} />;
+    return <Error error={error} />;
   }
 
   if (loading) {

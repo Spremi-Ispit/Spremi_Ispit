@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Loader from '../../../components/Loader';
 import Typography from '@mui/material/Typography';
 import Fade from '@mui/material/Fade';
-import ErrorDialog from '../../../components/dialogs/ErrorDialog';
+import Error from '../../../components/dialogs/Error';
 import styled from 'styled-components';
 import Paper from '@mui/material/Paper';
 import { Divider } from '@mui/material';
@@ -55,8 +55,7 @@ export const CommentedPosts = () => {
   const urlManager = useUrlManager();
   const { urlUsername } = urlManager.getParams();
   const { loadCommentedPosts } = useApiActions();
-  const { loading, loaded, response, error, setError, action } =
-    loadCommentedPosts;
+  const { loading, loaded, response, error, action } = loadCommentedPosts;
 
   useEffect(() => {
     if (loaded) {
@@ -71,7 +70,7 @@ export const CommentedPosts = () => {
   }, [urlUsername]);
 
   if (error) {
-    return <ErrorDialog error={error} setError={setError} />;
+    return <Error error={error} />;
   }
   if (loading) {
     return <Loader />;

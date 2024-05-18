@@ -8,7 +8,7 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { useSelector } from 'react-redux';
-import ErrorDialog from '../../../components/dialogs/ErrorDialog';
+import Error from '../../../components/dialogs/Error';
 import Loader from '../../../components/Loader';
 import { useNavigate } from 'react-router-dom';
 import { userRole } from '../../../redux/app/state';
@@ -54,7 +54,7 @@ export const UsersTable = () => {
   const { setLoadUsersTable } = usersActions;
   const navigate = useNavigate();
   const { loadUsersForUsersTable } = useApiActions();
-  const { response, loaded, error, setError, action } = loadUsersForUsersTable;
+  const { response, loaded, error, action } = loadUsersForUsersTable;
   // const screen = useScreens();
   const token = useSelector(selectToken);
   const excludedUsername = 'Admin';
@@ -107,7 +107,7 @@ export const UsersTable = () => {
   };
 
   if (error) {
-    return <ErrorDialog error={error} setError={setError} />;
+    return <Error error={error} />;
   }
 
   if (!loaded) {

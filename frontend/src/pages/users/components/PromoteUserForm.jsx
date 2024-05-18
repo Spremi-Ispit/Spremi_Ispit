@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import ErrorDialog from '../../../components/dialogs/ErrorDialog';
+import Error from '../../../components/dialogs/Error';
 import Loader from '../../../components/Loader';
 import { TextField } from '@mui/material';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -45,7 +45,6 @@ export const PromoteUserForm = () => {
   const { updateUserRole, loadUsernamesWithRoles } = useApiActions();
   const {
     error: errorUpdateUserRole,
-    setError: setErrorUpdateUserRole,
     loading: loadingUpdateUserRole,
     loaded: loadedUpdateUserRole,
     action: actionUpdateUserRole,
@@ -53,7 +52,6 @@ export const PromoteUserForm = () => {
 
   const {
     error: errorUsernamesWithRoles,
-    setError: setErrorUsernamesWithRoles,
     loaded: loadedUsernamesWithRoles,
     action: actionLoadUsernamesWithRoles,
     response: responseUsernamesWithRoles,
@@ -111,21 +109,11 @@ export const PromoteUserForm = () => {
   };
 
   if (errorUpdateUserRole) {
-    return (
-      <ErrorDialog
-        error={errorUpdateUserRole}
-        setError={setErrorUpdateUserRole}
-      />
-    );
+    return <Error error={errorUpdateUserRole} />;
   }
 
   if (errorUsernamesWithRoles) {
-    return (
-      <ErrorDialog
-        error={errorUsernamesWithRoles}
-        setError={setErrorUsernamesWithRoles}
-      />
-    );
+    return <Error error={errorUsernamesWithRoles} />;
   }
 
   if (!loadedUsernamesWithRoles || loadingUpdateUserRole) {

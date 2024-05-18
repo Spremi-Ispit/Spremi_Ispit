@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 import { TextField } from '@mui/material';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import ErrorDialog from '../../../../../../../components/dialogs/ErrorDialog';
+import Error from '../../../../../../../components/dialogs/Error';
 import Loader from '../../../../../../../components/Loader';
 import {
   allowedUrlParams,
@@ -55,7 +55,7 @@ const UsernameUpdateView = ({ user, setUsernameUpdate }) => {
   const [confirmedPassword, setConfirmedPassword] = useState('');
   const [newUsername, setNewUsername] = useState('');
   const { changeAccountUsername } = useApiActions();
-  const { response, loading, error, setError, action } = changeAccountUsername;
+  const { response, loading, error, action } = changeAccountUsername;
   const [showPassword, setShowPassword] = useState(false);
   const urlManager = useUrlManager();
   const authManager = useAuthManager();
@@ -85,7 +85,7 @@ const UsernameUpdateView = ({ user, setUsernameUpdate }) => {
   };
 
   if (error) {
-    return <ErrorDialog error={error} setError={setError} />;
+    return <Error error={error} />;
   }
 
   if (loading) {

@@ -84,7 +84,6 @@ export const SideNavbar = () => {
       <NavLink to={navigateTo(profileCommentedPostsRoute)}>
         Komentarisane objave
       </NavLink>
-      <NavLink to={navigateTo(profileClasses)}>Privatni časovi</NavLink>
       {(username === urlUsername || role === userRole.admin) && (
         <NavLink to={navigateTo(profileInfoRoute)}>Informacije</NavLink>
       )}
@@ -92,6 +91,7 @@ export const SideNavbar = () => {
       {role === userRole.admin && (
         <>
           <StyledH3>ADMIN</StyledH3>
+          <NavLink to={navigateTo(profileClasses)}>Privatni časovi</NavLink>
           <NavLink to={navigateTo(profileReportedPostsRoute)}>
             Prijavljene objave
           </NavLink>

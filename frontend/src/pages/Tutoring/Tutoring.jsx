@@ -1,54 +1,57 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
 import Navbar from '../../components/navbar/Navbar';
 import SettingsSidePanel from '../../components/SettingsSidePanel/SettingsSidePanel';
 import Footer from '../../components/Footer';
 import colors from '../../theme/colors';
 import Instagram from './components/Instagram';
-import tutors from './data';
 import Tutor from './components/Tutor';
-import { useApiActions } from '../../api/useApiActions';
-
-const lessons = new Set();
-tutors.forEach((tutor) =>
-  tutor.subjects.forEach((subject) => lessons.add(subject))
-);
-const availableLessons = Array.from(lessons);
+import Loader from '../../components/Loader';
+import Error from '../../components/dialogs/Error';
+import { useUrlManager } from '../../utils/managers/UrlManager';
+import { useFetchOnLoad } from '../../api/useFetch';
+import { getTutors } from '../../api/tutor/getTutors';
+import YearOfStudy from './components/YearOfStudy';
+import Department from './components/Department';
+import Subject from './components/Subject';
 
 const Tutoring = () => {
-  const [availableTutors, setAvailableTutors] = useState(tutors);
-  const { getTutors } = useApiActions();
-  const { loading, response, error, setError, action } = getTutors;
+  const [availableTutors, setAvailableTutors] = useState([]);
+  const { data, error, loading } = useFetchOnLoad(getTutors);
+  const urlManager = useUrlManager();
+  const { urlSubject } = urlManager.getParams();
 
-  const handleChange = (event, value, reason) => {
-    if (!value) {
-      setAvailableTutors(tutors);
-    } else {
+  useEffect(() => {
+    if (data) {
+      setAvailableTutors(data);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    if (urlSubject === null && data) {
+      setAvailableTutors(data);
+    }
+  }, [urlSubject]);
+
+  if (loading) {
+    return <Loader />;
+  }
+
+  if (error) {
+    return <Error error={error} />;
+  }
+
+  const handleSubjectChange = (subject) => {
+    if (!subject) return;
+
+    if (data) {
       setAvailableTutors(
-        tutors.filter((tutor) => tutor.subjects.includes(value))
+        data.filter((tutor) =>
+          tutor.tutorSubjects.map((subject) => subject.id).includes(subject.id)
+        )
       );
-
-      //--------------ANDRIJA-----------
-      // setAvailableTutors(
-      //   availableTutors.filter((tutor) =>
-      //     tutor.tutoringSubjects.map((s) => s.name).includes(value)
-      //   )
-      // );
     }
   };
-
-  useEffect(() => {
-    if (response) {
-      // console.log(response);
-      // setAvailableTutors(response);
-    }
-  }, [response]);
-
-  useEffect(() => {
-    action();
-  }, []);
 
   return (
     <>
@@ -58,18 +61,12 @@ const Tutoring = () => {
         <MainDiv>
           <LessonsDiv>
             <TutoringH2>Potrebni su ti privatni časovi?</TutoringH2>
-            <StyledLabel>
-              Unesi naziv predmeta da bi pronašao predavača
-            </StyledLabel>
-            <StyledAutocomplete
-              disablePortal
-              options={availableLessons}
-              sx={{ maxWidth: '500px', width: '100%' }}
-              onChange={handleChange}
-              renderInput={(params) => (
-                <TextField {...params} placeholder="Predmet" />
-              )}
-            />
+            <StyledLabel>Unesi predmet da bi pronašao predavača</StyledLabel>
+            <FiltersContainerDiv>
+              <YearOfStudy />
+              <Department />
+              <Subject onSubjectChange={handleSubjectChange} />
+            </FiltersContainerDiv>
             <TutorsDiv>
               {availableTutors.map((tutor, index) => (
                 <Tutor key={index} tutor={tutor} />
@@ -104,12 +101,36 @@ const Tutoring = () => {
 
 export default Tutoring;
 
+const FiltersContainerDiv = styled.div`
+  display: grid;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.75) 0px 1px 3px;
+  padding: 10px;
+
+  display: grid;
+  grid-template-columns: 200px 200px 200px;
+
+  @media (max-width: 700px) {
+    display: grid;
+    grid-template-columns: 150px 150px 150px;
+  }
+
+  @media (max-width: 560px) {
+    display: grid;
+    grid-template-columns: 150px 150px;
+  }
+`;
+
 const TutorsDiv = styled.div`
   display: flex;
   gap: 20px;
   flex-direction: column;
   margin-bottom: 20px;
-  align-items: center;
+  width: 100%;
 `;
 
 const TutoringH2 = styled.h2`
@@ -156,18 +177,14 @@ const StyledFooter = styled(Footer)`
   margin-top: 0px;
 `;
 
-const StyledAutocomplete = styled(Autocomplete)`
-  background-color: white;
-  margin: 10px;
-`;
-
 const LessonsDiv = styled.div`
   align-self: center;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  max-width: 750px;
+  width: 100%;
 `;
 
 const StyledLabel = styled.label`

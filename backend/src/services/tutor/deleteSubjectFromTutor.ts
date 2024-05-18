@@ -1,25 +1,26 @@
-import { getAllJSDocTags } from 'typescript';
 import response from '../../utils/response';
-import { User } from '../../entities/User';
+import { Tutor } from '../../entities/Tutor';
+
+// This function does not delete the subject from the tutor, it only disables it.
 
 export const deleteSubjectFromTutor = async (req: any) => {
-  const {userID, subjectId} = req.body;
+  const { tutorId, subjectId } = req.body;
 
-  const user = await User.findOne({
-    where : {id : userID},
-    relations: ["tutorProfile", "tutorProfile.tutoringSubjects"]
-  })
-  
-  if(!user)
-    return response.BAD_REQUEST("User not found!");
+  const tutor = await Tutor.findOne({
+    where: { id: tutorId },
+    relations: ['tutorSubjects', 'tutorSubjects.subject']
+  });
+  if (!tutor) return response.BAD_REQUEST('Tutor not found!');
 
-  if(!user.tutorProfile)
-    return response.BAD_REQUEST("User is not a tutor!");
+  let tutorSubject = tutor.tutorSubjects.find(
+    (ts) => ts.subject.id == subjectId
+  );
 
-  let tutor = user.tutorProfile;
+  if (!tutorSubject)
+    return response.BAD_REQUEST("Tutor doesn't tutor that subject!");
 
-  tutor.tutoringSubjects = tutor.tutoringSubjects.filter((subject) => subject.id !== subjectId);
-  await tutor.save();
-  
-  return response.OK('Removed subject!');
+  tutorSubject.isEnabled = false;
+  await tutorSubject.save();
+
+  return response.OK(subjectId);
 };

@@ -1,19 +1,12 @@
 // @ts-nocheck
 import {
   Entity,
-  ManyToMany,
-  JoinTable,
   OneToMany,
   BaseEntity,
   PrimaryGeneratedColumn,
-  Column,
-  ManyToOne,
-  OneToOne,
-  JoinColumn
+  Column
 } from 'typeorm';
-import { Subject } from './filters/Subject';
-import { User } from './User';
-import { TutoringRequest } from './TutoringRequest';
+import { TutorSubject } from './TutorSubject';
 
 @Entity()
 export class Tutor extends BaseEntity {
@@ -22,41 +15,68 @@ export class Tutor extends BaseEntity {
 
   @Column({
     nullable: false,
-    unsigned: true
+    unsigned: true,
+    default: 0
   })
   price: number;
 
   @Column({
     nullable: false,
-    unsigned: true
+    unsigned: true,
+    default: 0
   })
   groupPrice: number;
 
   @Column({
+    default: false
+  })
+  isEnabled: boolean;
+
+  @Column({
     length: 200,
     nullable: false,
-    default: ""
+    default: ''
   })
   message: string;
 
   @Column({
     length: 200,
     nullable: false,
-    default: ""
+    default: ''
   })
   message: string;
 
-  @JoinColumn({ name: 'userId' })
-  @ManyToOne(() => User, (user) => user.tutor)
-  user: User;
-
-  @JoinTable()
-  @ManyToMany((type) => Subject, {
-    cascade: true
+  @Column({
+    lenght: 200,
+    nullable: false,
+    default: ''
   })
-  tutoringSubjects: Subject[];
+  phone: string;
 
-  @OneToMany(() => TutoringRequest, (tutoringRequest) => tutoringRequest.tutor)
-  tutoringOffered: TutoringRequest[];
+  @OneToMany(() => TutorSubject, (TutorSubject) => TutorSubject.tutor)
+  tutorSubjects: TutorSubject[];
 
+  @Column({
+    default: 0
+  })
+  likes: number;
+
+  @Column({
+    default: 0
+  })
+  dislikes: number;
+
+  @Column({
+    length: 200,
+    nullable: false,
+    default: ''
+  })
+  name: string;
+
+  @Column({
+    length: 512,
+    nullable: false,
+    default: ''
+  })
+  link: string;
 }

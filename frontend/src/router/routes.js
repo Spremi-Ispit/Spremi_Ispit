@@ -22,3 +22,4 @@ export const profileReportedCommentsRoute = '/profile/reportedComments';
 
 export const createPostRoute = '/createPost';
 export const usersRoute = '/users';
+export const tutorRequestRoute = (id) => `/tutorRequest/${id}`;

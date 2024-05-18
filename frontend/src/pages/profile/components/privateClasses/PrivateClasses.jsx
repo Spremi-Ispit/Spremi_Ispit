@@ -1,39 +1,36 @@
-import { Card, Divider, Grid, Stack, Typography } from "@mui/material";
 import styled from 'styled-components';
-import { useApiActions } from "../../../../api/useApiActions";
-import { useEffect, useState } from "react";
-import Loader from "../../../../components/Loader";
-import ErrorDialog from "../../../../components/dialogs/ErrorDialog";
-import { TutoringRequestsList } from "./components/TutoringRequestsList";
-import { useScreens, screens } from "../../../../utils/useScreens";
+import Tutors from './components/Tutors/Tutors';
+import CreateTutor from './components/CreateTutor/CreateTutor';
+import { useState } from 'react';
+import TutorProfile from './components/Tutors/components/TutorProfile/TutorProfile';
 
+const PrivateClassesDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 40px;
+`;
 
 const PrivateClasses = () => {
-    const screen = useScreens();
-    return (
-        <Grid px={5} container justifyContent="center" columns={screen < screens.tablet * 1.25 ? 1 : 2} spacing={2}>
-            <Grid item xs={1}>
-                <Typography mx={1.5} my={1.5} variant="h5">Moji zahtevi</Typography>
-                <StyledDivider />
-                <TutoringRequestsList student={true} />
+  const [reloadTutors, setReloadTutors] = useState(false);
+  const [tutorId, setTutorId] = useState(null);
 
-            </Grid>
-            <Grid item xs={1}>
-                <Typography mx={1.5} my={1.5} variant="h5">Zahtevi za mene</Typography>
-                <StyledDivider />
-                <TutoringRequestsList student={false} />
-            </Grid>
-        </Grid>
-    );
+  const onSave = () => {
+    setReloadTutors(true);
+    setTutorId(null);
+  };
+
+  return (
+    <PrivateClassesDiv>
+      <Tutors
+        reloadTutors={reloadTutors}
+        setReloadTutors={setReloadTutors}
+        setTutorId={setTutorId}
+      />
+      {!tutorId && <CreateTutor setReloadTutors={setReloadTutors} />}
+      {tutorId && <TutorProfile tutorId={tutorId} onSave={onSave} />}
+    </PrivateClassesDiv>
+  );
 };
-
-const StyledDivider = styled(Divider)`
-  && {
-    max-width: 650px;
-    width: 100%;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-`;
 
 export default PrivateClasses;

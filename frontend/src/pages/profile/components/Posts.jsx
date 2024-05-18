@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ErrorDialog } from '../../../components/dialogs/ErrorDialog';
+import { Error } from '../../../components/dialogs/Error';
 import Loader from '../../../components/Loader';
 import Typography from '@mui/material/Typography';
 import Fade from '@mui/material/Fade';
@@ -54,7 +54,7 @@ export const Posts = () => {
   const urlManager = useUrlManager();
   const { urlUsername } = urlManager.getParams();
   const { loadUserPosts } = useApiActions();
-  const { loading, error, setError, action, loaded, response } = loadUserPosts;
+  const { loading, error, action, loaded, response } = loadUserPosts;
 
   useEffect(() => {
     if (urlUsername) {
@@ -69,7 +69,7 @@ export const Posts = () => {
   }, [loaded]);
 
   if (error) {
-    return <ErrorDialog error={error} setError={setError} />;
+    return <Error error={error} />;
   }
 
   if (loading) {

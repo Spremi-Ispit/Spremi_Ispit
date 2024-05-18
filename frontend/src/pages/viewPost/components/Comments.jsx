@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import Loader from '../../../components/Loader';
 import PostView from '../../../components/PostView/PostView';
-import ErrorDialog from '../../../components/dialogs/ErrorDialog';
+import Error from '../../../components/dialogs/Error';
 import {
   selectCommentsLoading,
   selectPostLoading,
@@ -28,7 +28,7 @@ export const Comments = () => {
   const { viewPostActions } = useAppActions();
   const { setCommentsLoading } = viewPostActions;
   const { loadComments } = useApiActions();
-  const { loaded, error, setError, response, action } = loadComments;
+  const { loaded, error, response, action } = loadComments;
   const {
     addCommentLike,
     removeCommentLike,
@@ -58,7 +58,7 @@ export const Comments = () => {
   }, [commentsLoading]);
 
   if (error) {
-    return <ErrorDialog error={error} setError={setError} />;
+    return <Error error={error} />;
   }
 
   if (!loaded) {

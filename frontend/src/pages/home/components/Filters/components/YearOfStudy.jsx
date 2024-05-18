@@ -63,7 +63,7 @@ export const YearOfStudy = () => {
     <YearOfStudyDiv>
       <Label>Godina studija </Label>
       <Select value={urlYearOfStudy ?? ''} onChange={handleChange}>
-        <option value="">Sve</option>
+        <option value=""> Sve</option>
         {yearsOfStudy.map((urlYearOfStudy) => (
           <option key={urlYearOfStudy.name} value={urlYearOfStudy.name}>
             {urlYearOfStudy.name}

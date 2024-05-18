@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Fade from '@mui/material/Fade';
-import ErrorDialog from '../../../../components/dialogs/ErrorDialog';
+import Error from '../../../../components/dialogs/Error';
 import Loader from '../../../../components/Loader';
 import { useUrlManager } from '../../../../utils/managers/UrlManager';
 import { useApiActions } from '../../../../api/useApiActions';
@@ -45,8 +45,7 @@ export const PostsPreview = () => {
     urlCommentedPosts,
   } = urlManager.getParams();
   const { loadPostsForHomepageFilters } = useApiActions();
-  const { loading, response, error, setError, action } =
-    loadPostsForHomepageFilters;
+  const { loading, response, error, action } = loadPostsForHomepageFilters;
   const [morePosts, setMorePosts] = useState(false);
   const morePostsref = useRef();
   const [scrollPosition, setScrollPosition] = useState(window.pageYOffset);
@@ -111,7 +110,7 @@ export const PostsPreview = () => {
   }, [morePosts]);
 
   if (error) {
-    return <ErrorDialog error={error} setError={setError} />;
+    return <Error error={error} />;
   }
 
   if (loading) {

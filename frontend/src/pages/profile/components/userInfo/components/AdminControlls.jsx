@@ -5,7 +5,7 @@ import LockPersonIcon from '@mui/icons-material/LockPerson';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useState } from 'react';
 import AlertDialog from '../../../../../components/dialogs/AlertDialog';
-import ErrorDialog from '../../../../../components/dialogs/ErrorDialog';
+import Error from '../../../../../components/dialogs/Error';
 import Loader from '../../../../../components/Loader';
 import styled from 'styled-components';
 import { useApiActions } from '../../../../../api/useApiActions';
@@ -34,7 +34,6 @@ export const AdminControlls = ({ user, reloadUserInfo }) => {
     loading: loadingBanUserAccount,
     loaded: loadedBanUserAccount,
     error: errorBanUserAccount,
-    setError: setErrorBanUserAccount,
     action: actionBanUserAccount,
   } = banUserAccount;
 
@@ -42,7 +41,6 @@ export const AdminControlls = ({ user, reloadUserInfo }) => {
     loading: loadingUnbanUserAccount,
     loaded: loadedUnbanUserAccount,
     error: errorUnbanUserAccount,
-    setError: setErrorUnbanUserAccount,
     action: actionUnbanUserAccount,
   } = unbanUserAccount;
 
@@ -50,7 +48,6 @@ export const AdminControlls = ({ user, reloadUserInfo }) => {
     loading: loadingBlacklistUser,
     loaded: loadedBlacklistUser,
     error: errorBlacklistUser,
-    setError: setErrorBlacklistUser,
     action: actionBlacklistUser,
   } = blacklistUser;
 
@@ -86,30 +83,15 @@ export const AdminControlls = ({ user, reloadUserInfo }) => {
 
   const errorDialog = () => {
     if (errorBanUserAccount) {
-      return (
-        <ErrorDialog
-          error={errorBanUserAccount}
-          setError={setErrorBanUserAccount}
-        />
-      );
+      return <Error error={errorBanUserAccount} />;
     }
 
     if (errorUnbanUserAccount) {
-      return (
-        <ErrorDialog
-          error={errorUnbanUserAccount}
-          setError={setErrorUnbanUserAccount}
-        />
-      );
+      return <Error error={errorUnbanUserAccount} />;
     }
 
     if (errorBlacklistUser) {
-      return (
-        <ErrorDialog
-          error={errorBlacklistUser}
-          setError={setErrorBlacklistUser}
-        />
-      );
+      return <Error error={errorBlacklistUser} />;
     }
 
     return null;

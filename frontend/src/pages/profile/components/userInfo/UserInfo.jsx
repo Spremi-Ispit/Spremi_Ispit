@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import Loader from '../../../../components/Loader';
 import AdminControlls from './components/AdminControlls';
 import { userRole } from '../../../../redux/app/state';
-import ErrorDialog from '../../../../components/dialogs/ErrorDialog';
+import Error from '../../../../components/dialogs/Error';
 import { useUrlManager } from '../../../../utils/managers/UrlManager';
 import { selectRole, selectUsername } from '../../../../redux/app/selectors';
 import { useApiActions } from '../../../../api/useApiActions';
@@ -19,7 +19,7 @@ export const UserInfo = () => {
   const [user, setUser] = useState(null);
 
   const { loadUserInfo } = useApiActions();
-  const { response, loaded, error, action, setError } = loadUserInfo;
+  const { response, loaded, error, action } = loadUserInfo;
 
   useEffect(() => {
     if (response) {
@@ -34,7 +34,7 @@ export const UserInfo = () => {
   }, [urlUsername]);
 
   if (error) {
-    return <ErrorDialog error={error} setError={setError} />;
+    return <Error error={error} />;
   }
 
   if (!loaded) {

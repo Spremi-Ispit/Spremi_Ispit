@@ -14,7 +14,7 @@ import { useSelector } from 'react-redux';
 import { selectToken } from '../../../../../redux/app/selectors';
 import { useNavigate } from 'react-router-dom';
 import { useApiActions } from '../../../../../api/useApiActions';
-import ErrorDialog from '../../../../../components/dialogs/ErrorDialog';
+import Error from '../../../../../components/dialogs/Error';
 
 const ControllsText = styled(Typography)`
   && {
@@ -67,7 +67,7 @@ export const Form = () => {
   const urlManager = useUrlManager();
   const { urlPostId } = urlManager.getParams();
   const { addComment } = useApiActions();
-  const { loading, error, setError, action, response } = addComment;
+  const { loading, error, action, response } = addComment;
   const { viewPostActions } = useAppActions();
   const { setCommentsLoading } = viewPostActions;
   const [activeFileIndex, setActiveFileIndex] = useState(0);
@@ -130,7 +130,7 @@ export const Form = () => {
 
   const errorDialog = () => {
     if (error) {
-      return <ErrorDialog error={error} setError={setError} />;
+      return <Error error={error} />;
     }
 
     return null;
