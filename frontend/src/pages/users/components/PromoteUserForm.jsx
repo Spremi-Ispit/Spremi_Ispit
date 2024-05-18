@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import ErrorDialog from '../../../components/dialogs/ErrorDialog';
+import Error from '../../../components/dialogs/Error';
 import Loader from '../../../components/Loader';
 import { TextField } from '@mui/material';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -109,11 +109,11 @@ export const PromoteUserForm = () => {
   };
 
   if (errorUpdateUserRole) {
-    return <ErrorDialog error={errorUpdateUserRole} />;
+    return <Error error={errorUpdateUserRole} />;
   }
 
   if (errorUsernamesWithRoles) {
-    return <ErrorDialog error={errorUsernamesWithRoles} />;
+    return <Error error={errorUsernamesWithRoles} />;
   }
 
   if (!loadedUsernamesWithRoles || loadingUpdateUserRole) {

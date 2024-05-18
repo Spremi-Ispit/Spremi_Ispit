@@ -7,7 +7,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import ErrorDialog from '../../../components/dialogs/ErrorDialog';
+import Error from '../../../components/dialogs/Error';
 import Loader from '../../../components/Loader';
 import {
   homeRoute,
@@ -165,7 +165,7 @@ export const Form = () => {
   }, [response]);
 
   if (error) {
-    return <ErrorDialog error={error} />;
+    return <Error error={error} />;
   }
 
   const onChangeRecaptcha = () => {

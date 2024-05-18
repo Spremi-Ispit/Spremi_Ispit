@@ -6,7 +6,7 @@ import Loader from '../../../../components/Loader';
 import Typography from '@mui/material/Typography';
 import Fade from '@mui/material/Fade';
 import DismissReport from './components/DismissReport';
-import ErrorDialog from '../../../../components/dialogs/ErrorDialog';
+import Error from '../../../../components/dialogs/Error';
 import { useApiActions } from '../../../../api/useApiActions';
 import PostPreview from '../../../../components/PostPreview/PostPreview';
 
@@ -72,7 +72,7 @@ export const ReportedPosts = () => {
   }, [response]);
 
   if (error) {
-    return <ErrorDialog error={error} />;
+    return <Error error={error} />;
   }
 
   if (!loaded) {

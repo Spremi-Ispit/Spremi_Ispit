@@ -15,7 +15,20 @@ const defaultDescription =
   'Rado ću ti pomoći da se spremiš za ispit ili laboratorijsku vežbu!';
 
 const Tutor = ({ tutor }) => {
-  const { id, name, description, subjects, price, rating, userId } = tutor;
+  const {
+    id,
+    name,
+    message,
+    tutorSubjects,
+    price,
+    groupPrice,
+    isEnabled,
+    phone,
+    likes,
+    dislikes,
+    link,
+  } = tutor;
+  console.log(tutorSubjects);
   const { personally, group } = price;
   const userRating = [0, 0]; // TODO: request user rating
   const [open, setOpen] = useState(false);
@@ -34,46 +47,55 @@ const Tutor = ({ tutor }) => {
     setOpen(true);
   };
 
+  if (!isEnabled) {
+    return null;
+  }
+
+  console.log(groupPrice);
+  console.log(price);
+
   return (
     <TutorDiv>
       <TutorHeaderDiv>
-        <ProfileImg
-          src={`https://ui-avatars.com/api/?name=${name}&background=random&color=random&bold=true`}
-        />
-        <TutorIdDiv>{name}</TutorIdDiv>
-        <LikesDislikesDiv>
-          <ThumbUpOffAltIcon />
-          <UserRatingDiv>{userRating[0]}</UserRatingDiv>
-          <DividerDiv />
-          <UserRatingDiv>{userRating[1]}</UserRatingDiv>
-          <ThumbDownOffAltIcon />
-        </LikesDislikesDiv>
+        <InfoDiv>
+          <ProfileImg
+            src={`https://ui-avatars.com/api/?name=${name}&background=random&color=random&bold=true`}
+          />
+          <LikesDislikesDiv>
+            <ThumbUpOffAltIcon />
+            <UserRatingDiv>{likes}</UserRatingDiv>
+            <DividerDiv />
+            <UserRatingDiv>{dislikes}</UserRatingDiv>
+            <ThumbDownOffAltIcon />
+          </LikesDislikesDiv>
+        </InfoDiv>
+        <TutorIdDiv>ID: {id}</TutorIdDiv>
       </TutorHeaderDiv>
 
       <TutorContentDiv>
         <TutorDescriptionDiv>
-          {description !== '' ? description : defaultDescription}
+          {message !== '' ? message : defaultDescription}
         </TutorDescriptionDiv>
         <SubjectsDiv>
           Predmeti:
-          {subjects.map((subject, index) => (
-            <SubjectDiv key={index}>{subject.name}</SubjectDiv>
+          {tutorSubjects.map((subject, index) => (
+            <SubjectDiv key={index}>{subject.subject.name}</SubjectDiv>
           ))}
         </SubjectsDiv>
         <TutorFooterDiv>
           <PricesDiv>
             <PriceDiv>Cena:</PriceDiv>
-            {group && (
+            {!!groupPrice && (
               <>
                 <StyledGroupsIcon />
-                {group}
+                {groupPrice}
               </>
             )}
-            {personally && group && <DividerDiv />}
-            {personally && (
+            {!!price && !!groupPrice && <DividerDiv />}
+            {!!price && (
               <>
                 <BoyIcon />
-                {personally}
+                {price}
               </>
             )}
           </PricesDiv>
@@ -85,7 +107,7 @@ const Tutor = ({ tutor }) => {
             <SendRequestDialog
               open={open}
               onClose={closeSendMessageDialog}
-              subjects={subjects}
+              tutorSubjects={tutorSubjects}
               tutorId={id}
             />
           </LessonScheduleDiv>
@@ -96,6 +118,12 @@ const Tutor = ({ tutor }) => {
 };
 
 export default Tutor;
+
+const InfoDiv = styled.div`
+  display: flex;
+  width: 150px;
+  gap: 5px;
+`;
 
 const TutorButton = styled(Button)`
   background-color: #32d851;
@@ -170,6 +198,7 @@ const TutorIdDiv = styled.div`
   justify-content: center;
   text-align: center;
   font-weight: bold;
+  margin-right: 150px;
 `;
 
 const DividerDiv = styled.div`
@@ -210,6 +239,5 @@ const TutorDiv = styled.div`
 
 const TutorHeaderDiv = styled.div`
   display: flex;
-  align-items: center;
   gap: 10px;
 `;

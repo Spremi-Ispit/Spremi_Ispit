@@ -6,7 +6,7 @@ import {
 } from '../../../../../utils/managers/UrlManager';
 import Button from '../../../../../components/buttons/Button';
 import { useApiActions } from '../../../../../api/useApiActions';
-import ErrorDialog from '../../../../../components/dialogs/ErrorDialog';
+import Error from '../../../../../components/dialogs/Error';
 import Loader from '../../../../../components/Loader';
 
 const NextButton = styled(Button)`
@@ -68,7 +68,7 @@ export const NextPost = () => {
   }
 
   if (error) {
-    return <ErrorDialog error={error} />;
+    return <Error error={error} />;
   }
 
   if (loading) {

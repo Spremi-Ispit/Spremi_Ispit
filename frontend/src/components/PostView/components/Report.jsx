@@ -8,7 +8,7 @@ import { loginRoute } from '../../../router/routes';
 import styled from 'styled-components';
 import { IconButton } from '@mui/material';
 import { selectToken } from '../../../redux/app/selectors';
-import ErrorDialog from '../../dialogs/ErrorDialog';
+import Error from '../../dialogs/Error';
 
 const StyledReportIconButton = styled(IconButton)`
   && {
@@ -36,7 +36,7 @@ export const Report = ({ postId, reportPost }) => {
   };
 
   if (error) {
-    return <ErrorDialog error={error} />;
+    return <Error error={error} />;
   }
 
   if (loading) {

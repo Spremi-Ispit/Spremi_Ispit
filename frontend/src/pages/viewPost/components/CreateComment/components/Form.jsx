@@ -14,7 +14,7 @@ import { useSelector } from 'react-redux';
 import { selectToken } from '../../../../../redux/app/selectors';
 import { useNavigate } from 'react-router-dom';
 import { useApiActions } from '../../../../../api/useApiActions';
-import ErrorDialog from '../../../../../components/dialogs/ErrorDialog';
+import Error from '../../../../../components/dialogs/Error';
 
 const ControllsText = styled(Typography)`
   && {
@@ -130,7 +130,7 @@ export const Form = () => {
 
   const errorDialog = () => {
     if (error) {
-      return <ErrorDialog error={error} />;
+      return <Error error={error} />;
     }
 
     return null;

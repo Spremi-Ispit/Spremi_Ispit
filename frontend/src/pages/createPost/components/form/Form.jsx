@@ -3,7 +3,7 @@ import Dialog from '../../../..//components/dialogs/Dialog';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 import Paper from '@mui/material/Paper';
-import ErrorDialog from '../../../../components/dialogs/ErrorDialog';
+import Error from '../../../../components/dialogs/Error';
 import { homeRoute } from '../../../../router/routes';
 import UploadProgress from '../../../../components/UploadProgress';
 import Actions from './components/Actions';
@@ -96,7 +96,7 @@ export const Form = () => {
   };
 
   if (error) {
-    return <ErrorDialog error={error} />;
+    return <Error error={error} />;
   }
 
   const uploadProgessComponent = () => {

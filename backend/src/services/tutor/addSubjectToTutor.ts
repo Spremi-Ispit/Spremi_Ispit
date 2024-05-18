@@ -8,6 +8,7 @@ export const addSubjectToTutor = async (req: any) => {
   const { tutorId, subjectId } = req.body;
 
   if (!subjectId) return response.BAD_REQUEST('No subject provided!');
+  if (!tutorId) return response.BAD_REQUEST('No tutor provided!');
 
   const tutor = await Tutor.findOne({
     where: { id: tutorId },

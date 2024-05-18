@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ErrorDialog } from '../../../components/dialogs/ErrorDialog';
+import { Error } from '../../../components/dialogs/Error';
 import Loader from '../../../components/Loader';
 import Typography from '@mui/material/Typography';
 import Fade from '@mui/material/Fade';
@@ -69,7 +69,7 @@ export const Posts = () => {
   }, [loaded]);
 
   if (error) {
-    return <ErrorDialog error={error} />;
+    return <Error error={error} />;
   }
 
   if (loading) {

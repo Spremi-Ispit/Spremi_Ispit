@@ -1,6 +1,6 @@
 export { getTutors } from './getTutors';
 export { getTutorsBySubject } from './getTutorsBySubject';
-export { createTutor } from './createTutor';
+export { createTutorProfile } from './createTutorProfile';
 export { addSubjectToTutor } from './addSubjectToTutor';
 export { deleteTutorProfile } from './deleteTutorProfile';
 export { deleteSubjectFromTutor } from './deleteSubjectFromTutor';

@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import { FormHelperText, FormLabel } from '@mui/material';
 import Loader from '../../../components/Loader';
-import ErrorDialog from '../../../components/dialogs/ErrorDialog';
+import Error from '../../../components/dialogs/Error';
 import { useAuthManager } from '../../../utils/managers/AuthManager';
 import { screensCSS } from '../../../utils/useScreens';
 import Button from '../../../components/buttons/Button';
@@ -181,7 +181,7 @@ const Form = () => {
   };
 
   if (error) {
-    return <ErrorDialog error={error} />;
+    return <Error error={error} />;
   }
 
   return (

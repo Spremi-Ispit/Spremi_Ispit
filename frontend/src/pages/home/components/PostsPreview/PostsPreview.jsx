@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Fade from '@mui/material/Fade';
-import ErrorDialog from '../../../../components/dialogs/ErrorDialog';
+import Error from '../../../../components/dialogs/Error';
 import Loader from '../../../../components/Loader';
 import { useUrlManager } from '../../../../utils/managers/UrlManager';
 import { useApiActions } from '../../../../api/useApiActions';
@@ -110,7 +110,7 @@ export const PostsPreview = () => {
   }, [morePosts]);
 
   if (error) {
-    return <ErrorDialog error={error} />;
+    return <Error error={error} />;
   }
 
   if (loading) {

@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import Tutors from './components/Tutors/Tutors';
-import TutorSettings from './components/TutorSettings/TutorSettings';
+import CreateTutor from './components/CreateTutor/CreateTutor';
+import { useState } from 'react';
+import TutorProfile from './components/Tutors/components/TutorProfile/TutorProfile';
 
 const PrivateClassesDiv = styled.div`
   display: flex;
@@ -10,10 +12,23 @@ const PrivateClassesDiv = styled.div`
 `;
 
 const PrivateClasses = () => {
+  const [reloadTutors, setReloadTutors] = useState(false);
+  const [tutorId, setTutorId] = useState(null);
+
+  const onSave = () => {
+    setReloadTutors(true);
+    setTutorId(null);
+  };
+
   return (
     <PrivateClassesDiv>
-      <Tutors />
-      <TutorSettings />
+      <Tutors
+        reloadTutors={reloadTutors}
+        setReloadTutors={setReloadTutors}
+        setTutorId={setTutorId}
+      />
+      {!tutorId && <CreateTutor setReloadTutors={setReloadTutors} />}
+      {tutorId && <TutorProfile tutorId={tutorId} onSave={onSave} />}
     </PrivateClassesDiv>
   );
 };

@@ -5,7 +5,7 @@ import LockPersonIcon from '@mui/icons-material/LockPerson';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useState } from 'react';
 import AlertDialog from '../../../../../components/dialogs/AlertDialog';
-import ErrorDialog from '../../../../../components/dialogs/ErrorDialog';
+import Error from '../../../../../components/dialogs/Error';
 import Loader from '../../../../../components/Loader';
 import styled from 'styled-components';
 import { useApiActions } from '../../../../../api/useApiActions';
@@ -83,15 +83,15 @@ export const AdminControlls = ({ user, reloadUserInfo }) => {
 
   const errorDialog = () => {
     if (errorBanUserAccount) {
-      return <ErrorDialog error={errorBanUserAccount} />;
+      return <Error error={errorBanUserAccount} />;
     }
 
     if (errorUnbanUserAccount) {
-      return <ErrorDialog error={errorUnbanUserAccount} />;
+      return <Error error={errorUnbanUserAccount} />;
     }
 
     if (errorBlacklistUser) {
-      return <ErrorDialog error={errorBlacklistUser} />;
+      return <Error error={errorBlacklistUser} />;
     }
 
     return null;

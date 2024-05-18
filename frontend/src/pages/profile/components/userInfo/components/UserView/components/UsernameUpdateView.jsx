@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 import { TextField } from '@mui/material';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import ErrorDialog from '../../../../../../../components/dialogs/ErrorDialog';
+import Error from '../../../../../../../components/dialogs/Error';
 import Loader from '../../../../../../../components/Loader';
 import {
   allowedUrlParams,
@@ -85,7 +85,7 @@ const UsernameUpdateView = ({ user, setUsernameUpdate }) => {
   };
 
   if (error) {
-    return <ErrorDialog error={error} />;
+    return <Error error={error} />;
   }
 
   if (loading) {

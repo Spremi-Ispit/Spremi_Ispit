@@ -15,18 +15,20 @@ export class Tutor extends BaseEntity {
 
   @Column({
     nullable: false,
-    unsigned: true
+    unsigned: true,
+    default: 0
   })
   price: number;
 
   @Column({
     nullable: false,
-    unsigned: true
+    unsigned: true,
+    default: 0
   })
   groupPrice: number;
 
   @Column({
-    default: true
+    default: false
   })
   isEnabled: boolean;
 
@@ -53,4 +55,28 @@ export class Tutor extends BaseEntity {
 
   @OneToMany(() => TutorSubject, (TutorSubject) => TutorSubject.tutor)
   tutorSubjects: TutorSubject[];
+
+  @Column({
+    default: 0
+  })
+  likes: number;
+
+  @Column({
+    default: 0
+  })
+  dislikes: number;
+
+  @Column({
+    length: 200,
+    nullable: false,
+    default: ''
+  })
+  name: string;
+
+  @Column({
+    length: 512,
+    nullable: false,
+    default: ''
+  })
+  link: string;
 }

@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import Fade from '@mui/material/Fade';
 import DismissReport from './components/DismissReport';
 import ShowPost from './components/ShowPost';
-import ErrorDialog from '../../../../components/dialogs/ErrorDialog';
+import Error from '../../../../components/dialogs/Error';
 import styled from 'styled-components';
 import Paper from '@mui/material/Paper';
 import { Divider } from '@mui/material';
@@ -82,7 +82,7 @@ export const ReportedComments = () => {
   }, []);
 
   if (error) {
-    return <ErrorDialog error={error} />;
+    return <Error error={error} />;
   }
   if (loading) {
     return <Loader />;

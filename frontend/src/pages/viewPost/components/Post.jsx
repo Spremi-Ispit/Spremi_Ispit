@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { selectPostLoading } from '../../../redux/viewPost/selectors';
-import ErrorDialog from '../../../components/dialogs/ErrorDialog';
+import Error from '../../../components/dialogs/Error';
 import Loader from '../../../components/Loader';
 import { useUrlManager } from '../../../utils/managers/UrlManager';
 import { useApiActions } from '../../../api/useApiActions';
@@ -50,7 +50,7 @@ export const Post = () => {
   }, [urlPostId]);
 
   if (error) {
-    return <ErrorDialog error={error} />;
+    return <Error error={error} />;
   }
 
   if (postLoading) {

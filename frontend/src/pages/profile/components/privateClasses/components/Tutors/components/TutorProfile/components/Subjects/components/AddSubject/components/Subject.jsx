@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import {
   allowedUrlParams,
   useUrlManager,
-} from '../../../../../../../../../../../utils/managers/UrlManager';
-import { useApiActions } from '../../../../../../../../../../../api/useApiActions';
-import { fonts } from '../../../../../../../../../../../theme/fonts';
+} from '../../../../../../../../../../../../../utils/managers/UrlManager';
+import { useApiActions } from '../../../../../../../../../../../../../api/useApiActions';
+import { fonts } from '../../../../../../../../../../../../../theme/fonts';
 
 const SubjectDiv = styled.div`
   display: flex;

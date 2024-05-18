@@ -1,21 +1,21 @@
 import React, { useEffect } from 'react';
-import Loader from '../../../../../../../../../../components/Loader';
-import Table from '../../../../../../../../../../components/Table';
-import ErrorDialog from '../../../../../../../../../../components/dialogs/ErrorDialog';
+import Loader from '../../../../../../../../../../../../components/Loader';
+import Table from '../../../../../../../../../../../../components/Table';
+import Error from '../../../../../../../../../../../../components/dialogs/Error';
 import {
   useFetch,
   useFetchOnLoad,
-} from '../../../../../../../../../../api/useFetch';
-import Button from '../../../../../../../../../../components/buttons/Button';
-import { deleteTutorSubject } from '../../../../../../../../../../api/tutor/deleteTutorSubject';
-import { getTutorSubjects } from '../../../../../../../../../../api/tutor/getTutorSubjects';
+} from '../../../../../../../../../../../../api/useFetch';
+import Button from '../../../../../../../../../../../../components/buttons/Button';
+import { deleteTutorSubject } from '../../../../../../../../../../../../api/tutor/deleteTutorSubject';
+import { getTutorSubjects } from '../../../../../../../../../../../../api/tutor/getTutorSubjects';
 
-const TutorSubjects = ({ tutorId, reloadSubjects }) => {
+const TutorSubjects = ({ tutorId, reloadSubjects, setReloadSubjects }) => {
   const {
     loadingDelete,
     errorDelete,
     fetch: deleteSubject,
-    data: subjectDeleted,
+    data: subjectId,
   } = useFetch((subjectId, tutorId) => deleteTutorSubject(subjectId, tutorId));
   const {
     loading: loadingSubjects,
@@ -25,17 +25,30 @@ const TutorSubjects = ({ tutorId, reloadSubjects }) => {
   } = useFetchOnLoad(() => getTutorSubjects(tutorId));
 
   useEffect(() => {
-    if (subjectDeleted || reloadSubjects) {
+    if (reloadSubjects) {
+      refetchSubjects();
+      setReloadSubjects(false);
+    }
+  }, [reloadSubjects]);
+
+  useEffect(() => {
+    if (subjectId) {
       refetchSubjects();
     }
-  }, [subjectDeleted, reloadSubjects]);
+  }, [subjectId]);
+
+  useEffect(() => {
+    if (subjects) {
+      refetchSubjects();
+    }
+  }, [tutorId]);
 
   if (errorDelete) {
-    return <ErrorDialog error={errorDelete} />;
+    return <Error error={errorDelete} />;
   }
 
   if (errorSubjects) {
-    return <ErrorDialog error={errorSubjects} />;
+    return <Error error={errorSubjects} />;
   }
 
   if (loadingDelete || loadingSubjects) {

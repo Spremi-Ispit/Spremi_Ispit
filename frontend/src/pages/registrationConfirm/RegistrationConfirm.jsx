@@ -7,7 +7,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { homeRoute } from '../../router/routes';
 import { useApiActions } from '../../api/useApiActions';
 import Loader from '../../components/Loader';
-import ErrorDialog from '../../components/dialogs/ErrorDialog';
+import Error from '../../components/dialogs/Error';
 import { useAuthManager } from '../../utils/managers/AuthManager';
 
 const ActivactionCodeDiv = styled.div`
@@ -79,7 +79,7 @@ const RegistrationConfirm = () => {
   }
 
   if (error) {
-    return <ErrorDialog error={error} />;
+    return <Error error={error} />;
   }
 
   return (

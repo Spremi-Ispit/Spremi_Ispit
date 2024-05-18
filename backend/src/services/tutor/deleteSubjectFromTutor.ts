@@ -6,11 +6,6 @@ import { Tutor } from '../../entities/Tutor';
 export const deleteSubjectFromTutor = async (req: any) => {
   const { tutorId, subjectId } = req.body;
 
-  console.log('lelellle');
-  console.log(tutorId);
-  console.log(subjectId);
-  console.log('lelellle');
-
   const tutor = await Tutor.findOne({
     where: { id: tutorId },
     relations: ['tutorSubjects', 'tutorSubjects.subject']
@@ -27,5 +22,5 @@ export const deleteSubjectFromTutor = async (req: any) => {
   tutorSubject.isEnabled = false;
   await tutorSubject.save();
 
-  return response.OK('Subject tutoring has been disabled!');
+  return response.OK(subjectId);
 };

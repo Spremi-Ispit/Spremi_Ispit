@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Input } from '@mui/material';
 import close from '../../../../assets/close.png';
 import { useApiActions } from '../../../../api/useApiActions';
-import ErrorDialog from '../../../../components/dialogs/ErrorDialog';
+import Error from '../../../../components/dialogs/Error';
 import styled from 'styled-components';
 import { validateEmail } from '../../../../utils/validation';
 import Loader from '../../../../components/Loader';
@@ -118,7 +118,7 @@ function Modal({ setOpenModal }) {
   }
 
   if (error) {
-    return <ErrorDialog error={error} />;
+    return <Error error={error} />;
   }
 
   const handleEnter = (e) => {

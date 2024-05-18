@@ -7,7 +7,7 @@ import colors from '../../theme/colors';
 import Instagram from './components/Instagram';
 import Tutor from './components/Tutor';
 import Loader from '../../components/Loader';
-import ErrorDialog from '../../components/dialogs/ErrorDialog';
+import Error from '../../components/dialogs/Error';
 import { useUrlManager } from '../../utils/managers/UrlManager';
 import { useFetchOnLoad } from '../../api/useFetch';
 import { getTutors } from '../../api/tutor/getTutors';
@@ -38,7 +38,7 @@ const Tutoring = () => {
   }
 
   if (error) {
-    return <ErrorDialog error={error} />;
+    return <Error error={error} />;
   }
 
   const handleSubjectChange = (subject) => {

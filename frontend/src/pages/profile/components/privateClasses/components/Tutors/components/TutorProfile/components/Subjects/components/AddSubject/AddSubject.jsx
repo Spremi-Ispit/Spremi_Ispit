@@ -3,14 +3,14 @@ import styled from 'styled-components';
 import YearOfStudy from './components/YearOfStudy';
 import Department from './components/Department';
 import Subject from './components/Subject';
-import Button from '../../../../../../../../../../components/buttons/Button';
-import { useUrlManager } from '../../../../../../../../../../utils/managers/UrlManager';
-import Loader from '../../../../../../../../../../components/Loader';
-import ErrorDialog from '../../../../../../../../../../components/dialogs/ErrorDialog';
-import { useFetch } from '../../../../../../../../../../api/useFetch';
-import { addSubjectToTutor } from '../../../../../../../../../../api/tutor/addSubjectToTutor';
+import Button from '../../../../../../../../../../../../components/buttons/Button';
+import { useUrlManager } from '../../../../../../../../../../../../utils/managers/UrlManager';
+import Loader from '../../../../../../../../../../../../components/Loader';
+import Error from '../../../../../../../../../../../../components/dialogs/Error';
+import { useFetch } from '../../../../../../../../../../../../api/useFetch';
+import { addSubjectToTutor } from '../../../../../../../../../../../../api/tutor/addSubjectToTutor';
 
-const AddSubject = ({ reloadSubjects }) => {
+const AddSubject = ({ setReloadSubjects, tutorId }) => {
   const urlManager = useUrlManager();
   const { urlYearOfStudy, urlDepartment, urlSubject } = urlManager.getParams();
   const [subject, setSubject] = useState(null);
@@ -19,13 +19,13 @@ const AddSubject = ({ reloadSubjects }) => {
   const addSubject = () => {
     if (urlYearOfStudy && urlDepartment && urlSubject) {
       const { id } = subject;
-      fetch(id);
+      fetch(id, tutorId);
     }
   };
 
   useEffect(() => {
     if (loaded) {
-      reloadSubjects();
+      setReloadSubjects(true);
     }
   }, [loaded]);
 
@@ -34,7 +34,7 @@ const AddSubject = ({ reloadSubjects }) => {
   }
 
   if (error) {
-    return <ErrorDialog error={error} />;
+    return <Error error={error} />;
   }
 
   return (

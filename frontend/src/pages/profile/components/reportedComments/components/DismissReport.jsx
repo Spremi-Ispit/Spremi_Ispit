@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Loader from '../../../../../components/Loader';
-import ErrorDialog from '../../../../../components/dialogs/ErrorDialog';
+import Error from '../../../../../components/dialogs/Error';
 import Button from '../../../../../components/buttons/Button';
 import { useApiActions } from '../../../../../api/useApiActions';
 
@@ -23,7 +23,7 @@ export const DismissReport = ({ commentId, setLoadComments }) => {
   }
 
   if (error) {
-    <ErrorDialog error={error} />;
+    <Error error={error} />;
   }
 
   return (

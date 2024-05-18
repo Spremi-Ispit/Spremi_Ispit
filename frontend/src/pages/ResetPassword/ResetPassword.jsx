@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { homeRoute } from '../../router/routes';
 import { useApiActions } from '../../api/useApiActions';
 import Loader from '../../components/Loader';
-import ErrorDialog from '../../components/dialogs/ErrorDialog';
+import Error from '../../components/dialogs/Error';
 
 const ResetPasswordDiv = styled.div`
   width: 100%;
@@ -71,7 +71,7 @@ const ResetPassword = () => {
   };
 
   if (error) {
-    return <ErrorDialog error={error} />;
+    return <Error error={error} />;
   }
 
   if (loading) {

@@ -9,7 +9,7 @@ import {
   OutlinedInput,
 } from '@mui/material';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import ErrorDialog from '../../../../../../../components/dialogs/ErrorDialog';
+import Error from '../../../../../../../components/dialogs/Error';
 import Loader from '../../../../../../../components/Loader';
 import { useAuthManager } from '../../../../../../../utils/managers/AuthManager';
 import { useApiActions } from '../../../../../../../api/useApiActions';
@@ -70,7 +70,7 @@ const PasswordUpdateView = ({ user, setPasswordUpdate }) => {
   };
 
   if (error) {
-    return <ErrorDialog error={error} />;
+    return <Error error={error} />;
   }
 
   if (loading) {

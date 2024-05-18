@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReportOffIcon from '@mui/icons-material/ReportOff';
 import Loader from '../../../../../components/Loader';
-import ErrorDialog from '../../../../../components/dialogs/ErrorDialog';
+import Error from '../../../../../components/dialogs/Error';
 import { Tooltip } from '@mui/material';
 import styled from 'styled-components';
 import { useApiActions } from '../../../../../api/useApiActions';
@@ -32,7 +32,7 @@ export const DismissReport = ({ postId, setLoadPosts }) => {
   }
 
   if (error) {
-    return <ErrorDialog error={error} />;
+    return <Error error={error} />;
   }
 
   return (
