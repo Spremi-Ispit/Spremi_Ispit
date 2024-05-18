@@ -47,7 +47,7 @@ const Tutoring = () => {
     if (data) {
       setAvailableTutors(
         data.filter((tutor) =>
-          tutor.subjects.map((subject) => subject.id).includes(subject.id)
+          tutor.tutorSubjects.map((subject) => subject.id).includes(subject.id)
         )
       );
     }

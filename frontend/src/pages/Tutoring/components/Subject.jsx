@@ -51,17 +51,16 @@ export const Subject = ({ onSubjectChange }) => {
   }, []);
 
   const handleChange = (event) => {
-    onSubjectChange(
-      subjects.find((subject) => subject.name === event.target.value)
+    const subjectName = event.target.value;
+
+    const selectedSubject = subjects.find(
+      (subject) => subject.name === subjectName
     );
 
     urlManager.updateUrlParams([
-      { key: allowedUrlParams.subject, value: event.target.value },
-      { key: allowedUrlParams.type, value: null },
-      { key: allowedUrlParams.examinationPeriod, value: null },
-      { key: allowedUrlParams.yearOfExam, value: null },
-      { key: allowedUrlParams.commentedPosts, value: null },
+      { key: allowedUrlParams.subject, value: subjectName },
     ]);
+    onSubjectChange(selectedSubject);
   };
 
   if (error) {
@@ -76,7 +75,7 @@ export const Subject = ({ onSubjectChange }) => {
         {!loaded || subjects.length === 0 || !urlDepartment
           ? null
           : subjects.map((subject) => (
-              <option key={subject.name} value={subject.name}>
+              <option key={subject.id} value={subject.name}>
                 {subject.name}
               </option>
             ))}

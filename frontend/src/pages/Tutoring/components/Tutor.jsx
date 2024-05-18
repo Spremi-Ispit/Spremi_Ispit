@@ -28,9 +28,8 @@ const Tutor = ({ tutor }) => {
     dislikes,
     link,
   } = tutor;
-  console.log(tutorSubjects);
+
   const { personally, group } = price;
-  const userRating = [0, 0]; // TODO: request user rating
   const [open, setOpen] = useState(false);
   const urlManager = useUrlManager();
   const { urlSubject } = urlManager.getParams();
@@ -50,9 +49,6 @@ const Tutor = ({ tutor }) => {
   if (!isEnabled) {
     return null;
   }
-
-  console.log(groupPrice);
-  console.log(price);
 
   return (
     <TutorDiv>
