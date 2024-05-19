@@ -6,6 +6,9 @@ import { images, privateClasses } from '../../../../constants';
 import { useWindowSize } from '@uidotdev/usehooks';
 import Button from '../../../../components/buttons/Button';
 import { screensCSS } from '../../../../utils/useScreens';
+import colors from '../../../../theme/colors';
+import GroupsIcon from '@mui/icons-material/Groups';
+import BoyIcon from '@mui/icons-material/Boy';
 
 const topClass = [];
 for (const key in privateClasses) {
@@ -19,23 +22,36 @@ const TopClass = () => {
   const { width } = useWindowSize();
 
   return (
-    <TopClassDiv $width={width}>
-      <ImageGallery
-        items={topClass.map((image) => ({
-          thumbnail: image,
-        }))}
-        infinite
-        autoPlay
-        showPlayButton={false}
-        showFullscreenButton={false}
-        showNav={false}
-      />
+    <TopClassDiv>
+      <TopClassHeader>TopClass</TopClassHeader>
+      <TopClassImagesDiv>
+        <ImagesWrapperDiv>
+          <ImageGallery
+            items={topClass.map((image) => ({
+              // thumbnail: image,
+              original: image,
+            }))}
+            infinite
+            autoPlay
+            showPlayButton={false}
+            showFullscreenButton={false}
+            showNav={false}
+          />
+        </ImagesWrapperDiv>
+      </TopClassImagesDiv>
+      <DescriptionDiv>
+        Privatna škola sa vrhunskim timom predavača i nastavom prilagođenom
+        vašim potrebama, garantuje kvalitet i efikasnost u savladavanju gradiva.
+      </DescriptionDiv>
       <TopClassFooterDiv>
-        <DescriptionDiv>
-          Privatna škola <b>TopClass</b> sa vrhunskim timom predavača i nastavom
-          prilagođenom vašim potrebama, garantuje kvalitet i efikasnost u
-          savladavanju gradiva.
-        </DescriptionDiv>
+        <PricesDiv>
+          <PriceDiv>Cena:</PriceDiv>
+          <StyledGroupsIcon />
+          1000
+          <DividerDiv />
+          <BoyIcon />
+          1200
+        </PricesDiv>
         <TutorButton
           onClick={() => {
             location.href = `https://wa.me/381607154400?text=${message()}`;
@@ -51,15 +67,45 @@ const TopClass = () => {
 
 export default TopClass;
 
+const DividerDiv = styled.div`
+  border: 1px solid black;
+  margin: 5px;
+  height: 15px;
+`;
+
+const StyledGroupsIcon = styled(GroupsIcon)`
+  margin-right: 5px;
+`;
+
+const PriceDiv = styled.div`
+  margin-right: 5px;
+`;
+
+const PricesDiv = styled.div`
+  background: ${colors.background};
+  padding: 5px 10px 5px 5px;
+  border-radius: 10px;
+  display: flex;
+  width: fit-content;
+  align-items: center;
+`;
+
+const TopClassHeader = styled.h3`
+  text-align: center;
+`;
+
+const TopClassImagesDiv = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const ImagesWrapperDiv = styled.div`
+  width: 200px;
+`;
+
 const TopClassFooterDiv = styled.div`
   display: flex;
-  gap: 5px;
-  align-items: end;
-
-  @media ${screensCSS.mobileL} {
-    flex-direction: column;
-    align-items: center;
-  }
+  justify-content: space-between;
 `;
 
 const TutorButton = styled(Button)`
@@ -87,6 +133,15 @@ const DescriptionDiv = styled.div`
 `;
 
 const TopClassDiv = styled.div`
-  width: ${({ $width }) => $width - 40}px;
-  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 3px solid #bababa;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 4px;
+  gap: 10px;
+
+  max-width: 750px;
+  width: 100%;
+  margin-bottom: 20px;
 `;

@@ -62,13 +62,13 @@ const Tutoring = () => {
         <MainDiv>
           <LessonsDiv>
             <TutoringH2>Potrebni su ti privatni časovi?</TutoringH2>
-            <TopClass />
             <StyledLabel>Unesi predmet da bi pronašao predavača</StyledLabel>
             <FiltersContainerDiv>
               <YearOfStudy />
               <Department />
               <Subject onSubjectChange={handleSubjectChange} />
             </FiltersContainerDiv>
+            <TopClass />
             <TutorsDiv>
               {availableTutors.map((tutor, index) => (
                 <Tutor key={index} tutor={tutor} />
