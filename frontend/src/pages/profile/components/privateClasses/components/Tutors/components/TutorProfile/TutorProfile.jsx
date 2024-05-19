@@ -63,6 +63,8 @@ const TutorProfile = ({ onSave, tutorId }) => {
     return <Loader />;
   }
 
+  console.log(tutor);
+
   return (
     <TutorProfileDiv>
       <TutorProfileH3>Predavč ID: {tutorId}</TutorProfileH3>
@@ -134,8 +136,9 @@ const TutorProfile = ({ onSave, tutorId }) => {
       <DescriptionDiv>
         <h3>Opis:</h3>
         <DescriptionTextarea
+          value={tutor.message}
           onChange={(ev) =>
-            setTutor((prev) => ({ ...prev, name: ev.target.value }))
+            setTutor((prev) => ({ ...prev, message: ev.target.value }))
           }
         />
       </DescriptionDiv>
