@@ -7,7 +7,6 @@ import GroupsIcon from '@mui/icons-material/Groups';
 import colors from '../../../theme/colors';
 import BoyIcon from '@mui/icons-material/Boy';
 import Button from '../../../components/buttons/Button';
-import SendRequestDialog from './components/SendRequestDialog';
 import { images } from '../../../constants';
 import { useUrlManager } from '../../../utils/managers/UrlManager';
 
@@ -33,18 +32,6 @@ const Tutor = ({ tutor }) => {
   const [open, setOpen] = useState(false);
   const urlManager = useUrlManager();
   const { urlSubject } = urlManager.getParams();
-
-  const closeSendMessageDialog = () => {
-    setOpen(false);
-  };
-
-  const openSendMessageDialog = () => {
-    if (!urlSubject) {
-      return alert('Odaberite predmet prvo');
-    }
-
-    setOpen(true);
-  };
 
   if (!isEnabled) {
     return null;
@@ -96,16 +83,14 @@ const Tutor = ({ tutor }) => {
             )}
           </PricesDiv>
           <LessonScheduleDiv>
-            <TutorButton onClick={openSendMessageDialog}>
+            <TutorButton
+              onClick={() => {
+                location.href = `https://wa.me/381607154400?text=Želim da zakažem čas kod predavača čiji je ID=${id}`;
+              }}
+            >
               <WhatsAppImg src={images.WhatsApp1} />
               <h4>Zakaži čas</h4>
             </TutorButton>
-            <SendRequestDialog
-              open={open}
-              onClose={closeSendMessageDialog}
-              tutorSubjects={tutorSubjects}
-              tutorId={id}
-            />
           </LessonScheduleDiv>
         </TutorFooterDiv>
       </TutorContentDiv>
