@@ -14,6 +14,7 @@ import { getTutors } from '../../api/tutor/getTutors';
 import YearOfStudy from './components/YearOfStudy';
 import Department from './components/Department';
 import Subject from './components/Subject';
+import TopClass from './components/TopClass/TopClass';
 
 const Tutoring = () => {
   const [availableTutors, setAvailableTutors] = useState([]);
@@ -67,6 +68,7 @@ const Tutoring = () => {
               <Department />
               <Subject onSubjectChange={handleSubjectChange} />
             </FiltersContainerDiv>
+            <TopClass />
             <TutorsDiv>
               {availableTutors.map((tutor, index) => (
                 <Tutor key={index} tutor={tutor} />
@@ -100,6 +102,8 @@ const Tutoring = () => {
 };
 
 export default Tutoring;
+
+const TopClassDiv = styled.div``;
 
 const FiltersContainerDiv = styled.div`
   display: grid;
@@ -135,7 +139,6 @@ const TutorsDiv = styled.div`
 
 const TutoringH2 = styled.h2`
   text-align: center;
-  margin-bottom: 20px;
 `;
 
 const TutorDiv = styled.div`
@@ -190,4 +193,5 @@ const LessonsDiv = styled.div`
 const StyledLabel = styled.label`
   font-weight: bold;
   display: block;
+  margin-top: 20px;
 `;
