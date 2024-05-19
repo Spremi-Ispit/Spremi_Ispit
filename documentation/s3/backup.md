@@ -7,6 +7,7 @@
 ```
 cd /home/backup
 mysqldump -u root -p --no-create-info spremiis_prod > data.sql;
+cp /home/backup/data.sql /home/repos/Spremi_Ispit/Production/Spremi_Ispit/backend/database/
 ```
 
 **backup to s3 bucket**
