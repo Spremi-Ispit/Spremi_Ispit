@@ -5,7 +5,8 @@
 **export**
 
 ```
-mysqldump -u root -p --no-create-info spremiis_dev > data.sql;
+cd /home/backup
+mysqldump -u root -p --no-create-info spremiis_prod > data.sql;
 ```
 
 **backup to s3 bucket**
