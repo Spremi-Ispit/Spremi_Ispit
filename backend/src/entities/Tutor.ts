@@ -33,14 +33,7 @@ export class Tutor extends BaseEntity {
   isEnabled: boolean;
 
   @Column({
-    length: 200,
-    nullable: false,
-    default: ''
-  })
-  message: string;
-
-  @Column({
-    length: 200,
+    length: 1024,
     nullable: false,
     default: ''
   })
