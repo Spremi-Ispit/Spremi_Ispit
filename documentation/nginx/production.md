@@ -32,7 +32,7 @@ sudo nano /etc/nginx/sites-available/production
 ```
 server {
     listen 80;
-    server_name spremiispit.com;
+    server_name spremiispit.com www.spremiispit.com;
 
     client_max_body_size 1000M;
 
