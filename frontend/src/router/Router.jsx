@@ -23,7 +23,6 @@ import CommunityGithub from '../pages/CommunityGithub/CommunityGithub';
 import CommunityDrives from '../pages/CommunityDrives/CommunityDrives';
 import Tutoring from '../pages/Tutoring/Tutoring';
 import PrivateClasses from '../pages/profile/components/privateClasses/PrivateClasses';
-import TutorRequest from '../pages/TutorRequest/TutorRequest';
 
 export default function Router() {
   const privateRoutes = (
@@ -46,10 +45,6 @@ export default function Router() {
         />
         <Route path={routes.profileClasses} element={<PrivateClasses />} />
       </Route>
-      <Route
-        path={`${routes.tutorRequestRoute(':id')}`}
-        element={<TutorRequest />}
-      />
     </Route>
   );
 
