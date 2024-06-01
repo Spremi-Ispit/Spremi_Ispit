@@ -11,12 +11,13 @@ import {
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Error from '../../../../../../../components/dialogs/Error';
 import Loader from '../../../../../../../components/Loader';
-import { useAuthManager } from '../../../../../../../utils/managers/AuthManager';
 import { useApiActions } from '../../../../../../../api/useApiActions';
 import colors from '../../../../../../../theme/colors';
 import Button from '../../../../../../../components/buttons/Button';
 import { validatePassword } from '../../../../../../../utils/validation';
 import Dialog from '../../../../../../../components/dialogs/Dialog';
+import { useRedux } from '../../../../../../../redux/useRedux';
+import { appActions } from '../../../../../../../redux/app/slice';
 
 const StyledFormControl = styled(FormControl)`
   && {
@@ -43,14 +44,14 @@ const PasswordUpdateView = ({ user, setPasswordUpdate }) => {
   const { changeAccountPassword } = useApiActions();
   const { error, loading, loaded, action, response } = changeAccountPassword;
   const [showPassword, setShowPassword] = useState(false);
-  const authManager = useAuthManager();
   const [message, setMessage] = useState('');
   const [newPasswordError, setNewPasswordError] = useState(null);
   const [confirmedPasswordError, setConfirmedPasswordError] = useState(null);
+  const setToken = useRedux(appActions.setToken);
 
   useEffect(() => {
     if (loaded) {
-      authManager.updateToken(response);
+      setToken(response);
       setPasswordUpdate(false);
     }
   }, [loaded]);

@@ -8,43 +8,15 @@ import { homeRoute } from '../../router/routes';
 import { useApiActions } from '../../api/useApiActions';
 import Loader from '../../components/Loader';
 import Error from '../../components/dialogs/Error';
-import { useAuthManager } from '../../utils/managers/AuthManager';
-
-const ActivactionCodeDiv = styled.div`
-  width: 100%;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const FormDiv = styled.div`
-  width: 90%;
-  max-width: 500px;
-`;
-
-const StyledTextField = styled(TextField)`
-  && {
-    margin-bottom: 20px;
-  }
-`;
-
-const ButtonsDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-`;
-
-const ActivactionCodeH1 = styled.h1`
-  margin: 20px;
-`;
+import { useRedux } from '../../redux/useRedux';
+import { appActions } from '../../redux/app/slice';
 
 const RegistrationConfirm = () => {
   const navigate = useNavigate();
   const [activactionCode, setActivactionCode] = useState('');
   const { registrationConfirm } = useApiActions();
   const { loading, error, response, action } = registrationConfirm;
-  const authManager = useAuthManager();
+  const setToken = useRedux(appActions.setToken);
   const location = useLocation();
 
   useEffect(() => {
@@ -55,7 +27,7 @@ const RegistrationConfirm = () => {
 
   useEffect(() => {
     if (response) {
-      authManager.login(response);
+      setToken(response);
       navigate(homeRoute);
     }
   }, [response]);
@@ -107,3 +79,32 @@ const RegistrationConfirm = () => {
 };
 
 export default RegistrationConfirm;
+
+const ActivactionCodeDiv = styled.div`
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const FormDiv = styled.div`
+  width: 90%;
+  max-width: 500px;
+`;
+
+const StyledTextField = styled(TextField)`
+  && {
+    margin-bottom: 20px;
+  }
+`;
+
+const ButtonsDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+`;
+
+const ActivactionCodeH1 = styled.h1`
+  margin: 20px;
+`;

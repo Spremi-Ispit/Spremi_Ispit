@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 ReactGA.initialize('G-J24NM9G7SY');
 
 function App() {
+  // to use socketManager in code, first have to initialize sockets with useSockets hook in App.jsx
   // useCorrectAppVersion();
   const location = useLocation();
 

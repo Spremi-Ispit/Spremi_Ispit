@@ -16,40 +16,13 @@ import {
   allowedUrlParams,
   useUrlManager,
 } from '../../../../../../../utils/managers/UrlManager';
-import { useAuthManager } from '../../../../../../../utils/managers/AuthManager';
 import { useApiActions } from '../../../../../../../api/useApiActions';
 import Button from '../../../../../../../components/buttons/Button';
 import colors from '../../../../../../../theme/colors';
 import { validatePassword } from '../../../../../../../utils/validation';
 import Dialog from '../../../../../../../components/dialogs/Dialog';
-
-const StyledFormControl = styled(FormControl)`
-  && {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    background-color: white;
-  }
-`;
-
-const StyledTextField = styled(TextField)`
-  && {
-    margin-bottom: 10px;
-    margin-top: 10px;
-    background-color: white;
-  }
-`;
-
-const SubmitButton = styled(Button)`
-  color: white;
-  background-color: ${colors.filteri};
-  font-size: medium;
-  font-weight: bold;
-
-  :hover {
-    color: black;
-    background-color: ${colors.button};
-  }
-`;
+import { useRedux } from '../../../../../../../redux/useRedux';
+import { appActions } from '../../../../../../../redux/app/slice';
 
 const UsernameUpdateView = ({ user, setUsernameUpdate }) => {
   const [confirmedPassword, setConfirmedPassword] = useState('');
@@ -58,15 +31,15 @@ const UsernameUpdateView = ({ user, setUsernameUpdate }) => {
   const { response, loading, error, action } = changeAccountUsername;
   const [showPassword, setShowPassword] = useState(false);
   const urlManager = useUrlManager();
-  const authManager = useAuthManager();
   const [message, setMessage] = useState('');
   const [confirmedPasswordError, setConfirmedPasswordError] = useState(null);
   const [usernameError, setUsernameError] = useState(null);
+  const setToken = useRedux(appActions.setToken);
 
   useEffect(() => {
     if (response) {
       urlManager.updateUrlParam(allowedUrlParams.username, response.username);
-      authManager.updateUsernameAndToken(response);
+      setToken(response);
       setUsernameUpdate(false);
     }
   }, [response]);
@@ -160,3 +133,31 @@ const UsernameUpdateView = ({ user, setUsernameUpdate }) => {
 };
 
 export default UsernameUpdateView;
+
+const StyledFormControl = styled(FormControl)`
+  && {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: white;
+  }
+`;
+
+const StyledTextField = styled(TextField)`
+  && {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    background-color: white;
+  }
+`;
+
+const SubmitButton = styled(Button)`
+  color: white;
+  background-color: ${colors.filteri};
+  font-size: medium;
+  font-weight: bold;
+
+  :hover {
+    color: black;
+    background-color: ${colors.button};
+  }
+`;
