@@ -7,8 +7,9 @@ import { userRole } from '../../../../redux/app/state';
 import Error from '../../../../components/dialogs/Error';
 import { useUrlManager } from '../../../../utils/managers/UrlManager';
 import { selectRole, selectUsername } from '../../../../redux/app/selectors';
-import { useApiActions } from '../../../../api/useApiActions';
 import UserView from './components/UserView/UserView';
+import { useFetch } from '../../../../api/useFetch';
+import { loadUserInfo } from '../../../../api/actions/user/loadUserInfo';
 
 export const UserInfo = () => {
   const urlManager = useUrlManager();
@@ -18,18 +19,17 @@ export const UserInfo = () => {
 
   const [user, setUser] = useState(null);
 
-  const { loadUserInfo } = useApiActions();
-  const { response, loaded, error, action } = loadUserInfo;
+  const { data, loaded, error, fetch } = useFetch(loadUserInfo);
 
   useEffect(() => {
-    if (response) {
-      setUser(response);
+    if (data) {
+      setUser(data);
     }
-  }, [response]);
+  }, [data]);
 
   useEffect(() => {
     if (urlUsername) {
-      action(urlUsername);
+      fetch(urlUsername);
     }
   }, [urlUsername]);
 
@@ -51,7 +51,7 @@ export const UserInfo = () => {
 
   if (role === userRole.admin) {
     return (
-      <AdminControlls user={user} reloadUserInfo={() => action(urlUsername)} />
+      <AdminControlls user={user} reloadUserInfo={() => fetch(urlUsername)} />
     );
   }
 

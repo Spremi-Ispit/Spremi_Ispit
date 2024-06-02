@@ -23,10 +23,11 @@ import {
 import { selectLoadUsersTable } from '../../../redux/users/selectors';
 import { profilePostsRoute } from '../../../router/routes';
 // import { useScreens, screens } from '../../../utils/useScreens';
-import { useApiActions } from '../../../api/useApiActions';
 import { allowedUrlParams } from '../../../utils/managers/UrlManager';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { useFetch } from '../../../api/useFetch';
+import { loadUsersForUsersTable } from '../../../api/actions/user/loadUsersForUsersTable';
 
 const StyledButton = styled(Button)`
   && {
@@ -53,8 +54,8 @@ export const UsersTable = () => {
   const { usersActions } = useAppActions();
   const { setLoadUsersTable } = usersActions;
   const navigate = useNavigate();
-  const { loadUsersForUsersTable } = useApiActions();
-  const { response, loaded, error, action } = loadUsersForUsersTable;
+  const { data, loaded, error, fetch } = useFetch(loadUsersForUsersTable);
+
   // const screen = useScreens();
   const token = useSelector(selectToken);
   const excludedUsername = 'Admin';
@@ -68,18 +69,18 @@ export const UsersTable = () => {
   }, []);
 
   useEffect(() => {
-    if (response) {
+    if (data) {
       setLoadUsersTable(false);
-      const usrs = response.filter((res) => res.username !== excludedUsername);
+      const usrs = data.filter((res) => res.username !== excludedUsername);
       const usrRank = (usr) => usr.posts + usr.comments;
       usrs.sort((usr1, usr2) => usrRank(usr2) - usrRank(usr1));
       setUsers(usrs);
     }
-  }, [response]);
+  }, [data]);
 
   useEffect(() => {
     if (loadUsersTable) {
-      action();
+      fetch();
     }
   }, [loadUsersTable]);
 

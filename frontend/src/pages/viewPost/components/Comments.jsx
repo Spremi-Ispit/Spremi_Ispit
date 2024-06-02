@@ -10,7 +10,14 @@ import {
 } from '../../../redux/viewPost/selectors';
 import { useUrlManager } from '../../../utils/managers/UrlManager';
 import { useAppActions } from '../../../redux/useAppActions';
-import { useApiActions } from '../../../api/useApiActions';
+import { useFetch } from '../../../api/useFetch';
+import { loadComments } from '../../../api/actions/comments/loadComments';
+import { addCommentLike } from '../../../api/actions/comments/addCommentLike';
+import { removeCommentLike } from '../../../api/actions/comments/removeCommentLike';
+import { addCommentDislike } from '../../../api/actions/comments/addCommentDislike';
+import { removeCommentDislike } from '../../../api/actions/comments/removeCommentDislike';
+import { reportComment } from '../../../api/actions/comments/reportComment';
+import { deleteComment } from '../../../api/actions/comments/deleteComment';
 
 const PostViewDiv = styled.div`
   max-width: 850px;
@@ -27,16 +34,7 @@ export const Comments = () => {
   const commentsLoading = useSelector(selectCommentsLoading);
   const { viewPostActions } = useAppActions();
   const { setCommentsLoading } = viewPostActions;
-  const { loadComments } = useApiActions();
-  const { loaded, error, response, action } = loadComments;
-  const {
-    addCommentLike,
-    removeCommentLike,
-    addCommentDislike,
-    removeCommentDislike,
-    reportComment,
-    deleteComment,
-  } = useApiActions();
+  const { loaded, error, data, fetch } = useFetch(loadComments);
 
   useEffect(() => {
     if (postLoading) {
@@ -47,13 +45,13 @@ export const Comments = () => {
   useEffect(() => {
     if (loaded) {
       setCommentsLoading(false);
-      setComments(response);
+      setComments(data);
     }
   }, [loaded]);
 
   useEffect(() => {
     if (commentsLoading) {
-      action(urlPostId);
+      fetch(urlPostId);
     }
   }, [commentsLoading]);
 

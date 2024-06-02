@@ -7,8 +7,9 @@ import styled from 'styled-components';
 import Paper from '@mui/material/Paper';
 import { Divider } from '@mui/material';
 import { useUrlManager } from '../../../utils/managers/UrlManager';
-import { useApiActions } from '../../../api/useApiActions';
 import PostPreview from '../../../components/PostPreview/PostPreview';
+import { useFetch } from '../../../api/useFetch';
+import { loadUserPosts } from '../../../api/actions/posts/loadUserPosts';
 
 const StyledPaper = styled(Paper)`
   padding: 10px;
@@ -53,18 +54,17 @@ export const Posts = () => {
   const [posts, setPosts] = useState([]);
   const urlManager = useUrlManager();
   const { urlUsername } = urlManager.getParams();
-  const { loadUserPosts } = useApiActions();
-  const { loading, error, action, loaded, response } = loadUserPosts;
+  const { loading, error, fetch, loaded, data } = useFetch(loadUserPosts);
 
   useEffect(() => {
     if (urlUsername) {
-      action(urlUsername);
+      fetch(urlUsername);
     }
   }, [urlUsername]);
 
   useEffect(() => {
     if (loaded) {
-      setPosts(response);
+      setPosts(data);
     }
   }, [loaded]);
 

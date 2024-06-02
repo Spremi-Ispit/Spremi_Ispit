@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Input } from '@mui/material';
 import close from '../../../../assets/close.png';
-import { useApiActions } from '../../../../api/useApiActions';
 import Error from '../../../../components/dialogs/Error';
 import styled from 'styled-components';
 import { validateEmail } from '../../../../utils/validation';
@@ -9,6 +8,8 @@ import Loader from '../../../../components/Loader';
 import { useNavigate } from 'react-router-dom';
 import { resetPasswordRoute } from '../../../../router/routes';
 import Button from '../../../../components/buttons/Button';
+import { useFetch } from '../../../../api/useFetch';
+import { resetPassword } from '../../../../api/actions/user/resetPassword';
 
 const ModalWrapper = styled.div`
   max-width: 450px;
@@ -82,20 +83,20 @@ const InputEmail = styled(Input)`
 function Modal({ setOpenModal }) {
   const [mail, setMail] = useState('');
   const [mailValid, setMailValid] = useState(false);
-  const { resetPassword } = useApiActions();
-  const { action, error, response, loading } = resetPassword;
+
+  const { fetch, error, data, loading } = useFetch(resetPassword);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (response) {
-      alert(response);
+    if (data) {
+      alert(data);
       navigate(resetPasswordRoute);
     }
-  }, [response, navigate]);
+  }, [data, navigate]);
 
   const handleSubmit = () => {
     if (mail) {
-      action(mail);
+      fetch(mail);
     }
   };
 

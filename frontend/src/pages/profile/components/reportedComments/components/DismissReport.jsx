@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import Loader from '../../../../../components/Loader';
 import Error from '../../../../../components/dialogs/Error';
 import Button from '../../../../../components/buttons/Button';
-import { useApiActions } from '../../../../../api/useApiActions';
+import { useFetch } from '../../../../../api/useFetch';
+import { dismissCommentReport } from '../../../../../api/actions/comments/dismissCommentReport';
 
 export const DismissReport = ({ commentId, setLoadComments }) => {
-  const { dismissCommentReport } = useApiActions();
-  const { action, loading, error, loaded } = dismissCommentReport;
+  const { fetch, loading, error, loaded } = useFetch(dismissCommentReport);
 
   useEffect(() => {
     if (loaded) {
@@ -15,7 +15,7 @@ export const DismissReport = ({ commentId, setLoadComments }) => {
   }, [loaded]);
 
   const handleDismissReport = () => {
-    action(commentId);
+    fetch(commentId);
   };
 
   if (loading) {

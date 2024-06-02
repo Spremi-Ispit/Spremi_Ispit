@@ -4,8 +4,9 @@ import {
   allowedUrlParams,
   useUrlManager,
 } from '../../../utils/managers/UrlManager';
-import { useApiActions } from '../../../api/useApiActions';
 import { fonts } from '../../../theme/fonts';
+import { useFetch } from '../../../api/useFetch';
+import { loadSubjects } from '../../../api/actions/filters/loadSubjects';
 
 const SubjectDiv = styled.div`
   display: flex;
@@ -26,20 +27,19 @@ export const Subject = ({ onSubjectChange }) => {
   const urlManager = useUrlManager();
   const { urlYearOfStudy, urlDepartment, urlSubject } = urlManager.getParams();
   const [subjects, setSubjects] = useState([]);
-  const { loadSubjects } = useApiActions();
-  const { response, loaded, error, action } = loadSubjects;
+  const { data, loaded, error, fetch } = useFetch(loadSubjects);
 
   useEffect(() => {
     if (urlDepartment) {
-      action(urlYearOfStudy, urlDepartment);
+      fetch(urlYearOfStudy, urlDepartment);
     }
   }, [urlDepartment]);
 
   useEffect(() => {
-    if (response) {
-      setSubjects(response);
+    if (data) {
+      setSubjects(data);
     }
-  }, [response]);
+  }, [data]);
 
   useEffect(() => {
     urlManager.updateUrlParams([

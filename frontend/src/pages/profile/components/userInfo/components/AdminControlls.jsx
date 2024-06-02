@@ -8,7 +8,10 @@ import AlertDialog from '../../../../../components/dialogs/AlertDialog';
 import Error from '../../../../../components/dialogs/Error';
 import Loader from '../../../../../components/Loader';
 import styled from 'styled-components';
-import { useApiActions } from '../../../../../api/useApiActions';
+import { useFetch } from '../../../../../api/useFetch';
+import { banUserAccount } from '../../../../../api/actions/user/banUserAccount';
+import { unbanUserAccount } from '../../../../../api/actions/user/unbanUserAccount';
+import { blacklistUser } from '../../../../../api/actions/user/blacklistUser';
 
 const AdminControllsContainer = styled.div`
   display: flex;
@@ -29,27 +32,26 @@ export const AdminControlls = ({ user, reloadUserInfo }) => {
   const [deleteForeverDialogOpen, setDeleteForeverDialogOpen] = useState(false);
   const [banDialogOpen, setBanDialogOpen] = useState(false);
   const [unbanDialogOpen, setUnbanDialogOpen] = useState(false);
-  const { banUserAccount, unbanUserAccount, blacklistUser } = useApiActions();
   const {
     loading: loadingBanUserAccount,
     loaded: loadedBanUserAccount,
     error: errorBanUserAccount,
-    action: actionBanUserAccount,
-  } = banUserAccount;
+    fetch: actionBanUserAccount,
+  } = useFetch(banUserAccount);
 
   const {
     loading: loadingUnbanUserAccount,
     loaded: loadedUnbanUserAccount,
     error: errorUnbanUserAccount,
-    action: actionUnbanUserAccount,
-  } = unbanUserAccount;
+    fetch: actionUnbanUserAccount,
+  } = useFetch(unbanUserAccount);
 
   const {
     loading: loadingBlacklistUser,
     loaded: loadedBlacklistUser,
     error: errorBlacklistUser,
-    action: actionBlacklistUser,
-  } = blacklistUser;
+    fetch: actionBlacklistUser,
+  } = useFetch(blacklistUser);
 
   const handleBan = () => {
     actionBanUserAccount(user.id);

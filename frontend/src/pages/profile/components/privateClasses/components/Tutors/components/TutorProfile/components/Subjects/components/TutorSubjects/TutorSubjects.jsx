@@ -2,10 +2,7 @@ import React, { useEffect } from 'react';
 import Loader from '../../../../../../../../../../../../components/Loader';
 import Table from '../../../../../../../../../../../../components/Table';
 import Error from '../../../../../../../../../../../../components/dialogs/Error';
-import {
-  useFetch,
-  useFetchOnLoad,
-} from '../../../../../../../../../../../../api/useFetch';
+import { useFetch } from '../../../../../../../../../../../../api/useFetch';
 import Button from '../../../../../../../../../../../../components/buttons/Button';
 import { deleteTutorSubject } from '../../../../../../../../../../../../api/actions/tutor/deleteTutorSubject';
 import { getTutorSubjects } from '../../../../../../../../../../../../api/actions/tutor/getTutorSubjects';
@@ -21,25 +18,29 @@ const TutorSubjects = ({ tutorId, reloadSubjects, setReloadSubjects }) => {
     loading: loadingSubjects,
     error: errorSubjects,
     data: subjects,
-    refetch: refetchSubjects,
-  } = useFetchOnLoad(() => getTutorSubjects(tutorId));
+    fetch: fetchSubjects,
+  } = useFetch(() => getTutorSubjects(tutorId));
+
+  useEffect(() => {
+    fetchSubjects();
+  }, []);
 
   useEffect(() => {
     if (reloadSubjects) {
-      refetchSubjects();
+      fetchSubjects();
       setReloadSubjects(false);
     }
   }, [reloadSubjects]);
 
   useEffect(() => {
     if (subjectId) {
-      refetchSubjects();
+      fetchSubjects();
     }
   }, [subjectId]);
 
   useEffect(() => {
     if (subjects) {
-      refetchSubjects();
+      fetchSubjects();
     }
   }, [tutorId]);
 

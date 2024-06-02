@@ -4,8 +4,9 @@ import {
   allowedUrlParams,
   useUrlManager,
 } from '../../../../../utils/managers/UrlManager';
-import { useApiActions } from '../../../../../api/useApiActions';
 import { fonts } from '../../../../../theme/fonts';
+import { useFetch } from '../../../../../api/useFetch';
+import { loadTypes } from '../../../../../api/actions/filters/loadTypes';
 
 const TypeDiv = styled.div`
   display: flex;
@@ -27,18 +28,17 @@ const Type = () => {
 
   const { urlType, urlSubject } = urlManager.getParams();
   const [types, setTypes] = useState([]);
-  const { loadTypes } = useApiActions();
-  const { response, loaded, error, action } = loadTypes;
+  const { data, loaded, error, fetch } = useFetch(loadTypes);
 
   useEffect(() => {
-    action();
+    fetch();
   }, []);
 
   useEffect(() => {
-    if (response) {
-      setTypes(response);
+    if (data) {
+      setTypes(data);
     }
-  }, [response]);
+  }, [data]);
 
   const handleChange = (event) => {
     urlManager.updateUrlParams([

@@ -5,16 +5,16 @@ import {
   useUrlManager,
 } from '../../../../../utils/managers/UrlManager';
 import Button from '../../../../../components/buttons/Button';
-import { useApiActions } from '../../../../../api/useApiActions';
 import Error from '../../../../../components/dialogs/Error';
 import Loader from '../../../../../components/Loader';
+import { useFetch } from '../../../../../api/useFetch';
+import { loadPostsForHomepageFilters } from '../../../../../api/actions/posts/loadPostsForHomepageFilters';
 
 const NextButton = styled(Button)`
   text-transform: uppercase;
 `;
 
 export const NextPost = () => {
-  const { loadPostsForHomepageFilters } = useApiActions();
   const [posts, setPosts] = useState([]);
   const urlManager = useUrlManager();
   const {
@@ -29,17 +29,17 @@ export const NextPost = () => {
     urlYearOfStudy,
     urlCommentedPosts,
   } = urlManager.getParams();
-  const { action, error, loading, response } = loadPostsForHomepageFilters;
+  const { fetch, error, loading, data } = useFetch(loadPostsForHomepageFilters);
 
   useEffect(() => {
-    if (response) {
-      setPosts(response);
+    if (data) {
+      setPosts(data);
     }
-  }, [response]);
+  }, [data]);
 
   useEffect(() => {
     if (urlPostId && urlOrder) {
-      action(
+      fetch(
         urlSearch,
         urlOrder,
         urlYearOfStudy,

@@ -11,7 +11,6 @@ import Button from '../../../components/buttons/Button';
 import eye from '../../../../src/assets/eye.png';
 import eyeOff from '../../../../src/assets/eyeoff.png';
 import Modal from './Modal/Modal';
-import { useApiActions } from '../../../api/useApiActions';
 import { registerRoute } from '../../../router/routes';
 import { validateEmail, validatePassword } from '../../../utils/validation';
 import { useNavigate } from 'react-router-dom';
@@ -19,12 +18,13 @@ import { NavLink } from 'react-router-dom';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import { useRedux } from '../../../redux/useRedux';
 import { appActions } from '../../../redux/app/slice';
+import { useFetch } from '../../../api/useFetch';
+import { login } from '../../../api/actions/auth/login';
 
 const Form = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { login } = useApiActions();
-  const { loading, error, response, action } = login;
+  const { loading, error, data, fetch } = useFetch(login);
   const [modalOpen, setModalOpen] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
   const navigate = useNavigate();
@@ -33,11 +33,11 @@ const Form = () => {
   const setToken = useRedux(appActions.setToken);
 
   useEffect(() => {
-    if (response) {
-      setToken(response);
+    if (data) {
+      setToken(data);
       navigate(-1);
     }
-  }, [response]);
+  }, [data]);
 
   const handleLoginEnter = (e) => {
     if (e.key === 'Enter') {
@@ -57,7 +57,7 @@ const Form = () => {
       return alert(passwordError);
     }
 
-    action(email, password);
+    fetch(email, password);
   };
 
   const handleEmailChange = async (e) => {

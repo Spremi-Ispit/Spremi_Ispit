@@ -6,7 +6,8 @@ import {
   allowedUrlParams,
   useUrlManager,
 } from '../../../../../../../utils/managers/UrlManager';
-import { useApiActions } from '../../../../../../../api/useApiActions';
+import { useFetch } from '../../../../../../../api/useFetch';
+import { loadExaminationPeriods } from '../../../../../../../api/actions/filters/loadExaminationPeriods';
 
 const ExaminationPeriodDiv = styled.div`
   margin-bottom: 10px;
@@ -19,23 +20,21 @@ const ExaminationPeriodDiv = styled.div`
 const ExaminationPeriod = () => {
   const urlManager = useUrlManager();
 
-  const { loadExaminationPeriods } = useApiActions();
-  const { response, loaded, error, action } = loadExaminationPeriods;
-
+  const { data, loaded, error, fetch } = useFetch(loadExaminationPeriods);
   const { urlExaminationPeriod, urlType } = urlManager.getParams(
     allowedUrlParams.examinationPeriod
   );
   const [examinationPeriods, setExaminationPeriods] = useState([]);
 
   useEffect(() => {
-    action();
+    fetch();
   }, []);
 
   useEffect(() => {
-    if (response) {
-      setExaminationPeriods(response);
+    if (data) {
+      setExaminationPeriods(data);
     }
-  }, [response]);
+  }, [data]);
 
   const handleChange = (event) => {
     urlManager.updateUrlParam(

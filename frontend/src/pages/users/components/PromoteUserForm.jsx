@@ -13,10 +13,12 @@ import { mapUserRoleToView } from './UsersTable';
 import { userRole } from '../../../redux/app/state';
 import { useAppActions } from '../../../redux/useAppActions';
 import { selectLoadPromoteUserForm } from '../../../redux/users/selectors';
-import { useApiActions } from '../../../api/useApiActions';
 import { useSelector } from 'react-redux';
 import { homeRoute } from '../../../router/routes';
 import Button from '../../../components/buttons/Button';
+import { useFetch } from '../../../api/useFetch';
+import { updateUserRole } from '../../../api/actions/user/updateUserRole';
+import { loadUsernamesWithRoles } from '../../../api/actions/user/loadUsernamesWithRoles';
 
 const Container = styled.div``;
 
@@ -42,20 +44,19 @@ export const PromoteUserForm = () => {
   const { usersActions } = useAppActions();
   const { setLoadPromoteUserForm, setLoadUsersTable } = usersActions;
 
-  const { updateUserRole, loadUsernamesWithRoles } = useApiActions();
   const {
     error: errorUpdateUserRole,
     loading: loadingUpdateUserRole,
     loaded: loadedUpdateUserRole,
-    action: actionUpdateUserRole,
-  } = updateUserRole;
+    fetch: actionUpdateUserRole,
+  } = useFetch(updateUserRole);
 
   const {
     error: errorUsernamesWithRoles,
     loaded: loadedUsernamesWithRoles,
-    action: actionLoadUsernamesWithRoles,
-    response: responseUsernamesWithRoles,
-  } = loadUsernamesWithRoles;
+    fetch: actionLoadUsernamesWithRoles,
+    data: responseUsernamesWithRoles,
+  } = useFetch(loadUsernamesWithRoles);
 
   useEffect(() => {
     if (selectedUser) {

@@ -5,17 +5,17 @@ import Navbar from '../../components/navbar/Navbar';
 import Button from '../../components/buttons/Button';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { homeRoute } from '../../router/routes';
-import { useApiActions } from '../../api/useApiActions';
 import Loader from '../../components/Loader';
 import Error from '../../components/dialogs/Error';
 import { useRedux } from '../../redux/useRedux';
 import { appActions } from '../../redux/app/slice';
+import { useFetch } from '../../api/useFetch';
+import { registrationConfirm } from '../../api/actions/auth/registrationConfirm';
 
 const RegistrationConfirm = () => {
   const navigate = useNavigate();
   const [activactionCode, setActivactionCode] = useState('');
-  const { registrationConfirm } = useApiActions();
-  const { loading, error, response, action } = registrationConfirm;
+  const { loading, error, data, fetch } = useFetch(registrationConfirm);
   const setToken = useRedux(appActions.setToken);
   const location = useLocation();
 
@@ -26,11 +26,11 @@ const RegistrationConfirm = () => {
   }, []);
 
   useEffect(() => {
-    if (response) {
-      setToken(response);
+    if (data) {
+      setToken(data);
       navigate(homeRoute);
     }
-  }, [response]);
+  }, [data]);
 
   const handleCancle = () => {
     navigate(homeRoute);
@@ -38,7 +38,7 @@ const RegistrationConfirm = () => {
 
   const handleSubmit = () => {
     const { email } = location.state;
-    action(email, activactionCode);
+    fetch(email, activactionCode);
   };
 
   const handleActivactionCodeChange = (event) => {

@@ -16,19 +16,20 @@ import {
   allowedUrlParams,
   useUrlManager,
 } from '../../../../../../../utils/managers/UrlManager';
-import { useApiActions } from '../../../../../../../api/useApiActions';
 import Button from '../../../../../../../components/buttons/Button';
 import colors from '../../../../../../../theme/colors';
 import { validatePassword } from '../../../../../../../utils/validation';
 import Dialog from '../../../../../../../components/dialogs/Dialog';
 import { useRedux } from '../../../../../../../redux/useRedux';
 import { appActions } from '../../../../../../../redux/app/slice';
+import { useFetch } from '../../../../../../../api/useFetch';
+import { changeAccountUsername } from '../../../../../../../api/actions/user/changeAccountUsername';
 
 const UsernameUpdateView = ({ user, setUsernameUpdate }) => {
   const [confirmedPassword, setConfirmedPassword] = useState('');
   const [newUsername, setNewUsername] = useState('');
-  const { changeAccountUsername } = useApiActions();
-  const { response, loading, error, action } = changeAccountUsername;
+
+  const { data, loading, error, fetch } = useFetch(changeAccountUsername);
   const [showPassword, setShowPassword] = useState(false);
   const urlManager = useUrlManager();
   const [message, setMessage] = useState('');
@@ -37,12 +38,12 @@ const UsernameUpdateView = ({ user, setUsernameUpdate }) => {
   const setToken = useRedux(appActions.setToken);
 
   useEffect(() => {
-    if (response) {
-      urlManager.updateUrlParam(allowedUrlParams.username, response.username);
-      setToken(response);
+    if (data) {
+      urlManager.updateUrlParam(allowedUrlParams.username, data.username);
+      setToken(data);
       setUsernameUpdate(false);
     }
-  }, [response]);
+  }, [data]);
 
   const handleSubmitUsernameUpdate = async () => {
     const passwordConfirmError = await validatePassword(confirmedPassword);
@@ -54,7 +55,7 @@ const UsernameUpdateView = ({ user, setUsernameUpdate }) => {
       return setMessage('Username could not be empty');
     }
 
-    action(newUsername, confirmedPassword, user.email);
+    fetch(newUsername, confirmedPassword, user.email);
   };
 
   if (error) {

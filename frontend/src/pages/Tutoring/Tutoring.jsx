@@ -9,7 +9,7 @@ import Tutor from './components/Tutor';
 import Loader from '../../components/Loader';
 import Error from '../../components/dialogs/Error';
 import { useUrlManager } from '../../utils/managers/UrlManager';
-import { useFetchOnLoad } from '../../api/useFetch';
+import { useFetch } from '../../api/useFetch';
 import { getTutors } from '../../api/actions/tutor/getTutors';
 import YearOfStudy from './components/YearOfStudy';
 import Department from './components/Department';
@@ -18,9 +18,13 @@ import TopClass from './components/TopClass/TopClass';
 
 const Tutoring = () => {
   const [availableTutors, setAvailableTutors] = useState([]);
-  const { data, error, loading } = useFetchOnLoad(getTutors);
+  const { data, error, loading, fetch } = useFetch(getTutors);
   const urlManager = useUrlManager();
   const { urlSubject } = urlManager.getParams();
+
+  useEffect(() => {
+    fetch();
+  }, []);
 
   useEffect(() => {
     if (data) {

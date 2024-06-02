@@ -7,8 +7,9 @@ import Typography from '@mui/material/Typography';
 import Fade from '@mui/material/Fade';
 import DismissReport from './components/DismissReport';
 import Error from '../../../../components/dialogs/Error';
-import { useApiActions } from '../../../../api/useApiActions';
 import PostPreview from '../../../../components/PostPreview/PostPreview';
+import { useFetch } from '../../../../api/useFetch';
+import { loadReportedPosts } from '../../../../api/actions/posts/loadReportedPosts';
 
 const StyledPaper = styled(Paper)`
   padding: 10px;
@@ -57,19 +58,17 @@ const StyledPostPreview = styled(PostPreview)`
 
 export const ReportedPosts = () => {
   const [posts, setPosts] = useState([]);
-
-  const { loadReportedPosts } = useApiActions();
-  const { error, loaded, response, action } = loadReportedPosts;
+  const { error, loaded, data, fetch } = useFetch(loadReportedPosts);
 
   useEffect(() => {
-    action();
+    fetch();
   }, []);
 
   useEffect(() => {
-    if (response) {
-      setPosts(response);
+    if (data) {
+      setPosts(data);
     }
-  }, [response]);
+  }, [data]);
 
   if (error) {
     return <Error error={error} />;
@@ -101,7 +100,7 @@ export const ReportedPosts = () => {
         return (
           <PostPreviewContainer key={index}>
             <StyledPostPreview data={data} />
-            <DismissReport postId={data.id} setLoadPosts={action} />
+            <DismissReport postId={data.id} setLoadPosts={fetch} />
           </PostPreviewContainer>
         );
       })}

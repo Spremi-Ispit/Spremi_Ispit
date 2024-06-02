@@ -5,11 +5,18 @@ import { selectPostLoading } from '../../../redux/viewPost/selectors';
 import Error from '../../../components/dialogs/Error';
 import Loader from '../../../components/Loader';
 import { useUrlManager } from '../../../utils/managers/UrlManager';
-import { useApiActions } from '../../../api/useApiActions';
 import PostView from '../../../components/PostView/PostView';
 import { useNavigate } from 'react-router-dom';
 import { homeRoute } from '../../../router/routes';
 import { useAppActions } from '../../../redux/useAppActions';
+import { useFetch } from '../../../api/useFetch';
+import { loadPost } from '../../../api/actions/posts/loadPost';
+import { addPostLike } from '../../../api/actions/posts/addPostLike';
+import { removePostLike } from '../../../api/actions/posts/removePostLike';
+import { addPostDislike } from '../../../api/actions/posts/addPostDislike';
+import { removePostDislike } from '../../../api/actions/posts/removePostDislike';
+import { reportPost } from '../../../api/actions/posts/reportPost';
+import { deletePost } from '../../../api/actions/posts/deletePost';
 
 const PostDiv = styled.div`
   max-width: 850px;
@@ -23,29 +30,20 @@ export const Post = () => {
   const urlManager = useUrlManager();
   const navigate = useNavigate();
   const { urlPostId } = urlManager.getParams();
-  const { loadPost } = useApiActions();
-  const { error, response, action } = loadPost;
-  const {
-    addPostLike,
-    removePostLike,
-    addPostDislike,
-    removePostDislike,
-    reportPost,
-    deletePost,
-  } = useApiActions();
+  const { error, data, fetch } = useFetch(loadPost);
   const { viewPostActions } = useAppActions();
   const { setCommentsLoading } = viewPostActions;
 
   useEffect(() => {
-    if (response) {
-      setPost(response);
+    if (data) {
+      setPost(data);
       setCommentsLoading(true);
     }
-  }, [response]);
+  }, [data]);
 
   useEffect(() => {
     if (urlPostId) {
-      action(urlPostId);
+      fetch(urlPostId);
     }
   }, [urlPostId]);
 

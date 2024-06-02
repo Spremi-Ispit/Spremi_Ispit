@@ -7,7 +7,7 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
-import { useFetch, useFetchOnLoad } from '../../../../../../../../api/useFetch';
+import { useFetch } from '../../../../../../../../api/useFetch';
 import { getTutor } from '../../../../../../../../api/actions/tutor/getTutor';
 import Subjects from './components/Subjects/Subjects';
 import FormGroup from '@mui/material/FormGroup';
@@ -21,9 +21,7 @@ import { updateTutorProfile } from '../../../../../../../../api/actions/tutor/up
 
 const TutorProfile = ({ onSave, tutorId }) => {
   const [tutor, setTutor] = useState(null);
-  const { data, error, refetch, loading } = useFetchOnLoad(() =>
-    getTutor(tutorId)
-  );
+  const { data, error, fetch, loading } = useFetch(() => getTutor(tutorId));
   const {
     data: updateData,
     error: updateError,
@@ -38,7 +36,7 @@ const TutorProfile = ({ onSave, tutorId }) => {
   }, [data]);
 
   useEffect(() => {
-    refetch();
+    fetch();
   }, [tutorId]);
 
   useEffect(() => {
@@ -62,8 +60,6 @@ const TutorProfile = ({ onSave, tutorId }) => {
   if (loading || updateLoading) {
     return <Loader />;
   }
-
-  console.log(tutor);
 
   return (
     <TutorProfileDiv>

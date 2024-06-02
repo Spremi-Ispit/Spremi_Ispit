@@ -4,8 +4,9 @@ import Loader from '../../../../../components/Loader';
 import Error from '../../../../../components/dialogs/Error';
 import { Tooltip } from '@mui/material';
 import styled from 'styled-components';
-import { useApiActions } from '../../../../../api/useApiActions';
 import Button from '../../../../../components/buttons/Button';
+import { useFetch } from '../../../../../api/useFetch';
+import { dismissPostReport } from '../../../../../api/actions/posts/dismissPostReport';
 
 const StyledButton = styled(Button)`
   && {
@@ -14,8 +15,7 @@ const StyledButton = styled(Button)`
 `;
 
 export const DismissReport = ({ postId, setLoadPosts }) => {
-  const { dismissPostReport } = useApiActions();
-  const { loading, error, loaded, action } = dismissPostReport;
+  const { loading, error, loaded, fetch } = useFetch(dismissPostReport);
 
   useEffect(() => {
     if (loaded) {
@@ -24,7 +24,7 @@ export const DismissReport = ({ postId, setLoadPosts }) => {
   }, [loaded]);
 
   const handleDismissReport = () => {
-    action(postId);
+    fetch(postId);
   };
 
   if (loading) {

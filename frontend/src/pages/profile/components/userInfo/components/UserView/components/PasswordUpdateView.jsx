@@ -11,13 +11,14 @@ import {
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Error from '../../../../../../../components/dialogs/Error';
 import Loader from '../../../../../../../components/Loader';
-import { useApiActions } from '../../../../../../../api/useApiActions';
 import colors from '../../../../../../../theme/colors';
 import Button from '../../../../../../../components/buttons/Button';
 import { validatePassword } from '../../../../../../../utils/validation';
 import Dialog from '../../../../../../../components/dialogs/Dialog';
 import { useRedux } from '../../../../../../../redux/useRedux';
 import { appActions } from '../../../../../../../redux/app/slice';
+import { useFetch } from '../../../../../../../api/useFetch';
+import { changeAccountPassword } from '../../../../../../../api/actions/user/changeAccountPassword';
 
 const StyledFormControl = styled(FormControl)`
   && {
@@ -41,8 +42,10 @@ const SubmitButton = styled(Button)`
 const PasswordUpdateView = ({ user, setPasswordUpdate }) => {
   const [confirmedPassword, setConfirmedPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
-  const { changeAccountPassword } = useApiActions();
-  const { error, loading, loaded, action, response } = changeAccountPassword;
+
+  const { error, loading, loaded, fetch, data } = useFetch(
+    changeAccountPassword
+  );
   const [showPassword, setShowPassword] = useState(false);
   const [message, setMessage] = useState('');
   const [newPasswordError, setNewPasswordError] = useState(null);
@@ -51,7 +54,7 @@ const PasswordUpdateView = ({ user, setPasswordUpdate }) => {
 
   useEffect(() => {
     if (loaded) {
-      setToken(response);
+      setToken(data);
       setPasswordUpdate(false);
     }
   }, [loaded]);
@@ -67,7 +70,7 @@ const PasswordUpdateView = ({ user, setPasswordUpdate }) => {
       return setMessage('Potvrdi trenutnom sifrom: ' + confirmedPasswordError);
     }
 
-    action(newPassword, confirmedPassword, user.email);
+    fetch(newPassword, confirmedPassword, user.email);
   };
 
   if (error) {

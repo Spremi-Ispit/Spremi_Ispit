@@ -8,8 +8,9 @@ import Error from '../../../../components/dialogs/Error';
 import styled from 'styled-components';
 import Paper from '@mui/material/Paper';
 import { Divider } from '@mui/material';
-import { useApiActions } from '../../../../api/useApiActions';
 import PostPreview from '../../../../components/PostPreview/PostPreview';
+import { useFetch } from '../../../../api/useFetch';
+import { loadReportedComments } from '../../../../api/actions/comments/loadReportedComments';
 
 const StyledPaper = styled(Paper)`
   padding: 10px;
@@ -68,17 +69,17 @@ const CommentsPreviewDiv = styled.div`
 
 export const ReportedComments = () => {
   const [comments, setComments] = useState([]);
-  const { loadReportedComments } = useApiActions();
-  const { loading, error, loaded, response, action } = loadReportedComments;
+  const { loading, error, loaded, data, fetch } =
+    useFetch(loadReportedComments);
 
   useEffect(() => {
     if (loaded) {
-      setComments(response);
+      setComments(data);
     }
   }, [loaded]);
 
   useEffect(() => {
-    action();
+    fetch();
   }, []);
 
   if (error) {

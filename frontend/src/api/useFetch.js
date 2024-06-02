@@ -1,16 +1,5 @@
 import { useState, useEffect } from 'react';
 
-export const useFetchOnLoad = (fn) => {
-  const response = useFetch(fn);
-  const { fetch, ...rest } = response;
-
-  useEffect(() => {
-    fetch();
-  }, []);
-
-  return { ...rest, refetch: fetch };
-};
-
 export const useFetch = (fn) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);

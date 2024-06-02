@@ -4,16 +4,20 @@ import Table from '../../../../../../components/Table';
 import Error from '../../../../../../components/dialogs/Error';
 import Loader from '../../../../../../components/Loader';
 import { getTutors } from '../../../../../../api/actions/tutor/getTutors';
-import { useFetchOnLoad } from '../../../../../../api/useFetch';
+import { useFetch } from '../../../../../../api/useFetch';
 import Button from '../../../../../../components/buttons/Button';
 
 const Tutors = ({ reloadTutors, setReloadTutors, setTutorId }) => {
-  const { data, error, loading, refetch } = useFetchOnLoad(getTutors);
+  const { data, error, loading, fetch } = useFetch(getTutors);
   const [tutors, setTutors] = useState([]);
 
   useEffect(() => {
+    fetch();
+  }, []);
+
+  useEffect(() => {
     if (reloadTutors) {
-      refetch();
+      fetch();
       setReloadTutors(false);
     }
   }, [reloadTutors]);

@@ -21,12 +21,13 @@ import Paper from '@mui/material/Paper';
 import { selectToken } from '../../../redux/app/selectors';
 import { screensCSS } from '../../../utils/useScreens';
 import Button from '../../../components/buttons/Button';
-import { useApiActions } from '../../../api/useApiActions';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { NavLink } from 'react-router-dom';
 import { FormHelperText, FormLabel, OutlinedInput } from '@mui/material';
 import eye from '../../../../src/assets/eye.png';
 import eyeOff from '../../../../src/assets/eyeoff.png';
+import { useFetch } from '../../../api/useFetch';
+import { register } from '../../../api/actions/auth/register';
 
 const TextH4 = styled(Typography)`
   && {
@@ -115,8 +116,7 @@ export const Form = () => {
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [dialogMessage, setDialogMessage] = useState('');
-  const { register } = useApiActions();
-  const { loading, error, response, action } = register;
+  const { loading, error, data, fetch } = useFetch(register);
   const token = useSelector(selectToken);
   const navigate = useNavigate();
   const [recaptcha, setReacaptcha] = useState(false);
@@ -154,15 +154,15 @@ export const Form = () => {
       return setDialogMessage('passwordConfirm: ' + passwordConfirmError);
     }
 
-    action(email, password);
+    fetch(email, password);
   };
 
   useEffect(() => {
-    if (response) {
-      alert(response);
+    if (data) {
+      alert(data);
       navigate(registrationConfirmRoute, { state: { email } });
     }
-  }, [response]);
+  }, [data]);
 
   if (error) {
     return <Error error={error} />;

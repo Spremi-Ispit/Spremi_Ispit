@@ -4,8 +4,9 @@ import {
   allowedUrlParams,
   useUrlManager,
 } from '../../../../../utils/managers/UrlManager';
-import { useApiActions } from '../../../../../api/useApiActions';
 import { fonts } from '../../../../../theme/fonts';
+import { useFetch } from '../../../../../api/useFetch';
+import { loadYearsOfStudy } from '../../../../../api/actions/filters/loadYearsOfStudy';
 
 const YearOfStudyDiv = styled.div`
   display: flex;
@@ -26,18 +27,17 @@ export const YearOfStudy = () => {
   const urlManager = useUrlManager();
   const { urlYearOfStudy } = urlManager.getParams();
   const [yearsOfStudy, setYearsOfStudy] = useState([]);
-  const { loadYearsOfStudy } = useApiActions();
-  const { response, loaded, error, action } = loadYearsOfStudy;
+  const { data, loaded, error, fetch } = useFetch(loadYearsOfStudy);
 
   useEffect(() => {
-    action();
+    fetch();
   }, []);
 
   useEffect(() => {
-    if (response) {
-      setYearsOfStudy(response);
+    if (data) {
+      setYearsOfStudy(data);
     }
-  }, [response]);
+  }, [data]);
 
   const handleChange = (event) => {
     urlManager.updateUrlParams([

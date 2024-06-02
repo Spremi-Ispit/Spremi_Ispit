@@ -7,9 +7,10 @@ import Fade from '@mui/material/Fade';
 import Error from '../../../../components/dialogs/Error';
 import Loader from '../../../../components/Loader';
 import { useUrlManager } from '../../../../utils/managers/UrlManager';
-import { useApiActions } from '../../../../api/useApiActions';
 import PostPreview from '../../../../components/PostPreview/PostPreview';
 import MorePosts from './components/MorePosts';
+import { useFetch } from '../../../../api/useFetch';
+import { loadPostsForHomepageFilters } from '../../../../api/actions/posts/loadPostsForHomepageFilters';
 
 const StyledPaper = styled(Paper)`
   padding: 10px;
@@ -44,28 +45,28 @@ export const PostsPreview = () => {
     urlYearOfExam,
     urlCommentedPosts,
   } = urlManager.getParams();
-  const { loadPostsForHomepageFilters } = useApiActions();
-  const { loading, response, error, action } = loadPostsForHomepageFilters;
+
+  const { loading, data, error, fetch } = useFetch(loadPostsForHomepageFilters);
   const [morePosts, setMorePosts] = useState(false);
   const morePostsref = useRef();
   const [scrollPosition, setScrollPosition] = useState(window.pageYOffset);
 
   useEffect(() => {
-    if (response) {
+    if (data) {
       setMorePosts(false);
       if (morePosts) {
-        setPosts((prev) => [...prev, ...response]);
+        setPosts((prev) => [...prev, ...data]);
       } else {
-        setPosts(response);
+        setPosts(data);
       }
       window.scrollTo(0, scrollPosition);
     }
-  }, [response]);
+  }, [data]);
 
   useEffect(() => {
     if (urlOrder) {
       const lastPost = undefined;
-      action(
+      fetch(
         urlSearch,
         urlOrder,
         urlYearOfStudy,
@@ -94,7 +95,7 @@ export const PostsPreview = () => {
     if (morePosts) {
       const lastPost = morePosts ? posts[posts.length - 1] : undefined;
 
-      action(
+      fetch(
         urlSearch,
         urlOrder,
         urlYearOfStudy,

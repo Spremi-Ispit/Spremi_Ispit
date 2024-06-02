@@ -10,9 +10,10 @@ import Actions from './components/Actions';
 import Title from './components/Title';
 import Content from './components/Content';
 import { useUrlManager } from '../../../../utils/managers/UrlManager';
-import { useApiActions } from '../../../../api/useApiActions';
 import Filters from './components/Filters/Fliters';
 import FileUploader from '../../../../components/FileUploader';
+import { useFetch } from '../../../../api/useFetch';
+import { createPost } from '../../../../api/actions/posts/createPost';
 
 const StyledPaper = styled(Paper)`
   && {
@@ -35,8 +36,7 @@ export const Form = () => {
   const [description, setDescription] = useState('');
   const navigate = useNavigate();
   const [uploadProgress, setUploadProgress] = useState(0);
-  const { createPost } = useApiActions();
-  const { error, action, response, loading } = createPost;
+  const { error, fetch, data, loading } = useFetch(createPost);
   const urlManager = useUrlManager();
   const [activeFileIndex, setActiveFileIndex] = useState(0);
 
@@ -82,14 +82,14 @@ export const Form = () => {
       },
     };
 
-    action(post, setUploadProgress);
+    fetch(post, setUploadProgress);
   };
 
   useEffect(() => {
-    if (response) {
+    if (data) {
       navigate(homeRoute);
     }
-  }, [response]);
+  }, [data]);
 
   const onCancel = () => {
     navigate(homeRoute);

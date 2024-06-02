@@ -13,49 +13,9 @@ import { loginRoute } from '../../../../../router/routes';
 import { useSelector } from 'react-redux';
 import { selectToken } from '../../../../../redux/app/selectors';
 import { useNavigate } from 'react-router-dom';
-import { useApiActions } from '../../../../../api/useApiActions';
 import Error from '../../../../../components/dialogs/Error';
-
-const ControllsText = styled(Typography)`
-  && {
-    text-transform: none;
-  }
-`;
-
-const StyledPaper = styled(Paper)`
-  && {
-    padding: 10px;
-    margin-bottom: 30px;
-    min-height: 150px;
-    border: 0.5px solid #c9cace;
-    width: 100%;
-    max-width: 850px;
-  }
-`;
-
-const StyledTextareaAutosize = styled(TextareaAutosize)`
-  width: 100%;
-  max-width: 100%;
-  min-width: 100%;
-  font-size: 1rem;
-  font-family: Roboto, Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  line-height: 1.5;
-  letter-spacing: 0.00938em;
-  margin-bottom: 10px;
-  padding: 10px;
-`;
-
-const ControllsContainer = styled.div`
-  margin-top: 30px;
-  display: flex;
-  justify-content: center;
-`;
-
-const UploadedDiv = styled.div`
-  display: flex;
-  gap: 5px;
-`;
+import { useFetch } from '../../../../../api/useFetch';
+import addComment from '../../../../../api/actions/comments/addComment';
 
 export const Form = () => {
   const token = useSelector(selectToken);
@@ -66,17 +26,16 @@ export const Form = () => {
   const [uploadProgress, setUploadProgress] = useState(0);
   const urlManager = useUrlManager();
   const { urlPostId } = urlManager.getParams();
-  const { addComment } = useApiActions();
-  const { loading, error, action, response } = addComment;
+  const { loading, error, fetch, data } = useFetch(addComment);
   const { viewPostActions } = useAppActions();
   const { setCommentsLoading } = viewPostActions;
   const [activeFileIndex, setActiveFileIndex] = useState(0);
 
   useEffect(() => {
-    if (response) {
+    if (data) {
       reloadComments();
     }
-  }, [response]);
+  }, [data]);
 
   useEffect(() => {
     if (!loading) {
@@ -110,7 +69,7 @@ export const Form = () => {
         description,
         attachments: files,
       };
-      action(comment, urlPostId, setUploadProgress);
+      fetch(comment, urlPostId, setUploadProgress);
     }
   };
 
@@ -179,3 +138,44 @@ export const Form = () => {
 };
 
 export default Form;
+
+const ControllsText = styled(Typography)`
+  && {
+    text-transform: none;
+  }
+`;
+
+const StyledPaper = styled(Paper)`
+  && {
+    padding: 10px;
+    margin-bottom: 30px;
+    min-height: 150px;
+    border: 0.5px solid #c9cace;
+    width: 100%;
+    max-width: 850px;
+  }
+`;
+
+const StyledTextareaAutosize = styled(TextareaAutosize)`
+  width: 100%;
+  max-width: 100%;
+  min-width: 100%;
+  font-size: 1rem;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  margin-bottom: 10px;
+  padding: 10px;
+`;
+
+const ControllsContainer = styled.div`
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+`;
+
+const UploadedDiv = styled.div`
+  display: flex;
+  gap: 5px;
+`;

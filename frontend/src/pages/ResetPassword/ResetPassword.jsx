@@ -5,9 +5,10 @@ import TextField from '@mui/material/TextField';
 import Button from '../../components/buttons/Button';
 import { useNavigate } from 'react-router-dom';
 import { homeRoute } from '../../router/routes';
-import { useApiActions } from '../../api/useApiActions';
 import Loader from '../../components/Loader';
 import Error from '../../components/dialogs/Error';
+import { useFetch } from '../../api/useFetch';
+import { resetPasswordConfirm } from '../../api/actions/user/resetPasswordConfirm';
 
 const ResetPasswordDiv = styled.div`
   width: 100%;
@@ -42,15 +43,14 @@ const ResetPassword = () => {
   const [resetCode, setResetCode] = useState('');
   const [newPass, setNewPass] = useState('');
   const navigate = useNavigate();
-  const { resetPasswordConfirm } = useApiActions();
-  const { loading, response, error, action } = resetPasswordConfirm;
+  const { loading, data, error, fetch } = useFetch(resetPasswordConfirm);
 
   useEffect(() => {
-    if (response) {
-      alert(response);
+    if (data) {
+      alert(data);
       navigate(-1);
     }
-  }, [response, navigate]);
+  }, [data, navigate]);
 
   const handleResetCodeChange = (event) => {
     const value = event.target.value;
@@ -67,7 +67,7 @@ const ResetPassword = () => {
   };
 
   const handleSubmit = () => {
-    action(resetCode, newPass);
+    fetch(resetCode, newPass);
   };
 
   if (error) {
