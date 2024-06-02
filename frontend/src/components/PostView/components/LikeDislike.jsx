@@ -9,6 +9,7 @@ import { postLikeDislikeStatus } from '../../../utils/enums';
 import { useNavigate } from 'react-router-dom';
 import { loginRoute } from '../../../router/routes';
 import { selectToken } from '../../../redux/app/selectors';
+import { useFetch } from '../../../api/useFetch';
 
 const LikeIcon = styled(ThumbUpOffAltIcon)`
   color: ${({ like_dislike_status }) =>
@@ -38,16 +39,20 @@ export const LikeDislike = ({
   likes: propLikes,
   dislikes: propDislikes,
   likeStatus,
-  addPostLike,
-  removePostLike,
-  addPostDislike,
-  removePostDislike,
+  addPostLike: addPostLikeAction,
+  removePostLike: removePostLikeAction,
+  addPostDislike: addPostDislikeAction,
+  removePostDislike: removePostDislikeAction,
 }) => {
   const [likeDislikeStatus, setLikeDislikeStatus] = useState(likeStatus);
   const navigate = useNavigate();
   const token = useSelector(selectToken);
   const [likes, setLikes] = useState(propLikes);
   const [dislikes, setDislikes] = useState(propDislikes);
+  const addPostLike = useFetch(addPostLikeAction);
+  const removePostLike = useFetch(removePostLikeAction);
+  const addPostDislike = useFetch(addPostDislikeAction);
+  const removePostDislike = useFetch(removePostDislikeAction);
 
   const handleLike = async () => {
     if (!token) {
@@ -56,23 +61,23 @@ export const LikeDislike = ({
     }
 
     if (likeDislikeStatus === postLikeDislikeStatus.none) {
-      await addPostLike.action(postId);
+      await addPostLike.fetch(postId);
       setLikes((prev) => prev + 1);
       setLikeDislikeStatus(postLikeDislikeStatus.liked);
       return;
     }
 
     if (likeDislikeStatus === postLikeDislikeStatus.liked) {
-      await removePostLike.action(postId);
+      await removePostLike.fetch(postId);
       setLikes((prev) => prev - 1);
       setLikeDislikeStatus(postLikeDislikeStatus.none);
       return;
     }
 
     if (likeDislikeStatus === postLikeDislikeStatus.disliked) {
-      await removePostDislike.action(postId);
+      await removePostDislike.fetch(postId);
       setDislikes((prev) => prev - 1);
-      await addPostLike.action(postId);
+      await addPostLike.fetch(postId);
       setLikes((prev) => prev + 1);
       setLikeDislikeStatus(postLikeDislikeStatus.liked);
       return;
@@ -86,23 +91,23 @@ export const LikeDislike = ({
     }
 
     if (likeDislikeStatus === postLikeDislikeStatus.none) {
-      await addPostDislike.action(postId);
+      await addPostDislike.fetch(postId);
       setDislikes((prev) => prev + 1);
       setLikeDislikeStatus(postLikeDislikeStatus.disliked);
       return;
     }
 
     if (likeDislikeStatus === postLikeDislikeStatus.disliked) {
-      await removePostDislike.action(postId);
+      await removePostDislike.fetch(postId);
       setDislikes((prev) => prev - 1);
       setLikeDislikeStatus(postLikeDislikeStatus.none);
       return;
     }
 
     if (likeDislikeStatus === postLikeDislikeStatus.liked) {
-      await removePostLike.action(postId);
+      await removePostLike.fetch(postId);
       setLikes((prev) => prev - 1);
-      await addPostDislike.action(postId);
+      await addPostDislike.fetch(postId);
       setDislikes((prev) => prev + 1);
       setLikeDislikeStatus(postLikeDislikeStatus.disliked);
       return;
