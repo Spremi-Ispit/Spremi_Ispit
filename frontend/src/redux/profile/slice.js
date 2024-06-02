@@ -12,3 +12,5 @@ export const profileSlice = createSlice({
     },
   },
 });
+
+export const profileActions = profileSlice.actions;

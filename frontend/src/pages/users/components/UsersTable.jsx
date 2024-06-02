@@ -14,7 +14,6 @@ import { useNavigate } from 'react-router-dom';
 import { userRole } from '../../../redux/app/state';
 import { Button, Grid } from '@mui/material';
 import styled from 'styled-components';
-import { useAppActions } from '../../../redux/useAppActions';
 import {
   selectRole,
   selectToken,
@@ -28,6 +27,8 @@ import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useFetch } from '../../../api/useFetch';
 import { loadUsersForUsersTable } from '../../../api/actions/user/loadUsersForUsersTable';
+import { usersActions } from '../../../redux/users/slice';
+import { useRedux } from '../../../redux/useRedux';
 
 const StyledButton = styled(Button)`
   && {
@@ -51,8 +52,7 @@ export const UsersTable = () => {
   const role = useSelector(selectRole);
   const username = useSelector(selectUsername);
   const loadUsersTable = useSelector(selectLoadUsersTable);
-  const { usersActions } = useAppActions();
-  const { setLoadUsersTable } = usersActions;
+  const setLoadUsersTable = useRedux(usersActions.setLoadUsersTable);
   const navigate = useNavigate();
   const { data, loaded, error, fetch } = useFetch(loadUsersForUsersTable);
 

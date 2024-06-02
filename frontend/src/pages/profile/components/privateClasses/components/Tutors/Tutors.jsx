@@ -46,6 +46,10 @@ const Tutors = ({ reloadTutors, setReloadTutors, setTutorId }) => {
             accessor: (payload) => payload.id,
           },
           {
+            name: 'Ime',
+            accessor: (payload) => payload.name,
+          },
+          {
             name: 'Telefon',
             accessor: (payload) => payload.phone,
           },

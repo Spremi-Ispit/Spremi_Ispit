@@ -6,7 +6,6 @@ import {
   allowedUrlParams,
   useUrlManager,
 } from '../../../../utils/managers/UrlManager';
-import { useAppActions } from '../../../../redux/useAppActions';
 import { useSelector } from 'react-redux';
 import { selectRole, selectUsername } from '../../../../redux/app/selectors';
 import { selectSideNavbarHidden } from '../../../../redux/profile/selectors';
@@ -21,6 +20,8 @@ import {
   profileReportedPostsRoute,
 } from '../../../../router/routes';
 import SidePanel from './components/SidePanel';
+import { useRedux } from '../../../../redux/useRedux';
+import { profileActions } from '../../../../redux/profile/slice';
 
 const StyledDivider = styled(Divider)`
   && {
@@ -60,8 +61,7 @@ export const SideNavbar = () => {
   const { urlUsername } = urlManager.getParams();
   const role = useSelector(selectRole);
   const hidden = useSelector(selectSideNavbarHidden);
-  const { profileActions } = useAppActions();
-  const { setSideNavbarHidden } = profileActions;
+  const setSideNavbarHidden = useRedux(profileActions.setSideNavbarHidden);
   const screen = useScreens();
   const username = useSelector(selectUsername);
 

@@ -13,3 +13,5 @@ export const viewPostSlice = createSlice({
     },
   },
 });
+
+export const viewPostActions = viewPostSlice.actions;

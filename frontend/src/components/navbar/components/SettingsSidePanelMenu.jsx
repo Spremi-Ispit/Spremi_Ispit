@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useAppActions } from '../../../redux/useAppActions';
 import { useSelector } from 'react-redux';
 import { selectSettingsSidePanelVisible } from '../../../redux/app/selectors';
+import { appActions } from '../../../redux/app/slice';
+import { useRedux } from '../../../redux/useRedux';
 
 const StyledMenuIcon = styled(MenuIcon)`
   color: white;
@@ -12,9 +13,10 @@ const StyledMenuIcon = styled(MenuIcon)`
 `;
 
 const SettingsSidePanelMenu = () => {
-  const { appActions } = useAppActions();
-  const { setSettingsSidePanelVisible } = appActions;
   const sidePanelVisible = useSelector(selectSettingsSidePanelVisible);
+  const setSettingsSidePanelVisible = useRedux(
+    appActions.setSettingsSidePanelVisible
+  );
 
   const handleClick = () => {
     setSettingsSidePanelVisible(!sidePanelVisible);

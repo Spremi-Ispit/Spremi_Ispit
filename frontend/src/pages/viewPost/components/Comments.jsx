@@ -9,7 +9,6 @@ import {
   selectPostLoading,
 } from '../../../redux/viewPost/selectors';
 import { useUrlManager } from '../../../utils/managers/UrlManager';
-import { useAppActions } from '../../../redux/useAppActions';
 import { useFetch } from '../../../api/useFetch';
 import { loadComments } from '../../../api/actions/comments/loadComments';
 import { addCommentLike } from '../../../api/actions/comments/addCommentLike';
@@ -18,6 +17,8 @@ import { addCommentDislike } from '../../../api/actions/comments/addCommentDisli
 import { removeCommentDislike } from '../../../api/actions/comments/removeCommentDislike';
 import { reportComment } from '../../../api/actions/comments/reportComment';
 import { deleteComment } from '../../../api/actions/comments/deleteComment';
+import { useRedux } from '../../../redux/useRedux';
+import { viewPostActions } from '../../../redux/viewPost/slice';
 
 const PostViewDiv = styled.div`
   max-width: 850px;
@@ -32,9 +33,8 @@ export const Comments = () => {
   const [comments, setComments] = useState([]);
   const postLoading = useSelector(selectPostLoading);
   const commentsLoading = useSelector(selectCommentsLoading);
-  const { viewPostActions } = useAppActions();
-  const { setCommentsLoading } = viewPostActions;
   const { loaded, error, data, fetch } = useFetch(loadComments);
+  const setCommentsLoading = useRedux(viewPostActions.setCommentsLoading);
 
   useEffect(() => {
     if (postLoading) {

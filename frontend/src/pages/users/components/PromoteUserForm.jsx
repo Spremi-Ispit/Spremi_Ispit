@@ -11,7 +11,6 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { mapUserRoleToView } from './UsersTable';
 import { userRole } from '../../../redux/app/state';
-import { useAppActions } from '../../../redux/useAppActions';
 import { selectLoadPromoteUserForm } from '../../../redux/users/selectors';
 import { useSelector } from 'react-redux';
 import { homeRoute } from '../../../router/routes';
@@ -19,6 +18,8 @@ import Button from '../../../components/buttons/Button';
 import { useFetch } from '../../../api/useFetch';
 import { updateUserRole } from '../../../api/actions/user/updateUserRole';
 import { loadUsernamesWithRoles } from '../../../api/actions/user/loadUsernamesWithRoles';
+import { usersActions } from '../../../redux/users/slice';
+import { useRedux } from '../../../redux/useRedux';
 
 const Container = styled.div``;
 
@@ -41,8 +42,8 @@ export const PromoteUserForm = () => {
   const navigate = useNavigate();
   const loadPromoteUserForm = useSelector(selectLoadPromoteUserForm);
 
-  const { usersActions } = useAppActions();
-  const { setLoadPromoteUserForm, setLoadUsersTable } = usersActions;
+  const setLoadPromoteUserForm = useRedux(usersActions.setLoadPromoteUserForm);
+  const setLoadUsersTable = useRedux(usersActions.setLoadUsersTable);
 
   const {
     error: errorUpdateUserRole,

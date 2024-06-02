@@ -7,7 +7,9 @@ import { selectSettingsSidePanelVisible } from '../../redux/app/selectors';
 import { Outlet } from 'react-router-dom';
 import Footer from '../../components/Footer';
 import SettingsSidePanel from '../../components/SettingsSidePanel/SettingsSidePanel';
-import { useAppActions } from '../../redux/useAppActions';
+import { profileActions } from '../../redux/profile/slice';
+import { useRedux } from '../../redux/useRedux';
+import { appActions } from '../../redux/app/slice';
 
 const ContentContainer = styled.div`
   display: flex;
@@ -28,9 +30,10 @@ const OutletDiv = styled.div`
 
 export const Profile = () => {
   const settingsSidePanelVisible = useSelector(selectSettingsSidePanelVisible);
-  const { appActions, profileActions } = useAppActions();
-  const { setSettingsSidePanelVisible } = appActions;
-  const { setSideNavbarHidden } = profileActions;
+  const setSideNavbarHidden = useRedux(profileActions.setSideNavbarHidden);
+  const setSettingsSidePanelVisible = useRedux(
+    appActions.setSettingsSidePanelVisible
+  );
 
   useEffect(() => {
     setSettingsSidePanelVisible(false);

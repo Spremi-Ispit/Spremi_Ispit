@@ -8,7 +8,6 @@ import FileUploader from '../../../../../components/FileUploader';
 import { useUrlManager } from '../../../../../utils/managers/UrlManager';
 import Dialog from '../../../../..//components/dialogs/Dialog';
 import { Button } from '../../../../../components/buttons/Button';
-import { useAppActions } from '../../../../../redux/useAppActions';
 import { loginRoute } from '../../../../../router/routes';
 import { useSelector } from 'react-redux';
 import { selectToken } from '../../../../../redux/app/selectors';
@@ -16,6 +15,8 @@ import { useNavigate } from 'react-router-dom';
 import Error from '../../../../../components/dialogs/Error';
 import { useFetch } from '../../../../../api/useFetch';
 import addComment from '../../../../../api/actions/comments/addComment';
+import { useRedux } from '../../../../../redux/useRedux';
+import { viewPostActions } from '../../../../../redux/viewPost/slice';
 
 export const Form = () => {
   const token = useSelector(selectToken);
@@ -27,9 +28,8 @@ export const Form = () => {
   const urlManager = useUrlManager();
   const { urlPostId } = urlManager.getParams();
   const { loading, error, fetch, data } = useFetch(addComment);
-  const { viewPostActions } = useAppActions();
-  const { setCommentsLoading } = viewPostActions;
   const [activeFileIndex, setActiveFileIndex] = useState(0);
+  const setCommentsLoading = useRedux(viewPostActions.setCommentsLoading);
 
   useEffect(() => {
     if (data) {

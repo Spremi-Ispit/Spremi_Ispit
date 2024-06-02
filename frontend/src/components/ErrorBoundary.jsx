@@ -31,9 +31,7 @@ export class ErrorBoundary extends React.Component {
     if (this.state.hasError) {
       return (
         <ErrorBoundaryDiv>
-          <h1>Oops! :(</h1>
           <br />
-          <h4>Nepoznata greska, sta se desilo? :)</h4>
           <br />
           <a
             as="a"

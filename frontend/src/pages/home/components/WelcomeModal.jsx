@@ -2,7 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { selectWelcomeModalViewed } from '../../../redux/app/selectors';
-import { useAppActions } from '../../../redux/useAppActions';
+import { appActions } from '../../../redux/app/slice';
+import { useRedux } from '../../../redux/useRedux';
 
 const ModalWrapper = styled.div`
   background-color: white;
@@ -79,8 +80,7 @@ const WelcomeModalBackdrop = styled.div`
 
 const WelcomeModal = () => {
   const welcomeModalViewed = useSelector(selectWelcomeModalViewed);
-  const { appActions } = useAppActions();
-  const { setWelcomeModalViewed } = appActions;
+  const setWelcomeModalViewed = useRedux(appActions.setWelcomeModalViewed);
 
   if (welcomeModalViewed) {
     return null;

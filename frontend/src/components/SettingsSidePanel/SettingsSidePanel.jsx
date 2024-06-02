@@ -12,8 +12,9 @@ import Videos from './components/Videos';
 import CommunityGithub from './components/CommunityGithub';
 import CommunityDrives from './components/CommunityDrives';
 import CommunityTools from './components/CommunityTools';
-import { useAppActions } from '../../redux/useAppActions';
 import Home from './components/Home';
+import { useRedux } from '../../redux/useRedux';
+import { appActions } from '../../redux/app/slice';
 
 const ClosePanelArrow = styled(DoubleArrow)`
   && {
@@ -67,8 +68,9 @@ const StyledMenuItem = styled(MenuItem)`
 
 export const SettingsSidePanel = () => {
   const sidePanelVisible = useSelector(selectSettingsSidePanelVisible);
-  const { appActions } = useAppActions();
-  const { setSettingsSidePanelVisible } = appActions;
+  const setSettingsSidePanelVisible = useRedux(
+    appActions.setSettingsSidePanelVisible
+  );
   const closedPanelWidth = 0;
   const openedPanelWidth = 200;
 
