@@ -1,7 +1,6 @@
 // @ts-nocheck
 import jwt from 'jsonwebtoken';
 import env from '../config/env';
-import { User } from '../entities/User';
 import response from '../utils/response';
 
 export const authorizeUserOnApiRequest = (req, res, next) => {
@@ -25,16 +24,12 @@ export const authorizeUserOnApiRequest = (req, res, next) => {
       return res.status(myResponse.statusCode).send(myResponse);
     }
 
-    const user = await User.findOne({
-      where: { email: decodedUser.email }
-    });
-
-    if (user.banned) {
-      const myResponse = response.UNAUTHORIZED(`User is not authorized`);
+    if (decodedUser.banned) {
+      const myResponse = response.UNAUTHORIZED(`User is banned`);
       return res.status(myResponse.statusCode).send(myResponse);
     }
 
-    req.body.userID = user.id;
+    req.body.userID = decodedUser.id;
     next();
   });
 };
