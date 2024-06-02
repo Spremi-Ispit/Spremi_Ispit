@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Button from '../../../../../../components/buttons/Button';
 import { useFetch } from '../../../../../../api/useFetch';
-import { createTutorProfile } from '../../../../../../api/tutor/createTutorProfile';
+import { createTutorProfile } from '../../../../../../api/actions/tutor/createTutorProfile';
 import Error from '../../../../../../components/dialogs/Error';
 import Loader from '../../../../../../components/Loader';
 

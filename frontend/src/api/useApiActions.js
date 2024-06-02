@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import * as filterActions from './filters/actions';
-import * as userActions from './user/actions';
-import * as postsActions from './posts/actions';
-import * as commentsActions from './comments/actions';
-import * as authActions from './auth/actions';
+import * as filterActions from './actions/filters/actions';
+import * as userActions from './actions/user/actions';
+import * as postsActions from './actions/posts/actions';
+import * as commentsActions from './actions/comments/actions';
+import * as authActions from './actions/auth/actions';
 
 export const useApiActions = () => {
   return {

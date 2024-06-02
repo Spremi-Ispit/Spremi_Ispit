@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Table from '../../../../../../components/Table';
 import Error from '../../../../../../components/dialogs/Error';
 import Loader from '../../../../../../components/Loader';
-import { getTutors } from '../../../../../../api/tutor/getTutors';
+import { getTutors } from '../../../../../../api/actions/tutor/getTutors';
 import { useFetchOnLoad } from '../../../../../../api/useFetch';
 import Button from '../../../../../../components/buttons/Button';
 

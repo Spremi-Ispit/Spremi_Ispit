@@ -7,8 +7,8 @@ import {
   useFetchOnLoad,
 } from '../../../../../../../../../../../../api/useFetch';
 import Button from '../../../../../../../../../../../../components/buttons/Button';
-import { deleteTutorSubject } from '../../../../../../../../../../../../api/tutor/deleteTutorSubject';
-import { getTutorSubjects } from '../../../../../../../../../../../../api/tutor/getTutorSubjects';
+import { deleteTutorSubject } from '../../../../../../../../../../../../api/actions/tutor/deleteTutorSubject';
+import { getTutorSubjects } from '../../../../../../../../../../../../api/actions/tutor/getTutorSubjects';
 
 const TutorSubjects = ({ tutorId, reloadSubjects, setReloadSubjects }) => {
   const {

@@ -10,7 +10,7 @@ import Loader from '../../components/Loader';
 import Error from '../../components/dialogs/Error';
 import { useUrlManager } from '../../utils/managers/UrlManager';
 import { useFetchOnLoad } from '../../api/useFetch';
-import { getTutors } from '../../api/tutor/getTutors';
+import { getTutors } from '../../api/actions/tutor/getTutors';
 import YearOfStudy from './components/YearOfStudy';
 import Department from './components/Department';
 import Subject from './components/Subject';

@@ -8,7 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 import { useFetch, useFetchOnLoad } from '../../../../../../../../api/useFetch';
-import { getTutor } from '../../../../../../../../api/tutor/getTutor';
+import { getTutor } from '../../../../../../../../api/actions/tutor/getTutor';
 import Subjects from './components/Subjects/Subjects';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -17,7 +17,7 @@ import FormHelperText from '@mui/material/FormHelperText';
 import Button from '../../../../../../../../components/buttons/Button';
 import Error from '../../../../../../../../components/dialogs/Error';
 import Loader from '../../../../../../../../components/Loader';
-import { updateTutorProfile } from '../../../../../../../../api/tutor/updateTutorProfile';
+import { updateTutorProfile } from '../../../../../../../../api/actions/tutor/updateTutorProfile';
 
 const TutorProfile = ({ onSave, tutorId }) => {
   const [tutor, setTutor] = useState(null);

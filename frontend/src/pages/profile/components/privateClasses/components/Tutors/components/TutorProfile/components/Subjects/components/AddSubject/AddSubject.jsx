@@ -8,7 +8,7 @@ import { useUrlManager } from '../../../../../../../../../../../../utils/manager
 import Loader from '../../../../../../../../../../../../components/Loader';
 import Error from '../../../../../../../../../../../../components/dialogs/Error';
 import { useFetch } from '../../../../../../../../../../../../api/useFetch';
-import { addSubjectToTutor } from '../../../../../../../../../../../../api/tutor/addSubjectToTutor';
+import { addSubjectToTutor } from '../../../../../../../../../../../../api/actions/tutor/addSubjectToTutor';
 
 const AddSubject = ({ setReloadSubjects, tutorId }) => {
   const urlManager = useUrlManager();
