@@ -7,6 +7,7 @@ import AlertDialog from '../../dialogs/AlertDialog';
 import { useSelector } from 'react-redux';
 import { selectRole, selectUsername } from '../../../redux/app/selectors';
 import { userRole } from '../../../redux/app/state';
+import { useFetch } from '../../../api/useFetch';
 
 const StyledDeleteIconButton = styled(IconButton)`
   && {
@@ -20,7 +21,8 @@ export const Delete = ({
   onSuccessfulDeletion,
   postedBy,
 }) => {
-  const { loading, loaded, error, action } = deletePost;
+  const { loading, loaded, error, fetch } = useFetch(deletePost);
+
   const [dialogOpen, setDialogOpen] = useState(false);
   const username = useSelector(selectUsername);
   const role = useSelector(selectRole);
@@ -32,7 +34,7 @@ export const Delete = ({
   }, [loaded]);
 
   const handleSubmit = () => {
-    action(postId);
+    fetch(postId);
   };
 
   if (!(username === postedBy || role === userRole.admin)) {

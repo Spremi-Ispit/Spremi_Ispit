@@ -9,6 +9,7 @@ import styled from 'styled-components';
 import { IconButton } from '@mui/material';
 import { selectToken } from '../../../redux/app/selectors';
 import Error from '../../dialogs/Error';
+import { useFetch } from '../../../api/useFetch';
 
 const StyledReportIconButton = styled(IconButton)`
   && {
@@ -17,7 +18,7 @@ const StyledReportIconButton = styled(IconButton)`
 `;
 
 export const Report = ({ postId, reportPost }) => {
-  const { loading, error, action } = reportPost;
+  const { loading, error, fetch } = useFetch(reportPost);
   const navigate = useNavigate();
 
   const token = useSelector(selectToken);
@@ -32,7 +33,7 @@ export const Report = ({ postId, reportPost }) => {
   };
 
   const handleSubmit = () => {
-    action(postId);
+    fetch(postId);
   };
 
   if (error) {
