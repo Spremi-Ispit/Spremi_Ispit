@@ -6,7 +6,7 @@ import response from '../../utils/response';
 import { mapPostToPostPreviewDTO } from './utils/mapPostToPostPreviewDTO';
 
 export const getCommentedPosts = async (req) => {
-  const { userID } = req.body;
+  const { userId } = req.body;
   const { username } = req.params;
 
   const user = await User.findOne({
@@ -39,7 +39,7 @@ export const getCommentedPosts = async (req) => {
 
   let mapCommentedPosts = [];
   commentedPosts.forEach((commentedPost) => {
-    mapCommentedPosts.push(mapPostToPostPreviewDTO(commentedPost, userID));
+    mapCommentedPosts.push(mapPostToPostPreviewDTO(commentedPost, userId));
   });
 
   return response.OK(mapCommentedPosts);

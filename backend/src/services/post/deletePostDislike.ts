@@ -5,7 +5,7 @@ import response from '../../utils/response';
 import { postLikeDislikeStatus } from './utils/postLikeDislikeStatus';
 
 export const deletePostDislike = async (req) => {
-  const { userID, postID } = req.body;
+  const { userId, postID } = req.body;
 
   const post = await Post.findOne({
     where: { id: postID },
@@ -13,12 +13,12 @@ export const deletePostDislike = async (req) => {
   });
 
   const user = await User.findOne({
-    where: { id: userID }
+    where: { id: userId }
   });
 
   if (user) {
     post.dislikedBy = post.dislikedBy.filter(
-      (dislikedBy) => dislikedBy.id !== userID
+      (dislikedBy) => dislikedBy.id !== userId
     );
 
     await post.save();

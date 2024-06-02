@@ -1,17 +1,17 @@
 // @ts-nocheck
 import { commentLikeDislikeStatus } from '../../../utils/enums';
 
-export function mapCommentToDTO(comment, userID) {
+export function mapCommentToDTO(comment, userId) {
   let likedStatus = commentLikeDislikeStatus.none;
-  if (userID) {
+  if (userId) {
     comment.likedBy.forEach((likedBy) => {
-      if (likedBy.id === userID) {
+      if (likedBy.id === userId) {
         likedStatus = commentLikeDislikeStatus.liked;
       }
     });
 
     comment.dislikedBy.forEach((dislikedBy) => {
-      if (dislikedBy.id === userID) {
+      if (dislikedBy.id === userId) {
         likedStatus = commentLikeDislikeStatus.disliked;
       }
     });
@@ -25,7 +25,7 @@ export function mapCommentToDTO(comment, userID) {
     postedBy: comment.postedBy.username,
     files: comment.files,
     likeStatus: likedStatus,
-    owner: userID && comment.postedBy.id == userID,
+    owner: userId && comment.postedBy.id == userId,
     likes: comment.likedBy.length,
     dislikes: comment.dislikedBy.length,
     postId: comment.post.id

@@ -47,13 +47,13 @@ export const getPostsForHomepageFilters = async (req) => {
   });
 
   const status = checkIfLogged(req);
-  const userID = status.userID;
+  const userId = status.userId;
 
   const postArray = [];
   postsIds.forEach((id, index) => {
     const post = posts.find((post) => post.id === id);
     if (post) {
-      postArray.push(mapPostToPostPreviewDTO(post, userID));
+      postArray.push(mapPostToPostPreviewDTO(post, userId));
     }
   });
 

@@ -4,10 +4,10 @@ import { User } from '../../entities/User';
 import response from '../../utils/response';
 
 export const reportPost = async (req) => {
-  const { postID, userID } = req.body;
+  const { postID, userId } = req.body;
 
   const user = await User.findOne({
-    where: { id: userID }
+    where: { id: userId }
   });
 
   const post = await Post.findOne({
@@ -17,7 +17,7 @@ export const reportPost = async (req) => {
     relations: ['reportedBy']
   });
   if (user && post) {
-    const reported = post.reportedBy.find((user) => user.id === userID);
+    const reported = post.reportedBy.find((user) => user.id === userId);
     if (reported) {
       return response.BAD_REQUEST(`Already reported`);
     }

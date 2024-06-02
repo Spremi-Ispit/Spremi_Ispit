@@ -6,7 +6,7 @@ import env from '../config/env';
 export const checkIfLogged = (req) => {
   let loggedStatus = {
     status: false,
-    userID: null
+    userId: null
   };
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
@@ -17,7 +17,7 @@ export const checkIfLogged = (req) => {
   jwt.verify(token, env.ACCESS_TOKEN_SECRET, (err, user) => {
     if (!err) {
       loggedStatus.status = true;
-      loggedStatus.userID = user.id;
+      loggedStatus.userId = user.id;
     }
   });
   return loggedStatus;

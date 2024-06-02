@@ -8,9 +8,9 @@ export const getCommentsForPost = async (req) => {
   const { postId } = req.params;
 
   const loggedRes = checkIfLogged(req);
-  let userID = null;
+  let userId = null;
   if (loggedRes.status) {
-    userID = loggedRes.userID;
+    userId = loggedRes.userId;
   }
 
   const comments = await Comment.find({
@@ -35,7 +35,7 @@ export const getCommentsForPost = async (req) => {
   let commentsToReturn = [];
 
   comments.forEach((comment) => {
-    commentsToReturn.push(mapCommentToDTO(comment, userID));
+    commentsToReturn.push(mapCommentToDTO(comment, userId));
   });
 
   if (commentsToReturn.length > 0) {

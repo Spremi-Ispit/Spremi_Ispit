@@ -29,7 +29,7 @@ export const authorizeUserOnApiRequest = (req, res, next) => {
       return res.status(myResponse.statusCode).send(myResponse);
     }
 
-    req.body.userID = decodedUser.id;
+    req.body.userId = decodedUser.id;
     next();
   });
 };

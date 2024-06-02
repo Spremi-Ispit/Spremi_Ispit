@@ -6,10 +6,10 @@ import response from '../utils/response';
 
 export const authorizeAdminOnApiRequest = async (req, res, next) => {
   authorizeUserOnApiRequest(req, res, async (err) => {
-    const { userID } = req.body;
+    const { userId } = req.body;
 
     const user = await User.findOne({
-      where: { id: userID }
+      where: { id: userId }
     });
 
     if (user?.role === userRole.admin) {

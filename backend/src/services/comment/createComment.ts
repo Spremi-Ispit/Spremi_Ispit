@@ -5,10 +5,10 @@ import { User } from '../../entities/User';
 import { Post } from '../../entities/Post';
 
 export const createComment = async (req) => {
-  const { text, postID, userID } = req.body;
+  const { text, postID, userId } = req.body;
 
   const user = await User.findOne({
-    where: { id: userID }
+    where: { id: userId }
   });
 
   const post = await Post.findOne({

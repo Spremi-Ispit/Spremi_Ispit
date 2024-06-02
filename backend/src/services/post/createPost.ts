@@ -8,11 +8,11 @@ import { YearOfExam } from '../../entities/filters/YearOfExam';
 import response from '../../utils/response';
 
 export const createPost = async (req) => {
-  const { userID, post } = req.body;
+  const { userId, post } = req.body;
   const { title, text, filters } = post;
 
   const user = await User.findOne({
-    where: { id: userID }
+    where: { id: userId }
   });
 
   const filter = async (entity, name) => {

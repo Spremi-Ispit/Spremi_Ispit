@@ -5,7 +5,7 @@ import response from '../../utils/response';
 import { postLikeDislikeStatus } from './utils/postLikeDislikeStatus';
 
 export const createPostDislike = async (req) => {
-  const { userID, postID } = req.body;
+  const { userId, postID } = req.body;
 
   const post = await Post.findOne({
     where: { id: postID },
@@ -13,7 +13,7 @@ export const createPostDislike = async (req) => {
   });
 
   const user = await User.findOne({
-    where: { id: userID }
+    where: { id: userId }
   });
 
   if (user) {

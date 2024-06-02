@@ -6,7 +6,7 @@ import { mapPostToPostPreviewDTO } from './utils/mapPostToPostPreviewDTO';
 
 export const getPostById = async (req) => {
   const status = checkIfLogged(req);
-  const userID = status.userID;
+  const userId = status.userId;
   const { id } = req.params;
 
   const post = await Post.findOne({
@@ -17,7 +17,7 @@ export const getPostById = async (req) => {
   });
 
   if (post) {
-    return response.OK(mapPostToPostPreviewDTO(post, userID));
+    return response.OK(mapPostToPostPreviewDTO(post, userId));
   } else {
     return response.NOT_FOUND('Post not found');
   }

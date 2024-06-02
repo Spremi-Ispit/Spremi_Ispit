@@ -5,7 +5,7 @@ import { commentLikeDislikeStatus } from '../../utils/enums';
 import response from '../../utils/response/index';
 
 export const deleteCommentDislike = async (req) => {
-  const { userID, commentID } = req.body;
+  const { userId, commentID } = req.body;
 
   const comment = await Comment.findOne({
     where: { id: commentID },
@@ -13,12 +13,12 @@ export const deleteCommentDislike = async (req) => {
   });
 
   const user = await User.findOne({
-    where: { id: userID }
+    where: { id: userId }
   });
 
   if (user) {
     comment.dislikedBy = comment.dislikedBy.filter(
-      (dislikedBy) => dislikedBy.id !== userID
+      (dislikedBy) => dislikedBy.id !== userId
     );
 
     await comment.save();

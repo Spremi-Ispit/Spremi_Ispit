@@ -4,19 +4,19 @@ import { Comment } from '../../entities/Comment';
 import { User } from '../../entities/User';
 
 export const reportComment = async (req) => {
-  const { commentID, userID } = req.body;
+  const { commentID, userId } = req.body;
 
   const alreadyReported = await Comment.findOne({
     relations: ['reportedBy'],
     where: {
       id: commentID,
-      reportedBy: { id: userID }
+      reportedBy: { id: userId }
     }
   });
 
   if (!alreadyReported) {
     const reportedBy = await User.findOne({
-      where: { id: userID }
+      where: { id: userId }
     });
 
     const comment = await Comment.findOne({

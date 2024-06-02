@@ -5,7 +5,7 @@ import { mapPostToPostPreviewDTO } from './utils/mapPostToPostPreviewDTO';
 
 export const getPostsByUsername = async (req) => {
   const { username } = req.query;
-  const { userID } = req.body;
+  const { userId } = req.body;
 
   const user = await User.findOne({
     where: {
@@ -24,7 +24,7 @@ export const getPostsByUsername = async (req) => {
   const userPosts = [];
   if (user) {
     user.posts.forEach((post) => {
-      userPosts.push(mapPostToPostPreviewDTO(post, userID));
+      userPosts.push(mapPostToPostPreviewDTO(post, userId));
     });
 
     return response.OK(userPosts);
