@@ -1,4 +1,4 @@
-INSERT INTO `subjectOnDepartment` (`departmentId`, `subjectId`) VALUES
+INSERT INTO `subject_on_department` (`departmentId`, `subjectId`) VALUES
 (1, 1),
 (1, 2),
 (1, 3),
@@ -205,7 +205,7 @@ INSERT INTO `subjectOnDepartment` (`departmentId`, `subjectId`) VALUES
 (7, 204);
 
 -- Elektronika
-INSERT INTO `subjectOnDepartment` (`departmentId`, `subjectId`) VALUES
+INSERT INTO `subject_on_department` (`departmentId`, `subjectId`) VALUES
 (5, 205),
 (5, 206),
 (5, 207),

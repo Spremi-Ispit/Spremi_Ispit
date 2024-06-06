@@ -26,7 +26,7 @@ export class Subject extends BaseEntity {
     cascade: true
   })
   @JoinTable({
-    name: 'subjectOnDepartment',
+    name: 'subject_on_department',
     joinColumn: {
       name: 'subjectId',
       referencedColumnName: 'id'
@@ -42,7 +42,7 @@ export class Subject extends BaseEntity {
     cascade: true
   })
   @JoinTable({
-    name: 'subjectOnYearOfStudy',
+    name: 'subject_on_year_of_study',
     joinColumn: {
       name: 'subjectId',
       referencedColumnName: 'id'

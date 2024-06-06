@@ -1,6 +1,6 @@
 
 
-INSERT INTO `postLikedBy` (`postId`, `userId`) VALUES
+INSERT INTO `post_liked_by` (`postId`, `userId`) VALUES
 (1, 1),
 (1, 2),
 (1, 3),

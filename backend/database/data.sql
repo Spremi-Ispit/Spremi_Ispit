@@ -30,7 +30,7 @@ INSERT INTO `year_of_study`(`name`) VALUES
 ('V');
 
 
-INSERT INTO `yearOfStudyOnDepartment` (`departmentId`, `yearOfStudyId`) VALUES
+INSERT INTO `year_of_study_on_department` (`departmentId`, `yearOfStudyId`) VALUES
 (1, 1),
 (2, 2),
 (3, 2),
@@ -400,7 +400,7 @@ INSERT INTO `subject`(`name`) VALUES
   ('Programiranje ARM kontrolera'),
   ('Izvori napona napajanja'); -- 272
 
-INSERT INTO `subjectOnDepartment` (`departmentId`, `subjectId`) VALUES
+INSERT INTO `subject_on_department` (`departmentId`, `subjectId`) VALUES
 (1, 1),
 (1, 2),
 (1, 3),
@@ -607,7 +607,7 @@ INSERT INTO `subjectOnDepartment` (`departmentId`, `subjectId`) VALUES
 (7, 204);
 
 -- Elektronika
-INSERT INTO `subjectOnDepartment` (`departmentId`, `subjectId`) VALUES
+INSERT INTO `subject_on_department` (`departmentId`, `subjectId`) VALUES
 (5, 205),
 (5, 206),
 (5, 207),
@@ -678,7 +678,7 @@ INSERT INTO `subjectOnDepartment` (`departmentId`, `subjectId`) VALUES
 (5, 272);
 
 
-INSERT INTO `subjectOnYearOfStudy` (`yearOfStudyId`, `subjectId`) VALUES
+INSERT INTO `subject_on_year_of_study` (`yearOfStudyId`, `subjectId`) VALUES
 (1, 1),
 (1, 2),
 (1, 3),
@@ -885,7 +885,7 @@ INSERT INTO `subjectOnYearOfStudy` (`yearOfStudyId`, `subjectId`) VALUES
 (4, 204);
 
 -- Elektronika
-INSERT INTO `subjectOnYearOfStudy` (`yearOfStudyId`, `subjectId`) VALUES
+INSERT INTO `subject_on_year_of_study` (`yearOfStudyId`, `subjectId`) VALUES
 (2, 205),
 (2, 206),
 (2, 207),
@@ -993,7 +993,7 @@ UPDATE `post` SET text = 'consectetur animi nesciunt iure dolore\nenim quia ad\n
 
 
 
-INSERT INTO `postLikedBy` (`postId`, `userId`) VALUES
+INSERT INTO `post_liked_by` (`postId`, `userId`) VALUES
 (1, 1),
 (1, 2),
 (1, 3),
@@ -1003,7 +1003,7 @@ INSERT INTO `postLikedBy` (`postId`, `userId`) VALUES
 (4, 1);
 
 
-INSERT INTO `postDislikedBy` (`postId`, `userId`) VALUES
+INSERT INTO `post_disliked_by` (`postId`, `userId`) VALUES
 (2, 3),
 (3, 3),
 (4, 3);
@@ -1016,7 +1016,7 @@ INSERT INTO `comment` (`text`, `date`, `userId`, `postId`) VALUES
 ( 'Ovo je cetvrti komentar ', '2022-12-06 23:59:59', 1, 1);
 
 
-INSERT INTO `commentLikedBy` (`commentId`, `userId`) VALUES
+INSERT INTO `comment_liked_by` (`commentId`, `userId`) VALUES
 (1, 1),
 (1, 3),
 (2, 1),
@@ -1025,7 +1025,7 @@ INSERT INTO `commentLikedBy` (`commentId`, `userId`) VALUES
 (4, 1);
 
 
-INSERT INTO `commentDislikedBy` (`commentId`, `userId`) VALUES
+INSERT INTO `comment_disliked_by` (`commentId`, `userId`) VALUES
 (1, 2);
 
 

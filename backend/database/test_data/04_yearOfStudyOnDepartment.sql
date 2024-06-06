@@ -1,6 +1,6 @@
 
 
-INSERT INTO `yearOfStudyOnDepartment` (`departmentId`, `yearOfStudyId`) VALUES
+INSERT INTO `year_of_study_on_department` (`departmentId`, `yearOfStudyId`) VALUES
 (1, 1),
 (2, 2),
 (3, 2),

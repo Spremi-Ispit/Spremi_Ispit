@@ -37,7 +37,7 @@ export class Comment extends Annoucment {
     cascade: true
   })
   @JoinTable({
-    name: 'commentLikedBy',
+    name: 'comment_liked_by',
     joinColumn: {
       name: 'commentId',
       referencedColumnName: 'id'
@@ -53,7 +53,7 @@ export class Comment extends Annoucment {
     cascade: true
   })
   @JoinTable({
-    name: 'commentDislikedBy',
+    name: 'comment_disliked_by',
     joinColumn: {
       name: 'commentId',
       referencedColumnName: 'id'
@@ -69,7 +69,7 @@ export class Comment extends Annoucment {
     cascade: true
   })
   @JoinTable({
-    name: 'commentReportedBy',
+    name: 'comment_reported_by',
     joinColumn: {
       name: 'commentId',
       referencedColumnName: 'id'

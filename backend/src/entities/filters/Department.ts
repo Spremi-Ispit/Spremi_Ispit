@@ -16,7 +16,7 @@ export class Department extends Tag {
     cascade: true
   })
   @JoinTable({
-    name: 'yearOfStudyOnDepartment',
+    name: 'year_of_study_on_department',
     joinColumn: {
       name: 'departmentId',
       referencedColumnName: 'id'

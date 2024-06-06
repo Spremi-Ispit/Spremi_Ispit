@@ -75,7 +75,7 @@ export function buildPostsQueryForFilters({
   postsQuery.addSelect('post.date').addSelect((subQuery) => {
     return subQuery
       .select('COUNT(likedBy.id)', 'like_count')
-      .from('postLikedBy', 'post_likedBy')
+      .from('post_liked_by', 'post_likedBy')
       .innerJoin('user', 'likedBy', 'likedBy.id = post_likedBy.userId')
       .where('post_likedBy.postId = post.id');
   }, 'likes');
@@ -83,7 +83,7 @@ export function buildPostsQueryForFilters({
   postsQuery.addSelect((subQuery) => {
     return subQuery
       .select('COUNT(dislikedBy.id)', 'dislike_count')
-      .from('postDislikedBy', 'post_dislikedBy')
+      .from('post_disliked_by', 'post_dislikedBy')
       .innerJoin('user', 'dislikedBy', 'dislikedBy.id = post_dislikedBy.userId')
       .where('post_dislikedBy.postId = post.id');
   }, 'dislikes');

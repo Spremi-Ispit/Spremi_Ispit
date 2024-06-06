@@ -45,7 +45,7 @@ export class Post extends Annoucment {
     cascade: true
   })
   @JoinTable({
-    name: 'postLikedBy',
+    name: 'post_liked_by',
     joinColumn: {
       name: 'postId',
       referencedColumnName: 'id'
@@ -61,7 +61,7 @@ export class Post extends Annoucment {
     cascade: true
   })
   @JoinTable({
-    name: 'postDislikedBy',
+    name: 'post_disliked_by',
     joinColumn: {
       name: 'postId',
       referencedColumnName: 'id'
@@ -113,7 +113,7 @@ export class Post extends Annoucment {
     cascade: true
   })
   @JoinTable({
-    name: 'postReportedBy',
+    name: 'post_reported_by',
     joinColumn: {
       name: 'postId',
       referencedColumnName: 'id'

@@ -1,6 +1,6 @@
 
 
-INSERT INTO `commentLikedBy` (`commentId`, `userId`) VALUES
+INSERT INTO `comment_liked_by` (`commentId`, `userId`) VALUES
 (1, 1),
 (1, 3),
 (2, 1),

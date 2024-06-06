@@ -1,6 +1,6 @@
 
 
-INSERT INTO `subjectOnYearOfStudy` (`yearOfStudyId`, `subjectId`) VALUES
+INSERT INTO `subject_on_year_of_study` (`yearOfStudyId`, `subjectId`) VALUES
 (1, 1),
 (1, 2),
 (1, 3),
@@ -207,7 +207,7 @@ INSERT INTO `subjectOnYearOfStudy` (`yearOfStudyId`, `subjectId`) VALUES
 (4, 204);
 
 -- Elektronika
-INSERT INTO `subjectOnYearOfStudy` (`yearOfStudyId`, `subjectId`) VALUES
+INSERT INTO `subject_on_year_of_study` (`yearOfStudyId`, `subjectId`) VALUES
 (2, 205),
 (2, 206),
 (2, 207),
