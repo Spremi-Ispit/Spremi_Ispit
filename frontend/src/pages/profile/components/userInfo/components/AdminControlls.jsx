@@ -12,6 +12,7 @@ import { useFetch } from '../../../../../api/useFetch';
 import { banUserAccount } from '../../../../../api/actions/user/banUserAccount';
 import { unbanUserAccount } from '../../../../../api/actions/user/unbanUserAccount';
 import { blacklistUser } from '../../../../../api/actions/user/blacklistUser';
+import { useSockets } from '../../../../../utils/useSockets';
 
 const AdminControllsContainer = styled.div`
   display: flex;
@@ -38,6 +39,7 @@ export const AdminControlls = ({ user, reloadUserInfo }) => {
     error: errorBanUserAccount,
     fetch: actionBanUserAccount,
   } = useFetch(banUserAccount);
+  const socket = useSockets();
 
   const {
     loading: loadingUnbanUserAccount,
@@ -54,7 +56,13 @@ export const AdminControlls = ({ user, reloadUserInfo }) => {
   } = useFetch(blacklistUser);
 
   const handleBan = () => {
-    actionBanUserAccount(user.id);
+    // actionBanUserAccount(user.id);
+    const { id, username } = user;
+    const data = {
+      room: id,
+      username: username,
+    };
+    socket.emit('ban_user', data);
   };
 
   const handleUnban = () => {

@@ -22,24 +22,3 @@ export const checkIfLogged = (req) => {
   });
   return loggedStatus;
 };
-
-export const isBanned = async (email) => {
-  let bannedStatus = {
-    foundUser: true,
-    banned: false
-  };
-  const user = await User.findOne({
-    where: {
-      email
-    }
-  });
-
-  if (!user) {
-    bannedStatus.foundUser = false;
-    bannedStatus.banned = null;
-    return bannedStatus;
-  }
-
-  bannedStatus.banned = user.banned;
-  return bannedStatus;
-};
