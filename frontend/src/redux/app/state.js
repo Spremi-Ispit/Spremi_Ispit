@@ -16,6 +16,7 @@ export const initialState = {
   username: null,
   email: null,
   welcomeModalViewed: false,
+  sourveyModalViewed: false,
   settingsSidePanelVisible: window.screen.width > screens.laptop,
 };
 

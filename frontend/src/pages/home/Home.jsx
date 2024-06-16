@@ -16,6 +16,8 @@ import Instagram from './components/Ads/Instagram';
 import Companies from './components/Companies/Companies';
 import MoreJobs from './components/Ads/MoreJobs/MoreJobs';
 import Tutoring from './components/Ads/Tutoring';
+import SourveyModal from './components/SurveyModal';
+import Sourvey from './components/Ads/Sourvey';
 
 const ContentDiv = styled.div`
   padding-top: 20px;
@@ -112,6 +114,7 @@ export const Home = () => {
             <LeftContentDiv>
               <Tutoring />
               <Instagram />
+              <Sourvey />
             </LeftContentDiv>
             <MiddleContentDiv>
               <Filters />
@@ -125,6 +128,7 @@ export const Home = () => {
           <Footer />
         </MainDiv>
       </HomeDiv>
+      <SourveyModal />
       {/* <WelcomeModal /> */}
     </>
   );
