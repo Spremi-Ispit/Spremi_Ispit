@@ -13,7 +13,7 @@ const Sourvey = () => {
   return (
     <SourveyDiv>
       <FollowUsDiv>
-        Popuni aketu
+        Popuni anketu
         <ArrowRightAltIcon />
       </FollowUsDiv>
       <StyledButton onClick={() => setSourveyModalViewed(false)}>
